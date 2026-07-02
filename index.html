@@ -30,7 +30,8 @@
     <a href="#artistas">Artistas</a>
     <a href="#faq">Dudas</a>
     <a href="envia-tu-cancion.html" class="btn btn-ghost" style="padding:10px 22px;font-size:.9rem">Envía tu canción</a>
-    <a href="solicitud.html" class="btn btn-purple">Solicita acceso</a>
+    <a href="solicitud.html" class="btn btn-purple nav-cta-desktop">Solicita acceso</a>
+    <a href="#artistas" class="btn btn-purple nav-cta-movil">Artistas</a>
   </div>
 </div></nav>
 
@@ -358,19 +359,26 @@
   },{rootMargin:'-40% 0px -55% 0px'});
   secs.forEach(s=>nio.observe(s));
 
-  // preview grande de la galería al pasar el ratón (y tap en móvil)
+  // preview grande de la galería: hover en escritorio, tap en móvil (sin doble evento)
   const gp=document.getElementById('gpreview'), gpImg=gp.querySelector('img');
+  const canHover=window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   let gpOn=null;
   const showPrev=src=>{gpImg.src=src;gp.classList.add('show')};
   const hidePrev=()=>{gp.classList.remove('show');gpOn=null};
   document.querySelectorAll('.gallery .shot').forEach(card=>{
     const src=card.querySelector('img').src;
-    card.addEventListener('mouseenter',()=>showPrev(src));
-    card.addEventListener('mouseleave',hidePrev);
-    card.addEventListener('click',e=>{e.preventDefault();gpOn===card?hidePrev():(gpOn=card,showPrev(src))});
+    if(canHover){
+      card.addEventListener('mouseenter',()=>showPrev(src));
+      card.addEventListener('mouseleave',hidePrev);
+    }else{
+      card.addEventListener('click',e=>{
+        e.preventDefault();e.stopPropagation();
+        gpOn===card?hidePrev():(gpOn=card,showPrev(src));
+      });
+    }
   });
   gp.addEventListener('click',hidePrev);
-  window.addEventListener('scroll',hidePrev,{passive:true});
+  if(!canHover)window.addEventListener('scroll',hidePrev,{passive:true});
   document.addEventListener('keydown',e=>{if(e.key==='Escape')hidePrev()});
 </script>
 </body>
