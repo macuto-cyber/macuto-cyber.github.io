@@ -307,6 +307,9 @@
 
 </main>
 
+<!-- PREVIEW de galería (hover / tap) -->
+<div class="gpreview" id="gpreview" aria-hidden="true"><img src="" alt="Vista ampliada del resultado"></div>
+
 <footer class="site"><div class="wrap">
   <div class="foot-grid">
     <div>
@@ -352,6 +355,21 @@
     })
   },{rootMargin:'-40% 0px -55% 0px'});
   secs.forEach(s=>nio.observe(s));
+
+  // preview grande de la galería al pasar el ratón (y tap en móvil)
+  const gp=document.getElementById('gpreview'), gpImg=gp.querySelector('img');
+  let gpOn=null;
+  const showPrev=src=>{gpImg.src=src;gp.classList.add('show')};
+  const hidePrev=()=>{gp.classList.remove('show');gpOn=null};
+  document.querySelectorAll('.gallery .shot').forEach(card=>{
+    const src=card.querySelector('img').src;
+    card.addEventListener('mouseenter',()=>showPrev(src));
+    card.addEventListener('mouseleave',hidePrev);
+    card.addEventListener('click',e=>{e.preventDefault();gpOn===card?hidePrev():(gpOn=card,showPrev(src))});
+  });
+  gp.addEventListener('click',hidePrev);
+  window.addEventListener('scroll',hidePrev,{passive:true});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')hidePrev()});
 </script>
 </body>
 </html>
