@@ -278,7 +278,16 @@ nav.site{
   box-shadow:var(--shadow-md);animation:floaty 6s ease-in-out infinite;
 }
 @media(max-width:940px){.mock{height:420px;margin-top:24px}}
-@media(max-width:420px){.chip{width:180px}.chip.c2{left:-8px}}
+/* mockup pulido en móvil: centrado y sin chips desbordando el borde */
+@media(max-width:600px){
+  .mock{height:400px;max-width:300px;margin:22px auto 0}
+  .chip{width:186px}
+  .chip.c1{right:0}
+  .chip.c2{left:0}
+  .chip.c3{right:0}
+  .badge-floating{left:0;top:0}
+}
+@media(max-width:420px){.chip{width:170px}}
 
 /* ---------- marquee ---------- */
 .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface);padding:17px 0;overflow:hidden;white-space:nowrap}
