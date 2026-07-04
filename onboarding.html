@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Completa tu ficha — Macuto Music</title>
+<meta name="description" content="Completa tu ficha de artista de Macuto Music para entrar al programa. Cinco minutos.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://macutomusic.com/onboarding.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Macuto Music">
+<meta property="og:title" content="Completa tu ficha — Macuto Music">
+<meta property="og:description" content="¡Bienvenido al DAP! Completa tu ficha de artista (5 min) para entrar al sistema.">
+<meta property="og:url" content="https://macutomusic.com/onboarding.html">
+<meta property="og:locale" content="es_ES">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Saltar al contenido</a>
+<nav class="site" aria-label="Principal"><div class="wrap nav-in">
+  <a class="logo" href="/"><img class="mm" src="assets/logo.jpg" alt="Logo de Macuto Music"> Macuto&nbsp;Music</a>
+  <div class="nav-links">
+    <a href="/">Inicio</a>
+  </div>
+</div></nav>
+<main id="main">
+<section class="sec" style="padding-top:56px"><div class="wrap" style="max-width:760px">
+  <span class="eyebrow">Bienvenido · DAP</span>
+  <h1 style="font-size:clamp(2rem,4.6vw,2.9rem);margin:14px 0 10px">Completa tu ficha</h1>
+  <p style="margin-bottom:28px">¡Bienvenido al <b>DAP</b>! Rellena esto para entrar al sistema y que el equipo te acompañe desde el primer día. Son <b>5 minutos</b>.</p>
+  <iframe id="onbForm" src="https://tally.so/embed/BzeXg7?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" data-tally-src="https://tally.so/embed/BzeXg7?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0" title="Formulario: Pre-onboarding de Macuto Music"></iframe>
+  <p style="margin-top:22px;font-size:.85rem;opacity:.75">¿No ves el formulario? Ábrelo directamente <a id="onbFallback" href="https://tally.so/r/BzeXg7">aquí</a> o escríbenos por WhatsApp.</p>
+</div></section>
+</main>
+<footer class="site"><div class="wrap">
+  <div class="foot-legal">
+    <span>© 2026 Macuto Music · macuto@macutomusic.com · WhatsApp +34 659 66 76 22</span>
+    <span><a href="aviso-legal.html">Aviso legal</a> · <a href="privacidad.html">Privacidad</a></span>
+  </div>
+</div></footer>
+<script>
+  // Pasa el email de la URL (?email=...) al formulario para prerellenarlo (lo manda Make en el WhatsApp de bienvenida).
+  (function () {
+    var email = new URLSearchParams(location.search).get('email');
+    if (!email) return;
+    var base = 'https://tally.so/embed/BzeXg7?email=' + encodeURIComponent(email) + '&alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1';
+    var f = document.getElementById('onbForm');
+    if (f) { f.setAttribute('data-tally-src', base); f.src = base; }
+    var fb = document.getElementById('onbFallback');
+    if (fb) fb.href = 'https://tally.so/r/BzeXg7?email=' + encodeURIComponent(email);
+  })();
+</script>
+<script async src="https://tally.so/widgets/embed.js"></script>
+</body>
+</html>
