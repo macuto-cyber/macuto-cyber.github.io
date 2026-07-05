@@ -607,3 +607,7 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
 .mas-title{font-family:'Space Grotesk';font-weight:700;font-size:1.4rem;color:var(--ink);margin-bottom:20px}
 @media(max-width:600px){.ahero{padding:44px 0 80px}.acover-band{margin-top:-56px;aspect-ratio:16/9}.src-box{padding:20px}.rmast{padding:56px 0 34px}}
 @media (prefers-reduced-motion:reduce){.blip::after{animation:none}}
+
+/* velo de marca sobre las fotos de cover */
+.acover,.rfeat-cover,.acover-band{position:relative}
+.acover::after,.rfeat-cover::after,.acover-band::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(94,23,235,.18),rgba(13,10,30,.30));pointer-events:none}
