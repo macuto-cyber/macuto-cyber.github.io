@@ -3,7 +3,7 @@
 (function () {
   var IDS = {
     metaPixel: '887538674392441',   // Macuto Music Web (Events Manager)
-    ga4: ''                         // ID de medición GA4, formato G-XXXXXXX
+    ga4: 'G-NTM5R44S0Q'             // Macuto Music Web · flujo "Web principal"
   };
   if (!IDS.metaPixel && !IDS.ga4) return;
 
