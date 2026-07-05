@@ -2,8 +2,8 @@
  * Los IDs se rellenan aquí; si están vacíos, no se muestra banner ni se carga nada. */
 (function () {
   var IDS = {
-    metaPixel: '',   // ID del píxel de Meta (Events Manager)
-    ga4: ''          // ID de medición GA4, formato G-XXXXXXX
+    metaPixel: '887538674392441',   // Macuto Music Web (Events Manager)
+    ga4: ''                         // ID de medición GA4, formato G-XXXXXXX
   };
   if (!IDS.metaPixel && !IDS.ga4) return;
 
