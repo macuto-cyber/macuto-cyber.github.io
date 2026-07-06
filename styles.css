@@ -520,6 +520,28 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
 .reveal.in{opacity:1;transform:none}
 .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
 
+
+/* ===== ESCASEZ (plazas dinámicas) ===== */
+.scarcity{display:inline-flex;align-items:center;gap:9px;margin:0 0 22px;padding:8px 16px;border-radius:99px;background:var(--purple-wash);color:var(--ink);font-size:.92rem;font-weight:500;border:1px solid var(--line-strong)}
+.scarcity.center{margin:18px auto 0}
+.scarcity b{font-family:'Space Grotesk';font-weight:700;color:var(--purple)}
+.s-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;position:relative;flex-shrink:0}
+.s-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:#22c55e;animation:sdot 1.8s ease-out infinite}
+@keyframes sdot{0%{transform:scale(1);opacity:.7}70%,100%{transform:scale(2.8);opacity:0}}
+.final .scarcity{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.25)}
+.final .scarcity b{color:#fff}
+
+/* ===== INSTAGRAM highlights ===== */
+.ig-sec .sec-head{margin-bottom:14px}
+.ig-highlights{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:38px}
+.ig-h{display:flex;flex-direction:column;align-items:center;gap:12px;color:var(--text);width:96px}
+.ig-ring{width:88px;height:88px;border-radius:50%;padding:3px;background:conic-gradient(from 210deg,#feda75,#d62976,#5E17EB,#4a10c4,#feda75);display:grid;place-items:center;transition:transform .3s var(--ease)}
+.ig-h:hover .ig-ring{transform:scale(1.06) rotate(-4deg)}
+.ig-cover{width:100%;height:100%;border-radius:50%;background:linear-gradient(155deg,#2a1d6e,#5E17EB);display:grid;place-items:center;color:#fff;border:3px solid var(--surface)}
+.ig-cover svg{width:34px;height:34px}
+.ig-name{font-size:.9rem;font-weight:600;font-family:'Space Grotesk';color:var(--ink)}
+@media(max-width:600px){.ig-highlights{gap:16px}.ig-h{width:82px}.ig-ring{width:74px;height:74px}.ig-cover svg{width:28px;height:28px}}
+
 /* ===== RADAR ===== */
 :root{--c-plataformas:#5E17EB;--c-industria:#4338CA;--c-playbook:#9333EA;--c-eventos:#DB2777;--rink:#0d0a1e;--rink2:#1b1233}
 
