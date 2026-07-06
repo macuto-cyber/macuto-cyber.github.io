@@ -537,8 +537,14 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
 .ig-h{display:flex;flex-direction:column;align-items:center;gap:12px;color:var(--text);width:96px}
 .ig-ring{width:88px;height:88px;border-radius:50%;padding:3px;background:conic-gradient(from 210deg,#feda75,#d62976,#5E17EB,#4a10c4,#feda75);display:grid;place-items:center;transition:transform .3s var(--ease)}
 .ig-h:hover .ig-ring{transform:scale(1.06) rotate(-4deg)}
-.ig-cover{width:100%;height:100%;border-radius:50%;background:linear-gradient(155deg,#2a1d6e,#5E17EB);display:grid;place-items:center;color:#fff;border:3px solid var(--surface)}
+.ig-cover{width:100%;height:100%;border-radius:50%;display:grid;place-items:center;color:#fff;border:3px solid var(--surface);overflow:hidden;position:relative;text-align:center}
 .ig-cover svg{width:34px;height:34px}
+.ig-cover b{font-family:'Space Grotesk';font-weight:700;font-size:.68rem;letter-spacing:.04em;line-height:1;padding:0 4px}
+.ig-cover.ig-dark{background:radial-gradient(120% 120% at 30% 20%,#2b2b33,#0c0c0f)}
+.ig-cover.ig-purple{background:linear-gradient(155deg,#6d28ea,#4a10c4)}
+.ig-cover.ig-live{background:linear-gradient(150deg,#3a1d8a,#160f2e);flex-direction:column;gap:5px;display:flex;align-items:center;justify-content:center}
+.ig-cover.ig-live b{font-size:.56rem}
+.live-badge{font-family:'Space Grotesk';font-weight:700;font-size:.48rem;letter-spacing:.06em;color:#fff;background:#e11d48;padding:2px 7px;border-radius:99px;display:inline-block}
 .ig-name{font-size:.9rem;font-weight:600;font-family:'Space Grotesk';color:var(--ink)}
 @media(max-width:600px){.ig-highlights{gap:16px}.ig-h{width:82px}.ig-ring{width:74px;height:74px}.ig-cover svg{width:28px;height:28px}}
 
