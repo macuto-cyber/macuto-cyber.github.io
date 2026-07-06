@@ -548,6 +548,22 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
 .ig-name{font-size:.9rem;font-weight:600;font-family:'Space Grotesk';color:var(--ink)}
 @media(max-width:600px){.ig-highlights{gap:16px}.ig-h{width:82px}.ig-ring{width:74px;height:74px}.ig-cover svg{width:28px;height:28px}}
 
+
+/* ===== REEL de Instagram (facade + embed) ===== */
+.ig-reel{margin-top:40px;display:flex;justify-content:center}
+.ig-reel-facade{position:relative;width:340px;max-width:88vw;aspect-ratio:9/16;border-radius:20px;overflow:hidden;cursor:pointer;
+  background:linear-gradient(150deg,#2a1d6e 0%,#5E17EB 55%,#160f2e 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#fff;
+  border:1px solid var(--line);box-shadow:var(--shadow-md);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.ig-reel-facade::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 30% 15%,rgba(255,255,255,.18),transparent 55%)}
+.ig-reel-facade:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.ig-reel-badge{position:absolute;top:16px;left:16px;display:inline-flex;align-items:center;gap:6px;font-family:'Space Grotesk';font-weight:600;font-size:.78rem;letter-spacing:.03em;background:rgba(0,0,0,.28);padding:6px 12px;border-radius:99px;backdrop-filter:blur(4px)}
+.ig-reel-play{position:relative;width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.16);border:2px solid rgba(255,255,255,.65);display:grid;place-items:center;padding-left:4px;transition:transform .3s var(--ease)}
+.ig-reel-facade:hover .ig-reel-play{transform:scale(1.08)}
+.ig-reel-cap{position:relative;font-family:'Space Grotesk';font-weight:700;font-size:1.15rem;letter-spacing:-.01em}
+.ig-reel-sub{position:relative;font-size:.86rem;color:rgba(255,255,255,.82)}
+.instagram-media{margin:0 auto!important}
+
 /* ===== RADAR ===== */
 :root{--c-plataformas:#5E17EB;--c-industria:#4338CA;--c-playbook:#9333EA;--c-eventos:#DB2777;--rink:#0d0a1e;--rink2:#1b1233}
 
