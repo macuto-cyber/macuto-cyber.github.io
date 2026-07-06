@@ -57,7 +57,7 @@
       '#mm-cookies .mmc-no{background:transparent;color:#cdc3ea;border:1.5px solid rgba(255,255,255,.3)}' +
       '@media(max-width:600px){#mm-cookies{flex-direction:column;align-items:stretch;text-align:center}}' +
       '</style>' +
-      '<p>Usamos cookies para medir la web y mejorar nuestros anuncios. Solo se activan si aceptas. ' +
+      '<p>Usamos cookies para mejorar tu experiencia y analizar el uso del sitio. Solo se activan si aceptas. ' +
       '<a href="/privacidad.html">Más info</a></p>' +
       '<div class="mmc-b"><button class="mmc-no" type="button">Rechazar</button>' +
       '<button class="mmc-si" type="button">Aceptar</button></div>';
