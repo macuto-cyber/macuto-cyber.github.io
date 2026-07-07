@@ -91,6 +91,7 @@
   <div class="box art-cta reveal">
     <h2>Esto es lo que hacemos cada semana con nuestros artistas</h2>
     <p>Si quieres que tu proyecto crezca con estrategia y sin humo, este es el primer paso.</p>
+    <p class="scarcity center"><span class="s-dot" aria-hidden="true"></span><span>Quedan <b class="mm-plazas">10</b> plazas este mes</span></p>
     <div class="cta-row"><a href="/solicitud.html" class="btn btn-purple">Solicita acceso</a></div>
   </div>
 </div>
@@ -159,6 +160,7 @@
   </div>
 </div></footer>
 <script>
+  (function(){var STEPS=[10,8,6,5,4],KEY='mm_v',TKEY='mm_vt';try{var now=Date.now(),v=parseInt(localStorage.getItem(KEY)||'0',10),ult=parseInt(localStorage.getItem(TKEY)||'0',10);if(now-ult>30*60*1000){v++;localStorage.setItem(KEY,String(v));}localStorage.setItem(TKEY,String(now));var p=STEPS[Math.min(Math.max(v-1,0),STEPS.length-1)];document.querySelectorAll('.mm-plazas').forEach(function(el){el.textContent=p;});}catch(e){}})();
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
