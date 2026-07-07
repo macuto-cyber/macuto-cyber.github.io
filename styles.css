@@ -475,7 +475,7 @@ nav.site{
 }
 .final .box::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 90% at 50% 0,rgba(94,23,235,.09),transparent 70%)}
 .final h2{font-size:clamp(2rem,5vw,3.1rem);font-weight:700;margin-bottom:16px;position:relative}
-.final p{color:var(--text);font-size:1.14rem;max-width:34rem;margin:0 auto 32px;position:relative}
+.final p{color:var(--text);font-size:1.14rem;max-width:34rem;margin:0 auto;position:relative}
 .final .cta-row{justify-content:center;position:relative}
 
 /* ---------- footer ---------- */
@@ -523,7 +523,7 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
 
 /* ===== ESCASEZ (plazas dinámicas) ===== */
 .scarcity{display:inline-flex;align-items:center;gap:9px;margin:0 0 22px;padding:8px 16px;border-radius:99px;background:var(--purple-wash);color:var(--ink);font-size:.92rem;font-weight:500;border:1px solid var(--line-strong)}
-.scarcity.center{margin:18px auto 0}
+.scarcity.center{margin:30px auto 30px}
 .scarcity b{font-family:'Space Grotesk';font-weight:700;color:var(--purple)}
 .s-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;position:relative;flex-shrink:0}
 .s-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:#22c55e;animation:sdot 1.8s ease-out infinite}
