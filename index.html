@@ -270,26 +270,6 @@
   <p class="roster-note reveal">Powered by Macuto Music</p>
 </div></section>
 
-<!-- INSTAGRAM -->
-<section class="sec ig-sec"><div class="wrap">
-  <div class="sec-head center reveal">
-    <span class="eyebrow" style="justify-content:center">La prueba está en Instagram</span>
-    <h2>Míranos por dentro</h2>
-    <p>Nuestro último <b>mastermind en Barcelona</b> con <a href="https://www.instagram.com/macutomusic/" target="_blank" rel="noopener">@macutomusic</a>. Dale al play y síguenos para no perderte lo que viene.</p>
-  </div>
-  <div class="ig-reel reveal d1">
-    <div class="ig-reel-facade" id="igReelFacade" role="button" tabindex="0" aria-label="Ver el Reel del mastermind de Barcelona en Instagram">
-      <span class="ig-reel-badge"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg> Reel</span>
-      <span class="ig-reel-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>
-      <span class="ig-reel-cap">Mastermind · Barcelona</span>
-      <span class="ig-reel-sub">Ver el vídeo en Instagram</span>
-    </div>
-  </div>
-  <div class="reveal d2" style="text-align:center;margin-top:34px">
-    <a href="https://www.instagram.com/macutomusic/" target="_blank" rel="noopener" class="btn btn-ghost">Síguenos en Instagram</a>
-  </div>
-</div></section>
-
 <!-- ENVÍA TU CANCIÓN -->
 <section class="sec" id="envia" style="padding-bottom:0"><div class="wrap">
   <div class="submit-box reveal">
@@ -418,29 +398,6 @@
       var plazas=STEPS[Math.min(Math.max(v-1,0),STEPS.length-1)];
       document.querySelectorAll('.mm-plazas').forEach(function(el){ el.textContent=plazas; });
     }catch(e){}
-  })();
-
-  // Reel de Instagram: carga bajo demanda (facade → embed oficial al pulsar; respeta el consentimiento)
-  (function(){
-    var f=document.getElementById('igReelFacade');
-    if(!f) return;
-    var loaded=false;
-    function load(){
-      if(loaded) return; loaded=true;
-      var bq=document.createElement('blockquote');
-      bq.className='instagram-media';
-      bq.setAttribute('data-instgrm-permalink','https://www.instagram.com/reel/DXmSH0lk4Q-/');
-      bq.setAttribute('data-instgrm-version','14');
-      bq.style.cssText='margin:0 auto;max-width:400px;width:100%;min-height:540px;background:#fff;border-radius:14px';
-      f.parentNode.replaceChild(bq,f);
-      if(window.instgrm){window.instgrm.Embeds.process();return;}
-      var sc=document.createElement('script');
-      sc.async=true; sc.src='https://www.instagram.com/embed.js';
-      sc.onload=function(){ if(window.instgrm) window.instgrm.Embeds.process(); };
-      document.body.appendChild(sc);
-    }
-    f.addEventListener('click',load);
-    f.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();load();} });
   })();
 
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});

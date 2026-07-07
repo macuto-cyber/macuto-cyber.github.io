@@ -528,8 +528,7 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
 .s-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;position:relative;flex-shrink:0}
 .s-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:#22c55e;animation:sdot 1.8s ease-out infinite}
 @keyframes sdot{0%{transform:scale(1);opacity:.7}70%,100%{transform:scale(2.8);opacity:0}}
-.final .scarcity{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.25)}
-.final .scarcity b{color:#fff}
+
 
 /* ===== INSTAGRAM highlights ===== */
 .ig-sec .sec-head{margin-bottom:14px}
