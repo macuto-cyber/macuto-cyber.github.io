@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#1b1233"/><stop offset="1" stop-color="#0d0a1e"/>
+  </linearGradient>
+  <radialGradient id="glow" cx="21%" cy="70%" r="75%">
+    <stop offset="0" stop-color="#9333EA" stop-opacity=".55"/><stop offset="1" stop-color="#9333EA" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<rect width="1600" height="900" fill="url(#bg)"/>
+<rect width="1600" height="900" fill="url(#glow)"/>
+<rect x="60" y="780" width="148" height="20" rx="10" fill="#C084FC" opacity="0.55"/>
+<rect x="177" y="732" width="105" height="20" rx="10" fill="#9333EA" opacity="0.75"/>
+<rect x="293" y="684" width="102" height="20" rx="10" fill="#C084FC" opacity="0.34"/>
+<rect x="410" y="636" width="187" height="20" rx="10" fill="#9333EA" opacity="0.22"/>
+<rect x="527" y="588" width="140" height="20" rx="10" fill="#C084FC" opacity="0.65"/>
+<rect x="643" y="540" width="115" height="20" rx="10" fill="#9333EA" opacity="0.21"/>
+<rect x="760" y="492" width="201" height="20" rx="10" fill="#C084FC" opacity="0.40"/>
+<rect x="877" y="444" width="228" height="20" rx="10" fill="#9333EA" opacity="0.57"/>
+<rect x="993" y="396" width="148" height="20" rx="10" fill="#C084FC" opacity="0.74"/>
+<rect x="1110" y="348" width="122" height="20" rx="10" fill="#9333EA" opacity="0.22"/>
+<rect x="1227" y="300" width="114" height="20" rx="10" fill="#C084FC" opacity="0.66"/>
+<rect x="1343" y="252" width="187" height="20" rx="10" fill="#9333EA" opacity="0.73"/>
+<rect x="60" y="776" width="64" height="64" rx="16" fill="#9333EA"/>
+<circle cx="92" cy="808" r="7" fill="#fff"/>
+</svg>
