@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /onboarding.html
+Disallow: /dap
 Disallow: /promo-spotify.html
 Disallow: /promotion
 Disallow: /sube-tu-musica.html
