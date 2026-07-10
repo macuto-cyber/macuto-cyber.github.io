@@ -30,7 +30,7 @@
     <a href="#como">Cómo trabajamos</a>
     <a href="#artistas">Artistas</a>
     <a href="#faq">Dudas</a>
-    <a href="radar/" class="btn btn-ghost" style="padding:10px 22px;font-size:.9rem">RADAR</a>
+    <a href="radar/" class="btn btn-ghost">RADAR</a>
     <a href="solicitud.html" class="btn btn-purple nav-cta-desktop">Solicita acceso</a>
     <a href="#artistas" class="btn btn-purple nav-cta-movil">Artistas</a>
   </div>
@@ -89,7 +89,7 @@
   <div class="about-grid">
     <div class="reveal">
       <span class="eyebrow">Quiénes somos</span>
-      <p class="statement" style="margin-top:18px">Creados por músicos, para músicos. Nacimos para desafiar las normas obsoletas de la industria y <span class="hl">devolver el poder a los creadores</span>.</p>
+      <h2 class="statement" style="margin-top:18px">Creados por músicos, para músicos. Nacimos para desafiar las normas obsoletas de la industria y <span class="hl">devolver el poder a los creadores</span>.</h2>
     </div>
     <div class="about-list">
       <div class="about-item reveal">
@@ -418,8 +418,8 @@
   const gp=document.getElementById('gpreview'), gpImg=gp.querySelector('img');
   const canHover=window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   let gpOn=null;
-  const showPrev=src=>{gpImg.src=src;gp.classList.add('show')};
-  const hidePrev=()=>{gp.classList.remove('show');gpOn=null};
+  const showPrev=src=>{gpImg.src=src;gp.classList.add('show');gp.setAttribute('aria-hidden','false')};
+  const hidePrev=()=>{gp.classList.remove('show');gp.setAttribute('aria-hidden','true');gpOn=null};
   document.querySelectorAll('.gallery .shot').forEach(card=>{
     const src=card.querySelector('img').src;
     if(canHover){
