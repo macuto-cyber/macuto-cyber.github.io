@@ -30,7 +30,7 @@
   <span class="eyebrow">Plazas limitadas</span>
   <h1 style="font-size:clamp(2rem,4.6vw,2.9rem);margin:14px 0 10px">Solicita tu plaza</h1>
   <p style="margin-bottom:34px">Cuéntanos quién eres, tu música y a dónde quieres llegar. Una persona del equipo revisará tu proyecto y te contactará por WhatsApp o email. Dos minutos, sin compromiso.</p>
-  <div class="form-embed"><iframe data-tally-src="https://tally.so/embed/VLdgEE?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="720" frameborder="0" marginheight="0" marginwidth="0" title="Formulario: Solicita tu plaza en Macuto Music"></iframe></div>
+  <div class="form-embed"><iframe src="https://tally.so/embed/VLdgEE?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" data-tally-src="https://tally.so/embed/VLdgEE?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="720" frameborder="0" marginheight="0" marginwidth="0" title="Formulario: Solicita tu plaza en Macuto Music"></iframe></div>
   <p class="form-fallback">¿No ves el formulario? Ábrelo directamente <a href="https://tally.so/r/VLdgEE">aquí</a> o escríbenos a <a href="mailto:macuto@macutomusic.com">macuto@macutomusic.com</a>.</p>
 </div></section>
 </main>
@@ -40,20 +40,6 @@
     <span><a href="aviso-legal.html">Aviso legal</a> · <a href="privacidad.html">Privacidad</a></span>
   </div>
 </div></footer>
-<script>
-  // Carga oficial de Tally: adjunta el resize ANTES de cargar el formulario,
-  // así el iframe crece a su altura real y la página se desliza como una sola (sin scroll interno).
-  (function(){
-    var d=document, w="https://tally.so/widgets/embed.js";
-    var load=function(){
-      if(typeof Tally!=="undefined"){ Tally.loadEmbeds(); return; }
-      d.querySelectorAll('iframe[data-tally-src]:not([src])').forEach(function(e){ e.src=e.dataset.tallySrc; });
-    };
-    if(typeof Tally!=="undefined"){ load(); }
-    else if(d.querySelector('script[src="'+w+'"]')==null){
-      var s=d.createElement("script"); s.src=w; s.onload=load; s.onerror=load; d.body.appendChild(s);
-    }
-  })();
-</script>
+<script async src="https://tally.so/widgets/embed.js"></script>
 </body>
 </html>

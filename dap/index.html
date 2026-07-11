@@ -29,7 +29,7 @@
   <span class="eyebrow">Bienvenido · DAP</span>
   <h1 style="font-size:clamp(2rem,4.6vw,2.9rem);margin:14px 0 10px">Completa tu ficha</h1>
   <p style="margin-bottom:28px">¡Bienvenido al <b>DAP</b>! Rellena esto para entrar al sistema y que el equipo te acompañe desde el primer día. Son <b>5 minutos</b>.</p>
-  <div class="form-embed"><iframe id="onbForm" data-tally-src="https://tally.so/embed/BzeXg7?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="720" frameborder="0" marginheight="0" marginwidth="0" title="Formulario: Pre-onboarding de Macuto Music"></iframe></div>
+  <div class="form-embed"><iframe id="onbForm" src="https://tally.so/embed/BzeXg7?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" data-tally-src="https://tally.so/embed/BzeXg7?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="720" frameborder="0" marginheight="0" marginwidth="0" title="Formulario: Pre-onboarding de Macuto Music"></iframe></div>
   <p class="form-fallback">¿No ves el formulario? Ábrelo directamente <a id="onbFallback" href="https://tally.so/r/BzeXg7">aquí</a> o escríbenos a <a href="mailto:macuto@macutomusic.com">macuto@macutomusic.com</a>.</p>
 </div></section>
 </main>
@@ -46,25 +46,11 @@
     if (!email) return;
     var base = 'https://tally.so/embed/BzeXg7?email=' + encodeURIComponent(email) + '&alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1';
     var f = document.getElementById('onbForm');
-    if (f) { f.setAttribute('data-tally-src', base); }
+    if (f) { f.setAttribute('data-tally-src', base); f.src = base; }
     var fb = document.getElementById('onbFallback');
     if (fb) fb.href = 'https://tally.so/r/BzeXg7?email=' + encodeURIComponent(email);
   })();
 </script>
-<script>
-  // Carga oficial de Tally: adjunta el resize ANTES de cargar el formulario,
-  // así el iframe crece a su altura real y la página se desliza como una sola (sin scroll interno).
-  (function(){
-    var d=document, w="https://tally.so/widgets/embed.js";
-    var load=function(){
-      if(typeof Tally!=="undefined"){ Tally.loadEmbeds(); return; }
-      d.querySelectorAll('iframe[data-tally-src]:not([src])').forEach(function(e){ e.src=e.dataset.tallySrc; });
-    };
-    if(typeof Tally!=="undefined"){ load(); }
-    else if(d.querySelector('script[src="'+w+'"]')==null){
-      var s=d.createElement("script"); s.src=w; s.onload=load; s.onerror=load; d.body.appendChild(s);
-    }
-  })();
-</script>
+<script async src="https://tally.so/widgets/embed.js"></script>
 </body>
 </html>
