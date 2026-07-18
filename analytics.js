@@ -32,7 +32,50 @@
     gtag('config', IDS.ga4, { anonymize_ip: true });
   }
 
-  function activar() { cargarMeta(); cargarGA(); }
+  /* ---- Eventos de conversión ----
+     Sin esto la analítica solo ve visitas sueltas y no el embudo real.
+     Se registran SOLO tras el consentimiento (se llaman desde activar()). */
+  function ev(nombre, params, metaEvento, metaEstandar) {
+    try { if (window.gtag) gtag('event', nombre, params || {}); } catch (e) {}
+    try {
+      if (window.fbq && metaEvento) {
+        fbq(metaEstandar ? 'track' : 'trackCustom', metaEvento, params || {});
+      }
+    } catch (e) {}
+  }
+
+  function eventos() {
+    // 1) Clics en las CTA principales (dónde hace clic la gente antes de convertir)
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a') : null;
+      if (!a) return;
+      var href = a.getAttribute('href') || '';
+      var cta = null;
+      if (href.indexOf('solicitud') > -1) cta = 'solicita_acceso';
+      else if (href.indexOf('envia-tu-cancion') > -1) cta = 'envia_tu_cancion';
+      else if (href.indexOf('radar') > -1) cta = 'radar';
+      else if (href.indexOf('sube-tu-musica') > -1) cta = 'sube_tu_musica';
+      if (!cta) return;
+      ev('cta_click', { cta_id: cta, texto: (a.textContent || '').trim().slice(0, 40) }, 'CTAClick');
+    }, true);
+
+    // 2) Formularios Tally: cargado y ENVIADO (la conversión de verdad)
+    window.addEventListener('message', function (e) {
+      if (typeof e.data !== 'string' || e.data.indexOf('Tally.') === -1) return;
+      if (String(e.origin || '').indexOf('tally.so') === -1) return; // solo mensajes de Tally
+      var d;
+      try { d = JSON.parse(e.data); } catch (err) { return; }
+      if (!d || !d.event) return;
+      var form = (d.payload && d.payload.formId) || '';
+      if (d.event === 'Tally.FormSubmitted') {
+        ev('generate_lead', { form_id: form, pagina: location.pathname }, 'Lead', true);
+      } else if (d.event === 'Tally.FormLoaded') {
+        ev('form_loaded', { form_id: form, pagina: location.pathname });
+      }
+    });
+  }
+
+  function activar() { cargarMeta(); cargarGA(); eventos(); }
 
   var estado = null;
   try { estado = localStorage.getItem(KEY); } catch (e) {}
