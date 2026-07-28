@@ -62,7 +62,10 @@
     // 2) Formularios Tally: cargado y ENVIADO (la conversión de verdad)
     window.addEventListener('message', function (e) {
       if (typeof e.data !== 'string' || e.data.indexOf('Tally.') === -1) return;
-      if (String(e.origin || '').indexOf('tally.so') === -1) return; // solo mensajes de Tally
+      // Origen EXACTO de Tally. Comparar por subcadena dejaría pasar dominios
+      // tipo https://tally.so.atacante.com y permitiría inyectar conversiones falsas.
+      var org = String(e.origin || '');
+      if (org !== 'https://tally.so' && !/^https:\/\/[a-z0-9-]+\.tally\.so$/.test(org)) return;
       var d;
       try { d = JSON.parse(e.data); } catch (err) { return; }
       if (!d || !d.event) return;
