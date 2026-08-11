@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Escúchala en Spotify — Macuto Music</title>
+<style>
+  @font-face { font-family: 'Space Grotesk'; src: url('../fonts/spacegrotesk-latin.woff2') format('woff2'); font-display: swap; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { font-family: 'Space Grotesk', system-ui, sans-serif; background: #0d0714; color: #fff;
+         display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px; }
+  .card { max-width: 420px; }
+  .mm { font-weight: 700; font-size: 28px; color: #5E17EB; letter-spacing: -1px; margin-bottom: 18px; }
+  h1 { font-size: 22px; margin-bottom: 10px; }
+  p  { color: #bfb3d9; font-size: 15px; line-height: 1.5; margin-bottom: 22px; }
+  a.btn { display: inline-block; background: #5E17EB; color: #fff; text-decoration: none;
+          padding: 14px 28px; border-radius: 999px; font-weight: 700; font-size: 16px; }
+  a.alt { display: block; margin-top: 14px; color: #8f7fc0; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="mm">mm</div>
+  <h1 id="titulo">Abriendo Spotify…</h1>
+  <p id="sub">Si no se abre sola, toca el botón.</p>
+  <a class="btn" id="btn" href="#" rel="noopener">Escuchar en Spotify</a>
+  <a class="alt" id="web" href="#" rel="noopener">Abrir en el navegador</a>
+</div>
+<script>
+/* Redirector App Link del DAP.
+   Spotify:  /escucha/?t=<trackId>  ·  ?a=<albumId>  ·  ?p=<playlistId>  ·  ?ar=<artistId>
+   YouTube:  /escucha/?yt=<videoId>   (el enlace directo en stories abre Safari SIN sesión
+             → la gente no puede comentar/like; el deep link abre la app con sesión)
+   Abre la app (deep link → la canción SUENA sola: stream + save posible);
+   fallback al reproductor web si la app no está. */
+(function () {
+  var q = new URLSearchParams(location.search);
+  var tipos = { t: 'track', a: 'album', p: 'playlist', ar: 'artist' };
+  var tipo = null, id = null, deep = null, url = null;
+  for (var k in tipos) { var v = q.get(k); if (v && /^[A-Za-z0-9]{10,40}$/.test(v)) { tipo = tipos[k]; id = v; break; } }
+  var yt = q.get('yt');
+  var btn = document.getElementById('btn'), web = document.getElementById('web');
+  if (yt && /^[A-Za-z0-9_-]{11}$/.test(yt)) {
+    deep = 'vnd.youtube://' + yt;
+    url  = 'https://www.youtube.com/watch?v=' + yt;
+    document.getElementById('titulo').textContent = 'Abriendo YouTube…';
+    btn.textContent = 'Ver en YouTube';
+  } else if (!id) {
+    document.getElementById('titulo').textContent = 'Enlace incompleto';
+    document.getElementById('sub').textContent = 'Falta el identificador de la canción.';
+    btn.style.display = 'none'; web.style.display = 'none';
+    return;
+  }
+  deep = deep || ('spotify:' + tipo + ':' + id);
+  url  = url  || ('https://open.spotify.com/' + tipo + '/' + id);
+  btn.href = deep;
+  web.href = url;
+  // Intento automático de abrir la app; si en ~1,5s seguimos visibles, caemos al Web Player.
+  var salto = setTimeout(function () { location.href = url; }, 1500);
+  window.addEventListener('pagehide', function () { clearTimeout(salto); });
+  document.addEventListener('visibilitychange', function () { if (document.hidden) clearTimeout(salto); });
+  location.href = deep;
+})();
+</script>
+</body>
+</html>
