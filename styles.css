@@ -610,7 +610,7 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
 .rfeat-in{display:flex;flex-direction:column;gap:14px;padding:38px 40px;justify-content:center}
 .rfeat-in h2{font-family:'Space Grotesk';font-weight:700;font-size:clamp(1.35rem,2.6vw,1.8rem);line-height:1.22;color:var(--ink);letter-spacing:-.01em}
 .rfeat-in p{font-size:.98rem;line-height:1.6}
-@media(max-width:880px){.rfeat{grid-template-columns:1fr}.rfeat-cover{min-height:200px;aspect-ratio:16/9}.rfeat-in{padding:26px}}
+@media(max-width:880px){.rfeat{grid-template-columns:minmax(0,1fr)}.rfeat-cover{min-width:0;min-height:0;aspect-ratio:16/9}.rfeat-in{min-width:0;padding:26px}}
 
 /* tarjetas */
 .art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:22px}
@@ -677,3 +677,13 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
 /* velo de marca sobre las fotos de cover */
 .acover,.rfeat-cover,.acover-band{position:relative}
 .acover::after,.rfeat-cover::after,.acover-band::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(94,23,235,.18),rgba(13,10,30,.30));pointer-events:none}
+
+/* rescate del 404: los destinos que la gente busca de verdad (según GA4) */
+.rescate{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;max-width:620px;margin:26px auto 22px;text-align:left}
+.rescate a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:16px 18px;transition:border-color .25s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease)}
+.rescate a:hover{border-color:var(--line-strong);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.rescate b{display:block;font-family:'Space Grotesk';font-weight:600;color:var(--ink);font-size:1rem;margin-bottom:3px}
+.rescate span{display:block;color:var(--text);font-size:.88rem;line-height:1.4}
+.rescate-nota{font-size:.9rem;color:var(--text)}
+.rescate-nota a{color:var(--purple);font-weight:500}
+@media(max-width:600px){.rescate{grid-template-columns:1fr;margin-top:22px}}
