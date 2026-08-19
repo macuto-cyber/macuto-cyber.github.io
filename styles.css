@@ -698,3 +698,6 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
 .nov p b{color:var(--ink)}
 .nov a{color:var(--purple);font-weight:500;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(94,23,235,.35)}
 .nov a:hover{text-decoration-color:var(--purple)}
+/* tarjeta de novedad aún sin fecha cerrada */
+.nov-soon{border-style:dashed;background:linear-gradient(160deg,var(--purple-wash) 0%,var(--surface) 60%)}
+.soon{display:inline-block;vertical-align:middle;background:var(--ink);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:99px;margin-left:8px;position:relative;top:-2px}
