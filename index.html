@@ -260,27 +260,38 @@
     <div class="reveal"><span class="eyebrow">El equipo, en movimiento</span><h2>Dónde estamos este otoño</h2></div>
     <p class="reveal d1">No trabajamos la música latina desde un despacho: vamos donde se decide. Esto es lo que tenemos por delante.</p>
   </div>
+  <!-- En orden cronológico: el script del final marca como «Próximo»/«Ahora» la primera tarjeta cuyo data-fin no ha pasado -->
   <div class="novedades">
-    <article class="nov nov-soon reveal">
-      <span class="nov-fecha">Septiembre 2026 · Madrid</span>
-      <h3>Mastermind presencial <span class="soon">Próximamente</span></h3>
-      <p>Sesión presencial en <b>uno de los estudios más grandes y reconocidos de Madrid</b>, solo para artistas del DAP. Detalles muy pronto.</p>
+    <article class="nov reveal" data-inicio="2026-09-19" data-fin="2026-09-19">
+      <span class="nov-fecha">19 septiembre 2026 · Madrid</span>
+      <h3>Mastermind presencial</h3>
+      <p>Seremos <b>más de 40 personas</b> en <b>PKO Studios</b>, uno de los estudios más grandes y reconocidos de Madrid, en una jornada solo para artistas del DAP.</p>
     </article>
-    <article class="nov reveal d1">
-      <span class="nov-fecha">19-22 octubre 2026</span>
+    <article class="nov reveal d1" data-inicio="2026-09-22" data-fin="2026-09-28">
+      <span class="nov-fecha">22–28 septiembre 2026</span>
+      <h3>Una semana de trabajo en Dinamarca</h3>
+      <p><b>Angelo Gutiérrez (Macuto)</b>, fundador de Macuto Music, estará siete días en Dinamarca. Europa también cuenta: trabajamos en Latam, Europa y USA.</p>
+    </article>
+    <article class="nov reveal d2" data-inicio="2026-10-03" data-fin="2026-10-03">
+      <span class="nov-fecha">3 octubre 2026</span>
+      <h3>VIP en NODE Madrid</h3>
+      <p><b>Macuto asiste con pase VIP a NODE</b>, el encuentro de Madrid donde coinciden productores, ingenieros, sellos y marcas de la industria musical. Vamos a por lo que no sale en el cartel: conversaciones que abran puertas a los artistas del DAP.</p>
+    </article>
+    <article class="nov reveal" data-inicio="2026-10-19" data-fin="2026-10-22">
+      <span class="nov-fecha">19–22 octubre 2026</span>
       <h3>Billboard Latin Music Week, Miami Beach</h3>
-      <p><b>Angelo Gutiérrez (Macuto)</b>, fundador de Macuto Music, estará en la semana donde se cierra el negocio de la música latina: los encuentros, los paneles y las conversaciones que no pasan por email.
+      <p><b>Macuto</b> estará en la semana donde se cierra el negocio de la música latina: los encuentros, los paneles y las conversaciones que no pasan por email.
       Te contamos cómo funciona esa semana —y cuándo compensa ir— en <a href="/radar/billboard-latin-music-week-2026-premios/">nuestro análisis del RADAR</a>.</p>
     </article>
-    <article class="nov reveal d2">
+    <article class="nov reveal d1" data-inicio="2026-10-19" data-fin="2026-10-22">
       <span class="nov-fecha">Octubre 2026</span>
       <h3>Sesiones de creación en Miami</h3>
       <p>Aprovechando el viaje, <b>Macuto crea con los artistas del DAP que están en Miami</b>. Trabajo real en sala, no una foto: es la parte del programa que no se puede hacer por videollamada.</p>
     </article>
-    <article class="nov reveal d3">
-      <span class="nov-fecha">Finales de octubre 2026</span>
-      <h3>México, buscando lo que viene</h3>
-      <p>El viaje sigue en México para <b>ver de cerca a artistas que empiezan a destacar</b>. México es uno de los mercados que más rápido se mueve en urbano latino, y hay proyectos que solo se entienden estando allí.</p>
+    <article class="nov reveal d2" data-inicio="2026-10-23" data-fin="2026-11-03">
+      <span class="nov-fecha">23 octubre – 3 noviembre 2026</span>
+      <h3>México, con los artistas del DAP</h3>
+      <p>Doce días en México para <b>ver en persona a los artistas del DAP</b>. Es uno de los mercados que más rápido se mueve en urbano latino, y hay proyectos que solo se entienden estando allí.</p>
     </article>
   </div>
 </div></section>
@@ -430,6 +441,17 @@
       var plazas=STEPS[Math.min(Math.max(v-1,0),STEPS.length-1)];
       document.querySelectorAll('.mm-plazas').forEach(function(el){ el.textContent=plazas; });
     }catch(e){}
+  })();
+
+  // Novedades: la etiqueta va a la primera tarjeta cuyo evento no ha terminado («Ahora» si ya empezó).
+  // Así nunca queda un «Próximamente» caducado; si todas han pasado, no se marca ninguna.
+  (function(){
+    const d=new Date(), hoy=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    const sig=[...document.querySelectorAll('.nov[data-fin]')].find(n=>n.dataset.fin>=hoy);
+    if(!sig)return;
+    const b=document.createElement('span');
+    b.className='soon';b.textContent=sig.dataset.inicio<=hoy?'Ahora':'Próximo';
+    sig.classList.add('nov-next');sig.querySelector('h3').append(' ',b);
   })();
 
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
