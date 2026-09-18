@@ -1,0 +1,46 @@
+/* contrato/ — asistente de datos y firma del contrato DAP (macutomusic.com/contrato). Usa los tokens de styles.css. */
+.ct-wrap{max-width:620px}
+.ct-app h1{font-size:clamp(1.6rem,4vw,2.2rem);margin:12px 0 10px}
+.ct-app h2{font-size:1.15rem;margin:0 0 8px}
+.ct-app p{margin:0 0 10px}
+.ct-mut{color:var(--muted);font-size:.95rem}
+.ct-small{font-size:.88rem}
+.ct-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:18px;margin:14px 0;box-shadow:var(--shadow-sm)}
+.ct-steps{display:flex;gap:6px;margin:12px 0 6px}.ct-steps i{flex:1;height:5px;border-radius:3px;background:var(--purple-wash-2)}.ct-steps i.on{background:var(--purple)}
+.ct-app label{display:block;font-weight:600;font-size:.92rem;margin:12px 0 4px;color:var(--ink)}
+.ct-app input,.ct-app select,.ct-app textarea{width:100%;font:1rem/1.3 inherit;padding:11px 12px;border:1.5px solid var(--line-strong);border-radius:var(--r-sm);background:var(--surface);color:var(--ink)}
+.ct-app input:focus,.ct-app select:focus,.ct-app textarea:focus{outline:none;border-color:var(--purple);box-shadow:0 0 0 3px rgba(94,23,235,.15)}
+.ct-hint{color:var(--muted);font-size:.85rem;margin-top:4px}
+.ct-err{color:#b3261e;font-size:.85rem;margin-top:4px;display:none}
+.ct-field.bad input,.ct-field.bad select{border-color:#b3261e}.ct-field.bad .ct-err{display:block}
+.ct-opt{display:block;width:100%;text-align:left;border:1.5px solid var(--line-strong);border-radius:var(--r-sm);padding:12px 14px;margin:8px 0;background:var(--surface);cursor:pointer;font:inherit;color:var(--ink)}
+.ct-opt b{display:block;font-size:.98rem}.ct-opt span{display:block;color:var(--muted);font-size:.85rem;margin-top:2px}
+.ct-opt.on{border-color:var(--purple);background:var(--purple-wash);box-shadow:inset 0 0 0 1px var(--purple)}
+.ct-btn{display:block;width:100%;border:0;border-radius:var(--r-sm);padding:14px 16px;font:600 1rem/1.2 inherit;cursor:pointer;margin-top:14px;background:var(--purple);color:#fff}
+.ct-btn:hover{background:var(--purple-deep)}.ct-btn:disabled{opacity:.55;cursor:default;background:var(--purple)}
+.ct-btn.sec{background:var(--surface);color:var(--purple);border:1.5px solid var(--line-strong)}
+.ct-errbox{display:none;background:#fdecea;color:#7a1d16;border:1px solid #f3b9b3;border-radius:var(--r-sm);padding:10px 12px;margin:10px 0;font-size:.92rem}
+.ct-row{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}.ct-row3{display:grid;grid-template-columns:1fr 1.4fr 1.2fr;gap:0 8px}
+.ct-chk{display:flex;gap:10px;align-items:flex-start;margin:10px 0;font-size:.95rem;font-weight:400;color:var(--text)}.ct-chk input{width:22px;height:22px;margin-top:2px;flex:none}
+.ct-res dt{font-weight:600;font-size:.85rem;color:var(--muted);margin-top:8px}.ct-res dd{margin:0;font-size:.97rem;color:var(--ink)}
+.ct-okbox{background:var(--purple-wash);color:var(--ink);border:1px solid var(--purple-wash-2);border-radius:var(--r-sm);padding:10px 12px;margin:10px 0;font-size:.92rem}
+.ct-tag{display:inline-block;background:var(--purple-wash);color:var(--purple);border-radius:8px;padding:2px 8px;font-size:.8rem;font-weight:600}
+.ct-app canvas{border:1.5px dashed var(--line-strong);border-radius:var(--r-sm);background:#fff;touch-action:none;width:100%;height:180px;display:block}
+.ct-pag{display:block;width:100%;border:1px solid var(--line);border-radius:6px;margin:6px 0;min-height:200px;background:#fafafa}
+.ct-foot{color:var(--muted);font-size:.8rem;text-align:center;margin-top:20px}
+.ct-nav{display:flex;gap:10px;align-items:stretch}.ct-nav .ct-btn{margin-top:0}.ct-nav .ct-btn.sec{flex:0 0 32%}
+.ct-etapa[hidden]{display:none}.ct-center{text-align:center}
+.ct-foot a{color:var(--purple)}
+/* casillas: .ct-app label (display:block, negrita) pisaba a .ct-chk → el texto caía bajo la casilla en móvil */
+.ct-app .ct-chk{display:flex;gap:10px;align-items:flex-start;font-weight:400;margin:10px 0;font-size:.95rem;line-height:1.4}
+.ct-app .ct-chk input{width:22px;height:22px;margin:1px 0 0;flex:none}
+.ct-app .ct-chk span{flex:1}
+/* siguientes pasos tras pagar (17-sep) */
+a.ct-btn{text-align:center;text-decoration:none;box-sizing:border-box}
+.ct-paso{border-top:1px solid var(--line);padding:14px 0 4px}.ct-paso:first-of-type{border-top:0}
+.ct-paso .ct-btn{margin-top:8px}.ct-sub{background:var(--purple-wash);box-shadow:none;margin:10px 0}
+.ct-etapa-ruta{border:1px solid var(--line);border-radius:var(--r-sm);padding:8px 12px;margin:6px 0;background:var(--surface)}
+.ct-etapa-ruta summary{font-weight:600;cursor:pointer}.ct-etapa-ruta ul{margin:8px 0 2px 18px;padding:0}.ct-etapa-ruta li{margin:4px 0}
+.ct-equipo{list-style:none;margin:6px 0 0;padding:0}.ct-equipo li{padding:8px 0;border-top:1px solid var(--line)}.ct-equipo li:first-child{border-top:0}
+.ct-equipo a{color:var(--purple)}
+.ct-pago{margin:8px 0 6px 18px;padding:0}.ct-pago li{margin:6px 0}.ct-ref{white-space:nowrap;font-family:ui-monospace,Menlo,monospace;letter-spacing:.04em;background:var(--purple-wash);padding:1px 6px;border-radius:6px}
