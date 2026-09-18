@@ -206,7 +206,7 @@
       });
     }
     window.addEventListener('scroll', function () { if (!pend) { pend = true; requestAnimationFrame(marca); } }, { passive: true });
-    marca();
+    setTimeout(marca, 60);   // cuando ya se ve: con el plan aún oculto todas las posiciones valen 0 y marcaba la última
     // pasos marcables: se recuerdan SOLO en este navegador (ayuda al artista; no se envía a nadie)
     var clave = 'dap_plan_hechos:' + (d.entregado || '') + ':' + h2s.length + ':' + plan.querySelectorAll('.box').length;
     var hechos = [];
