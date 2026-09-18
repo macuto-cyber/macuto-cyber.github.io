@@ -3,19 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portal del artista — Macuto Music</title>
-<meta name="description" content="El espacio privado de los artistas de Macuto Music: tu checklist del viaje, tus tareas, tus campañas de playlist, tus streams y los resúmenes de tus reuniones. Entra con tu código personal.">
-<meta name="robots" content="noindex, follow">
+<title>Tu portal — Macuto Music</title>
+<meta name="description" content="El espacio privado de los artistas del Sistema DAP. Entra con el documento de identidad de tu contrato.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://macutomusic.com/portal">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Macuto Music">
-<meta property="og:title" content="Portal del artista — Macuto Music">
-<meta property="og:description" content="Tu espacio dentro del programa: checklist del viaje, tareas, campañas, streams y reuniones. Entra con tu código personal.">
+<meta property="og:title" content="Tu portal — Macuto Music">
+<meta property="og:description" content="El espacio privado de los artistas del Sistema DAP.">
 <meta property="og:url" content="https://macutomusic.com/portal">
 <meta property="og:locale" content="es_ES">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="stylesheet" href="/styles.css?v=8f1cad5e">
-<script defer src="/analytics.js"></script>
+<style>
+/* portal/ — acceso con documento y plan de 3 meses (18-sep-2026). Sin analítica a propósito: se escribe un DNI. */
+.pt-wrap{max-width:1080px}
+.pt-login{max-width:520px}
+.pt-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:22px;box-shadow:var(--shadow-sm);margin:18px 0}
+.pt-card label{display:block;font-weight:600;color:var(--ink);margin:0 0 6px}
+.pt-card input{width:100%;box-sizing:border-box;font:1.05rem/1.3 inherit;padding:13px 14px;border:1.5px solid var(--line-strong);border-radius:var(--r-sm);background:var(--surface);color:var(--ink);letter-spacing:.04em;text-transform:uppercase}
+.pt-card input:focus{outline:none;border-color:var(--purple);box-shadow:0 0 0 3px rgba(94,23,235,.15)}
+.pt-card .btn{width:100%;margin-top:14px;border:0;cursor:pointer;font:600 1rem/1.2 inherit;padding:14px 18px;border-radius:var(--r-sm)}
+.pt-card .btn[disabled]{opacity:.6;cursor:default}
+.pt-hint{color:var(--muted);font-size:.9rem;margin:8px 0 0}
+.pt-err{display:none;background:#fdecea;color:#7a1d16;border:1px solid #f3b9b3;border-radius:var(--r-sm);padding:10px 12px;margin:12px 0 0;font-size:.95rem}
+.pt-err.on{display:block}
+.pt-top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:6px 0 16px}
+.pt-top .pt-hola{color:var(--muted);font-size:.95rem}
+.pt-acc{display:flex;gap:8px;flex-wrap:wrap}
+.pt-acc button{border:1.5px solid var(--line-strong);background:var(--surface);color:var(--purple);font:600 .92rem/1 inherit;padding:10px 14px;border-radius:var(--r-sm);cursor:pointer;min-height:44px}
+.pt-acc button.pri{background:var(--purple);color:#fff;border-color:var(--purple)}
+.pt-tag{display:inline-block;background:#fff4d6;color:#7a5b00;border-radius:8px;padding:2px 8px;font-size:.8rem;font-weight:600;margin-left:6px}
+.pt-grid{display:block}
+.pt-nav{position:sticky;top:75px;z-index:5;background:var(--bg);margin:0 -16px 8px;padding:8px 16px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--line)}
+.pt-nav::-webkit-scrollbar{display:none}
+.pt-nav a{flex:0 0 auto;text-decoration:none;color:var(--text);background:var(--purple-wash);border-radius:999px;padding:8px 12px;font-size:.88rem;white-space:nowrap}
+.pt-nav a.on{background:var(--purple);color:#fff}
+.plan{color:var(--text);line-height:1.6}
+.plan h1{font-size:clamp(1.6rem,4.2vw,2.3rem);color:var(--ink);margin:6px 0 12px;line-height:1.2}
+.plan h2{font-size:1.2rem;color:var(--purple);margin:30px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--purple-wash-2);scroll-margin-top:140px}
+.plan p{margin:6px 0}
+.plan p b:only-child{display:block;margin-top:14px;color:var(--ink)}
+.plan ul{list-style:none;margin:6px 0 10px;padding:0}
+.plan li{position:relative;padding:10px 12px 10px 14px;margin:6px 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm)}
+.plan li.chk{padding-left:44px;cursor:pointer;min-height:44px;box-sizing:border-box}
+.plan li.chk .box{position:absolute;left:12px;top:12px;width:20px;height:20px;border:2px solid var(--purple);border-radius:6px;box-sizing:border-box}
+.plan li.chk.hecho{background:var(--purple-wash)}
+.plan li.chk.hecho .box{background:var(--purple)}
+.plan li.chk.hecho .box::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.plan li.chk.hecho{color:var(--muted)}
+.plan i{display:block;color:var(--muted);font-style:normal;font-size:.85rem;margin-top:2px}
+.pt-prog{height:6px;background:var(--purple-wash-2);border-radius:3px;overflow:hidden;margin:4px 0 2px}
+.pt-prog i{display:block;height:100%;width:0;background:var(--purple);transition:width .3s var(--ease)}
+.pt-progtxt{font-size:.85rem;color:var(--muted)}
+@media (min-width:980px){
+  .pt-grid{display:grid;grid-template-columns:230px 1fr;gap:36px;align-items:start}
+  .pt-nav{position:sticky;top:100px;flex-direction:column;overflow:visible;margin:0;padding:0;border:0;background:none}
+  .plan h2{scroll-margin-top:100px}
+  .pt-nav a{white-space:normal;border-radius:var(--r-sm);background:none;padding:8px 10px}
+  .pt-nav a.on{background:var(--purple-wash);color:var(--purple);font-weight:600}
+  .plan li{padding-top:12px;padding-bottom:12px}
+}
+@media print{nav.site,footer.site,.pt-nav,.pt-acc{display:none}}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -23,25 +74,43 @@
   <a class="logo" href="/"><img class="mm" src="/assets/logo.jpg" alt="Logo de Macuto Music"> Macuto&nbsp;Music</a>
   <div class="nav-links">
     <a href="/" class="nav-keep-link">Inicio</a>
-    <a href="/solicitud.html" class="btn btn-purple nav-cta-desktop">Solicita acceso</a>
   </div>
 </div></nav>
 <main id="main">
-<section class="sec" style="padding-top:56px"><div class="wrap" style="max-width:760px">
-  <span class="eyebrow">Solo artistas del programa</span>
-  <h1 style="font-size:clamp(2rem,4.6vw,2.9rem);margin:14px 0 10px">Portal del artista</h1>
-  <p style="margin-bottom:26px">Tu espacio privado dentro de Macuto Music. Entra con tu <b>código personal</b> y encontrarás todo lo tuyo en un solo sitio:</p>
-  <ul style="margin:0 0 30px;padding-left:0;list-style:none;display:grid;gap:12px">
-    <li>🧭 <b>Tu viaje como artista</b> — el checklist completo de tu carrera (registros, plataformas, marca, regalías…) para ir tachando, con tu progreso y tus siguientes pasos.</li>
-    <li>🚀 <b>Tus lanzamientos</b> — el protocolo de cada estreno, paso a paso.</li>
-    <li>📋 <b>Tus tareas</b> — lo que el equipo te deja preparado; al tacharlo, lo vemos al momento.</li>
-    <li>🎧 <b>Tus campañas y streams</b> — las playlists donde está sonando tu música.</li>
-    <li>📄 <b>Tu contrato y tus reuniones</b> — estado y resúmenes, siempre a mano.</li>
-  </ul>
-  <div class="cta-row" style="margin-bottom:18px">
-    <a href="https://portal.macutomusic.com" class="btn btn-purple" rel="noopener">Entrar a mi portal →</a>
+<section class="sec" style="padding-top:48px"><div class="wrap pt-wrap">
+
+  <div id="vista-entrar" class="pt-login">
+    <span class="eyebrow">Solo artistas del programa</span>
+    <h1 style="font-size:clamp(2rem,4.6vw,2.8rem);margin:14px 0 10px">Tu portal</h1>
+    <p>Aquí tienes tu plan de trabajo de los tres primeros meses. Entra con el <b>documento de identidad de tu contrato</b>.</p>
+    <form class="pt-card" id="form-entrar" novalidate>
+      <label for="doc">DNI, NIE o pasaporte</label>
+      <input id="doc" name="doc" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="30" required placeholder="Tal como aparece en tu contrato">
+      <button class="btn btn-purple" id="btn-entrar" type="submit">Entrar</button>
+      <p class="pt-err" id="err-entrar" role="alert"></p>
+      <p class="pt-hint">No guardamos tu documento en este navegador. La sesión se cierra sola a las 2 horas.</p>
+    </form>
+    <p class="pt-hint">¿Problemas para entrar? Escribe a tu label manager o a <a href="mailto:macuto@macutomusic.com">macuto@macutomusic.com</a>.</p>
   </div>
-  <p style="color:var(--soft,#6b6480);font-size:.95rem">¿No tienes código o lo has perdido? Pídeselo a tu contacto del equipo por WhatsApp y te lo reenviamos al momento. ¿Aún no eres artista del programa? <a href="/solicitud.html">Solicita acceso</a>.</p>
+
+  <div id="vista-plan" hidden>
+    <div class="pt-top">
+      <span class="pt-hola" id="hola"></span>
+      <div class="pt-acc">
+        <button class="pri" id="btn-pdf" type="button">Descargar PDF</button>
+        <button id="btn-salir" type="button">Salir</button>
+      </div>
+    </div>
+    <div class="pt-grid">
+      <nav class="pt-nav" id="indice" aria-label="Secciones de tu plan"></nav>
+      <div>
+        <div id="progreso" hidden><div class="pt-prog"><i id="barra"></i></div><div class="pt-progtxt" id="progtxt"></div></div>
+        <article class="plan" id="plan"></article>
+        <p class="pt-err" id="err-plan" role="alert"></p>
+      </div>
+    </div>
+  </div>
+
 </div></section>
 </main>
 <footer class="site"><div class="wrap">
@@ -50,5 +119,139 @@
     <span><a href="/aviso-legal.html">Aviso legal</a> · <a href="/privacidad.html">Privacidad</a></span>
   </div>
 </div></footer>
+<script>
+(function () {
+  'use strict';
+  // API del portal (M5, Tailscale Funnel). En local (localhost) se puede pasar ?api=http://127.0.0.1:8798 para probar.
+  var API = 'https://macbook-air-de-macuto-1.tail182370.ts.net:8443';
+  var q = new URLSearchParams(location.search);
+  if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname) && q.get('api')) API = q.get('api');
+
+  var $ = function (s) { return document.querySelector(s); };
+  var SK = 'dap_portal_sesion';
+  function guarda(k, v) { try { v == null ? sessionStorage.removeItem(k) : sessionStorage.setItem(k, v); } catch (e) {} }
+  function lee(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
+  function err(id, txt) { var e = $(id); e.textContent = txt || ''; e.classList.toggle('on', !!txt); }
+
+  function api(ruta, opts) {
+    opts = opts || {};
+    var h = { 'Content-Type': 'application/json' };
+    var t = lee(SK);
+    if (t && !opts.sinToken) h.Authorization = 'Bearer ' + t;
+    return fetch(API + ruta, { method: opts.method || 'GET', headers: h, body: opts.body, credentials: 'omit', cache: 'no-store' });
+  }
+
+  function mostrar(vista) {
+    $('#vista-entrar').hidden = vista !== 'entrar';
+    $('#vista-plan').hidden = vista !== 'plan';
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  $('#form-entrar').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var doc = $('#doc').value.trim();
+    err('#err-entrar', '');
+    if (doc.replace(/[\s.\-\/]/g, '').length < 5) { err('#err-entrar', 'Escribe tu documento completo.'); return; }
+    var b = $('#btn-entrar'); b.disabled = true; b.textContent = 'Entrando…';
+    api('/api/portal/entrar', { method: 'POST', body: JSON.stringify({ documento: doc }), sinToken: true })
+      .then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); })
+      .then(function (x) {
+        if (x.j && x.j.ok) { guarda(SK, x.j.token); $('#doc').value = ''; cargar(); }
+        else err('#err-entrar', (x.j && x.j.error) || 'No se pudo entrar.');
+      })
+      .catch(function () { err('#err-entrar', 'No se pudo conectar con el portal. Inténtalo de nuevo en un rato.'); })
+      .then(function () { b.disabled = false; b.textContent = 'Entrar'; });
+  });
+
+  function cargar() {
+    api('/api/portal/plan')
+      .then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); })
+      .then(function (x) {
+        if (!x.j || !x.j.ok) { guarda(SK, null); mostrar('entrar'); if (x.s !== 401 || lee('dap_portal_avisado')) err('#err-entrar', (x.j && x.j.error) || ''); return; }
+        pintar(x.j);
+        mostrar('plan');
+      })
+      .catch(function () { mostrar('entrar'); err('#err-entrar', 'No se pudo conectar con el portal. Inténtalo de nuevo en un rato.'); });
+  }
+
+  function pintar(d) {
+    // el HTML llega generado y ESCAPADO por el servidor (plan_personal.cuerpo_html): solo h1, h2, p, ul, li, b, i y span.box
+    var plan = $('#plan');
+    plan.innerHTML = d.html;
+    $('#hola').innerHTML = '';
+    $('#hola').appendChild(document.createTextNode('Plan entregado el ' + (d.entregado || '').split('-').reverse().join('/')));
+    if (d.prueba) { var t = document.createElement('span'); t.className = 'pt-tag'; t.textContent = 'PRUEBA'; $('#hola').appendChild(t); }
+    // índice de secciones
+    var nav = $('#indice'); nav.innerHTML = '';
+    var h2s = plan.querySelectorAll('h2');
+    h2s.forEach(function (h, i) {
+      h.id = 'sec-' + i;
+      var a = document.createElement('a'); a.href = '#sec-' + i; a.textContent = h.textContent.replace(/\s*\(.*\)\s*$/, '');
+      a.addEventListener('click', function (e) { e.preventDefault(); h.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+      nav.appendChild(a);
+    });
+    // sección actual: la última cuyo título ya pasó bajo la cabecera fija (75 px) + el índice
+    var enlaces = nav.querySelectorAll('a'), pend = false;
+    function marca() {
+      pend = false;
+      var lim = (window.innerWidth >= 980 ? 110 : 150), act = 0;
+      h2s.forEach(function (h, i) { if (h.getBoundingClientRect().top <= lim) act = i; });
+      enlaces.forEach(function (a, i) {
+        var on = i === act;
+        if (on !== a.classList.contains('on')) {
+          a.classList.toggle('on', on);
+          // centrar la etiqueta en el índice deslizable SIN mover la página (scrollIntoView también desplazaba la página)
+          if (on && window.innerWidth < 980) nav.scrollLeft = a.offsetLeft - (nav.clientWidth - a.offsetWidth) / 2;
+        }
+      });
+    }
+    window.addEventListener('scroll', function () { if (!pend) { pend = true; requestAnimationFrame(marca); } }, { passive: true });
+    marca();
+    // pasos marcables: se recuerdan SOLO en este navegador (ayuda al artista; no se envía a nadie)
+    var clave = 'dap_plan_hechos:' + (d.entregado || '') + ':' + h2s.length + ':' + plan.querySelectorAll('.box').length;
+    var hechos = [];
+    try { hechos = JSON.parse(localStorage.getItem(clave) || '[]'); } catch (e) {}
+    var items = [];
+    plan.querySelectorAll('li').forEach(function (li) {
+      if (!li.querySelector('.box')) return;
+      var n = items.length; items.push(li);
+      li.classList.add('chk'); li.setAttribute('role', 'checkbox'); li.tabIndex = 0;
+      var set = function (on) { li.classList.toggle('hecho', on); li.setAttribute('aria-checked', on ? 'true' : 'false'); };
+      set(hechos.indexOf(n) >= 0);
+      var toggle = function () {
+        set(!li.classList.contains('hecho'));
+        hechos = items.map(function (x, k) { return x.classList.contains('hecho') ? k : -1; }).filter(function (k) { return k >= 0; });
+        try { localStorage.setItem(clave, JSON.stringify(hechos)); } catch (e) {}
+        progreso();
+      };
+      li.addEventListener('click', toggle);
+      li.addEventListener('keydown', function (e) { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); } });
+    });
+    function progreso() {
+      var n = items.length, h = items.filter(function (x) { return x.classList.contains('hecho'); }).length;
+      $('#progreso').hidden = !n;
+      $('#barra').style.width = (n ? Math.round(100 * h / n) : 0) + '%';
+      $('#progtxt').textContent = h + ' de ' + n + ' pasos marcados como hechos (solo se guarda en este navegador)';
+    }
+    progreso();
+  }
+
+  $('#btn-pdf').addEventListener('click', function () {
+    var b = this; b.disabled = true;
+    api('/api/portal/pdf')
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.blob(); })
+      .then(function (blob) {
+        var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'Tu_plan_3_meses.pdf';
+        document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+      })
+      .catch(function () { err('#err-plan', 'No se pudo descargar el PDF. Si ha pasado mucho rato, sal y vuelve a entrar.'); })
+      .then(function () { b.disabled = false; });
+  });
+
+  $('#btn-salir').addEventListener('click', function () { guarda(SK, null); $('#plan').innerHTML = ''; mostrar('entrar'); });
+
+  if (lee(SK)) cargar(); else mostrar('entrar');
+})();
+</script>
 </body>
 </html>
