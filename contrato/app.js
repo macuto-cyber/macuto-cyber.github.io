@@ -30,7 +30,8 @@
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function $(sel) { return document.querySelector(sel); }
   function card(inner) { return '<div class="ct-card">' + inner + '</div>'; }
-  function foot() { return '<p class="ct-foot">¿Dudas? Escríbenos a <a href="mailto:macuto@macutomusic.com">macuto@macutomusic.com</a> o por WhatsApp al <a href="https://wa.me/34630060006" target="_blank" rel="noopener">+34 630 06 00 06</a>.<br>Macuto Music</p>'; }
+  var LINK = 'color:var(--purple);text-decoration:underline;font-weight:600';   // enlaces que se tienen que ver como enlaces
+  function foot() { return '<p class="ct-foot">¿Dudas? Escríbenos por WhatsApp al <a href="https://wa.me/34630060006" target="_blank" rel="noopener">+34 630 06 00 06</a>.</p>'; }
   function msg(t, p, sub, extra) { app.innerHTML = '<h1>' + esc(t) + '</h1>' + card('<p>' + esc(p) + '</p>' + (sub ? '<p class="ct-mut">' + esc(sub) + '</p>' : '') + (extra || '')) + foot(); window.scrollTo(0, 0); }
   function api(path, opts) {
     opts = opts || {};
@@ -88,7 +89,7 @@
     if (pollTimer) { clearTimeout(pollTimer); pollTimer = null; }
     switch (st.vista) {
       case 'anulado': return msg('Este enlace ya no es válido', 'El contrato se ha sustituido por otra versión. Pide el enlace nuevo al equipo.');
-      case 'caducado': return msg('Este enlace ha caducado', 'La oferta tenía una validez de quince días. Si sigues interesado, escribe al equipo y te preparamos un enlace nuevo.');
+      case 'caducado': return msg('Este enlace ha caducado', 'La oferta tenía una validez de 48 horas. Si sigues interesado, escribe al equipo y te preparamos un enlace nuevo.');
       case 'pin': return vistaPin(st);
       case 'pin_bloqueado': return msg('Acceso bloqueado', 'Se han agotado los intentos. Escribe a tu contacto del equipo: revisarán tus datos y te volverán a abrir el enlace.');
       case 'copia_caducada': return msg('Este enlace ya no sirve la copia', 'Han pasado más de treinta días desde la firma. Pide tu copia del contrato al equipo por correo.');
@@ -97,7 +98,7 @@
       case 'asistente': return vistaAsistente(st);
       case 'preparando': msg('Preparando tu contrato…', 'Estamos generando el documento con los datos confirmados. Esta página se actualiza sola.', 'Suele tardar menos de un minuto. Si pasan más de diez, escribe al equipo.'); pollTimer = setTimeout(load, 8000); return;
       case 'error': return msg('Un momento', 'El equipo está revisando tu contrato y te avisará cuando esté listo para firmar.');
-      case 'espera_macuto': msg('Casi listo', 'Macuto Music está firmando la oferta de tu contrato. En cuanto lo haga, este mismo enlace te dejará revisarlo y firmarlo; el equipo te avisará.', 'Puedes cerrar esta página y volver más tarde.'); pollTimer = setTimeout(load, 20000); return;
+      case 'espera_macuto': msg('Casi listo', 'Macuto Music está revisando y firmando la oferta de tu contrato. En cuanto lo haga, este mismo enlace te dejará revisarlo y firmarlo; el equipo te avisará.', 'Puedes cerrar esta página y volver más tarde.'); pollTimer = setTimeout(load, 20000); return;
       case 'revision': msg('Estamos revisando los datos', st.revision_mia ? 'Nos has avisado de un error. El equipo lo está revisando y te avisará cuando el contrato corregido esté listo; lo firmarás desde este mismo enlace.' : 'Uno de los firmantes ha avisado de un error en los datos. El equipo lo está revisando y, en cuanto esté listo, podrás firmar desde este mismo enlace.', 'Esta página se actualiza sola.'); pollTimer = setTimeout(load, 30000); return;
       case 'firma': return vistaFirma(st);
       default: return msg('Enlace no válido', 'Pide al equipo que te lo reenvíe.');
@@ -150,7 +151,7 @@
     $('#pin-go').addEventListener('click', go);
     inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') go(); });
   }
-  // ─── «Tus siguientes pasos» (17-sep): ficha de alta, onboarding, empezar ya, hoja de ruta y equipo ───
+  // ─── «Tus siguientes pasos» (17-sep; 18-sep sin hoja de ruta): ficha de alta, pago, onboarding (y empezar ya) y equipo ───
   function enlaceContacto(c) {
     var t = String(c || ''), dig = t.replace(/[^\d+]/g, '');
     if (/@/.test(t)) { var m = t.match(/[\w.+-]+@[\w.-]+/); return m ? '<a href="mailto:' + esc(m[0]) + '">' + esc(t) + '</a>' : esc(t); }
@@ -171,7 +172,7 @@
       pag = '<p class="ct-errbox" style="display:block">El plazo para pagar terminó el ' + esc(PG.limite) + '. Escríbenos y lo vemos contigo.</p>';
     } else {
       pag = '<p>Tu contrato se activa con el pago' + (PG.dos ? ' del primer plazo' : '') + ': <b>' + esc(PG.dos ? PG.pago_1 : PG.total) + ' €</b>' +
-        (PG.iva_txt ? ' (' + esc(PG.iva_txt) + ')' : '') + (PG.limite ? ', como tarde el <b>' + esc(PG.limite) + '</b>' : ' en los quince días siguientes a la firma') + '.</p>' +
+        (PG.iva_txt ? ' (' + esc(PG.iva_txt) + ')' : '') + (PG.limite ? ', como tarde el <b>' + esc(PG.limite) + '</b>' : ' en la semana siguiente a la firma') + '.</p>' +
         (PG.dos ? '<p class="ct-small ct-mut">Son dos pagos iguales sin recargo: el segundo, ' + esc(PG.pago_2) + ' €, un mes después (te avisamos antes). Si prefieres pagarlo todo ya, son ' + esc(PG.total) + ' €.</p>' : '') +
         '<ul class="ct-pago"><li><b>Con tarjeta:</b> te enviamos el enlace de pago seguro (Stripe) a tu correo o WhatsApp. Usa el mismo correo del contrato.</li>' +
         '<li><b>Por transferencia:</b> ' + (PG.iban ? 'a ' + esc(PG.titular || 'Macuto Music') + ', IBAN <b>' + esc(PG.iban) + '</b>, ' : 'pídenos los datos y ') +
@@ -181,29 +182,25 @@
     h += '<div class="ct-paso"><b>2 · ' + (PG.pagado ? 'Pago' : 'Paga para activar tu contrato') + '</b>' + pag + '</div>';
     var ses;
     if (SP.onboarding_hecho) ses = '<p class="ct-okbox">✓ Onboarding hecho el ' + esc(SP.onboarding_hecho) + '. Tu contrato dura hasta el <b>' + esc(SP.fin_contrato) + '</b>.</p>';
-    else if (!PG.pagado) ses = '<p class="ct-small">Cuando conste tu pago, tu label manager te escribirá en los tres días hábiles siguientes para agendar tu sesión de onboarding (unos ' + SP.minutos + ' minutos por videollamada). Antes del pago no se agenda.</p>';
+    else if (!PG.pagado) ses = '<p class="ct-small">En cuanto recibamos tu pago, tu label manager te escribe para elegir juntos el día de tu onboarding: una videollamada de unos ' + SP.minutos + ' minutos para arrancar tu plan.</p>';
     else if (SP.cita) ses = '<p class="ct-okbox">✓ Tu sesión de onboarding es el <b>' + esc(SP.cita) + '</b> (unos ' + SP.minutos + ' minutos por videollamada). Te llega la invitación con el enlace.</p>';
     else if (SP.reserva_url && !SP.desde_dia15) ses = '<p class="ct-small ct-mut">Elige día y hora ' + esc(SP.ventana) + '.</p><a class="ct-btn" href="' + esc(SP.reserva_url) + '" target="_blank" rel="noopener">Reservar mi sesión</a>';
     else ses = '<p class="ct-small">Tu label manager te escribirá' + (SP.limite_contacto ? ' como tarde el <b>' + esc(SP.limite_contacto) + '</b>' : '') + ' para proponerte fechas ' + esc(SP.ventana) + '. La sesión dura unos ' + SP.minutos + ' minutos por videollamada.</p>';
     if (SP.puede_empezar_ya && !SP.onboarding_hecho) {
-      ses += '<div class="ct-card ct-sub"><p class="ct-small">Como aún no has pedido empezar ya, por contrato tu onboarding será a partir del día 15, cuando termine tu plazo de desistimiento. Si quieres empezar antes:</p>' +
-        '<label class="ct-chk"><input type="checkbox" id="ya-chk"> <span>' + esc(SP.texto_empezar_ya) + '</span></label>' +
-        '<button type="button" class="ct-btn sec" id="ya-go" disabled>Quiero empezar ya</button><p id="ya-msg" class="ct-small"></p></div>';
+      ses += '<div class="ct-card ct-sub"><p class="ct-small">¿Te apetece empezar antes? Podemos agendar tu onboarding en cuanto llegue tu pago.</p>' +
+        '<label class="ct-chk"><input type="checkbox" id="ya-chk"> <span><b>' + esc(SP.empezar_ya_titulo || SP.texto_empezar_ya) + '</b>' +
+        (SP.empezar_ya_detalle ? '<br><span class="ct-small ct-mut">' + esc(SP.empezar_ya_detalle) + '</span>' : '') + '</span></label>' +
+        '<button type="button" class="ct-btn sec" id="ya-go" disabled>Empezar ya</button><p id="ya-msg" class="ct-small"></p></div>';
     } else if (SP.empezar_ya && !SP.cita && !SP.onboarding_hecho) {
       ses += '<p class="ct-small ct-mut">Has pedido empezar ya: ' + (PG.pagado ? 'te propondremos las primeras fechas libres.' : 'en cuanto conste tu pago te propondremos las primeras fechas libres.') + '</p>';
     }
     h += '<div class="ct-paso"><b>3 · Tu sesión de onboarding</b>' + ses + '</div>';
-    var hr = SP.hoja_ruta || { etapas: [] };
-    h += '<div class="ct-paso"><b>4 · Tu hoja de ruta de los tres primeros meses</b><p class="ct-small ct-mut">' + esc(hr.intro || '') + '</p>' +
-      hr.etapas.map(function (e) { return '<details class="ct-etapa-ruta"><summary>' + esc(e.titulo) + '</summary><ul>' + e.puntos.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('') + '</ul></details>'; }).join('') +
-      '<button type="button" class="ct-btn sec" id="hr-pdf">Descargar la hoja de ruta (PDF)</button></div>';
     if (SP.equipo && SP.equipo.length) {
-      h += '<div class="ct-paso"><b>5 · Tu equipo</b><p class="ct-small ct-mut">Guarda estos contactos.</p><ul class="ct-equipo">' +
+      h += '<div class="ct-paso"><b>4 · Tu equipo</b><p class="ct-small ct-mut">Guarda estos contactos.</p><ul class="ct-equipo">' +
         SP.equipo.map(function (p) { return '<li><b>' + esc(p.nombre) + '</b><br><span class="ct-small ct-mut">' + esc(p.rol) + '</span><br>' + enlaceContacto(p.contacto) + '</li>'; }).join('') + '</ul></div>';
     }
     var cont = document.createElement('div'); cont.className = 'ct-card'; cont.innerHTML = h;
     var ref = app.querySelector('.ct-foot'); app.insertBefore(cont, ref);
-    var b = $('#hr-pdf'); if (b) b.addEventListener('click', function (e) { abrirPdf(e, '/hoja-de-ruta', 'Hoja_de_ruta_Sistema_DAP_3_meses.pdf'); });
     var chk = $('#ya-chk'), go = $('#ya-go');
     if (chk && go) {
       chk.addEventListener('change', function () { go.disabled = !chk.checked; });
@@ -289,7 +286,18 @@
     for (k in st.prefill) if (Object.prototype.hasOwnProperty.call(st.prefill, k)) D[k] = st.prefill[k];
     var KEY = 'dap-datos-' + TOKEN.slice(0, 8);   // borrador SOLO en sessionStorage: muere al cerrar la pestaña (lleva DNI y domicilio)
     try { var b = JSON.parse(sessionStorage.getItem(KEY) || '{}'); if (b && b.t && Date.now() - b.t < 24 * 3600e3) { for (k in b.d) D[k] = b.d[k]; } else sessionStorage.removeItem(KEY); } catch (e) { }
-    var EMP = st.modelo !== 'particular', UE = C.ue, PA = C.paises, DOCS = C.docs, DEF = C.docs_defecto;
+    // 18-sep: en un sobre «auto» el MODELO lo deciden las respuestas del cliente («¿quién contrata?»); la forma de pago
+    // la fija siempre el equipo y aquí solo se muestra. El Anexo I.5 ya no se pregunta: va al formulario de alta.
+    function M() { return st.modelo_auto ? (D.modelo || '') : st.modelo; }
+    var EMP = false, UE = C.ue, PA = C.paises, DOCS = C.docs, DEF = C.docs_defecto;
+    function blancoUrl() { return API + '/blanco' + (st.modelo_auto && M() ? '?m=' + encodeURIComponent(M()) : ''); }
+    // al cambiar de «persona» a «empresa» (o al revés), lo que ya sabíamos pasa al campo equivalente
+    function migrar() {
+      var pares = [['cliente_nombre', 'representante_nombre'], ['cliente_doc_tipo', 'representante_doc_tipo'], ['cliente_doc_numero', 'representante_doc_numero'],
+        ['cliente_email', 'empresa_email'], ['cliente_telefono', 'empresa_telefono']];
+      var aEmp = M() === 'empresa' || M() === 'empresa_artista';
+      for (var i = 0; i < pares.length; i++) { var de = pares[i][aEmp ? 0 : 1], a = pares[i][aEmp ? 1 : 0]; if (D[de] && !D[a]) D[a] = D[de]; }
+    }
     function save() { try { sessionStorage.setItem(KEY, JSON.stringify({ t: Date.now(), d: D })); } catch (e) { } }
     function eur(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
     function inp(id, o) { o = o || {}; return '<div class="ct-field" id="f-' + id + '"><label for="' + id + '">' + o.l + '</label>' + (o.t === 'textarea' ? '<textarea id="' + id + '" rows="4" maxlength="' + (o.max || 1500) + '">' + esc(D[id] || '') + '</textarea>' : '<input id="' + id + '" type="' + (o.type || 'text') + '" value="' + esc(D[id] || '') + '"' + (o.ac ? ' autocomplete="' + o.ac + '"' : '') + (o.im ? ' inputmode="' + o.im + '"' : '') + ' maxlength="' + (o.max || 120) + '"' + (o.ph ? ' placeholder="' + esc(o.ph) + '"' : '') + '>') + (o.h ? '<div class="ct-hint">' + o.h + '</div>' : '') + '<div class="ct-err"></div></div>'; }
@@ -309,7 +317,20 @@
     var STEPS = [];
     function build() {
       STEPS = [];
-      STEPS.push({ id: 'intro', t: st.titulo, r: function () { return '<p>Vamos a completar el contrato con tus datos. Los pondremos en el documento tal como los escribas, y podrás revisar el contrato entero antes de firmar.</p><p class="ct-mut">Tardarás unos 3 minutos. Ten a mano tu documento de identidad' + (EMP ? ' y los datos registrales de la empresa' : '') + '. Tu progreso se guarda mientras no cierres esta pestaña.</p><p class="ct-small"><a href="' + API + '/blanco" target="_blank" rel="noopener">Ver el contrato completo (versión en blanco, PDF)</a> · <a href="/contrato/como-se-firma.html" target="_blank" rel="noopener">Cómo se firma</a></p>' + RGPD; }, v: function () { return true; } });
+      EMP = M() === 'empresa' || M() === 'empresa_artista';
+      STEPS.push({ id: 'intro', t: st.titulo, r: function () { return '<p>Vamos a completar el contrato con tus datos. Los pondremos en el documento tal como los escribas, y podrás revisar el contrato entero antes de firmar.</p><p class="ct-mut">Tardarás unos 3 minutos. Ten a mano tu documento de identidad' + (EMP ? ' y los datos registrales de la empresa' : '') + '. Tu progreso se guarda mientras no cierres esta pestaña.</p><p class="ct-small"><a href="' + blancoUrl() + '" target="_blank" rel="noopener">Ver el contrato completo (versión en blanco, PDF)</a> · <a href="/contrato/como-se-firma.html" target="_blank" rel="noopener">Cómo se firma</a></p>' + RGPD; }, v: function () { return true; } });
+      if (st.modelo_auto) STEPS.push({ id: 'quien', t: '¿Quién contrata?', r: function () {
+        return '<p class="ct-mut">Con tu respuesta preparamos el contrato oficial que te corresponde.</p>' + opts('modelo', '¿Quién firma el contrato como cliente y recibe la factura?', [
+          ['particular', 'Yo, como persona', 'Eres el artista, o su mánager o productor a título personal (también si eres autónomo). La factura irá a tu nombre.'],
+          ['empresa', 'Una empresa, para su propio proyecto', 'La sociedad del artista o del grupo, o una productora con su propio proyecto. Firma su representante y la factura va a la empresa.'],
+          ['empresa_artista', 'Una empresa, para un artista', 'Un sello, un management o una marca que contrata y paga el programa para un artista. El artista también firmará.']]) +
+          ((M() === 'empresa' || M() === 'empresa_artista') ? '<p class="ct-hint">Este enlace es para la persona que firma por la empresa (administrador o apoderado), con el documento con el que has entrado. Si no eres tú, escribe al equipo y le mandamos el enlace a quien corresponda.</p>' : '') +
+          (M() ? '<p class="ct-small"><a href="' + blancoUrl() + '" target="_blank" rel="noopener">Ver este contrato en blanco (PDF)</a></p>' : ''); },
+        v: function () { return req('modelo'); } });
+      if (st.modelo_auto && !M()) {       // hasta que conteste, no hay más pasos que pintar
+        STEPS.push({ id: 'rev', t: 'Comprueba tus datos', r: function () { return ''; }, v: function () { return false; } });
+        return;
+      }
       STEPS.push({ id: 'pais', t: EMP ? '¿Dónde está la empresa?' : '¿Dónde resides?', r: function () {
         var h = sel('pais', EMP ? 'País de la empresa' : 'País de residencia', PA);
         if (D.pais === 'OT') h += inp('pais_otro', { l: '¿Qué país?', ac: 'country-name' });
@@ -333,30 +354,68 @@
         STEPS.push({ id: 'emp', t: 'La empresa', r: function () { if (D.vies && D.vies.nombre && !D.empresa_razon_social) D.empresa_razon_social = D.vies.nombre; return inp('empresa_razon_social', { l: 'Razón social', ac: 'organization', h: 'Exactamente como está registrada' }) + inp('empresa_nif', { l: D.pais === 'ES' ? 'NIF de la empresa' : 'Número fiscal (Tax ID) de la empresa', ac: 'off' }) + inp('empresa_registro', { l: 'Registro mercantil o equivalente', ph: 'Registro Mercantil de Madrid, tomo…, hoja…' }) + inp('empresa_email', { l: 'Correo de la empresa', type: 'email', im: 'email' }) + inp('empresa_telefono', { l: 'Teléfono de la empresa (con prefijo)', type: 'tel', im: 'tel', ph: '+34 910 000 000' }); }, v: function () { return req('empresa_razon_social') & req('empresa_nif') & req('empresa_registro') & req('empresa_email') & req('empresa_telefono'); } });
         STEPS.push({ id: 'rep', t: 'Quien firma por la empresa', r: function () { return inp('representante_nombre', { l: 'Nombre y apellidos', ac: 'name' }) + docBlock('representante', 'de quien firma') + opts('representante_cargo', 'Firma como', [['administrador', 'Administrador/a'], ['apoderado', 'Apoderado/a', 'Con poder vigente para obligar a la empresa']]); }, v: function () { return req('representante_nombre') & req('representante_doc_tipo') & req('representante_doc_numero') & req('representante_cargo'); } });
         STEPS.push({ id: 'dom', t: 'Domicilio social', r: function () { return dom('empresa_domicilio', 'Domicilio social'); }, v: function () { return reqD('empresa_domicilio'); } });
-        if (st.modelo === 'empresa') {
+        if (M() === 'empresa') {
           STEPS.push({ id: 'pro', t: 'El proyecto', r: function () { return inp('nombre_artistico', { l: 'Nombre artístico del proyecto' }) + '<h2>Persona del proyecto que recibe el servicio</h2><p class="ct-mut">Firma para lo que le afecta personalmente (imagen, datos, confidencialidad). Si son varias personas, avisa al equipo.</p>' + inp('persona_nombre', { l: 'Nombre y apellidos' }) + docBlock('persona', 'de la persona del proyecto') + fecha('persona_fecha_nacimiento', 'Fecha de nacimiento') + inp('persona_email', { l: 'Correo', type: 'email', im: 'email', h: 'Le enviaremos su propio enlace de firma' }); }, v: function () { return req('nombre_artistico') & req('persona_nombre') & req('persona_doc_tipo') & req('persona_doc_numero') & reqF('persona_fecha_nacimiento') & req('persona_email'); } });
         } else {
           STEPS.push({ id: 'art', t: 'El artista', r: function () { return inp('artista_nombre', { l: 'Nombre y apellidos del artista' }) + selArtPais() + artOtro() + docBlock('artista', 'del artista') + fecha('artista_fecha_nacimiento', 'Fecha de nacimiento del artista') + inp('nombre_artistico', { l: 'Nombre artístico' }) + dom('artista_domicilio', 'Domicilio del artista') + inp('artista_email', { l: 'Correo del artista', type: 'email', im: 'email', h: 'Le enviaremos su propio enlace de firma' }) + opts('relacion', 'Relación de la empresa con el artista', [['sello', 'Sello o discográfica'], ['management', 'Management'], ['patrocinio', 'Patrocinio o marca'], ['familiar', 'Familiar'], ['otra', 'Otra']]) + (D.relacion === 'otra' ? inp('relacion_otra', { l: '¿Cuál?' }) : ''); }, v: function () { var ok = req('artista_nombre') & req('artista_pais') & (D.artista_pais === 'OT' ? req('artista_pais_otro') : 1) & req('artista_doc_tipo') & req('artista_doc_numero') & reqF('artista_fecha_nacimiento') & req('nombre_artistico') & reqD('artista_domicilio') & req('artista_email') & req('relacion'); if (D.relacion === 'otra') ok = ok & req('relacion_otra'); return ok; } });
         }
-        STEPS.push({ id: 'fac', t: 'Datos para la factura', r: function () { syncFac(D.empresa_nif); return inp('factura_nif', { l: 'NIF o Tax ID para la factura', ac: 'off' }) + opts('documentacion', 'Documentación que aporta la empresa', [['extracto', 'Extracto del registro mercantil', 'Lo habitual: acredita quién puede firmar'], ['censal', 'Certificado censal', 'Empresas de Canarias, Ceuta o Melilla'], ['otra', 'Otra']]) + (D.documentacion === 'otra' ? inp('documentacion_otra', { l: '¿Cuál?' }) : '') + '<p class="ct-hint">Se la envías al equipo por el mismo WhatsApp; no hace falta subirla aquí.</p>'; }, v: function () { var ok = req('factura_nif') & req('documentacion'); if (D.documentacion === 'otra') ok = ok & req('documentacion_otra'); return ok; } });
+        STEPS.push({ id: 'fac', t: 'Datos para la factura', r: function () { syncFac(D.empresa_nif); return inp('factura_nif', { l: 'NIF o Tax ID para la factura', ac: 'off' }) + opts('documentacion', 'Documentación que aporta la empresa', [['extracto', 'Extracto del registro mercantil', 'Lo habitual: acredita quién puede firmar'], ['censal', 'Certificado censal', 'Empresas de Canarias, Ceuta o Melilla'], ['otra', 'Otra']]) + (D.documentacion === 'otra' ? inp('documentacion_otra', { l: '¿Cuál?' }) : '') + campoDocs(); }, v: function () { var ok = req('factura_nif') & req('documentacion'); if (D.documentacion === 'otra') ok = ok & req('documentacion_otra'); if (!DOCS_SUB.length) { mark('documentacion_archivo', 'Sube el documento para continuar.'); ok = 0; } return ok; } });
       }
       STEPS.push({ id: 'rev', t: 'Comprueba tus datos', r: function () {
         var h = '<p class="ct-mut">Revisa cada dato. Con «Cambiar» vuelves a esa pantalla.</p><dl class="ct-res">';
         for (var i = 1; i < STEPS.length - 1; i++) { var s2 = STEPS[i]; h += '<dt>' + esc(s2.t) + ' <a href="#" data-go="' + i + '">Cambiar</a></dt><dd>' + resumen(s2.id) + '</dd>'; }
         h += '</dl>';
         if (st.forma_pago_abierta) h += opts('forma_pago', 'Forma de pago', [['unico', 'Pago único'], ['dos', 'Dos pagos iguales', 'El primero al contratar y el segundo un mes después, sin recargo']]);
+        else if (st.forma_pago) h += '<p class="ct-small">Forma de pago, tal como la acordaste con el equipo: <b>' + (st.forma_pago === 'unico' ? 'pago único, por adelantado' : 'dos pagos iguales, sin recargo: el primero al contratar y el segundo un mes después') + '</b>. El importe exacto, con el IVA que te corresponda, aparecerá en el contrato.</p>';
         h += '<div class="ct-card"><label class="ct-chk"><input type="checkbox" id="ok-datos"> <span>He revisado mis datos y son correctos.</span></label></div>';
         return h; }, v: function () { var ok = true; if (st.forma_pago_abierta) ok = req('forma_pago'); if (!$('#ok-datos').checked) { showErr('Marca la casilla «He revisado mis datos y son correctos».'); ok = false; } return ok; } });
+    }
+    // documentación de la empresa (18-sep, noche): se SUBE aquí, nada de WhatsApp. Las fotos se reducen antes de enviarlas.
+    var DOCS_SUB = st.documentos || [];
+    function campoDocs() {
+      return '<div class="ct-field" id="f-documentacion_archivo"><label for="doc-file">Sube el documento (PDF o foto)</label>' +
+        '<input type="file" id="doc-file" accept="application/pdf,image/*">' +
+        '<div class="ct-hint">El extracto del registro mercantil (o el certificado censal) de la empresa, en PDF o una foto legible. Máximo 1,4 MB.</div>' +
+        (DOCS_SUB.length ? '<ul class="ct-docs">' + DOCS_SUB.map(function (x) { return '<li>✓ ' + esc(x.nombre) + ' <span class="ct-mut">(' + esc(x.kb) + ' KB)</span></li>'; }).join('') + '</ul>' : '') +
+        '<p class="ct-small" id="doc-msg" role="status"></p><div class="ct-err" role="alert"></div></div>';
+    }
+    function subirDoc(file) {
+      var m = $('#doc-msg'); if (!file) return;
+      function fin(err) { if (err) { mark('documentacion_archivo', err); if (m) m.textContent = ''; } else { mark('documentacion_archivo', ''); paint(); } }
+      function enviar(nombre, dataUrl) {
+        var b64 = String(dataUrl).split(',')[1] || '';
+        if (b64.length * 3 / 4 > 1400000) { fin('El archivo pesa demasiado (máximo 1,4 MB). Prueba con un PDF más ligero o una foto.'); return; }
+        if (m) m.textContent = 'Subiendo…';
+        api('/documento', { method: 'POST', body: { nombre: nombre, datos: b64 } }).then(function (r) {
+          if (r.ok && r.j && r.j.ok) { DOCS_SUB = r.j.documentos || []; fin(''); } else fin((r.j && r.j.error) || 'No se pudo subir. Inténtalo de nuevo.');
+        }).catch(function () { fin('Problema de conexión: inténtalo de nuevo.'); });
+      }
+      var fr = new FileReader();
+      fr.onload = function () {
+        if (!/^image\//.test(file.type)) { enviar(file.name, fr.result); return; }
+        var img = new Image();
+        img.onload = function () {
+          var k = Math.min(1, 1800 / Math.max(img.width, img.height)), c = document.createElement('canvas');
+          c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+          c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+          enviar(file.name.replace(/\.\w+$/, '') + '.jpg', c.toDataURL('image/jpeg', 0.82));
+        };
+        img.onerror = function () { fin('No se pudo leer la imagen. Prueba con un PDF o una foto en JPG.'); };
+        img.src = fr.result;
+      };
+      fr.onerror = function () { fin('No se pudo leer el archivo.'); };
+      fr.readAsDataURL(file);
     }
     function resumen(id) {
       var f = function (k) { return esc(D[k] || '—'); }, dm = function (k) { var d = D[k] || {}; if (typeof d === 'string') return esc(d); return esc([d.calle, d.piso, [d.cp, d.ciudad].filter(Boolean).join(' '), d.provincia].filter(Boolean).join(', ')); }, fe = function (k) { var v = (D[k] || '').split('-'); return v.length === 3 ? v[2] + '/' + v[1] + '/' + v[0] : '—'; };
       switch (id) {
+        case 'quien': return { particular: 'Yo, como persona', empresa: 'Una empresa, para su propio proyecto', empresa_artista: 'Una empresa, para un artista' }[M()] || '—';
         case 'pais': return esc(nombrePais(D.pais)) + (D.pais === 'OT' && D.pais_otro ? ' (' + esc(D.pais_otro) + ')' : '') + (D.territorio ? ' · ' + (D.territorio === 'canarias_ceuta_melilla' ? 'Canarias, Ceuta o Melilla' : 'Península o Baleares') : '') + (D.alta_autonomo ? ' · alta de autónomo: ' + esc(D.alta_autonomo) : '') + (D.usa_servicio_espana ? ' · servicio en España: ' + esc(D.usa_servicio_espana) : '') + (D.establecimiento_peninsula ? ' · establecimiento en Península: ' + esc(D.establecimiento_peninsula) : '') + (D.nif_iva ? ' · NIF-IVA ' + esc(D.nif_iva) : '');
         case 'tu': return f('cliente_nombre') + ' · ' + f('cliente_email') + ' · ' + f('cliente_telefono');
         case 'doc': return f('cliente_doc_tipo') + ' ' + f('cliente_doc_numero') + ' · nacimiento ' + fe('cliente_fecha_nacimiento');
         case 'dom': return dm(EMP ? 'empresa_domicilio' : 'cliente_domicilio');
         case 'art': return EMP ? (f('artista_nombre') + ' · ' + esc(paisArtTxt()) + ' · ' + f('artista_doc_tipo') + ' ' + f('artista_doc_numero') + ' · ' + fe('artista_fecha_nacimiento') + ' · ' + f('nombre_artistico') + ' · ' + dm('artista_domicilio') + ' · ' + f('artista_email') + ' · relación: ' + f('relacion') + (D.relacion === 'otra' ? ' (' + f('relacion_otra') + ')' : '')) : (D.cliente_es_artista === 'no' ? ('Artista: ' + f('artista_nombre') + ' · ' + esc(paisArtTxt()) + ' · ' + f('artista_doc_tipo') + ' ' + f('artista_doc_numero') + ' · ' + fe('artista_fecha_nacimiento') + ' · ' + f('artista_email') + ' · ' + f('nombre_artistico') + ' · relación: ' + f('relacion_cliente_proyecto')) : ('Soy yo · ' + f('nombre_artistico')));
-        case 'fac': return f('factura_nif') + (D.documentacion ? ' · ' + f('documentacion') + (D.documentacion === 'otra' ? ' (' + f('documentacion_otra') + ')' : '') : '');
+        case 'fac': return f('factura_nif') + (D.documentacion ? ' · ' + f('documentacion') + (D.documentacion === 'otra' ? ' (' + f('documentacion_otra') + ')' : '') : '') + (EMP && DOCS_SUB.length ? ' · subido: ' + DOCS_SUB.map(function (x) { return esc(x.nombre); }).join(', ') : '');
         case 'emp': return f('empresa_razon_social') + ' · ' + f('empresa_nif') + ' · ' + f('empresa_registro') + ' · ' + f('empresa_email') + ' · ' + f('empresa_telefono');
         case 'rep': return f('representante_nombre') + ' · ' + f('representante_doc_tipo') + ' ' + f('representante_doc_numero') + ' · ' + f('representante_cargo');
         case 'pro': return f('nombre_artistico') + ' · ' + f('persona_nombre') + ' · ' + f('persona_doc_tipo') + ' ' + f('persona_doc_numero') + ' · ' + fe('persona_fecha_nacimiento') + ' · ' + f('persona_email');
@@ -367,7 +426,7 @@
     function collect() {
       var els = app.querySelectorAll('input,select,textarea');
       for (var i = 0; i < els.length; i++) {
-        var el = els[i], id = el.id; if (!id || id === 'ok-datos') continue;
+        var el = els[i], id = el.id; if (!id || id === 'ok-datos' || el.type === 'file') continue;
         var m = id.match(/^(.*)_(d|m|y)$/);
         if (m && document.getElementById(m[1] + '_y')) { var dd = $('#' + m[1] + '_d').value, mo = $('#' + m[1] + '_m').value, y = $('#' + m[1] + '_y').value; D[m[1]] = (dd && mo && y) ? (y + '-' + ('0' + mo).slice(-2) + '-' + ('0' + dd).slice(-2)) : ''; continue; }
         var dm2 = id.match(/^(.*_domicilio)_(calle|piso|cp|ciudad|prov)$/);
@@ -387,7 +446,7 @@
       app.innerHTML = '<div class="ct-steps">' + STEPS.map(function (x, i) { return '<i class="' + (i <= cur ? 'on' : '') + '"></i>'; }).join('') + '</div><p class="ct-small ct-mut">Paso ' + (cur + 1) + ' de ' + STEPS.length + '</p><h1>' + esc(s2.t) + '</h1><div class="ct-errbox" id="errbox"></div>' + card(s2.r()) +
         '<button type="button" class="ct-btn" id="next">' + (cur === STEPS.length - 1 ? 'Confirmar mis datos' : (cur === 0 ? 'Empezar' : 'Continuar')) + '</button>' + (cur > 0 ? '<button type="button" class="ct-btn sec" id="back">Atrás</button>' : '') + foot();
       var i, list = app.querySelectorAll('.ct-opt');
-      for (i = 0; i < list.length; i++) (function (b) { b.addEventListener('click', function () { D[b.getAttribute('data-k')] = b.getAttribute('data-v'); save(); paint(); }); })(list[i]);
+      for (i = 0; i < list.length; i++) (function (b) { b.addEventListener('click', function () { var k = b.getAttribute('data-k'); D[k] = b.getAttribute('data-v'); if (k === 'modelo') migrar(); save(); paint(); }); })(list[i]);
       list = app.querySelectorAll('input,select,textarea');
       for (i = 0; i < list.length; i++) (function (el) { el.addEventListener('change', function () {
         var antes = D.pais; collect();
@@ -396,6 +455,7 @@
         if (el.id === 'pais' || el.id === 'territorio' || el.id === 'artista_pais') paint(); }); })(list[i]);
       list = app.querySelectorAll('[data-go]');
       for (i = 0; i < list.length; i++) (function (a) { a.addEventListener('click', function (e) { e.preventDefault(); cur = +a.getAttribute('data-go'); paint(); }); })(list[i]);
+      var df = $('#doc-file'); if (df) df.addEventListener('change', function () { subirDoc(df.files && df.files[0]); });
       var vb = $('#vies-btn');
       if (vb) vb.addEventListener('click', function () {
         collect(); if (!D.nif_iva) { mark('nif_iva', 'Escribe el NIF-IVA.'); return; }
@@ -436,13 +496,13 @@
     // POR ETAPAS (17-sep): 1 datos · 2 contrato · 3 autorizaciones (si las hay) · 4 firma · 5 pago (si paga en línea)
     var E = [];
     E.push({ id: 'datos', t: 'Revisa tus datos', sigue: 'Mis datos están bien', html:
-      (st.oferta_firmada ? '<p class="ct-okbox">✓ Macuto Music ya firmó esta oferta el ' + esc(st.oferta_firmada) + (st.expira ? '. Tienes hasta el ' + esc(st.expira) + ' para firmarla.' : '.') + '</p>' : '') +
+      (st.oferta_firmada ? '<p class="ct-okbox">✓ Macuto Music ya ha firmado tu oferta. Tienes 48 horas para firmarla' + ((st.expira_completa || st.expira) ? ' (hasta el ' + esc(st.expira_completa || st.expira) + ')' : '') + '. Tu contrato se activa cuando recibamos el pago.</p>' : '') +
       '<p class="ct-mut">Así apareces en el contrato. Si algo no está bien, avísanos antes de firmar.</p>' +
       '<dl class="ct-res">' + (st.resumen || []).map(function (kv) { return '<dt>' + esc(kv[0]) + '</dt><dd>' + esc(kv[1]) + '</dd>'; }).join('') + '</dl>' +
       (st.puede_reportar ? '<p class="ct-small" style="margin-top:10px"><button type="button" class="ct-btn sec" id="err-open" style="margin:0">Hay un error en mis datos</button></p><div id="err-form" style="display:none"><label for="err-txt">¿Qué dato está mal y cuál es el correcto?</label><textarea id="err-txt" rows="3" maxlength="300"></textarea><button type="button" class="ct-btn sec" id="err-send">Avisar al equipo</button></div>' : '') });
     var pags = ''; for (var p = 1; p <= st.paginas; p++) pags += '<img class="ct-pag" alt="Página ' + p + '" data-p="' + p + '"' + (p === st.paginas ? ' data-last="1"' : '') + '>';
     E.push({ id: 'contrato', t: 'Lee el contrato', sigue: 'He leído el contrato', html:
-      '<p class="ct-small ct-mut">Son ' + st.paginas + ' páginas: bájalas hasta el final o <a id="pdflink" href="#" role="button">abre el PDF</a>. · <a href="/contrato/como-se-firma.html" target="_blank" rel="noopener">Cómo se firma</a> · <a href="' + API + '/blanco" target="_blank" rel="noopener">Modelo en blanco</a></p>' + pags });
+      '<p class="ct-small ct-mut">Son ' + st.paginas + ' páginas: bájalas hasta el final o <a id="pdflink" href="#" style="' + LINK + '">abre tu contrato en PDF</a> · <a href="/contrato/como-se-firma.html" target="_blank" rel="noopener" style="' + LINK + '">Cómo se firma</a></p>' + pags });
     if (st.consentimientos && st.consentimientos.length) {
       E.push({ id: 'aut', t: 'Autorizaciones voluntarias', sigue: 'Seguir', html:
         '<p class="ct-small ct-mut">No condicionan la entrada ni el servicio (cláusula 4.4). Puedes retirarlas cuando quieras con un correo.</p>' + st.consentimientos.map(function (c) { return '<div class="cons" data-k="' + esc(c.clave) + '"><p style="margin:10px 0 4px"><b>' + esc(c.texto) + '</b></p><label class="ct-chk"><input type="radio" name="c_' + esc(c.clave) + '" value="si"> <span>Sí, autorizo</span></label><label class="ct-chk"><input type="radio" name="c_' + esc(c.clave) + '" value="no"> <span>No</span></label></div>'; }).join('') });

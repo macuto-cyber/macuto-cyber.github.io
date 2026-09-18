@@ -40,15 +40,19 @@
   </div>
 </div></footer>
 <script>
-  // Pasa el email de la URL (?email=...) al formulario para prerellenarlo (lo manda Make en el WhatsApp de bienvenida).
+  // Pasa ?email= (lo manda Make en el WhatsApp de bienvenida) y ?contrato= (la referencia del contrato firmado, que pone
+  // el enlace de la página del contrato desde el 18-sep) a los campos del formulario. Así cada ficha llega vinculada a su contrato.
   (function () {
-    var email = new URLSearchParams(location.search).get('email');
-    if (!email) return;
-    var base = 'https://tally.so/embed/BzeXg7?email=' + encodeURIComponent(email) + '&alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1';
+    var q = new URLSearchParams(location.search), extra = '';
+    ['email', 'contrato'].forEach(function (k) {
+      var v = q.get(k);
+      if (v) extra += '&' + k + '=' + encodeURIComponent(v.slice(0, 120));
+    });
+    if (!extra) return;
     var f = document.getElementById('onbForm');
-    if (f) { f.src = base; }
+    if (f) { f.src = 'https://tally.so/embed/BzeXg7?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1' + extra; }
     var fb = document.getElementById('onbFallback');
-    if (fb) fb.href = 'https://tally.so/r/BzeXg7?email=' + encodeURIComponent(email);
+    if (fb) fb.href = 'https://tally.so/r/BzeXg7?' + extra.slice(1);
   })();
 </script>
 <script async src="https://tally.so/widgets/embed.js"></script>
