@@ -1,0 +1,7 @@
+/* split/ — acuerdos musicales: tablas del reparto (el resto de estilos vienen de /contrato/contrato.css) */
+.ct-tabla{width:100%;border-collapse:collapse;margin:4px 0 8px;font-size:.92rem}
+.ct-tabla th,.ct-tabla td{border-bottom:1px solid var(--line);padding:6px 4px;text-align:left}
+.ct-tabla th{color:var(--muted);font-weight:600;font-size:.82rem}
+.ct-tabla td:last-child,.ct-tabla th:last-child{text-align:right;white-space:nowrap}
+.ct-app input[readonly]{background:var(--purple-wash);color:var(--muted)}
+.ct-resumen{border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:12px}

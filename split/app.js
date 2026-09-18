@@ -46,7 +46,7 @@
       setTimeout(function () { URL.revokeObjectURL(u); }, 120000);
     }).catch(function (e) { if (w) { try { w.close(); } catch (e2) { } } if (e && e.status === 401) load(); else alert('No se pudo abrir el PDF. Inténtalo de nuevo.'); });
   }
-  var RGPD = '<p class="ct-small ct-mut"><b>Tus datos.</b> Responsable: Angelo Jordan Gutiérrez Luis (Macuto Music). Finalidad: firmar la split sheet y conservar la prueba de la firma. Solo se registran tu documento (para abrir este enlace), tu firma y los datos técnicos de la firma. Puedes ejercer tus derechos escribiendo a macuto@macutomusic.com.</p>';
+  var RGPD = '<p class="ct-small ct-mut"><b>Tus datos.</b> Responsable: Angelo Jordan Gutiérrez Luis (Macuto Music). Finalidad: preparar y firmar el acuerdo y conservar la prueba de la firma. Se registran tu documento (para abrir este enlace), los datos que escribas para el acuerdo, tu firma y los datos técnicos de la firma. Puedes ejercer tus derechos escribiendo a macuto@macutomusic.com.</p>';
 
   if (!TOKEN) { msg('Enlace no válido', 'Este enlace no lleva la clave de la split sheet. Pide a Macuto que te lo reenvíe.'); return; }
 
@@ -75,7 +75,10 @@
       case 'anulado': return msg('Este enlace ya no es válido', 'La split sheet se ha sustituido por otra versión. Pide el enlace nuevo a Macuto.');
       case 'caducado': return msg('Este enlace ha caducado', 'El plazo para firmar ha terminado. Si todavía hay que firmarla, pide un enlace nuevo a Macuto.');
       case 'copia_caducada': return msg('Este enlace ya no sirve la copia', 'Han pasado más de treinta días desde que se firmó. Pide tu copia a Macuto.');
-      case 'error': return msg('Un momento', 'Estamos terminando de preparar la copia firmada. Vuelve a abrir este enlace en unos minutos.');
+      case 'error': return msg('Un momento', 'El equipo está revisando el documento. Macuto te avisará cuando esté listo; lo abrirás en este mismo enlace.');
+      case 'datos': return vistaDatos(st);
+      case 'espera_datos': return vistaEsperaDatos(st);
+      case 'preparando': msg('Preparando el acuerdo…', 'Ya están los datos de todos. Estamos generando el documento; esta página se actualiza sola.', 'Suele tardar menos de un minuto.'); pollTimer = setTimeout(load, 5000); return;
       case 'ya_firmaste': return vistaYaFirmaste(st);
       case 'hecho': return vistaHecho(st);
       case 'firma': return vistaFirma(st);
@@ -129,21 +132,99 @@
     $('#dl').addEventListener('click', function (e) { abrirPdf(e, '/firmado', 'Split_sheet_firmada.pdf'); });
   }
 
+  function doc(st) { return st.acuerdo ? 'el acuerdo' : 'la split sheet'; }
+  function resumenHtml(r) {
+    if (!r) return '';
+    function tabla(cab, filas) { return '<table class="ct-tabla"><tr>' + cab.map(function (c) { return '<th>' + esc(c) + '</th>'; }).join('') + '</tr>' + filas.map(function (f) { return '<tr>' + f.map(function (c) { return '<td>' + esc(c) + '</td>'; }).join('') + '</tr>'; }).join('') + '</table>'; }
+    return '<p class="ct-small ct-mut" style="margin-bottom:4px">' + esc(r.tipo) + '</p><h2>«' + esc(r.titulo) + '»' + (r.version ? ' <span class="ct-mut ct-small">(' + esc(r.version) + ')</span>' : '') + '</h2>' +
+      '<p class="ct-small" style="margin:10px 0 2px"><b>Composición</b> (letra y música)</p>' + tabla(['Parte', 'Papel', '%'], (r.composicion || []).map(function (x) { return [x.parte, x.rol, x.pct]; })) +
+      '<p class="ct-small" style="margin:10px 0 2px"><b>Máster</b> (la grabación)</p>' + tabla(['Parte', '%'], (r.master || []).map(function (x) { return [x.parte, x.pct]; })) +
+      '<p class="ct-small">' + esc(r.distribucion) + '</p>' + (r.samples ? '<p class="ct-small">Material de terceros: ' + esc(r.samples) + '</p>' : '');
+  }
+
+  // DATOS (acuerdos): el equipo ya fijó el reparto; aquí cada parte pone SUS datos. Nadie ve los datos personales de otro.
+  function vistaDatos(st) {
+    var campos = st.campos || [], pre = st.prefill || {};
+    var html = '<div class="ct-steps"><i class="on"></i><i></i><i></i></div><p class="ct-small ct-mut">Paso 1 de 3 · tus datos</p><h1>Tus datos para el acuerdo</h1>' +
+      card(resumenHtml(st.resumen) + '<p class="ct-small ct-mut" style="margin-top:8px">Tu papel: <b>' + esc(st.rol) + '</b>. Si el reparto no es el que habíais hablado, no sigas y escribe a Macuto.</p>') +
+      '<form id="fd" novalidate>' + card(campos.map(function (c) {
+        var v = pre[c.clave] || '', id = 'c-' + c.clave, entrada;
+        if (c.tipo === 'opciones') {
+          entrada = '<select id="' + id + '" name="' + c.clave + '"><option value="">Elige…</option>' + c.opciones.map(function (o) { return '<option' + (o === v ? ' selected' : '') + '>' + esc(o) + '</option>'; }).join('') + '</select>';
+        } else {
+          var ro = (c.tipo === 'doc' && st.doc_fijo) ? ' readonly' : '';
+          var tipo = c.tipo === 'email' ? 'email' : (c.tipo === 'tel' ? 'tel' : 'text');
+          var ac = { nombre_legal: 'name', email: 'email', telefono: 'tel', domicilio: 'street-address' }[c.clave] || 'off';
+          entrada = '<input id="' + id + '" name="' + c.clave + '" type="' + tipo + '" autocomplete="' + ac + '" maxlength="' + (c.max || 120) + '" value="' + esc(v) + '"' + ro + '>';
+        }
+        return '<div class="ct-field" data-k="' + c.clave + '"' + (c.si ? ' data-si="' + esc(c.si[0]) + '|' + esc(c.si[1]) + '"' : '') + (c.si_no ? ' data-sino="' + esc(c.si_no[0]) + '|' + esc(c.si_no[1]) + '"' : '') + '>' +
+          '<label for="' + id + '">' + esc(c.etiqueta) + (c.obligatorio ? '' : ' <span class="ct-mut ct-small">(opcional)</span>') + '</label>' + entrada +
+          (c.ayuda ? '<p class="ct-hint">' + esc(c.ayuda) + '</p>' : '') + '<p class="ct-err"></p></div>';
+      }).join('') +
+      '<div class="ct-okbox" id="aviso-ent" style="display:none">Sin alta en una entidad de gestión no cobrarás tu parte de la composición a través de ella. Puedes firmar igual y darte de alta después: el acuerdo lo recoge.</div>' +
+      '<label class="ct-chk"><input type="checkbox" id="conf"> <span id="conf-t">Confirmo que mis datos son correctos y que se usarán para preparar el acuerdo.</span></label>' +
+      '<div class="ct-errbox" id="errbox"></div><button type="submit" class="ct-btn" id="dgo">Guardar mis datos</button>' + RGPD) + '</form>' + foot();
+    app.innerHTML = html; arriba();
+    var f = $('#fd');
+    function val(k) { var el = f.querySelector('[name="' + k + '"]'); return el ? el.value.trim() : ''; }
+    function condiciones() {
+      var fs = f.querySelectorAll('.ct-field'), i;
+      for (i = 0; i < fs.length; i++) {
+        var si = fs[i].getAttribute('data-si'), sino = fs[i].getAttribute('data-sino'), ver = true;
+        if (si) { var a = si.split('|'); ver = val(a[0]) === a[1]; }
+        if (sino) { var b2 = sino.split('|'); ver = val(b2[0]) !== b2[1]; }
+        fs[i].style.display = ver ? '' : 'none';
+      }
+      $('#aviso-ent').style.display = (val('entidad_autor').indexOf('No estoy') === 0) ? 'block' : 'none';
+    }
+    f.addEventListener('change', condiciones); condiciones();
+    f.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var eb = $('#errbox'); eb.style.display = 'none';
+      var fs = f.querySelectorAll('.ct-field'), datos = {}, i;
+      for (i = 0; i < fs.length; i++) { fs[i].className = 'ct-field'; if (fs[i].style.display !== 'none') datos[fs[i].getAttribute('data-k')] = val(fs[i].getAttribute('data-k')); }
+      if (!$('#conf').checked) { eb.textContent = 'Marca la casilla para confirmar tus datos.'; eb.style.display = 'block'; return; }
+      var b = $('#dgo'); b.disabled = true; b.textContent = 'Guardando…';
+      api('/datos', { method: 'POST', body: { confirmar: true, datos: datos } }).then(function (r) {
+        b.disabled = false; b.textContent = 'Guardar mis datos';
+        if (r.ok && r.j && r.j.ok) { load(); return; }
+        if (r.status === 401) { load(); return; }
+        var errs = (r.j && r.j.errores) || {}, k, primero = null;
+        for (k in errs) { var fld = f.querySelector('.ct-field[data-k="' + k + '"]'); if (fld) { fld.className = 'ct-field bad'; fld.querySelector('.ct-err').textContent = errs[k]; if (!primero) primero = fld; } }
+        eb.textContent = (r.j && r.j.error) || 'No se pudieron guardar los datos.'; eb.style.display = 'block';
+        if (primero) primero.scrollIntoView({ block: 'center' });
+      }).catch(function () { b.disabled = false; b.textContent = 'Guardar mis datos'; eb.textContent = 'Problema de conexión. Inténtalo de nuevo.'; eb.style.display = 'block'; });
+    });
+  }
+
+  function vistaEsperaDatos(st) {
+    var faltan = (st.partes || []).filter(function (p) { return !p.datos; });
+    app.innerHTML = '<h1>Datos guardados</h1>' + card('<p class="ct-okbox">✓ Tus datos para «' + esc((st.resumen || {}).titulo || st.titulo) + '» están guardados.</p>' +
+      '<p>' + (faltan.length ? 'Falta que ' + (faltan.length > 1 ? 'rellenen sus datos: ' : 'rellene sus datos: ') + faltan.map(function (p) { return '<b>' + esc(p.nombre) + '</b>'; }).join(', ') + '. Cuando estén todos, en este mismo enlace podrás leer el acuerdo y firmarlo.' : 'Ya están los de todos: preparando el documento…') + '</p>' +
+      '<ul class="ct-equipo">' + (st.partes || []).map(function (p) { return '<li>' + (p.datos ? '✅ ' : '⏳ ') + '<b>' + esc(p.nombre) + '</b>' + (p.yo ? ' <span class="ct-tag">tú</span>' : '') + '<br><span class="ct-mut ct-small">' + esc(p.rol) + (p.datos ? ' · datos listos' : ' · faltan sus datos') + '</span></li>'; }).join('') + '</ul>' +
+      '<button type="button" class="ct-btn sec" id="editar">Cambiar mis datos</button>') + foot();
+    arriba();
+    $('#editar').addEventListener('click', function () { vistaDatos(st); });
+    pollTimer = setTimeout(load, 30000);
+  }
+
   function vistaFirma(st) {
     var E = [];
     E.push({ id: 'quien', t: 'Quién firma', sigue: 'Seguir', html:
-      '<p>Vas a firmar la split sheet de <b>«' + esc(st.titulo) + '»</b> como <b>' + esc(st.nombre) + '</b> (' + esc(st.rol) + ').</p>' +
+      (st.acuerdo ? '<div class="ct-resumen">' + resumenHtml(st.resumen) + '</div>' : '') +
+      '<p>Vas a firmar ' + doc(st) + ' <b>«' + esc(st.acuerdo ? (st.resumen || {}).titulo : st.titulo) + '»</b> como <b>' + esc(st.nombre) + '</b> (' + esc(st.rol) + ').</p>' +
       '<p class="ct-mut ct-small">Firmamos todos los que aparecemos en ella, cada uno desde su enlace:</p>' + listaPartes(st) +
+      (st.puede_corregir ? '<p class="ct-small ct-mut">¿Algún dato tuyo está mal? Puedes corregirlo mientras no haya firmado nadie; el documento se vuelve a preparar.</p><button type="button" class="ct-btn sec" id="corregir">Corregir mis datos</button>' : '') +
       '<p class="ct-small ct-mut">¿Algo no cuadra (tu nombre, tu porcentaje)? No firmes y escribe a Macuto antes.</p>' });
     var pags = ''; for (var p = 1; p <= st.paginas; p++) pags += '<img class="ct-pag" alt="Página ' + p + '" data-p="' + p + '"' + (p === st.paginas ? ' data-last="1"' : '') + '>';
-    E.push({ id: 'doc', t: 'Lee la split sheet', sigue: 'La he leído', html:
+    E.push({ id: 'doc', t: st.acuerdo ? 'Lee el acuerdo' : 'Lee la split sheet', sigue: 'Lo he leído', html:
       '<p class="ct-small ct-mut">Son ' + st.paginas + ' página' + (st.paginas > 1 ? 's' : '') + ': bájalas hasta el final o <a id="pdflink" href="#" role="button">abre el PDF</a>.</p>' + pags });
     E.push({ id: 'firma', t: 'Firma', html:
       '<label class="ct-chk"><input type="checkbox" id="decl" required aria-labelledby="decl-t"> <span id="decl-t">' + esc(st.declaracion) + '</span></label>' +
       '<label for="nombre">Escribe tu nombre completo</label><input id="nombre" autocomplete="name" maxlength="120" placeholder="' + esc(st.nombre) + '">' +
       '<p class="ct-mut ct-small" style="margin-top:8px">Dibuja tu firma con el dedo:</p><canvas id="c"></canvas>' +
       '<p class="ct-small" style="margin:6px 0 0"><a href="#" id="clr" role="button">Borrar y repetir</a></p>' +
-      '<button type="button" class="ct-btn" id="go" disabled>Firmar la split sheet</button><p class="ct-small ct-center" id="msg"></p><p class="ct-small ct-mut ct-center" id="why"></p>' +
+      '<button type="button" class="ct-btn" id="go" disabled>Firmar ' + doc(st) + '</button><p class="ct-small ct-center" id="msg"></p><p class="ct-small ct-mut ct-center" id="why"></p>' +
       '<p class="ct-small ct-mut">Firma electrónica (Reglamento eIDAS 910/2014). Quedan registrados tu nombre, la fecha y hora, la dirección IP, el navegador, la zona horaria, el tamaño de pantalla y la huella SHA-256 del documento que has visto. Todo va en la hoja de firmas que se añade al final de la copia firmada.</p>' + RGPD });
     var total = E.length, bars = '';
     for (var b0 = 0; b0 < total; b0++) bars += '<i data-b="' + b0 + '"></i>';
@@ -213,10 +294,17 @@
       var decl = $('#decl') && $('#decl').checked;
       var okk = visto && decl && dirty;
       $('#go').disabled = !okk;
-      $('#why').textContent = okk ? '' : (!visto ? 'Lee la split sheet hasta el final para poder firmar.' : (!decl ? 'Marca la casilla para poder firmar.' : 'Dibuja tu firma en el recuadro.'));
+      $('#why').textContent = okk ? '' : (!visto ? 'Lee ' + doc(st) + ' hasta el final para poder firmar.' : (!decl ? 'Marca la casilla para poder firmar.' : 'Dibuja tu firma en el recuadro.'));
     }
     $('#decl').addEventListener('change', chk);
     mostrar(0);
+    var bc = $('#corregir');
+    if (bc) bc.addEventListener('click', function () {
+      if (!window.confirm('¿Corregir tus datos? El documento se volverá a preparar y todos tendrán que leerlo de nuevo.')) return;
+      bc.disabled = true;
+      api('/corregir', { method: 'POST', body: {} }).then(function (r) { if (r.ok && r.j && r.j.ok) { load(); return; } bc.disabled = false; alert((r.j && r.j.error) || 'No se pudo. Escribe a Macuto.'); })
+        .catch(function () { bc.disabled = false; alert('Problema de conexión. Inténtalo de nuevo.'); });
+    });
     $('#go').addEventListener('click', function () {
       var m = $('#msg'); var nombre = $('#nombre').value.trim();
       if (!nombre) { m.textContent = 'Escribe tu nombre completo.'; m.style.color = '#b3261e'; return; }
