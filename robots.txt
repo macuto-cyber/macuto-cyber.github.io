@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /contrato/
+Disallow: /split/
 
 Sitemap: https://macutomusic.com/sitemap.xml
