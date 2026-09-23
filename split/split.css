@@ -5,3 +5,11 @@
 .ct-tabla td:last-child,.ct-tabla th:last-child{text-align:right;white-space:nowrap}
 .ct-app input[readonly]{background:var(--purple-wash);color:var(--muted)}
 .ct-resumen{border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:12px}
+.ct-pct{display:flex;align-items:center;gap:8px}
+.ct-pct input{max-width:110px}
+.ct-pct span{color:var(--muted);font-weight:600}
+.ct-det{margin:4px 0 0;font-size:.85rem;color:var(--muted)}
+.ct-det summary{cursor:pointer;color:var(--purple);font-weight:600}
+.ct-det p{margin:6px 0 0;line-height:1.5}
+.ct-app optgroup{font-style:normal;font-weight:700}
+.ct-tabla.rep td:nth-child(3),.ct-tabla.rep th:nth-child(3){text-align:right;white-space:nowrap}
