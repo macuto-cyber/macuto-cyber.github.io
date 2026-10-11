@@ -20,7 +20,7 @@
 <link rel="apple-touch-icon" href="assets/logo.jpg">
 <link rel="stylesheet" href="styles.css?v=8f1cad5e">
 <link rel="stylesheet" href="home.css?v=5e92a4c1">
-<link rel="preload" as="image" href="assets/feed/00-mastermind-poster.webp" media="(min-width: 601px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/feed/00-mastermind-aftermovie-poster.webp" media="(min-width: 601px)" fetchpriority="high">
 <script>document.documentElement.classList.add('js')</script>
 <script defer src="/analytics.js"></script>
 <script type="application/ld+json">
@@ -152,7 +152,7 @@
     <div class="prueba__movil">
       <div class="feed" data-feed role="region" aria-roledescription="carrusel" aria-label="Vídeo y capturas reales de resultados de Macuto Music">
         <ol class="feed__pista">
-          <li class="feed__item feed__item--video"><picture><source media="(max-width: 600px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><img src="assets/feed/00-mastermind-poster.webp" width="560" height="996" alt="Mastermind de Madrid: artistas del DAP llenan la sala de control de PKO Studios mientras suena una canción" fetchpriority="high" decoding="async"></picture><video class="feed__video" data-src="assets/feed/00-mastermind-madrid.mp4" muted playsinline preload="none" aria-label="Vídeo de la Mastermind de Madrid: la sala de control llena y artistas del DAP grabando en cabina"></video><button class="feed__sonido" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="ondas" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="mudo" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5l5 5M21 9.5l-5 5"/></svg><span>Activar sonido</span></button><span class="feed__pie">Mastermind de Madrid · PKO Studios</span></li>
+          <li class="feed__item feed__item--video"><picture><source media="(max-width: 600px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><img src="assets/feed/00-mastermind-aftermovie-poster.webp" width="560" height="996" alt="Aftermovie de la Mastermind de Madrid de Macuto Music y el DAP: la sala de control de PKO Studios llena de artistas" fetchpriority="high" decoding="async"></picture><video class="feed__video" data-src="assets/feed/00-mastermind-aftermovie.mp4" muted playsinline preload="none" aria-label="Aftermovie de la Mastermind de Madrid: artistas del DAP en la sala de control y grabando en cabina de PKO Studios"></video><button class="feed__sonido" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="ondas" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="mudo" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5l5 5M21 9.5l-5 5"/></svg><span>Activar sonido</span></button><span class="feed__pie">Mastermind de Madrid · PKO Studios</span></li>
           <li class="feed__item"><img src="assets/feed/01-editorial-helium.webp" width="560" height="996" alt="Notificación oficial de Spotify: «Chula xq?!» entra en «helium», playlist editorial de Spotify" loading="lazy" decoding="async"><span class="feed__pie">«Chula xq?!» en helium · editorial de Spotify</span></li>
           <li class="feed__item"><img src="assets/feed/20-hey-mami-linda-10k-escuchando.webp" width="560" height="996" alt="Spotify for Artists de «Hey mami linda» de Mhylo, Sebxs y Macuto Music: 10.156 personas escuchándola en ese momento y 80.657 reproducciones" loading="lazy" decoding="async"><span class="feed__pie">«Hey mami linda» · 10.156 personas escuchando a la vez</span></li>
           <li class="feed__item"><img src="assets/feed/11-top-songs-costa-rica.webp" width="560" height="996" alt="Spotify Charts: «Hey mami linda» de Mhylo, Sebxs y Macuto Music, número 13 en el Top Songs de Costa Rica el 26 de octubre de 2024" loading="lazy" decoding="async"><span class="feed__pie">«Hey mami linda» · #13 en el Top Songs de Costa Rica</span></li>
@@ -744,7 +744,7 @@
       } else { vid.pause(); if(!enVideo()&&vid.currentTime) vid.currentTime=0; } };
     const ciclo=()=>{ clearTimeout(t); t=null; reproduce();
       if(parado||encima||fuera||document.hidden) return;
-      t=setTimeout(ir, enVideo() ? 22000 : 2800); }; // en el vídeo manda «ended»; los 22 s son solo un seguro
+      t=setTimeout(ir, enVideo() ? ((vid.duration||30)+5)*1000 : 2800); }; // en el vídeo manda «ended»; este plazo es solo un seguro
     function ir(){ i++; pista.style.transition=''; pista.style.transform='translateY(-'+(i*paso)+'%)';
       if(i===n){ setTimeout(()=>{ pista.style.transition='none'; i=0; pista.style.transform='translateY(0)'; marca(); ciclo(); }, 800) }
       marca(); ciclo(); }
