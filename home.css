@@ -280,3 +280,10 @@ a,button,summary{-webkit-tap-highlight-color:transparent}
 @media (max-width:1100px) and (min-width:881px){.evento__fotos--6{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (max-width:880px) and (min-width:601px){.evento__fotos--6{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:600px){.evento__fotos--6.carril-movil > *{flex-basis:min(62%,260px)}}
+
+/* §23 · Vídeos mudos de «Con artistas y la industria» (11-oct-2026, Macuto: «reproduce los videos sin sonido»).
+   La foto queda debajo (póster y respaldo); el vídeo aparece encima cuando ya se reproduce. JS: script al final de #industria. */
+.evento__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;opacity:0;pointer-events:none;transition:opacity .5s ease,transform .8s var(--ease-expo,ease)}
+.evento__video.va{opacity:1}
+@media (hover:hover) and (pointer:fine){.evento__fotos figure:hover .evento__video{transform:scale(1.04)}}
+@media (prefers-reduced-motion:reduce){.evento__video{display:none}}
