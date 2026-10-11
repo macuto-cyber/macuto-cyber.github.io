@@ -39,16 +39,10 @@ a,button,summary{-webkit-tap-highlight-color:transparent}
 /* ---------- 3 · Cabecera móvil: el botón es la acción («Solicita acceso»), no un ancla ---------- */
 @media (max-width:359px){.logo .logo-txt{display:none}}
 
-/* ---------- 4 · Héroe: un botón, sellos con prueba y una captura real ---------- */
+/* ---------- 4 · Héroe: un botón y una captura real ---------- */
 .hero .cta-row{align-items:center;gap:12px 24px}
 .enlace-sec{font-weight:600;color:var(--ink);font-size:.97rem;text-decoration:underline;text-decoration-color:var(--line-strong);text-decoration-thickness:1.5px;text-underline-offset:5px;padding:12px 0;transition:color .2s,text-decoration-color .2s}
 .enlace-sec:hover{color:var(--purple);text-decoration-color:var(--purple)}
-.sellos{list-style:none;padding:0;margin:30px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:35rem}
-.sellos a{display:flex;flex-direction:column;gap:3px;height:100%;padding:13px 15px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);transition:border-color .2s,transform .25s var(--ease),box-shadow .25s var(--ease)}
-.sellos a:hover{border-color:var(--line-strong);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
-.sellos b{font-family:'Space Grotesk';font-weight:700;font-size:1.05rem;color:var(--ink);letter-spacing:-.015em;line-height:1.2}
-.sellos span{font-size:.8rem;color:var(--muted);line-height:1.35}
-@media (max-width:380px){.sellos{gap:8px}.sellos a{padding:11px 12px}.sellos b{font-size:.96rem}}
 
 .prueba{margin:0;justify-self:center;width:min(290px,100%)}
 .prueba__movil{display:block;border-radius:36px;padding:9px;background:var(--ink);box-shadow:var(--shadow-lg);transform:rotate(2deg)}
