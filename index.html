@@ -19,8 +19,8 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="assets/logo.jpg">
 <link rel="stylesheet" href="styles.css?v=8f1cad5e">
-<link rel="stylesheet" href="home.css?v=df3079c9">
-<link rel="preload" as="image" imagesrcset="assets/resultados/editorial-helium-600.webp 600w, assets/resultados/editorial-helium-850.webp 850w" imagesizes="290px" media="(min-width: 601px)" fetchpriority="high">
+<link rel="stylesheet" href="home.css?v=cae00dfe">
+<link rel="preload" as="image" href="assets/feed/01-editorial-helium.webp" media="(min-width: 601px)" fetchpriority="high">
 <script>document.documentElement.classList.add('js')</script>
 <script defer src="/analytics.js"></script>
 <script type="application/ld+json">
@@ -143,14 +143,30 @@
       <a href="envia-tu-cancion.html" class="enlace-sec">o envía una canción gratis</a>
     </div>
   </div>
-  <!-- Prueba real en lugar del reproductor de maqueta: notificación oficial de Spotify (assets/resultados/editorial-helium.jpg).
-       En móvil no se muestra ni se descarga (source con un gif de 1 px). -->
-  <figure class="prueba entra">
-    <picture class="prueba__movil">
-      <source media="(max-width: 600px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-      <img src="assets/resultados/editorial-helium-600.webp" srcset="assets/resultados/editorial-helium-600.webp 600w, assets/resultados/editorial-helium-850.webp 850w" sizes="290px" width="600" height="942" alt="Notificación oficial de Spotify: «Chula xq?!» entra en «helium», playlist editorial de Spotify" fetchpriority="high" decoding="async">
-    </picture>
-    <figcaption><b>Captura real, no una maqueta</b>«Chula xq?!» en «helium», playlist editorial de Spotify</figcaption>
+  <!-- Feed vertical del héroe (11-oct-2026, orden de Macuto: «que se mueva en vertical como scrolleando en redes y muestre más fotos en vertical
+       de resultados y de todo de Macuto Music»). Capturas reales: Drive de macuto@ (Wrapped 2022 de Saiko, YouTube Studio de Macuto Music,
+       Wrapped 2023 del sello, «Se acabó» en Top 50 Colombia, Atea) y assets/resultados; fotos propias de la Mastermind y de Forbes.
+       Recortadas a 9:16 en assets/feed/, sin metadatos. En móvil no se muestra ni se descarga. Pasa sola cada 2,8 s; se para con el botón,
+       al pasar el ratón o enfocar, fuera de pantalla, con la pestaña oculta y con «reducir movimiento». -->
+  <figure class="prueba entra" aria-labelledby="feed-nota">
+    <div class="prueba__movil">
+      <div class="feed" data-feed role="region" aria-roledescription="carrusel" aria-label="Capturas reales de resultados de Macuto Music">
+        <ol class="feed__pista">
+          <li class="feed__item"><picture><source media="(max-width: 600px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><img src="assets/feed/01-editorial-helium.webp" width="560" height="996" alt="Notificación oficial de Spotify: «Chula xq?!» entra en «helium», playlist editorial de Spotify" fetchpriority="high" decoding="async"></picture><span class="feed__pie">«Chula xq?!» en helium · editorial de Spotify</span></li>
+          <li class="feed__item"><img src="assets/feed/02-saiko-wrapped-2022.webp" width="560" height="996" alt="Wrapped 2022 de Spotify for Artists de Saiko: 13,4 millones de reproducciones, 1,7 millones de oyentes y 166 países" loading="lazy" decoding="async"><span class="feed__pie">Saiko · 13,4M reproducciones en 2022</span></li>
+          <li class="feed__item"><img src="assets/feed/03-youtube-macuto-music.webp" width="560" height="996" alt="Estadísticas de YouTube Studio del canal Macuto Music: 3 millones de visualizaciones en 48 horas y 10,6 millones en 28 días" loading="lazy" decoding="async"><span class="feed__pie">YouTube de Macuto Music · 10,6M visualizaciones en 28 días</span></li>
+          <li class="feed__item"><img src="assets/feed/04-wrapped-2024-sello.webp" width="560" height="996" alt="Wrapped 2024 de Macuto Music: 524 mil oyentes, 1,51 millones de reproducciones y 143 países" loading="lazy" decoding="async"><span class="feed__pie">Macuto Music · 1,51M reproducciones en 2024</span></li>
+          <li class="feed__item"><img src="assets/feed/05-se-acabo-top50-colombia.webp" width="560" height="996" alt="Tarjeta de Spotify: «Se acabó» es uno de los temas destacados de «Top 50: Colombia»" loading="lazy" decoding="async"><span class="feed__pie">«Se acabó» · Top 50: Colombia</span></li>
+          <li class="feed__item"><img src="assets/feed/06-atea-101k.webp" width="560" height="996" alt="Spotify for Artists de Atea: 101.212 reproducciones de un lanzamiento en orgánico" loading="lazy" decoding="async"><span class="feed__pie">Atea · 101.212 reproducciones en orgánico</span></li>
+          <li class="feed__item"><img src="assets/feed/07-oyentes-761k.webp" width="560" height="996" alt="Spotify for Artists: 761.995 oyentes y 2,39 millones de reproducciones en 12 meses" loading="lazy" decoding="async"><span class="feed__pie">761.995 oyentes en 12 meses</span></li>
+          <li class="feed__item"><img src="assets/feed/08-wrapped-2023-sello.webp" width="560" height="996" alt="Wrapped 2023 de Macuto Music: 553,6 mil reproducciones, 264,9 mil oyentes y 137 países" loading="lazy" decoding="async"><span class="feed__pie">Macuto Music · 553,6 mil reproducciones en 2023</span></li>
+          <li class="feed__item"><img src="assets/feed/09-mastermind-macuto.webp" width="560" height="996" alt="Macuto explica a los artistas del DAP en la mesa de mezclas de PKO Studios, en la Mastermind de Madrid" loading="lazy" decoding="async"><span class="feed__pie">Mastermind de Madrid · PKO Studios</span></li>
+          <li class="feed__item"><img src="assets/feed/10-forbes-2026-macuto.webp" width="560" height="996" alt="Macuto en el photocall del Festival Forbes 30 Under 30 de 2026" loading="lazy" decoding="async"><span class="feed__pie">Macuto en Forbes 30 Under 30 · 2026</span></li>
+        </ol>
+      </div>
+      <button class="feed__pausa" type="button" aria-pressed="false" aria-label="Pausar las capturas"></button>
+    </div>
+    <figcaption id="feed-nota"><b>Capturas reales, no maquetas</b>Resultados de Macuto Music y de artistas con los que hemos trabajado</figcaption>
   </figure>
 </div></header>
 
@@ -680,6 +696,27 @@
   const m=document.querySelector('.marquee');
   if(m&&'IntersectionObserver' in window){new IntersectionObserver(es=>es.forEach(e=>m.toggleAttribute('data-fuera',!e.isIntersecting))).observe(m)}
   document.addEventListener('visibilitychange',()=>document.documentElement.toggleAttribute('data-oculta',document.hidden));
+  // 4) Feed vertical del héroe: las capturas suben como un scroll de redes (cada 2,8 s; un clic pasa a la siguiente).
+  //    Se para con el botón, al pasar el ratón o enfocar, fuera de pantalla, con la pestaña oculta y con «reducir movimiento».
+  const feed=document.querySelector('[data-feed]');
+  if(feed){
+    const pista=feed.querySelector('.feed__pista'), items=[...pista.children], n=items.length, fig=feed.closest('.prueba'), btn=fig.querySelector('.feed__pausa');
+    const clon=items[0].cloneNode(true); clon.setAttribute('aria-hidden','true'); clon.querySelectorAll('img').forEach(i=>{i.removeAttribute('fetchpriority');i.alt=''}); pista.append(clon);
+    let i=0, parado=matchMedia('(prefers-reduced-motion: reduce)').matches, encima=false, fuera=false, t=null;
+    const paso=100; // la pista mide una pantalla: -100% = una captura
+    const marca=()=>items.forEach((it,k)=>it.setAttribute('aria-hidden', k===i%n?'false':'true'));
+    const ir=()=>{ i++; pista.style.transition=''; pista.style.transform='translateY(-'+(i*paso)+'%)';
+      if(i===n){ setTimeout(()=>{ pista.style.transition='none'; i=0; pista.style.transform='translateY(0)'; marca(); }, 800) } marca(); };
+    const ciclo=()=>{ clearInterval(t); t=null; if(!parado&&!encima&&!fuera&&!document.hidden) t=setInterval(ir,2800); };
+    const pinta=()=>{ btn.setAttribute('aria-pressed', parado?'true':'false'); btn.setAttribute('aria-label', parado?'Reanudar las capturas':'Pausar las capturas'); };
+    btn.addEventListener('click',()=>{ parado=!parado; pinta(); ciclo(); });
+    feed.addEventListener('click',()=>{ if(i<n) ir(); ciclo(); });
+    fig.addEventListener('mouseenter',()=>{encima=true;ciclo()}); fig.addEventListener('mouseleave',()=>{encima=false;ciclo()});
+    fig.addEventListener('focusin',()=>{encima=true;ciclo()}); fig.addEventListener('focusout',()=>{encima=false;ciclo()});
+    if('IntersectionObserver' in window) new IntersectionObserver(es=>es.forEach(e=>{fuera=!e.isIntersecting;ciclo()})).observe(feed);
+    document.addEventListener('visibilitychange',ciclo);
+    marca(); pinta(); ciclo();
+  }
 })();
 </script>
 </body>
