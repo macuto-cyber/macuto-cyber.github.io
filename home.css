@@ -235,3 +235,48 @@ a,button,summary{-webkit-tap-highlight-color:transparent}
 
 /* ---------- 20 · Eventos: fotos verticales cuyo motivo está en el centro (NODE) ---------- */
 .evento__fotos--4 .evento__foto--centro img{object-position:50% 50%}
+
+/* ---------- 21 · Visión: el aftermovie de la Mastermind crece con el scroll hasta llenar la pantalla (11-oct-2026) ----------
+   --p (0 → 1) lo pone el JS del propio bloque #vision. Solo se anima transform y opacity (sin reflujo). El vídeo mide siempre
+   la pantalla entera y se escala desde 0,5 junto al texto hasta 1, con el texto desvanecido. Sin JS: composición inicial y
+   póster. En móvil y con «reducir movimiento»: texto arriba y vídeo 16:9 debajo, sin animación. */
+.vision{--p:0;position:relative;background:#0b0a14;color:#fff}
+.js .vision__pista{height:260vh}
+.vision__fijo{position:sticky;top:0;height:100vh;overflow:hidden}
+.vision__marco{position:absolute;inset:0;overflow:hidden;background:#000;transform-origin:100% 50%;
+  transform:translateX(calc((1 - var(--p)) * -5vw)) scale(calc(.5 + .5 * var(--p)));border-radius:calc((1 - var(--p)) * 44px);will-change:transform}
+.vision__video{display:block;width:100%;height:100%;object-fit:cover}
+.vision__txt{position:absolute;z-index:2;left:max(5vw,calc((100vw - 1180px) / 2));top:50%;width:min(38vw,470px);
+  transform:translateY(calc(-50% - var(--p) * 60px));opacity:calc(1 - var(--p) * 2.2)}
+.vision--llena .vision__txt{visibility:hidden}
+.vision .eyebrow{color:#c9b8f5}
+.vision__txt h2{color:#fff;font-size:clamp(2rem,3.4vw,3.1rem);line-height:1.06;margin:14px 0 16px}
+.vision__txt p{color:rgba(255,255,255,.8);font-size:1.06rem;max-width:none}
+.vision__txt p.vision__dato{margin-top:18px;font:600 .85rem/1.4 'Space Grotesk',sans-serif;color:#c9b8f5}
+.vision__pista-txt{display:inline-block;margin-top:24px;font:600 .78rem 'Space Grotesk',sans-serif;letter-spacing:.04em;color:rgba(255,255,255,.55)}
+.vision__botones{position:absolute;z-index:3;right:calc((1 - var(--p)) * 5vw + 18px);bottom:calc((1 - var(--p)) * 25vh + 18px);display:flex;gap:10px}
+.vision__botones button{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:8px 15px 8px 12px;border:0;border-radius:99px;
+  background:rgba(23,16,46,.68);color:#fff;font:600 .82rem/1 'Space Grotesk',sans-serif;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.vision__botones button:hover{background:rgba(94,23,235,.85)}
+.vision__botones button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.vision__botones svg{width:18px;height:18px;flex:none}
+.vision__sonido .ondas{display:none}
+.vision__sonido[aria-pressed="true"] .ondas{display:inline}
+.vision__sonido[aria-pressed="true"] .mudo{display:none}
+@media (pointer:coarse){.vision__botones button{min-height:44px}}
+@media (max-width:760px),(prefers-reduced-motion:reduce){
+  .js .vision__pista{height:auto}
+  .vision__fijo{position:relative;height:auto;overflow:visible;padding:72px 0 64px;display:flex;flex-direction:column;gap:26px}
+  .vision__txt{position:static;transform:none;opacity:1;visibility:visible;width:auto;max-width:680px;margin:0 auto;padding:0 20px}
+  .vision__marco{position:relative;inset:auto;transform:none;border-radius:18px;aspect-ratio:16/9;width:calc(100% - 32px);max-width:1100px;margin:0 auto}
+  .vision__botones{position:static;justify-content:center;flex-wrap:wrap;padding:0 16px}
+  .vision__pista-txt{display:none}
+}
+
+/* ---------- 22 · Eventos: rejilla de 6 columnas («Con artistas y la industria», 11-oct-2026) ---------- */
+.evento__fotos--6{grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.evento__fotos--6 img{aspect-ratio:3/4;object-position:50% 30%}
+.evento__fotos--6 figcaption{left:8px;bottom:8px;max-width:calc(100% - 16px);padding:5px 9px;font-size:.68rem}
+@media (max-width:1100px) and (min-width:881px){.evento__fotos--6{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:880px) and (min-width:601px){.evento__fotos--6{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:600px){.evento__fotos--6.carril-movil > *{flex-basis:min(62%,260px)}}
