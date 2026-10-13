@@ -3,23 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tu portal — Macuto Music</title>
-<meta name="description" content="El espacio privado de los artistas del Sistema DAP. Entra con el documento de identidad de tu contrato.">
+<title>Portal DAP — Macuto Music</title>
+<meta name="description" content="El espacio privado de los artistas del DAP. Entra con el documento de identidad de tu contrato.">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <link rel="canonical" href="https://macutomusic.com/portal">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Macuto Music">
-<meta property="og:title" content="Tu portal — Macuto Music">
-<meta property="og:description" content="El espacio privado de los artistas del Sistema DAP.">
+<meta property="og:title" content="Portal DAP — Macuto Music">
+<meta property="og:description" content="El espacio privado de los artistas del DAP.">
 <meta property="og:url" content="https://macutomusic.com/portal">
+<meta property="og:image" content="https://macutomusic.com/assets/og.jpg">
 <meta property="og:locale" content="es_ES">
+<meta name="theme-color" content="#5E17EB">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="stylesheet" href="/styles.css?v=a9e7d1c5">
+<link rel="apple-touch-icon" href="/assets/logo.jpg">
+<link rel="stylesheet" href="/styles.css?v=d9984c6c">
+<link rel="stylesheet" href="/paginas.css?v=1951260b">
+<link rel="stylesheet" href="/movimiento.css?v=e58e3db9" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/movimiento.css?v=e58e3db9"></noscript>
+<script defer src="/movimiento.js?v=feccfaa2"></script>
+<script>document.documentElement.classList.add('js')</script>
+<!-- Sin analítica a propósito: en esta página se escribe un DNI. -->
 <style>
 /* portal/ — acceso con documento y plan de 3 meses (18-sep-2026). Sin analítica a propósito: se escribe un DNI. */
-.pt-wrap{max-width:1080px}
-.pt-login{max-width:520px}
+.pt-wrap{max-width:1200px}
+#vista-plan{max-width:1024px;margin:0 auto}  /* el acceso, alineado con el nav; el plan, con su ancho de lectura de siempre */
+.pt-login{max-width:none}
 .pt-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:22px;box-shadow:var(--shadow-sm);margin:18px 0}
 .pt-card label{display:block;font-weight:600;color:var(--ink);margin:0 0 6px}
 .pt-card input{width:100%;box-sizing:border-box;font:1.05rem/1.3 inherit;padding:13px 14px;border:1.5px solid var(--line-strong);border-radius:var(--r-sm);background:var(--surface);color:var(--ink);letter-spacing:.04em;text-transform:uppercase}
@@ -71,28 +81,46 @@
 <body>
 <a class="skip-link" href="#main">Saltar al contenido</a>
 <nav class="site" aria-label="Principal"><div class="wrap nav-in">
-  <a class="logo" href="/"><img class="mm" src="/assets/logo.jpg" alt="Logo de Macuto Music"> Macuto&nbsp;Music</a>
+  <a class="logo" href="/"><img class="mm" src="/assets/logo-108.webp" width="38" height="38" alt="Logo de Macuto Music"> <span class="logo-txt">Macuto&nbsp;Music</span></a>
   <div class="nav-links">
-    <a href="/" class="nav-keep-link">Inicio</a>
+    <a href="/#nosotros">Nosotros</a>
+    <a href="/#servicios">Qué hacemos</a>
+    <a href="/#como">Cómo trabajamos</a>
+    <a href="/#artistas">Artistas</a>
+    <a href="/#faq">Dudas</a>
+    <a href="/radar/" class="btn btn-ghost">RADAR</a>
+    <a href="/solicitud.html" class="btn btn-purple nav-cta-desktop">Solicita acceso</a>
+    <a href="/solicitud.html" class="btn btn-purple nav-cta-movil">Solicita acceso</a>
   </div>
 </div></nav>
 <main id="main">
-<section class="sec" style="padding-top:48px"><div class="wrap pt-wrap">
-
-  <div id="vista-entrar" class="pt-login">
-    <span class="eyebrow">Solo artistas del programa</span>
-    <h1 style="font-size:clamp(2rem,4.6vw,2.8rem);margin:14px 0 10px">Tu portal</h1>
-    <p>Aquí tienes tu plan de trabajo de los tres primeros meses. Entra con el <b>documento de identidad de tu contrato</b>.</p>
-    <form class="pt-card" id="form-entrar" novalidate>
-      <label for="doc">DNI, NIE o pasaporte</label>
-      <input id="doc" name="doc" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="30" required placeholder="Tal como aparece en tu contrato">
-      <button class="btn btn-purple" id="btn-entrar" type="submit">Entrar</button>
-      <p class="pt-err" id="err-entrar" role="alert"></p>
-      <p class="pt-hint">No guardamos tu documento en este navegador. La sesión se cierra sola a las 2 horas.</p>
-    </form>
-    <p class="pt-hint">¿Problemas para entrar? Escribe a tu label manager o a <a href="mailto:macuto@macutomusic.com">macuto@macutomusic.com</a>.</p>
+<section class="hero pag-hero"><div class="wrap pt-wrap">
+  <div id="vista-entrar" class="pt-login pag-grid">
+    <div class="pag-txt">
+      <span class="eyebrow">Solo artistas del DAP</span>
+      <h1>Portal <span class="hl">DAP</span></h1>
+      <p class="lead">Aquí tienes tu plan de trabajo de los tres primeros meses. Entra con el <b>documento de identidad de tu contrato</b>.</p>
+    </div>
+    <div class="pag-accion">
+      <form class="pt-card form-card" id="form-entrar" novalidate>
+        <p class="form-card__t">Entra en tu portal</p>
+        <label for="doc">DNI, NIE o pasaporte</label>
+        <input id="doc" name="doc" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="30" required placeholder="Tal como aparece en tu contrato">
+        <button class="btn btn-purple" id="btn-entrar" type="submit">Entrar</button>
+        <p class="pt-err" id="err-entrar" role="alert"></p>
+        <p class="pt-hint">No guardamos tu documento en este navegador. La sesión se cierra sola a las 2 horas.</p>
+      </form>
+      <p class="pt-hint">¿Problemas para entrar? Escribe a tu label manager o a <a href="mailto:macuto@macutomusic.com">macuto@macutomusic.com</a>.</p>
+    </div>
+    <div class="pag-pasos-wrap">
+      <p class="pag-pasos-t">Qué encontrarás dentro</p>
+      <ul class="pag-portal-lista">
+        <li><span><b>Tu plan por escrito</b>, sección a sección, con su índice.</span></li>
+        <li><span><b>Casillas para marcar lo hecho</b> y una barra con tu avance.</span></li>
+        <li><span><b>Descarga en PDF</b> para tenerlo a mano o imprimirlo.</span></li>
+      </ul>
+    </div>
   </div>
-
   <div id="vista-plan" hidden>
     <div class="pt-top">
       <span class="pt-hola" id="hola"></span>
@@ -110,13 +138,25 @@
       </div>
     </div>
   </div>
-
 </div></section>
 </main>
-<footer class="site"><div class="wrap">
+
+<footer class="site pie"><div class="wrap">
+  <a class="pie__firma" href="#main" aria-label="Macuto Music, volver arriba"><span aria-hidden="true"><span style="--i:0">M</span><span style="--i:1">a</span><span style="--i:2">c</span><span style="--i:3">u</span><span style="--i:4">t</span><span style="--i:5">o</span><span class="pie__hueco" style="--i:6"></span><span style="--i:7">M</span><span style="--i:8">u</span><span style="--i:9">s</span><span style="--i:10">i</span><span style="--i:11">c</span></span></a>
+  <div class="pie__fila">
+    <nav class="pie__nav" aria-label="Pie de página"><ul>
+      <li><a href="/#servicios">Qué hacemos</a></li>
+      <li><a href="/#artistas">Artistas</a></li>
+      <li><a href="/radar/">RADAR</a></li>
+      <li><a href="/envia-tu-cancion.html">Envía tu canción</a></li>
+      <li><a href="/portal/">Portal DAP</a></li>
+      <li><a href="mailto:macuto@macutomusic.com">macuto@macutomusic.com</a></li>
+    </ul></nav>
+    <a class="pie__arriba" href="#main"><span class="pie__arriba-ico" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 19V5m-6.5 6.5L12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Volver arriba</a>
+  </div>
   <div class="foot-legal">
-    <span>© 2026 Macuto Music · macuto@macutomusic.com</span>
-    <span><a href="/aviso-legal.html">Aviso legal</a> · <a href="/privacidad.html">Privacidad</a></span>
+    <span>© 2026 Macuto Music · Titular: Angelo Jordan Gutiérrez Luis · Madrid</span>
+    <span><a href="/aviso-legal.html">Aviso legal y condiciones</a> · <a href="/privacidad.html">Privacidad y cookies</a></span>
   </div>
 </div></footer>
 <script>

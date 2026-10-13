@@ -9,7 +9,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Macuto Music">
 <meta property="og:title" content="Macuto Music — Promoción musical 100% orgánica">
-<meta property="og:description" content="Promoción musical real para artistas independientes. Sin bots, sin trucos: playlists con curadores reales, estrategia de lanzamiento y crecimiento que dura.">
+<meta property="og:description" content="Promoción musical real para artistas independientes: estrategia, pitch a playlists y plan de lanzamiento con un experto a tu lado.">
 <meta property="og:url" content="https://macutomusic.com/">
 <meta property="og:image" content="https://macutomusic.com/assets/og.jpg">
 <meta property="og:locale" content="es_ES">
@@ -18,11 +18,25 @@
 <meta name="theme-color" content="#5E17EB">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="assets/logo.jpg">
-<link rel="stylesheet" href="styles.css?v=8f1cad5e">
-<link rel="stylesheet" href="home.css?v=c12c960e">
+<link rel="stylesheet" href="styles.css?v=d9984c6c">
+<link rel="stylesheet" href="home.css?v=3eed3de1">
+<!-- Movimiento (11-oct-2026): lo crítico del titular va aquí en línea; el resto (movimiento.css) se carga sin bloquear el pintado
+     y movimiento.js con defer. La fuente de reserva está calibrada a Poppins 700 (detalle en movimiento.css §2). -->
+<style>
+.mv-p>span{display:inline-block}
+@font-face{font-family:'Poppins Reserva Titular';src:local('Arial Bold'),local('Arial-BoldMT'),local('Helvetica Neue Bold'),local('Roboto Bold'),local('Arial'),local('Roboto');font-weight:700;size-adjust:107.5%;ascent-override:97.67%;descent-override:32.56%;line-gap-override:0%}
+.hero h1{font-family:'Poppins','Poppins Reserva Titular',sans-serif}
+@media (prefers-reduced-motion:no-preference){.hero h1.mv-titulo{animation:none}.mv-titulo .mv-p>span{animation:mv-sube .95s cubic-bezier(.16,1,.3,1) backwards;animation-delay:calc(var(--i,0)*55ms + 60ms)}}
+@keyframes mv-sube{from{transform:translateY(105%);clip-path:inset(-.4em -.2em 105% -.2em)}to{clip-path:inset(-.4em -.2em -.4em -.2em)}}
+</style>
+<link rel="stylesheet" href="movimiento.css?v=e58e3db9" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="movimiento.css?v=e58e3db9"></noscript>
+<script defer src="movimiento.js?v=feccfaa2"></script>
+<script type="speculationrules">{"prefetch":[{"source":"document","where":{"href_matches":["/solicitud.html","/envia-tu-cancion.html","/radar/*"]},"eagerness":"moderate"}]}</script>
 <link rel="preload" as="image" href="assets/feed/01-editorial-helium.webp" media="(min-width: 601px)" fetchpriority="high">
 <script>document.documentElement.classList.add('js')</script>
 <script defer src="/analytics.js"></script>
+<script defer src="/plazas.js?v=cfdbd152"></script>
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -63,7 +77,7 @@
      "name": "¿Cómo empiezo a trabajar con vosotros?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Por aplicación. Rellenas un formulario rápido, hablas con una persona del equipo que conoce tu proyecto y, si encajamos, diseñamos tu estrategia. Trabajamos con un número limitado de artistas para cuidar cada campaña."
+      "text": "Por solicitud. Rellenas un formulario rápido, hablas con una persona del equipo que conoce tu proyecto y, si encajamos, diseñamos tu estrategia. Trabajamos con un número limitado de artistas para cuidar cada campaña."
      }
     },
     {
@@ -71,7 +85,7 @@
      "name": "¿Cuánto cuesta?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Cada proyecto es único: trabajamos campañas desde 300 € hasta 28.000 €, según el alcance y el objetivo. En la conversación inicial definimos juntos la estrategia que mejor encaja contigo, sin compromiso y con total transparencia."
+      "text": "Depende de lo que necesites, y te lo decimos en la llamada, antes de pedirte ningún pago. El DAP tiene una cuota fija; las campañas de promoción de una canción van aparte y se presupuestan por canción, según el objetivo. Hablar con nosotros no te compromete a nada."
      }
     },
     {
@@ -87,7 +101,7 @@
      "name": "¿Es seguro para mi cuenta de Spotify?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Sí. Todo lo que hacemos respeta las reglas de las plataformas. Tu perfil no corre ningún riesgo."
+      "text": "Lo que pone en riesgo un perfil son las reproducciones artificiales o compradas, y no trabajamos con ellas. Lo que decida una plataforma no depende de nadie de fuera, así que nadie honesto puede prometerte riesgo cero."
      }
     },
     {
@@ -135,8 +149,9 @@
 <header class="hero"><div class="wrap hero-grid">
   <div>
     <span class="eyebrow entra">Independiente · Transparente · Simple</span>
-    <h1 class="entra">Lleva tu música <span class="hl">más lejos</span>, de forma 100% orgánica</h1>
-    <p class="lead entra e1">Music marketing real para artistas independientes. <b>Sin bots, sin trucos.</b> Hablas con una persona que escucha tu proyecto y diseña tu estrategia a medida — de la inclusión en playlists al plan de lanzamiento.</p>
+    <!-- Titular palabra a palabra (movimiento §2: <style> en línea del <head>, 11-oct-2026): cada .mv-p es una máscara y su <span> sube al cargar; el texto es el mismo -->
+    <h1 class="entra mv-titulo"><span class="mv-p" style="--i:0"><span>Lleva</span></span> <span class="mv-p" style="--i:1"><span>tu</span></span> <span class="mv-p" style="--i:2"><span>música</span></span> <span class="mv-p" style="--i:3"><span class="hl">más</span></span> <span class="mv-p" style="--i:4"><span><span class="hl">lejos</span>,</span></span> <span class="mv-p" style="--i:5"><span>con</span></span> <span class="mv-p" style="--i:6"><span>un</span></span> <span class="mv-p" style="--i:7"><span>experto</span></span> <span class="mv-p" style="--i:8"><span>a</span></span> <span class="mv-p" style="--i:9"><span>tu</span></span> <span class="mv-p" style="--i:10"><span>lado</span></span></h1>
+    <p class="lead entra e1">Music marketing real para artistas independientes. Hablas con un experto que escucha tu proyecto y diseña tu estrategia a medida — de la inclusión en playlists al plan de lanzamiento.</p>
     <p class="scarcity entra e2"><span class="s-dot" aria-hidden="true"></span><span>Solo <b class="mm-plazas">10</b> plazas nuevas este mes</span></p>
     <div class="cta-row entra e3">
       <a href="solicitud.html" class="btn btn-purple">Solicita acceso</a>
@@ -150,9 +165,11 @@
        al pasar el ratón o enfocar, fuera de pantalla, con la pestaña oculta y con «reducir movimiento». -->
   <figure class="prueba entra" aria-labelledby="feed-nota">
     <div class="prueba__movil">
-      <div class="feed" data-feed role="region" aria-roledescription="carrusel" aria-label="Vídeo y capturas reales de resultados de Macuto Music">
+      <div class="feed" data-feed role="region" aria-roledescription="carrusel" aria-label="Capturas reales de resultados de Macuto Music">
         <ol class="feed__pista">
           <li class="feed__item"><picture><source media="(max-width: 600px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><img src="assets/feed/01-editorial-helium.webp" width="560" height="996" alt="Notificación oficial de Spotify: «Chula xq?!» entra en «helium», playlist editorial de Spotify" fetchpriority="high" decoding="async"></picture><span class="feed__pie">«Chula xq?!» en helium · editorial de Spotify</span></li>
+          <li class="feed__item"><img src="assets/feed/30-spotify-2-7m-12-meses.webp" width="560" height="996" alt="Spotify for Artists, público de los últimos 12 meses de un artista del DAP: 2.703.713 reproducciones, un 47 % más que el periodo anterior" loading="lazy" decoding="async"><span class="feed__pie">2,7M reproducciones en 12 meses · +47 %</span></li>
+          <li class="feed__item"><img src="assets/feed/31-spotify-1-96m-12-meses.webp" width="560" height="996" alt="Spotify for Artists, público de los últimos 12 meses de una artista del DAP: 1.959.755 reproducciones, un 117 % más que el periodo anterior" loading="lazy" decoding="async"><span class="feed__pie">1,96M reproducciones en 12 meses · +117 %</span></li>
           <li class="feed__item"><img src="assets/feed/20-hey-mami-linda-10k-escuchando.webp" width="560" height="996" alt="Spotify for Artists de «Hey mami linda» de Mhylo, Sebxs y Macuto Music: 10.156 personas escuchándola en ese momento y 80.657 reproducciones" loading="lazy" decoding="async"><span class="feed__pie">«Hey mami linda» · 10.156 personas escuchando a la vez</span></li>
           <li class="feed__item"><img src="assets/feed/11-top-songs-costa-rica.webp" width="560" height="996" alt="Spotify Charts: «Hey mami linda» de Mhylo, Sebxs y Macuto Music, número 13 en el Top Songs de Costa Rica el 26 de octubre de 2024" loading="lazy" decoding="async"><span class="feed__pie">«Hey mami linda» · #13 en el Top Songs de Costa Rica</span></li>
           <li class="feed__item"><img src="assets/feed/03-youtube-macuto-music.webp" width="560" height="996" alt="Estadísticas de YouTube Studio del canal Macuto Music: 3 millones de visualizaciones en 48 horas y 10,6 millones en 28 días" loading="lazy" decoding="async"><span class="feed__pie">YouTube de Macuto Music · 10,6M visualizaciones en 28 días</span></li>
@@ -160,6 +177,7 @@
           <li class="feed__item"><img src="assets/feed/13-discover-weekly-117k.webp" width="560" height="996" alt="Spotify for Artists: las playlists que más reproducen a un artista; Discover Weekly suma 117,8 mil streams" loading="lazy" decoding="async"><span class="feed__pie">Discover Weekly · 117,8 mil streams</span></li>
           <li class="feed__item"><img src="assets/feed/04-wrapped-2024-sello.webp" width="560" height="996" alt="Wrapped 2024 de Macuto Music: 524 mil oyentes, 1,51 millones de reproducciones y 143 países" loading="lazy" decoding="async"><span class="feed__pie">Macuto Music · 1,51M reproducciones en 2024</span></li>
           <li class="feed__item"><img src="assets/feed/12-top50-colombia-se-acabo.webp" width="560" height="996" alt="Tarjeta de Spotify: «Se acabó» es uno de los temas destacados de «Top 50: Colombia»" loading="lazy" decoding="async"><span class="feed__pie">«Se acabó» · Top 50: Colombia</span></li>
+          <li class="feed__item"><img src="assets/feed/32-release-radar-100k-12-meses.webp" width="560" height="996" alt="Spotify for Artists de un artista del DAP, listas de los últimos 12 meses: Release Radar suma 100.357 reproducciones y Radio 92.224" loading="lazy" decoding="async"><span class="feed__pie">Release Radar · 100.357 reproducciones en 12 meses</span></li>
           <li class="feed__item"><img src="assets/feed/14-release-radar-14k.webp" width="560" height="996" alt="Spotify for Artists: en los últimos 28 días, Release Radar suma 14.250 reproducciones y Radio 12.330" loading="lazy" decoding="async"><span class="feed__pie">Release Radar · 14.250 reproducciones en 28 días</span></li>
           <li class="feed__item"><img src="assets/feed/27-tiktok-video-11-5m.webp" width="560" height="996" alt="Estadísticas de un vídeo de TikTok: 11,5 millones de reproducciones y 725.900 me gusta" loading="lazy" decoding="async"><span class="feed__pie">TikTok · un vídeo con 11,5M de reproducciones</span></li>
           <li class="feed__item"><img src="assets/feed/07-oyentes-761k.webp" width="560" height="996" alt="Spotify for Artists: 761.995 oyentes y 2,39 millones de reproducciones en 12 meses" loading="lazy" decoding="async"><span class="feed__pie">761.995 oyentes en 12 meses</span></li>
@@ -168,7 +186,7 @@
           <li class="feed__item"><img src="assets/feed/26-tiktok-974k-7-dias.webp" width="560" height="996" alt="Estadísticas de TikTok: 974.422 visualizaciones de vídeos en los últimos 7 días" loading="lazy" decoding="async"><span class="feed__pie">TikTok · 974.422 visualizaciones en 7 días</span></li>
           <li class="feed__item"><img src="assets/feed/17-youtube-17m.webp" width="560" height="996" alt="Panel de YouTube Studio del canal Macuto Music: 17,5 millones de visualizaciones y 24.900 suscriptores nuevos en 28 días" loading="lazy" decoding="async"><span class="feed__pie">YouTube de Macuto Music · 17,5M visualizaciones en 28 días</span></li>
           <li class="feed__item"><img src="assets/feed/25-tiktok-1-28m-7-dias.webp" width="560" height="996" alt="Estadísticas de TikTok: 1.281.520 visualizaciones de vídeos en los últimos 7 días" loading="lazy" decoding="async"><span class="feed__pie">TikTok · 1.281.520 visualizaciones en 7 días</span></li>
-          <li class="feed__item"><img src="assets/feed/22-jorge-farruko.webp" width="560" height="996" alt="Jorge, del equipo de Macuto Music, junto a Farruko" loading="lazy" decoding="async"><span class="feed__pie">Jorge, del equipo, con Farruko</span></li>
+          <li class="feed__item"><img src="assets/feed/22-jorge-farruko.webp" width="560" height="996" alt="Farruko junto a Jorge, A&amp;R de Macuto Music" loading="lazy" decoding="async"><span class="feed__pie">Farruko y nuestro A&amp;R Jorge</span></li>
         </ol>
       </div>
       <button class="feed__pausa" type="button" aria-pressed="false" aria-label="Pausar las capturas"></button>
@@ -189,7 +207,7 @@
   <div class="stats-grid">
     <div class="stat reveal"><b>+7</b><span>años en la industria</span></div>
     <div class="stat reveal d1"><b>+234M</b><span>de views en canales trabajados</span></div>
-    <div class="stat reveal d2"><b>+123M</b><span>de streams generados en proyectos</span></div>
+    <div class="stat reveal d2"><b>+123M</b><span>de reproducciones en proyectos trabajados</span></div>
     <div class="stat reveal d3"><b>+21</b><span>países alcanzados</span></div>
   </div>
 </div></section>
@@ -199,20 +217,20 @@
   <div class="about-grid">
     <div class="reveal">
       <span class="eyebrow">Quiénes somos</span>
-      <h2 class="statement" style="margin-top:18px">Creados por músicos, para músicos. Nacimos para desafiar las normas obsoletas de la industria y <span class="hl">devolver el poder a los creadores</span>.</h2>
+      <h2 class="statement" style="margin-top:18px">Un equipo de A&amp;R, label managers y dirección creativa <span class="hl">para artistas independientes y sellos discográficos</span>.</h2>
     </div>
     <div class="about-list">
       <div class="about-item reveal">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></div>
-        <div><h3>Experiencia real en tu género</h3><p>Trabajando los géneros que dominan el Top 50 de los países hispanohablantes: reggaetón, trap, dembow, bachata, rap y pop latino.</p></div>
+        <div><h3>Experiencia real en tu género</h3><p>Reggaetón, bachata, rap y pop latino: sabemos cómo se mueven en Spotify, TikTok y YouTube.</p></div>
       </div>
       <div class="about-item reveal d1">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
-        <div><h3>La industria, desde dentro</h3><p>Sabemos cómo funciona porque la vivimos como artistas. El artista va primero, siempre.</p></div>
+        <div><h3>La industria, desde dentro</h3><p>Estudios, sellos, distribuidoras y eventos como NODE o Billboard: lo que aprendemos ahí lo aplicamos a tu proyecto.</p></div>
       </div>
       <div class="about-item reveal d2">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2c2.5 2.6 4 6.1 4 10s-1.5 7.4-4 10c-2.5-2.6-4-6.1-4-10s1.5-7.4 4-10z"/></svg></div>
-        <div><h3>Presencia internacional</h3><p>Acceso a Latinoamérica, Europa y Estados Unidos para hacer tu proyecto internacional.</p></div>
+        <div><h3>Presencia internacional</h3><p>Proyectos con oyentes en 21 países. Trabajamos desde Madrid con artistas de España, Latinoamérica y Estados Unidos.</p></div>
       </div>
     </div>
   </div>
@@ -221,20 +239,30 @@
        Texto solo con hechos ya públicos: descripción de su canal de YouTube («artista, productor… de Música Urbana… reside en Madrid…
        siendo artista independiente en España», 10-oct) y los eventos de #novedades. Cifras comprobadas en vivo el 10-oct-2026. -->
   <div class="fundador" id="fundador">
-    <figure class="fundador__foto reveal">
-      <img src="assets/macuto-retrato-1000.webp" srcset="assets/macuto-retrato-600.webp 600w, assets/macuto-retrato-1000.webp 1000w, assets/macuto-retrato-1400.webp 1400w" sizes="(max-width: 820px) min(420px, calc(100vw - 56px)), 440px" width="1000" height="1484" alt="Angelo Gutiérrez, «Macuto», fundador de Macuto Music, con chaqueta de cuero ante una pared de mármol" loading="lazy" decoding="async">
+    <!-- Stories (12-oct-2026, Macuto: «esta sección que sea estilo Stories de Instagram con otras fotos de Angelo» y «en instagram de
+         macutomusic hay historias destacadas que podemos usar»). Fuentes: retrato de Descargas/FOTOS EVENTOS MACUTO (IMG_6248);
+         Forbes 2024 de #novedades (13-oct, Macuto: fuera NODE, Mastermind, el selfi de Farruko y la del Metropolitano); el resto, de @macutomusic bajado SIN SESIÓN por Apify
+         (09_Automatizaciones/macuto_web/ig_macutomusic_sin_sesion.py): destacada «Macuto» y publicaciones de Forbes 2025/2026,
+         Warner Music 2025; destacada «Macuto»: cartel de «Despega tu carrera» (abril 2026; la de Warner Chappell 2023 pasó a #industria). Recortes a 9:16; vídeos mudos, 540×960.
+         Estilos: movimiento.css §18 · comportamiento: movimiento.js §12. Sin JS se ve solo la primera. -->
+    <figure class="fundador__foto historias reveal" role="region" aria-roledescription="carrusel" aria-label="Historias de Angelo Gutiérrez, «Macuto»">
+      <ul class="historias__lista">
+        <li class="historia" role="group" aria-roledescription="historia" aria-label="1 de 7" data-lugar="Madrid"><img src="assets/fundador/historia-retrato-marmol-540.webp" srcset="assets/fundador/historia-retrato-marmol-540.webp 540w, assets/fundador/historia-retrato-marmol-1080.webp 1080w" sizes="(max-width: 820px) min(340px, calc(100vw - 56px)), 400px" width="540" height="960" alt="Angelo Gutiérrez, «Macuto», fundador de Macuto Music, con chaqueta de cuero ante una pared de mármol" loading="lazy" decoding="async"></li>
+        <li class="historia historia--video" role="group" aria-roledescription="historia" aria-label="2 de 7" data-lugar="Estudio" data-dur="7"><video muted playsinline preload="none" width="540" height="960" data-poster="assets/fundador/historia-more-than-a-manager.webp" aria-label="Historia de Instagram: Macuto recostado en la silla de su estudio, con el texto «More than a Manager.. Executive Producer · Music Producer · Video Director · Label · Creative Director · Playlists Curator · Growth Partner»" disablepictureinpicture disableremoteplayback><source src="assets/fundador/historia-more-than-a-manager.mp4" type="video/mp4"></video></li>
+        <li class="historia" role="group" aria-roledescription="historia" aria-label="3 de 7" data-lugar="Forbes 30 Under 30 · 2026"><img data-src="assets/fundador/historia-forbes-2026-540.webp" data-srcset="assets/fundador/historia-forbes-2026-540.webp 540w, assets/fundador/historia-forbes-2026-1080.webp 1080w" sizes="(max-width: 820px) min(340px, calc(100vw - 56px)), 400px" width="540" height="960" alt="Macuto con traje claro en el photocall del Forbes 30 Under 30 de 2026" loading="lazy" decoding="async"></li>
+        <li class="historia" role="group" aria-roledescription="historia" aria-label="4 de 7" data-lugar="Warner Music España · 2025"><img data-src="assets/fundador/historia-warner-music-2025-540.webp" data-srcset="assets/fundador/historia-warner-music-2025-540.webp 540w, assets/fundador/historia-warner-music-2025-1080.webp 1080w" sizes="(max-width: 820px) min(340px, calc(100vw - 56px)), 400px" width="540" height="960" alt="Macuto en Warner Music España, ante una pared de discos enmarcados" loading="lazy" decoding="async"></li>
+        <li class="historia" role="group" aria-roledescription="historia" aria-label="5 de 7" data-lugar="Forbes 30 Under 30 · 2025"><img data-src="assets/fundador/historia-forbes-2025-540.webp" data-srcset="assets/fundador/historia-forbes-2025-540.webp 540w, assets/fundador/historia-forbes-2025-1080.webp 1080w" sizes="(max-width: 820px) min(340px, calc(100vw - 56px)), 400px" width="540" height="960" alt="Macuto con traje azul claro en la alfombra roja del Festival Forbes 30 Under 30 de 2025" loading="lazy" decoding="async"></li>
+        <li class="historia" role="group" aria-roledescription="historia" aria-label="6 de 7" data-lugar="Despega tu carrera · Madrid, 2026"><img data-src="assets/fundador/historia-despega-tu-carrera-540.webp" data-srcset="assets/fundador/historia-despega-tu-carrera-540.webp 540w, assets/fundador/historia-despega-tu-carrera-1080.webp 1080w" sizes="(max-width: 820px) min(340px, calc(100vw - 56px)), 400px" width="540" height="960" alt="Historia de Instagram: cartel de «Despega tu carrera», el evento formativo y de networking para DJs y cantantes del 20 y 21 de abril en Madrid, con Macuto Music como invitado especial" loading="lazy" decoding="async"></li>
+        <li class="historia" role="group" aria-roledescription="historia" aria-label="7 de 7" data-lugar="Forbes 30 Under 30 · 2024"><img data-src="assets/fundador/historia-forbes-2024-540.webp" data-srcset="assets/fundador/historia-forbes-2024-540.webp 540w, assets/fundador/historia-forbes-2024-1080.webp 1080w" sizes="(max-width: 820px) min(340px, calc(100vw - 56px)), 400px" width="540" height="960" alt="Macuto con traje oscuro en el photocall del Forbes 30 Under 30 de 2024" loading="lazy" decoding="async"></li>
+      </ul>
     </figure>
     <div class="fundador__txt reveal d1">
       <span class="eyebrow">Quién está detrás</span>
       <h3 class="fundador__nombre">Angelo Gutiérrez, «Macuto»</h3>
-      <p class="fundador__cargo">Fundador de Macuto Music · artista y productor</p>
-      <p>Empezó como tú: artista independiente de música urbana, produciendo sus propios temas en Madrid.</p>
-      <p>Todo lo que aprendió para que su música llegara lo convirtió en el <b>DAP</b>, el Digital Artist Program: el método con el que hoy acompaña a otros artistas a dar el salto.</p>
-      <p class="fundador__lema">Músicos, para músicos.</p>
-      <ul class="fundador__redes" aria-label="Macuto Music en redes">
-        <li><a class="red" href="https://www.tiktok.com/@macutomusic" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg><span>+140.000<small>seguidores en TikTok</small></span></a></li>
-        <li><a class="red" href="https://www.youtube.com/@MacutoMusic" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.75 19 12 19 12 19s6.25 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></svg><span>+330.000<small>suscriptores en YouTube</small></span></a></li>
-      </ul>
+      <p class="fundador__cargo">Fundador de Macuto Music</p>
+      <p>Creador del <b>DAP</b>, el Digital Artist Program: la primera estructura profesional en la carrera de un artista independiente y el puente hacia sellos, plataformas y el resto de la Industria Musical.</p>
+      <p>Va más allá de un viral de tres meses: busca convertir tu música en un negocio que dure, con Spotify, redes y vídeo por niveles. Tus canciones y tus masters siguen siendo tuyos.</p>
+      <p class="fundador__lema">De abajo a pro.</p>
     </div>
   </div>
 </div></section>
@@ -254,7 +282,7 @@
         <span class="vision__pista-txt" aria-hidden="true">Sigue bajando para verlo en grande</span>
       </div>
       <div class="vision__marco">
-        <video class="vision__video" data-src="assets/vision/mastermind-madrid-aftermovie-720.mp4" poster="assets/vision/mastermind-madrid-poster-1280.webp" muted loop playsinline preload="none" aria-label="Aftermovie de la Mastermind de Madrid: artistas del DAP en la sala de control y grabando en cabina de PKO Studios"></video>
+        <video class="vision__video" data-src="assets/vision/mastermind-madrid-aftermovie-720.mp4" data-poster="assets/vision/mastermind-madrid-poster-1280.webp" muted loop playsinline preload="none" aria-label="Aftermovie de la Mastermind de Madrid: artistas del DAP en la sala de control y grabando en cabina de PKO Studios"></video>
       </div>
       <div class="vision__botones">
         <button class="vision__sonido" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="ondas" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="mudo" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5l5 5M21 9.5l-5 5"/></svg><span>Activar sonido</span></button>
@@ -266,16 +294,24 @@
   (()=>{ // Visión: el aftermovie crece con el scroll (--p de 0 a 1) y «Ver en grande» lo abre a pantalla completa con sonido
     const s=document.getElementById('vision'); if(!s) return;
     const pista=s.querySelector('.vision__pista'), v=s.querySelector('.vision__video'), son=s.querySelector('.vision__sonido'), gr=s.querySelector('.vision__grande');
-    const anima=matchMedia('(min-width: 761px) and (prefers-reduced-motion: no-preference)'), auto=matchMedia('(min-width: 761px)');
+    const anima=matchMedia('(min-width: 761px) and (orientation: landscape) and (prefers-reduced-motion: no-preference)'), auto=matchMedia('(min-width: 761px)');
     let raf=0, dentro=false;
     const pinta=()=>{ raf=0;
       if(!anima.matches){ s.style.setProperty('--p','1'); s.classList.remove('vision--llena'); return; }
       const r=pista.getBoundingClientRect(), tot=r.height-innerHeight;
       const p=Math.min(1, Math.max(0, tot>0 ? (-r.top)/(tot*0.8) : 0));
       s.style.setProperty('--p', p.toFixed(3)); s.classList.toggle('vision--llena', p>0.97); };
-    addEventListener('scroll',()=>{ if(!raf) raf=requestAnimationFrame(pinta); },{passive:true});
+    // el scroll solo trabaja con el bloque cerca de la pantalla; fuera, --p ya quedó fijado en 0 o 1 por el último pinta()
+    let cerca=!('IntersectionObserver' in window);
+    addEventListener('scroll',()=>{ if(!raf && cerca && anima.matches) raf=requestAnimationFrame(pinta); },{passive:true});
     addEventListener('resize',pinta); anima.addEventListener('change',pinta); pinta();
-    const carga=()=>{ if(!v.getAttribute('src')) v.src=v.dataset.src; };
+    // el póster (60 KB) se pide algo más de una pantalla antes de llegar, no al cargar la portada
+    const poster=()=>{ if(v.dataset.poster && !v.getAttribute('poster')) v.poster=v.dataset.poster; };
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(es=>{ cerca=es[0].isIntersecting; pinta(); },{rootMargin:innerHeight+'px 0px'}).observe(pista);
+      const iop=new IntersectionObserver(es=>{ if(es[0].isIntersecting){ poster(); iop.disconnect(); } },{rootMargin:Math.round(innerHeight*1.2)+'px 0px'}); iop.observe(s);
+    } else poster();
+    const carga=()=>{ poster(); if(!v.getAttribute('src')) v.src=v.dataset.src; };
     const juega=()=>{ carga(); const q=v.play(); if(q) q.catch(()=>{}); };
     const rotula=()=>{ son.setAttribute('aria-pressed', v.muted?'false':'true'); son.querySelector('span').textContent = v.muted ? 'Activar sonido' : 'Silenciar'; };
     if('IntersectionObserver' in window) new IntersectionObserver(es=>es.forEach(e=>{ dentro=e.isIntersecting;
@@ -295,24 +331,24 @@
 <!-- SERVICIOS -->
 <section class="sec soft" id="servicios"><div class="wrap">
   <div class="sec-head">
-    <div class="reveal"><span class="eyebrow">Qué hacemos</span><h2>Una estrategia 360º para tu música</h2></div>
-    <p class="reveal d1">Todo lo que necesitas para crecer de forma real y sostenible, en un solo equipo — sin humo y con datos.</p>
+    <div class="reveal"><span class="eyebrow">Qué hacemos</span><h2>Lo que trabajamos contigo</h2></div>
+    <p class="reveal d1">Tú decides y ejecutas; nosotros ponemos los datos.</p>
   </div>
   <div class="bento">
     <div class="cell wide reveal">
       <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h13M3 12h13M3 18h7"/><circle cx="18.5" cy="16.5" r="2.5"/><path d="M21 16.5V9l-5 1"/></svg></div>
-      <h3>Inclusión en playlists</h3>
-      <p>Reuniones semanales con curadores reales para que tu música llegue al público correcto — nunca bots ni granjas de streams.</p>
+      <h3>Pitch y playlists</h3>
+      <p>Preparamos contigo el pitch editorial de Spotify y, si tu canción encaja, la presentamos a los curadores de nuestra red.</p>
     </div>
     <div class="cell reveal d1">
       <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11L9.5 22 19 9.5h-6.5L13 2z"/></svg></div>
       <h3>Estrategia de lanzamiento</h3>
-      <p>Estrenos de alto rendimiento centrados en construir comunidad alrededor de tu música.</p>
+      <p>Preparamos contigo cada lanzamiento que nos avises con dos semanas: fecha, pitch, contenido y qué mirar después.</p>
     </div>
     <div class="cell reveal d2">
       <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l14-6v14L3 13v-2z"/><path d="M7 14v4a2 2 0 0 0 4 0v-2.5"/><path d="M20 9a3 3 0 0 1 0 6"/></svg></div>
       <h3>Publicidad digital</h3>
-      <p>Campañas en YouTube, TikTok y Meta optimizadas para tu nicho y tu presupuesto.</p>
+      <p>Te ayudamos a plantear tus anuncios en YouTube, TikTok y Meta: a quién, con cuánto y cómo medirlos. Los lanzas desde tu cuenta y la inversión es tuya.</p>
     </div>
     <div class="cell reveal">
       <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10h-4a6 6 0 1 1-6-6V2z"/><circle cx="12" cy="12" r="2"/></svg></div>
@@ -322,12 +358,19 @@
     <div class="cell reveal d1">
       <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-3.4-.7L3 21l1.8-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg></div>
       <h3>Redes sociales</h3>
-      <p>Crecimiento orgánico con gestión de contenido y desarrollo de comunidad.</p>
+      <p>Revisamos tu contenido y tus números y te decimos qué publicar y qué dejar de hacer. Tus cuentas las llevas tú.</p>
     </div>
     <div class="cell wide reveal d2">
       <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div>
-      <h3>Gestión integral con datos reales</h3>
-      <p>Gestión de cuentas y catálogos de todos los tamaños. Analizamos tus estadísticas reales para decidir qué canción empujar, en qué país y con qué contenido.</p>
+      <h3>Marketing Digital Avanzado</h3>
+      <p>Revisamos tus estadísticas contigo para decidir qué canción empujar, en qué país y con qué contenido.</p>
+    </div>
+    <!-- Management (12-oct-2026, Macuto: «pon también Management»). Redactado como el contrato del DAP: cl. 2.1.a «Label management»
+         (un label manager coordina el proyecto) y cl. 1.4 (no es un contrato de management: no firmamos en su nombre ni cobramos sus ingresos). -->
+    <div class="cell cell--remate reveal">
+      <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg></div>
+      <h3>Label management</h3>
+      <p>Un label manager del equipo coordina tu proyecto contigo: prioridades, calendario y plan de trabajo, también con tu mánager, sello o booking. No firmamos en tu nombre ni cobramos tus ingresos.</p>
     </div>
   </div>
 </div></section>
@@ -336,14 +379,14 @@
 <section class="sec" id="como"><div class="wrap">
   <div class="sec-head center reveal">
     <span class="eyebrow" style="justify-content:center">Cómo trabajamos</span>
-    <h2>Por aplicación. Trabajamos con quien encaja.</h2>
+    <h2>Por solicitud. Trabajamos con quien encaja.</h2>
     <p>Plazas limitadas: hablamos contigo antes de empezar para asegurar que somos el equipo adecuado para tu proyecto.</p>
   </div>
   <div class="timeline">
-    <div class="tstep reveal"><div class="n">1</div><div><h3>Aplicas</h3><p>Nos cuentas quién eres, tu música y a dónde quieres llegar. Dos minutos.</p></div></div>
+    <div class="tstep reveal"><div class="n">1</div><div><h3>Lo solicitas</h3><p>Nos cuentas quién eres, tu música y a dónde quieres llegar. Dos minutos.</p></div></div>
     <div class="tstep reveal d1"><div class="n">2</div><div><h3>Hablamos</h3><p>Una persona del equipo escucha tu proyecto, resuelve tus dudas y valida el encaje.</p></div></div>
-    <div class="tstep reveal d2"><div class="n">3</div><div><h3>Diseñamos tu plan</h3><p>Estrategia a medida para tu canción y tu objetivo. Transparente, sin sorpresas.</p></div></div>
-    <div class="tstep reveal d3"><div class="n">4</div><div><h3>Crecemos juntos</h3><p>Ejecutamos y te acompañamos en cada lanzamiento. Orgánico, siempre.</p></div></div>
+    <div class="tstep reveal d2"><div class="n">3</div><div><h3>Diseñamos tu plan</h3><p>Tu plan de los tres primeros meses, por escrito, pensado para tu música y tu objetivo.</p></div></div>
+    <div class="tstep reveal d3"><div class="n">4</div><div><h3>Lanzas con nosotros al lado</h3><p>Tú ejecutas el plan; nosotros lo revisamos contigo en cada sesión y preparamos contigo cada lanzamiento.</p></div></div>
   </div>
   <div class="repite-cta reveal">
     <a href="solicitud.html" class="btn btn-purple">Solicita acceso</a>
@@ -354,13 +397,13 @@
 <!-- ARTISTAS -->
 <section class="sec soft" id="artistas"><div class="wrap">
   <div class="sec-head">
-    <div class="reveal"><span class="eyebrow">Artistas</span><h2>Proyectos trabajados con:</h2></div>
-    <p class="reveal d1">Artistas independientes que crecen con estrategia, no con atajos.</p>
+    <div class="reveal"><span class="eyebrow">Artistas</span><h2>Proyectos en los que hemos trabajado</h2></div>
+    <p class="reveal d1">Independientes y del Top 50: algunos de los artistas con cuyos proyectos ha trabajado el equipo.</p>
   </div>
   <div class="artists carril-movil">
-    <div class="artist reveal"><div class="ph" style="background-image:url(assets/briella.jpg);background-image:image-set(url(assets/briella-600.webp) 1x,url(assets/briella-900.webp) 2x)" role="img" aria-label="Briella, artista de Venezuela"></div><div class="bd"><b>Briella</b><span class="country">Venezuela</span><span class="li">177K oyentes mensuales</span></div></div>
-    <div class="artist reveal d1"><div class="ph" style="background-image:url(assets/saiko.jpg);background-image:image-set(url(assets/saiko-600.webp) 1x,url(assets/saiko-900.webp) 2x)" role="img" aria-label="Saiko, artista de España"></div><div class="bd"><b>Saiko</b><span class="country">España</span><span class="li">9,8M oyentes mensuales</span></div></div>
-    <div class="artist reveal d2"><div class="ph" style="background-image:url(assets/elena.jpg);background-image:image-set(url(assets/elena-600.webp) 1x,url(assets/elena-900.webp) 2x)" role="img" aria-label="Elena Vargas, artista de España"></div><div class="bd"><b>Elena Vargas</b><span class="country">España</span><span class="li">817K oyentes mensuales</span></div></div>
+    <div class="artist reveal"><div class="ph"><img loading="lazy" src="assets/briella-600.webp" srcset="assets/briella-600.webp 600w, assets/briella-900.webp 900w" sizes="(max-width: 820px) calc(100vw - 40px), 380px" width="600" height="372" alt="Briella, artista de Venezuela" decoding="async"></div><div class="bd"><b>Briella</b><span class="country">Venezuela</span><span class="li">177K oyentes mensuales</span></div></div>
+    <div class="artist reveal d1"><div class="ph"><img loading="lazy" src="assets/saiko-600.webp" srcset="assets/saiko-600.webp 600w, assets/saiko-900.webp 900w" sizes="(max-width: 820px) calc(100vw - 40px), 380px" width="600" height="372" alt="Saiko, artista de España" decoding="async"></div><div class="bd"><b>Saiko</b><span class="country">España</span><span class="li">9,8M oyentes mensuales</span></div></div>
+    <div class="artist reveal d2"><div class="ph"><img loading="lazy" src="assets/elena-600.webp" srcset="assets/elena-600.webp 600w, assets/elena-900.webp 900w" sizes="(max-width: 820px) calc(100vw - 40px), 380px" width="600" height="372" alt="Elena Vargas, artista de España" decoding="async"></div><div class="bd"><b>Elena Vargas</b><span class="country">España</span><span class="li">817K oyentes mensuales</span></div></div>
   </div>
   <div class="roster reveal plegado" id="roster">
     <figure class="rcard"><img src="assets/artistas/quevedo-300.webp" srcset="assets/artistas/quevedo-300.webp 300w, assets/artistas/quevedo-450.webp 450w" sizes="(max-width: 600px) 45vw, 170px" width="300" height="356" alt="Quevedo" loading="lazy" decoding="async"><figcaption><b>Quevedo</b><span>27,2M oyentes/mes</span></figcaption></figure>
@@ -379,13 +422,14 @@
     <figure class="rcard"><img src="assets/artistas/r-climent-300.webp" srcset="assets/artistas/r-climent-300.webp 300w, assets/artistas/r-climent-450.webp 450w" sizes="(max-width: 600px) 45vw, 170px" width="300" height="358" alt="R Climent" loading="lazy" decoding="async"><figcaption><b>R Climent</b><span>97K oyentes/mes</span></figcaption></figure>
     <figure class="rcard"><img src="assets/artistas/mhylo-300.webp" srcset="assets/artistas/mhylo-300.webp 300w, assets/artistas/mhylo-450.webp 450w" sizes="(max-width: 600px) 45vw, 170px" width="300" height="300" alt="Mhylo" loading="lazy" decoding="async"><figcaption><b>Mhylo</b><span>71K oyentes/mes</span></figcaption></figure>
     <figure class="rcard"><img src="assets/artistas/el-mega-300.webp" srcset="assets/artistas/el-mega-300.webp 300w, assets/artistas/el-mega-450.webp 450w" sizes="(max-width: 600px) 45vw, 170px" width="300" height="360" alt="El Mega" loading="lazy" decoding="async"><figcaption><b>El Mega</b><span>66K oyentes/mes</span></figcaption></figure>
+    <figure class="rcard"><img src="assets/artistas/damaco-300.webp" srcset="assets/artistas/damaco-300.webp 300w, assets/artistas/damaco-450.webp 450w" sizes="(max-width: 600px) 45vw, 170px" width="300" height="300" alt="Damaco" loading="lazy" decoding="async"><figcaption><b>Damaco</b><span>60K oyentes/mes</span></figcaption></figure>
     <figure class="rcard"><img src="assets/artistas/amanda-patricia-300.webp" srcset="assets/artistas/amanda-patricia-300.webp 300w, assets/artistas/amanda-patricia-450.webp 450w" sizes="(max-width: 600px) 45vw, 170px" width="300" height="363" alt="Amanda Patricia" loading="lazy" decoding="async"><figcaption><b>Amanda Patricia</b><span>52K oyentes/mes</span></figcaption></figure>
     <figure class="rcard"><img src="assets/artistas/pboy-300.webp" srcset="assets/artistas/pboy-300.webp 300w, assets/artistas/pboy-450.webp 450w" sizes="(max-width: 600px) 45vw, 170px" width="300" height="357" alt="Pboy" loading="lazy" decoding="async"><figcaption><b>Pboy</b><span>22K oyentes/mes</span></figcaption></figure>
     <figure class="rcard"><img src="assets/artistas/sebas-rave-300.webp" srcset="assets/artistas/sebas-rave-300.webp 300w, assets/artistas/sebas-rave-450.webp 450w" sizes="(max-width: 600px) 45vw, 170px" width="300" height="362" alt="Sebas Rave" loading="lazy" decoding="async"><figcaption><b>Sebas Rave</b><span>15K oyentes/mes</span></figcaption></figure>
     <figure class="rcard"><img src="assets/artistas/mickey-dastinz-300.webp" srcset="assets/artistas/mickey-dastinz-300.webp 300w, assets/artistas/mickey-dastinz-450.webp 450w" sizes="(max-width: 600px) 45vw, 170px" width="300" height="362" alt="Mickey Dastinz" loading="lazy" decoding="async"><figcaption><b>Mickey Dastinz</b><span>10K oyentes/mes</span></figcaption></figure>
   </div>
-  <button class="ver-mas" type="button" data-despliega aria-controls="roster" aria-expanded="false">Ver los 20 artistas</button>
-  <p class="roster-note reveal">Campañas activadas en proyectos con estos artistas · Oyentes mensuales en Spotify, julio 2026</p>
+  <button class="ver-mas" type="button" data-despliega aria-controls="roster" aria-expanded="false">Ver los 21 artistas</button>
+  <p class="roster-note reveal">Campañas activadas en proyectos con estos artistas</p>
 
   <div class="sec-head" id="resultados" style="margin-top:72px">
     <div class="reveal"><span class="eyebrow">Resultados reales</span><h2>Playlists editoriales, charts y resultados</h2></div>
@@ -396,56 +440,286 @@
       <img src="assets/resultados/top-costa-rica-600.webp" srcset="assets/resultados/top-costa-rica-600.webp 600w, assets/resultados/top-costa-rica-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="265" alt="Banner oficial de Spotify Charts: Hey mami linda, entrada más alta del día en Top Songs Costa Rica" loading="lazy" decoding="async" data-grande="assets/resultados/top-costa-rica.jpg">
       <figcaption><b>«Hey mami linda» — Top Songs Costa Rica</b><span>Entrada más alta del día y peak #13 · Spotify Charts oficial</span></figcaption>
     </figure>
+    <figure class="shot reveal d1">
+      <img src="assets/resultados/jordan1-youtube-600.webp" srcset="assets/resultados/jordan1-youtube-600.webp 600w, assets/resultados/jordan1-youtube-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="407" alt="Vídeo oficial Jordan 1 de Saiko y Quevedo en YouTube con 4,4 millones de visitas y crédito Powered by Macuto Music" loading="lazy" decoding="async" data-grande="assets/resultados/jordan1-youtube.jpg">
+      <figcaption><b>«Jordan 1» — Saiko & Quevedo</b><span>#17 en tendencias de YouTube en el estreno · hoy 4,4M de visitas · «Powered by Macuto Music»</span></figcaption>
+    </figure>
+    <figure class="shot reveal d2">
+      <img src="assets/resultados/tiktok-6m-video-600.webp" srcset="assets/resultados/tiktok-6m-video-600.webp 600w, assets/resultados/tiktok-6m-video-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="915" alt="Estadísticas de un vídeo de TikTok: 6,5 millones de visualizaciones, 944.100 Me gusta y 5.526.921 personas alcanzadas" loading="lazy" decoding="async" data-grande="assets/resultados/tiktok-6m-video.jpg">
+      <figcaption><b>6,5 millones de visualizaciones</b><span>TikTok · 944.100 Me gusta y 5,5 millones de personas alcanzadas</span></figcaption>
+    </figure>
+    <figure class="shot reveal">
+      <img src="assets/resultados/editorial-helium-600.webp" srcset="assets/resultados/editorial-helium-600.webp 600w, assets/resultados/editorial-helium-850.webp 850w, assets/resultados/editorial-helium.jpg 850w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="942" alt="«Chula xq?!» destacada en la playlist editorial helium de Spotify" loading="lazy" decoding="async" data-grande="assets/resultados/editorial-helium.jpg">
+      <figcaption><b>«Chula xq?!» en "helium" — editorial de Spotify</b><span>Placement en playlist editorial oficial de Spotify</span></figcaption>
+    </figure>
+    <figure class="shot reveal d1">
+      <img src="assets/resultados/cartier-youtube-1m-600.webp" srcset="assets/resultados/cartier-youtube-1m-600.webp 600w, assets/resultados/cartier-youtube-1m-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="821" alt="Descripción de un videoclip oficial en YouTube: 14.708 Me gusta, 1.090.454 visualizaciones y el crédito «Powered by Macuto Music»" loading="lazy" decoding="async" data-grande="assets/resultados/cartier-youtube-1m.jpg">
+      <figcaption><b>1.090.454 visualizaciones de un videoclip</b><span>YouTube · «Powered by Macuto Music» en la descripción</span></figcaption>
+    </figure>
+    <figure class="shot reveal d2">
+      <img src="assets/resultados/tiktok-957k-video-600.webp" srcset="assets/resultados/tiktok-957k-video-600.webp 600w, assets/resultados/tiktok-957k-video-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="749" alt="Análisis de un vídeo de TikTok: 957.800 visualizaciones, 145.300 Me gusta, 879.337 personas alcanzadas y el 82 % de las visitas desde Para ti" loading="lazy" decoding="async" data-grande="assets/resultados/tiktok-957k-video.jpg">
+      <figcaption><b>957.800 visualizaciones de un vídeo</b><span>TikTok · 879.337 personas alcanzadas, el 82 % desde Para ti</span></figcaption>
+    </figure>
+    <figure class="shot reveal">
+      <img src="assets/resultados/stats-oyentes-761k-600.webp" srcset="assets/resultados/stats-oyentes-761k-600.webp 600w, assets/resultados/stats-oyentes-761k.jpg 900w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="1063" alt="Panel de Spotify for Artists: 761.995 oyentes y 2.392.760 reproducciones en 12 meses, con oyentes activos mensuales" loading="lazy" decoding="async" data-grande="assets/resultados/stats-oyentes-761k.jpg">
+      <figcaption><b>761.995 oyentes · 2,39M reproducciones</b><span>Público de 12 meses en Spotify for Artists (+64% oyentes, +77% reproducciones)</span></figcaption>
+    </figure>
+    <figure class="shot reveal d1">
+      <img src="assets/resultados/ig-youtube-3m-visualizaciones-600.webp" srcset="assets/resultados/ig-youtube-3m-visualizaciones-600.webp 600w, assets/resultados/ig-youtube-3m-visualizaciones-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="744" alt="Panel de YouTube Studio: 3.361.246 visualizaciones en 28 días, con el rótulo «Powered by Macuto Music»" loading="lazy" decoding="async" data-grande="assets/resultados/ig-youtube-3m-visualizaciones-1000.webp">
+      <figcaption><b>3,36 M de visualizaciones en 28 días</b><span>YouTube Studio del canal de un artista · «Powered by Macuto Music»</span></figcaption>
+    </figure>
+    <figure class="shot reveal d2">
+      <img src="assets/resultados/stats-algoritmo-600.webp" srcset="assets/resultados/stats-algoritmo-600.webp 600w, assets/resultados/stats-algoritmo-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="404" alt="Panel Algoritmo de Spotify for Artists: Radio con 69.601 oyentes y 653.662 reproducciones" loading="lazy" decoding="async" data-grande="assets/resultados/stats-algoritmo.jpg">
+      <figcaption><b>El algoritmo de Spotify trabajando</b><span>Radio: 69.601 oyentes · 653.662 reproducciones — alcance algorítmico real</span></figcaption>
+    </figure>
+    <figure class="shot reveal">
+      <img src="assets/resultados/stats-videos-600.webp" srcset="assets/resultados/stats-videos-600.webp 600w, assets/resultados/stats-videos-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="427" alt="Tabla de YouTube Studio con vídeos de 25, 18 y 8 millones de visualizaciones" loading="lazy" decoding="async" data-grande="assets/resultados/stats-videos.jpg">
+      <figcaption><b>Vídeos top en canales trabajados</b><span>25,1M · 18,8M · 8,5M de visualizaciones, con hasta un 98% de Me gusta</span></figcaption>
+    </figure>
+    <figure class="shot reveal d1">
+      <img src="assets/resultados/ig-es-funk-editorial-600.webp" srcset="assets/resultados/ig-es-funk-editorial-600.webp 600w, assets/resultados/ig-es-funk-editorial-720.webp 720w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="712" alt="Un tema en la playlist de Spotify «es funk y el cuerpo lo sabe», en la posición 21 de 90" loading="lazy" decoding="async" data-grande="assets/resultados/ig-es-funk-editorial-720.webp">
+      <figcaption><b>«es funk y el cuerpo lo sabe» · Spotify</b><span>Posición 21 de 90 en la playlist</span></figcaption>
+    </figure>
+    <figure class="shot reveal d2">
+      <img src="assets/resultados/ig-qlq-remix-tendencias-600.webp" srcset="assets/resultados/ig-qlq-remix-tendencias-600.webp 600w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="715" alt="Vídeo de un remix en YouTube con la etiqueta #5 en Tendencias de música" loading="lazy" decoding="async" data-grande="assets/resultados/ig-qlq-remix-tendencias-600.webp">
+      <figcaption><b>#5 en Tendencias de música de YouTube</b><span>YouTube · un remix con seis artistas</span></figcaption>
+    </figure>
+    <figure class="shot reveal">
+      <img src="assets/resultados/ig-spotify-200k-oyentes-600.webp" srcset="assets/resultados/ig-spotify-200k-oyentes-600.webp 600w, assets/resultados/ig-spotify-200k-oyentes-720.webp 720w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="450" alt="Panel de Spotify for Artists: 200.595 oyentes, un 34 % más que el periodo anterior" loading="lazy" decoding="async" data-grande="assets/resultados/ig-spotify-200k-oyentes-720.webp">
+      <figcaption><b>200.595 oyentes, +34 %</b><span>Spotify for Artists · oyentes del periodo</span></figcaption>
+    </figure>
+    <figure class="shot reveal d1">
+      <img src="assets/resultados/ig-youtube-207k-julio-600.webp" srcset="assets/resultados/ig-youtube-207k-julio-600.webp 600w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="1045" alt="YouTube Studio: 207.599 visualizaciones del 1 al 28 de julio y fuentes de tráfico" loading="lazy" decoding="async" data-grande="assets/resultados/ig-youtube-207k-julio-600.webp">
+      <figcaption><b>207.599 visualizaciones en julio</b><span>YouTube Studio · el 55,7 % llega desde las funciones de exploración</span></figcaption>
+    </figure>
     <figure class="shot reveal d2">
       <img src="assets/resultados/wrapped-2024-600.webp" srcset="assets/resultados/wrapped-2024-600.webp 600w, assets/resultados/wrapped-2024.jpg 800w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="1066" alt="Tarjeta oficial de Spotify Wrapped 2024 de Macuto Music: 524 mil oyentes, 1,51 millones de reproducciones, 143 países" loading="lazy" decoding="async" data-grande="assets/resultados/wrapped-2024.jpg">
       <figcaption><b>Spotify Wrapped del sello</b><span>524K oyentes · 1,51M reproducciones · 143 países en 2024</span></figcaption>
     </figure>
-    <figure class="shot reveal d2">
-      <img src="assets/resultados/jordan1-youtube-600.webp" srcset="assets/resultados/jordan1-youtube-600.webp 600w, assets/resultados/jordan1-youtube-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="407" alt="Vídeo oficial Jordan 1 de Saiko y Quevedo en YouTube con 4,4 millones de visitas y crédito Powered by Macuto Music" loading="lazy" decoding="async" data-grande="assets/resultados/jordan1-youtube.jpg">
-      <figcaption><b>«Jordan 1» — Saiko & Quevedo</b><span>#17 en tendencias de YouTube en el estreno · hoy 4,4M de visitas · «Powered by Macuto Music»</span></figcaption>
-    </figure>
-    <figure class="shot reveal d1">
-      <img src="assets/resultados/la-gordita-reels-600.webp" srcset="assets/resultados/la-gordita-reels-600.webp 600w, assets/resultados/la-gordita-reels-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="497" alt="Audio de La Gordita de Hector Miller, JeanPhi y Leo con 12,1K reels en Instagram" loading="lazy" decoding="async" data-grande="assets/resultados/la-gordita-reels.jpg">
-      <figcaption><b>«La Gordita» — audio viral en Instagram</b><span>Hector Miller, JeanPhi & Leo · 12,1K reels creados con la canción</span></figcaption>
-    </figure>
-    <figure class="shot reveal d2">
-      <img src="assets/resultados/stats-videos-600.webp" srcset="assets/resultados/stats-videos-600.webp 600w, assets/resultados/stats-videos-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="427" alt="Tabla de YouTube Studio con vídeos de 25, 18 y 8 millones de visualizaciones" loading="lazy" decoding="async" data-grande="assets/resultados/stats-videos.jpg">
-      <figcaption><b>Vídeos top en canales trabajados</b><span>25,1M · 18,8M · 8,5M de visualizaciones, con hasta un 98% de Me gusta</span></figcaption>
-    </figure>
     <figure class="shot reveal">
-      <img src="assets/resultados/stats-paises-600.webp" srcset="assets/resultados/stats-paises-600.webp 600w, assets/resultados/stats-paises-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="321" alt="Panel de países principales de Spotify for Artists con España, Estados Unidos y México a la cabeza" loading="lazy" decoding="async" data-grande="assets/resultados/stats-paises.jpg">
-      <figcaption><b>Audiencia internacional</b><span>España, EE. UU., México, Francia, Reino Unido, Alemania… oyentes en todo el mundo</span></figcaption>
+      <img src="assets/resultados/tiktok-4m-28-dias-600.webp" srcset="assets/resultados/tiktok-4m-28-dias-600.webp 600w, assets/resultados/tiktok-4m-28-dias-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="531" alt="Participación de una cuenta de TikTok del 27 de marzo al 23 de abril: 4,2 millones de visualizaciones de vídeos" loading="lazy" decoding="async" data-grande="assets/resultados/tiktok-4m-28-dias.jpg">
+      <figcaption><b>4,2 millones de visualizaciones en 28 días</b><span>TikTok · del 27 de marzo al 23 de abril</span></figcaption>
     </figure>
     <figure class="shot reveal d1">
-      <img src="assets/resultados/stats-algoritmo-600.webp" srcset="assets/resultados/stats-algoritmo-600.webp 600w, assets/resultados/stats-algoritmo-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="404" alt="Panel Algoritmo de Spotify for Artists: Radio con 69.601 oyentes y 653.662 reproducciones" loading="lazy" decoding="async" data-grande="assets/resultados/stats-algoritmo.jpg">
-      <figcaption><b>El algoritmo de Spotify trabajando</b><span>Radio: 69.601 oyentes · 653.662 reproducciones — alcance algorítmico real</span></figcaption>
+      <img src="assets/resultados/ig-tocame-427k-600.webp" srcset="assets/resultados/ig-tocame-427k-600.webp 600w, assets/resultados/ig-tocame-427k-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="674" alt="Spotify for Artists: un tema suma 427.109 reproducciones" loading="lazy" decoding="async" data-grande="assets/resultados/ig-tocame-427k-1000.webp">
+      <figcaption><b>427.109 reproducciones de un tema</b><span>Spotify for Artists · reproducciones totales</span></figcaption>
     </figure>
     <figure class="shot reveal d2">
-      <img src="assets/resultados/stats-videostats-600.webp" srcset="assets/resultados/stats-videostats-600.webp 600w, assets/resultados/stats-videostats-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="294" alt="YouTube Studio: vídeo con 288.848 visualizaciones desde su publicación" loading="lazy" decoding="async" data-grande="assets/resultados/stats-videostats.jpg">
-      <figcaption><b>288.848 visualizaciones de un solo vídeo</b><span>YouTube Studio · crecimiento sostenido desde la publicación</span></figcaption>
+      <img src="assets/resultados/jordan1-estreno-600.webp" srcset="assets/resultados/jordan1-estreno-600.webp 600w, assets/resultados/jordan1-estreno-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="739" alt="Descripción de un videoclip oficial en YouTube el día de su estreno: 7.627 Me gusta y 104.514 visualizaciones" loading="lazy" decoding="async" data-grande="assets/resultados/jordan1-estreno.jpg">
+      <figcaption><b>104.514 visualizaciones el día del estreno</b><span>YouTube · el mismo vídeo que hoy suma 4,4M de visitas</span></figcaption>
     </figure>
     <figure class="shot reveal">
       <img src="assets/resultados/stats-spotify-600.webp" srcset="assets/resultados/stats-spotify-600.webp 600w, assets/resultados/stats-spotify-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="251" alt="Spotify for Artists: lanzamiento con 839.033 streams acumulados" loading="lazy" decoding="async" data-grande="assets/resultados/stats-spotify.jpg">
       <figcaption><b>839.033 streams de un lanzamiento</b><span>Spotify for Artists · 79K reproducciones y 26K oyentes en un solo mes</span></figcaption>
     </figure>
     <figure class="shot reveal d1">
-      <img src="assets/resultados/editorial-helium-600.webp" srcset="assets/resultados/editorial-helium-600.webp 600w, assets/resultados/editorial-helium-850.webp 850w, assets/resultados/editorial-helium.jpg 850w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="942" alt="«Chula xq?!» destacada en la playlist editorial helium de Spotify" loading="lazy" decoding="async" data-grande="assets/resultados/editorial-helium.jpg">
-      <figcaption><b>«Chula xq?!» en "helium" — editorial de Spotify</b><span>Placement en playlist editorial oficial de Spotify</span></figcaption>
+      <img src="assets/resultados/tiktok-semana-octubre-600.webp" srcset="assets/resultados/tiktok-semana-octubre-600.webp 600w, assets/resultados/tiktok-semana-octubre-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="702" alt="Participación de una cuenta de TikTok del 5 al 11 de octubre: 207.000 visualizaciones de vídeos (+2.715 %), 26.600 Me gusta y 1.965 seguidores nuevos" loading="lazy" decoding="async" data-grande="assets/resultados/tiktok-semana-octubre.jpg">
+      <figcaption><b>207.000 visualizaciones en una semana</b><span>TikTok · del 5 al 11 de octubre: +2.715 % y 1.965 seguidores nuevos</span></figcaption>
     </figure>
     <figure class="shot reveal d2">
-      <img src="assets/resultados/stats-oyentes-761k-600.webp" srcset="assets/resultados/stats-oyentes-761k-600.webp 600w, assets/resultados/stats-oyentes-761k.jpg 900w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="1063" alt="Panel de Spotify for Artists: 761.995 oyentes y 2.392.760 reproducciones en 12 meses, con oyentes activos mensuales" loading="lazy" decoding="async" data-grande="assets/resultados/stats-oyentes-761k.jpg">
-      <figcaption><b>761.995 oyentes · 2,39M reproducciones</b><span>Público de 12 meses en Spotify for Artists (+64% oyentes, +77% reproducciones)</span></figcaption>
+      <img src="assets/resultados/ig-flamenco-flow-editorial-600.webp" srcset="assets/resultados/ig-flamenco-flow-editorial-600.webp 600w, assets/resultados/ig-flamenco-flow-editorial-796.webp 796w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="1170" alt="Playlist editorial Flamenco + Flow de Spotify con un tema del roster" loading="lazy" decoding="async" data-grande="assets/resultados/ig-flamenco-flow-editorial-796.webp">
+      <figcaption><b>Flamenco + Flow · editorial de Spotify</b><span>Nuevo placement en la playlist editorial</span></figcaption>
     </figure>
     <figure class="shot reveal">
-      <img src="assets/resultados/stats-145k-envivo-600.webp" srcset="assets/resultados/stats-145k-envivo-600.webp 600w, assets/resultados/stats-145k-envivo.jpg 850w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="932" alt="Spotify for Artists: 145.419 reproducciones de un single con 34 personas escuchando en vivo" loading="lazy" decoding="async" data-grande="assets/resultados/stats-145k-envivo.jpg">
-      <figcaption><b>145.419 reproducciones de un single</b><span>«Let Me Come To Life» · 34 personas escuchando en vivo en ese momento</span></figcaption>
+      <img src="assets/resultados/ig-estreno-1000-conectados-600.webp" srcset="assets/resultados/ig-estreno-1000-conectados-600.webp 600w, assets/resultados/ig-estreno-1000-conectados-720.webp 720w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="387" alt="Chat en directo del estreno de un videoclip en YouTube con 1.000 personas conectadas" loading="lazy" decoding="async" data-grande="assets/resultados/ig-estreno-1000-conectados-720.webp">
+      <figcaption><b>1.000 personas en el estreno</b><span>Chat en directo del estreno de un videoclip en YouTube</span></figcaption>
+    </figure>
+    <figure class="shot reveal d1">
+      <img src="assets/resultados/ig-spotify-181k-reproducciones-600.webp" srcset="assets/resultados/ig-spotify-181k-reproducciones-600.webp 600w, assets/resultados/ig-spotify-181k-reproducciones-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="725" alt="Panel de Spotify for Artists: 181.509 reproducciones en los últimos 28 días, un 11 % más" loading="lazy" decoding="async" data-grande="assets/resultados/ig-spotify-181k-reproducciones-1000.webp">
+      <figcaption><b>181.509 reproducciones en 28 días</b><span>Spotify for Artists · +11 %</span></figcaption>
+    </figure>
+    <figure class="shot reveal d2">
+      <img src="assets/resultados/tiktok-188k-seguidores-600.webp" srcset="assets/resultados/tiktok-188k-seguidores-600.webp 600w, assets/resultados/tiktok-188k-seguidores-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="512" alt="Análisis de un vídeo de TikTok: 188.500 visualizaciones, 22.700 Me gusta, 2.721 guardados y 2.871 seguidores nuevos" loading="lazy" decoding="async" data-grande="assets/resultados/tiktok-188k-seguidores.jpg">
+      <figcaption><b>2.871 seguidores nuevos con un vídeo</b><span>TikTok · 188.500 visualizaciones y 2.721 guardados</span></figcaption>
+    </figure>
+    <figure class="shot reveal">
+      <img src="assets/resultados/ig-novedades-dembow-600.webp" srcset="assets/resultados/ig-novedades-dembow-600.webp 600w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="829" alt="Un tema entre los destacados de la playlist Novedades Dembow de Spotify" loading="lazy" decoding="async" data-grande="assets/resultados/ig-novedades-dembow-600.webp">
+      <figcaption><b>Novedades Dembow · Spotify España</b><span>Un tema entre los destacados de la playlist</span></figcaption>
+    </figure>
+    <figure class="shot reveal d1">
+      <img src="assets/resultados/stats-videostats-600.webp" srcset="assets/resultados/stats-videostats-600.webp 600w, assets/resultados/stats-videostats-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="294" alt="YouTube Studio: vídeo con 288.848 visualizaciones desde su publicación" loading="lazy" decoding="async" data-grande="assets/resultados/stats-videostats.jpg">
+      <figcaption><b>288.848 visualizaciones de un solo vídeo</b><span>YouTube Studio · crecimiento sostenido desde la publicación</span></figcaption>
+    </figure>
+    <figure class="shot reveal d2">
+      <img src="assets/resultados/ig-201k-publicacion-600.webp" srcset="assets/resultados/ig-201k-publicacion-600.webp 600w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="543" alt="Spotify for Artists: 201.479 reproducciones totales de una publicación" loading="lazy" decoding="async" data-grande="assets/resultados/ig-201k-publicacion-600.webp">
+      <figcaption><b>201.479 reproducciones</b><span>Spotify for Artists · reproducciones totales de un remix</span></figcaption>
+    </figure>
+    <figure class="shot reveal">
+      <img src="assets/resultados/ig-fresco-amazon-600.webp" srcset="assets/resultados/ig-fresco-amazon-600.webp 600w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="979" alt="Playlist editorial Fresco de Amazon Music con un tema trabajado" loading="lazy" decoding="async" data-grande="assets/resultados/ig-fresco-amazon-600.webp">
+      <figcaption><b>Fresco · Amazon Music</b><span>Un tema durante un mes en la playlist editorial</span></figcaption>
+    </figure>
+    <figure class="shot reveal d1">
+      <img src="assets/resultados/ig-trapperz-mx-600.webp" srcset="assets/resultados/ig-trapperz-mx-600.webp 600w, assets/resultados/ig-trapperz-mx-900.webp 900w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="1025" alt="Aviso de Spotify: un tema añadido a la lista TRAPPERZ_MX" loading="lazy" decoding="async" data-grande="assets/resultados/ig-trapperz-mx-900.webp">
+      <figcaption><b>TRAPPERZ_MX · Spotify México</b><span>Un tema añadido a la lista</span></figcaption>
+    </figure>
+    <figure class="shot reveal d2">
+      <img src="assets/resultados/la-gordita-reels-600.webp" srcset="assets/resultados/la-gordita-reels-600.webp 600w, assets/resultados/la-gordita-reels-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="497" alt="Audio de La Gordita de Hector Miller, JeanPhi y Leo con 12,1K reels en Instagram" loading="lazy" decoding="async" data-grande="assets/resultados/la-gordita-reels.jpg">
+      <figcaption><b>«La Gordita» — audio viral en Instagram</b><span>Hector Miller, JeanPhi & Leo · 12,1K reels creados con la canción</span></figcaption>
+    </figure>
+    <figure class="shot reveal">
+      <img src="assets/resultados/ig-lunarcito-102k-600.webp" srcset="assets/resultados/ig-lunarcito-102k-600.webp 600w, assets/resultados/ig-lunarcito-102k-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="669" alt="Spotify for Artists: un single publicado en enero de 2026 suma 102.693 reproducciones" loading="lazy" decoding="async" data-grande="assets/resultados/ig-lunarcito-102k-1000.webp">
+      <figcaption><b>102.693 reproducciones de un single</b><span>Spotify for Artists · publicado en enero de 2026</span></figcaption>
+    </figure>
+    <figure class="shot reveal d1">
+      <img src="assets/resultados/tiktok-408k-video-600.webp" srcset="assets/resultados/tiktok-408k-video-600.webp 600w, assets/resultados/tiktok-408k-video-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="335" alt="Análisis de un vídeo de TikTok: 408.200 visualizaciones, 61.600 Me gusta, 1.813 veces compartido y 4.763 guardados" loading="lazy" decoding="async" data-grande="assets/resultados/tiktok-408k-video.jpg">
+      <figcaption><b>408.200 visualizaciones de un vídeo</b><span>TikTok · 61.600 Me gusta y 4.763 guardados</span></figcaption>
+    </figure>
+    <figure class="shot reveal d2">
+      <img src="assets/resultados/ig-oro-y-fe-73k-600.webp" srcset="assets/resultados/ig-oro-y-fe-73k-600.webp 600w, assets/resultados/ig-oro-y-fe-73k-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="548" alt="Spotify for Artists: un sencillo suma 73.497 reproducciones" loading="lazy" decoding="async" data-grande="assets/resultados/ig-oro-y-fe-73k-1000.webp">
+      <figcaption><b>73.497 reproducciones de un sencillo</b><span>Spotify for Artists · reproducciones totales de la publicación</span></figcaption>
+    </figure>
+    <figure class="shot reveal">
+      <img src="assets/resultados/cartier-primer-dia-600.webp" srcset="assets/resultados/cartier-primer-dia-600.webp 600w, assets/resultados/cartier-primer-dia-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="382" alt="Videoclip oficial en YouTube con 26.519 visualizaciones y 1.424 Me gusta al día siguiente de su estreno, y un comentario de Macuto Music" loading="lazy" decoding="async" data-grande="assets/resultados/cartier-primer-dia.jpg">
+      <figcaption><b>26.519 visualizaciones en su primer día</b><span>YouTube · el mismo videoclip que hoy pasa del millón</span></figcaption>
+    </figure>
+    <figure class="shot reveal d1">
+      <img src="assets/resultados/stats-paises-600.webp" srcset="assets/resultados/stats-paises-600.webp 600w, assets/resultados/stats-paises-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="321" alt="Panel de países principales de Spotify for Artists con España, Estados Unidos y México a la cabeza" loading="lazy" decoding="async" data-grande="assets/resultados/stats-paises.jpg">
+      <figcaption><b>Oyentes por país</b><span>España a la cabeza, con oyentes también en EE. UU., México, Francia, Reino Unido y Alemania</span></figcaption>
+    </figure>
+    <figure class="shot reveal d2">
+      <img src="assets/resultados/publico-paises-s4a-600.webp" srcset="assets/resultados/publico-paises-s4a-600.webp 600w, assets/resultados/publico-paises-s4a-1000.webp 1000w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="600" height="1037" alt="Spotify for Artists, público de 28 días: 17.768 oyentes en España, 8.200 en Chile y 7.214 en México, y Santiago de Chile y Madrid como ciudades principales" loading="lazy" decoding="async" data-grande="assets/resultados/publico-paises-s4a.jpg">
+      <figcaption><b>Oyentes a los dos lados del Atlántico</b><span>Spotify for Artists · 17.768 en España, 8.200 en Chile y 7.214 en México en 28 días</span></figcaption>
     </figure>
   </div>
-  <button class="ver-mas" type="button" data-despliega aria-controls="galeria" aria-expanded="false">Ver las 12 capturas</button>
+  <button class="ver-mas" type="button" data-despliega aria-controls="galeria" aria-expanded="false">Ver las 36 capturas</button>
   <div class="repite-cta reveal">
     <a href="solicitud.html" class="btn btn-purple">Solicita acceso</a>
     <span>Dos minutos. Te contesta una persona del equipo por WhatsApp o email.</span>
   </div>
+</div></section>
+
+<!-- HECHO EN CASA (11-oct-2026, Macuto: «mete este video como creación propia para artistas del DAP: mhylo ula ula 2», «mete esto con el
+     artista de venezuela Neeus SPOTY CANVAS_DRESSCODE SESSIONS_01_NEEUS» y «también hay un video horizontal que se llama El Clout en youtube»).
+     · Sesión: «NEEUS x EL CLOUT | Dresscode Session 1» (YouTube 6KpuHkW8ATo, canal El CLOUT, 27-mar-2026, 5:10; la descripción termina en
+       «PWRD by Macuto Music»; 12-oct, Macuto: fuera la cifra de visualizaciones del pie). Fachada: miniatura propia y, al pulsar, youtube-nocookie;
+       hasta entonces no se pide nada a YouTube. Sin JS, el botón es un enlace a YouTube.
+     · Canvas de Spotify de la misma sesión (8 s, sin audio) y «ULA ULA» de Mhylo (título del canal oficial del artista en YouTube): bucles
+       mudos que arrancan al entrar en pantalla; Mhylo con botón de sonido. Ficheros en assets/creacion/, 540×960, sin metadatos.
+     Estilos: movimiento.css §14 · comportamiento: movimiento.js §10. -->
+<section class="sec" id="creacion"><div class="wrap">
+  <div class="sec-head">
+    <div class="reveal"><span class="eyebrow">Hecho en casa</span><h2>Contenido que creamos para nuestros artistas</h2></div>
+    <p class="reveal d1">Videoclips, sesiones de fotos, rodajes y Canvas de Spotify en colaboración con Macuto Music y su Network.</p>
+  </div>
+  <!-- EN EL ESTUDIO DE GRABACIÓN (12-oct-2026). Macuto: «vamos a separar los vídeos que tenemos de estudios de grabación, hay vídeos verticales
+       de sesiones» y «detrás de cámara en estudio de grabación lo colocamos a continuación». Las dos sesiones grabadas en estudio (Neeus ×
+       El Clout y El Dray × Joao del Monte) con sus verticales al lado; justo debajo va «Detrás de cámara · estudio de grabación»
+       (sesión «Diseño Web OK») y después los videoclips. Estilos de la cabecera: los de .clips__cab (movimiento.css §15). -->
+  <div class="estudio">
+    <div class="clips__cab">
+      <h3 class="clips__titulo reveal">En el estudio de grabación</h3>
+      <p class="clips__nota reveal d1">Sesiones y piezas grabadas con Macuto Music y asociados.</p>
+    </div>
+    <div class="creacion">
+      <figure class="video-h creacion__sesion reveal">
+        <div class="video-h__marco" data-youtube="6KpuHkW8ATo">
+          <img src="assets/creacion/neeus-elclout-session-1280.webp" width="1280" height="720" alt="Neeus canta en la Dresscode Session 1 de EL CLOUT" loading="lazy" decoding="async">
+          <a class="video-h__play" href="https://www.youtube.com/watch?v=6KpuHkW8ATo" target="_blank" rel="noopener"><span class="video-h__ico" aria-hidden="true"></span><span>Ver la sesión · 5:10</span></a>
+        </div>
+        <figcaption><b>NEEUS × EL CLOUT · Dresscode Session 1</b><span>Proyecto en conjunto a El Clout desde The Gottit Sauce</span></figcaption>
+      </figure>
+      <figure class="creacion__vertical reveal d1">
+        <div class="movil"><video class="bucle" controls muted loop playsinline preload="none" width="540" height="960" data-poster="assets/creacion/neeus-canvas-poster.webp" aria-label="Spotify Canvas de Neeus">
+          <source src="assets/creacion/neeus-canvas-540.mp4" type="video/mp4"></video></div>
+        <figcaption><b>Spotify Canvas</b><span>El bucle que acompaña en Spotify</span></figcaption>
+      </figure>
+      <figure class="video-h creacion__sesion reveal">
+        <div class="video-h__marco">
+          <video controls playsinline preload="none" width="1280" height="720" data-poster="assets/creacion/eldray-joao-del-monte-poster.webp" aria-label="El Dray y Joao del Monte: pieza grabada en estudio, con sonido">
+            <source src="assets/creacion/eldray-joao-del-monte-1280.mp4" type="video/mp4"></video>
+          <button class="video-h__play" type="button" hidden><span class="video-h__ico" aria-hidden="true"></span><span>Ver la pieza · 0:20</span></button>
+        </div>
+        <figcaption><b>EL DRAY × JOAO DEL MONTE · En el estudio</b><span>Pieza grabada en estudio con Macuto Music · se escucha con sonido</span></figcaption>
+      </figure>
+      <figure class="creacion__vertical reveal d2">
+        <div class="movil"><video class="bucle" controls muted loop playsinline preload="none" width="540" height="960" data-poster="assets/creacion/mhylo-ula-ula-poster.webp" aria-label="Mhylo, «ULA ULA»: rodaje en plató">
+          <source src="assets/creacion/mhylo-ula-ula-540.mp4" type="video/mp4"></video>
+          <button class="movil__sonido" type="button" aria-pressed="false" hidden>Activar sonido</button></div>
+        <figcaption><b>Rodaje en plató</b><span>Pieza vertical para redes</span></figcaption>
+      </figure>
+    </div>
+  </div>
+  <!-- /EN EL ESTUDIO DE GRABACIÓN · aquí debajo: «Detrás de cámara · estudio de grabación» (sesión «Diseño Web OK») -->
+  <!-- DETRÁS DE CÁMARA · ESTUDIO DE GRABACIÓN · sesión «Diseño Web OK» (12-oct-2026). Macuto: «vamos a separar los vídeos que tenemos de estudios de grabación…
+       y detrás de cámara en estudio de grabación lo colocamos a continuación». 9 piezas: 8 de su biblioteca de Fotos (sin metadatos) y el Bootcamp Macuto Music
+       en Rebel 11 Studios (destacada «Macuto» de su Instagram, recortada sin las menciones a otras cuentas). Una fila que avanza sola (movimiento.js §11 vía
+       .testimonios__fila); estilos: home.css §24 (.detras); vídeos: el script de #industria (.evento__video). -->
+  <!-- loading="lazy" va ANTES de src: movimiento.js clona estas filas y, con src primero, la copia descarga la foto al cargar la portada -->
+  <div class="detras detras--estudio">
+    <h3 class="detras__titulo reveal">Detrás de cámara · estudio de grabación</h3>
+    <div class="detras__filas">
+      <ul class="detras__fila testimonios__fila" aria-label="Grabaciones, sesiones y visitas a estudios de grabación">
+        <li class="detras__item"><img loading="lazy" src="assets/creacion/detras/estudio-led-480.webp" srcset="assets/creacion/detras/estudio-led-480.webp 480w" sizes="(max-width: 600px) 119px, (max-width: 880px) 136px, 169px" width="480" height="853" alt="Un productor entra en un estudio con techo de luces LED" decoding="async"><video class="evento__video" data-src="assets/creacion/detras/estudio-led.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video><span class="detras__pie">En el estudio</span></li>
+        <li class="detras__item"><img loading="lazy" src="assets/creacion/detras/en-el-estudio-480.webp" srcset="assets/creacion/detras/en-el-estudio-480.webp 480w, assets/creacion/detras/en-el-estudio-900.webp 900w" sizes="(max-width: 600px) 119px, (max-width: 880px) 136px, 169px" width="480" height="853" alt="Un productor escucha una mezcla recostado en la silla del estudio" decoding="async"><span class="detras__pie">En el estudio</span></li>
+        <li class="detras__item"><img loading="lazy" src="assets/creacion/detras/discos-platino-480.webp" srcset="assets/creacion/detras/discos-platino-480.webp 480w" sizes="(max-width: 600px) 119px, (max-width: 880px) 136px, 169px" width="480" height="853" alt="Pared de discos de oro y platino en un estudio" decoding="async"><video class="evento__video" data-src="assets/creacion/detras/discos-platino.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video><span class="detras__pie">Visita de estudio</span></li>
+        <li class="detras__item"><img loading="lazy" src="assets/creacion/detras/produccion-en-casa-480.webp" srcset="assets/creacion/detras/produccion-en-casa-480.webp 480w" sizes="(max-width: 600px) 119px, (max-width: 880px) 136px, 169px" width="480" height="853" alt="Vista cenital de un productor trabajando en su estudio" decoding="async"><video class="evento__video" data-src="assets/creacion/detras/produccion-en-casa.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video><span class="detras__pie">Producción</span></li>
+        <li class="detras__item"><img loading="lazy" src="assets/creacion/detras/bootcamp-rebel11-480.webp" srcset="assets/creacion/detras/bootcamp-rebel11-480.webp 480w, assets/creacion/detras/bootcamp-rebel11-900.webp 720w" sizes="(max-width: 600px) 168px, (max-width: 880px) 192px, 240px" width="480" height="600" alt="Sala de control de Rebel 11 Studios en Miami, con luces turquesa, durante el Bootcamp Macuto Music" decoding="async"><video class="evento__video" data-src="assets/creacion/detras/bootcamp-rebel11.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video><span class="detras__pie">Bootcamp Macuto Music · Rebel 11 Studios, Miami</span></li>
+        <li class="detras__item"><img loading="lazy" src="assets/creacion/detras/selfi-estudio-480.webp" srcset="assets/creacion/detras/selfi-estudio-480.webp 480w" sizes="(max-width: 600px) 119px, (max-width: 880px) 136px, 169px" width="480" height="853" alt="Macuto graba un selfi en el estudio con un artista detrás" decoding="async"><video class="evento__video" data-src="assets/creacion/detras/selfi-estudio.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video><span class="detras__pie">En el estudio</span></li>
+        <li class="detras__item"><img loading="lazy" src="assets/creacion/detras/visita-estudio-480.webp" srcset="assets/creacion/detras/visita-estudio-480.webp 480w, assets/creacion/detras/visita-estudio-900.webp 900w" sizes="(max-width: 600px) 119px, (max-width: 880px) 136px, 169px" width="480" height="853" alt="Un artista recorre un estudio de grabación con sofá y escalones" decoding="async"><span class="detras__pie">Visita de estudio</span></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /DETRÁS DE CÁMARA · ESTUDIO DE GRABACIÓN -->
+  <!-- VIDEOCLIPS Y PIEZAS DE ESTUDIO (12-oct-2026). Macuto: «Videoclips y piezas de estudio y Videoclips hechos por Macuto Music deben estar
+       unidos… es más llamativo verlo como Videoclips y piezas de estudio en loops pequeños». Un solo bloque de bucles mudos de 5 s
+       (assets/creacion/clips/ y assets/creacion/youtube/). Los .clip--yt son videoclips de la lista de YouTube de Macuto (sin icono ▶ desde el 12-oct, por orden de Macuto):
+       al pulsar, el vídeo entero se ve aquí en un <dialog> con youtube-nocookie (movimiento.js §10); sin JS, abren YouTube.
+       «A Puro Dolor» (Línea 6) estaba en los dos bloques: queda una ficha, con su bucle y enlazada al vídeo entero.
+       Sin cifras (Macuto, 12-oct). Las anchas ocupan 2×2: el orden está hecho para que cada fila de 4 se llene (10 visibles = 4 filas;
+       las 10 de «Ver todos» = 4 filas). En móvil, carrusel. Estilos: movimiento.css §15. -->
+  <div class="clips">
+    <div class="clips__cab">
+      <h3 class="clips__titulo reveal">Videoclips y piezas de estudio</h3>
+      <p class="clips__nota reveal d1">Videoclips oficiales, piezas de estudio, visualizers realizados.</p>
+    </div>
+    <ul class="clips__lista carril-movil plegada" id="clips-lista" aria-label="Videoclips y piezas de estudio de Macuto Music">
+      <li class="clip clip--ancho"><video class="bucle" controls muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/clips/mhylo-horny.webp" aria-label="Fragmento de un videoclip: fondo rojo con una luna"><source src="assets/creacion/clips/mhylo-horny.mp4" type="video/mp4"></video></li>
+      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=AXYFuY1FtuM" data-youtube-dialogo="AXYFuY1FtuM" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (3:43)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/AXYFuY1FtuM.webp" aria-hidden="true"><source src="assets/creacion/youtube/AXYFuY1FtuM.mp4" type="video/mp4"></video></a></li>
+      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=ER2hRkaDjyQ" data-youtube-dialogo="ER2hRkaDjyQ" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (2:57)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/ER2hRkaDjyQ.webp" aria-hidden="true"><source src="assets/creacion/youtube/ER2hRkaDjyQ.mp4" type="video/mp4"></video></a></li>
+      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=PVA7NS-lfWU" data-youtube-dialogo="PVA7NS-lfWU" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (2:58)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/PVA7NS-lfWU.webp" aria-hidden="true"><source src="assets/creacion/youtube/PVA7NS-lfWU.mp4" type="video/mp4"></video></a></li>
+      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=43IUQfz_jKk" data-youtube-dialogo="43IUQfz_jKk" data-titulo="Visualizer hecho por Macuto Music" aria-label="Ver el visualizer (1:59)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/43IUQfz_jKk.webp" aria-hidden="true"><source src="assets/creacion/youtube/43IUQfz_jKk.mp4" type="video/mp4"></video></a></li>
+      <li class="clip"><video class="bucle" controls muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/clips/mhylo-blackmirror.webp" aria-label="Fragmento de un videoclip: fondo amarillo con un corazón"><source src="assets/creacion/clips/mhylo-blackmirror.mp4" type="video/mp4"></video></li>
+      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=IHOt0iU1qsA" data-youtube-dialogo="IHOt0iU1qsA" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (3:18)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/IHOt0iU1qsA.webp" aria-hidden="true"><source src="assets/creacion/youtube/IHOt0iU1qsA.mp4" type="video/mp4"></video></a></li>
+      <li class="clip clip--yt clip--ancho"><a class="clip__enlace" href="https://www.youtube.com/watch?v=Wwzz0KR8Uc0" data-youtube-dialogo="Wwzz0KR8Uc0" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (3:16)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/clips/linea6-a-puro-dolor.webp" aria-hidden="true"><source src="assets/creacion/clips/linea6-a-puro-dolor.mp4" type="video/mp4"></video></a></li>
+      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=GBPWWrqdVos" data-youtube-dialogo="GBPWWrqdVos" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (3:11)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/GBPWWrqdVos.webp" aria-hidden="true"><source src="assets/creacion/youtube/GBPWWrqdVos.mp4" type="video/mp4"></video></a></li>
+      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=DASYp7ZFjcw" data-youtube-dialogo="DASYp7ZFjcw" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (3:44)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/DASYp7ZFjcw.webp" aria-hidden="true"><source src="assets/creacion/youtube/DASYp7ZFjcw.mp4" type="video/mp4"></video></a></li>
+      <li class="clip clip--yt clip--ancho"><a class="clip__enlace" href="https://www.youtube.com/watch?v=IJroRNJFujs" data-youtube-dialogo="IJroRNJFujs" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (2:53)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/IJroRNJFujs.webp" aria-hidden="true"><source src="assets/creacion/youtube/IJroRNJFujs.mp4" type="video/mp4"></video></a></li>
+      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=NgsJS2X0cdk" data-youtube-dialogo="NgsJS2X0cdk" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (3:12)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/NgsJS2X0cdk.webp" aria-hidden="true"><source src="assets/creacion/youtube/NgsJS2X0cdk.mp4" type="video/mp4"></video></a></li>
+      <li class="clip"><video class="bucle" controls muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/clips/mhylo-cell-phone.webp" aria-label="Fragmento de un videoclip: fondo gris"><source src="assets/creacion/clips/mhylo-cell-phone.mp4" type="video/mp4"></video></li>
+      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=-o1edIkJCuw" data-youtube-dialogo="-o1edIkJCuw" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (2:12)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/-o1edIkJCuw.webp" aria-hidden="true"><source src="assets/creacion/youtube/-o1edIkJCuw.mp4" type="video/mp4"></video></a></li>
+      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=G8YUXPE5Rsg" data-youtube-dialogo="G8YUXPE5Rsg" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (3:02)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/G8YUXPE5Rsg.webp" aria-hidden="true"><source src="assets/creacion/youtube/G8YUXPE5Rsg.mp4" type="video/mp4"></video></a></li>
+      <li class="clip"><video class="bucle" controls muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/clips/mhylo-promesa.webp" aria-label="Fragmento de un videoclip: fondo negro"><source src="assets/creacion/clips/mhylo-promesa.mp4" type="video/mp4"></video></li>
+      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=pjaFkCta3fQ" data-youtube-dialogo="pjaFkCta3fQ" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (2:53)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/pjaFkCta3fQ.webp" aria-hidden="true"><source src="assets/creacion/youtube/pjaFkCta3fQ.mp4" type="video/mp4"></video></a></li>
+      <li class="clip clip--yt clip--ancho"><a class="clip__enlace" href="https://www.youtube.com/watch?v=NzggQXs59U0" data-youtube-dialogo="NzggQXs59U0" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (3:39)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/NzggQXs59U0.webp" aria-hidden="true"><source src="assets/creacion/youtube/NzggQXs59U0.mp4" type="video/mp4"></video></a></li>
+      <li class="clip"><video class="bucle" controls muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/clips/mhylo-que-pegriloso.webp" aria-label="Fragmento de un videoclip: fondo azul con focos"><source src="assets/creacion/clips/mhylo-que-pegriloso.mp4" type="video/mp4"></video></li>
+      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=5oTiqZjdmmE" data-youtube-dialogo="5oTiqZjdmmE" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (2:11)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/5oTiqZjdmmE.webp" aria-hidden="true"><source src="assets/creacion/youtube/5oTiqZjdmmE.mp4" type="video/mp4"></video></a></li>
+    </ul>
+    <button class="ver-mas" type="button" data-despliega data-desde="10" aria-controls="clips-lista" aria-expanded="false">Ver todos los videoclips</button>
+  </div>
+  <!-- /VIDEOCLIPS Y PIEZAS DE ESTUDIO -->
+  <!-- DETRÁS DE CÁMARA · sesión «Diseño Web OK» (12-oct-2026), acordado con la sesión de #creacion: bloque suyo dentro de esta sección.
+       Macuto: «este contenido lo encuentras en mis fotos y hemos de ponerlo en contenido creado» y «más contenido creando para artistas».
+       9 piezas de rodajes y sesiones de fotos de su biblioteca de Fotos, sin metadatos (lo de estudio de grabación va en «Detrás de cámara · estudio de grabación», más arriba); 6 vídeos mudos en bucle (540 px, hasta 8 s y un solo plano) sobre su póster y 19 fotos (dos son el primer plano de un montaje).
+       Pies de Macuto (12-oct). Lo que sale con gente conocida (El Dray, Baby Rasta, DT Bilardo y Everland, L-Gante) y lo de YouTube, Warner, el concierto de Madrid y la negociación pasó a #industria por orden suya; orden al azar sin dos de la misma sesión a menos de 4 puestos; lugares, solo si se leen en la imagen.
+       Formato de #testimonios (12-oct, Macuto): dos filas que avanzan solas en sentido contrario; las mueve movimiento.js §11, que busca
+       .testimonios__fila (por eso cada <ul> lleva también esa clase). Estilos: home.css §24 · vídeos: el script de #industria (.evento__video). -->
+  <div class="detras">
+    <h3 class="detras__titulo reveal">Detrás de cámara · rodajes y sesiones</h3>
+    <div class="detras__filas">
+      <ul class="detras__fila testimonios__fila testimonios__fila--inversa" aria-label="Rodajes y sesiones de fotos con nuestros artistas">
+        <li class="detras__item"><img loading="lazy" src="assets/creacion/detras/sesion-fotos-interior-480.webp" srcset="assets/creacion/detras/sesion-fotos-interior-480.webp 480w, assets/creacion/detras/sesion-fotos-interior-900.webp 900w" sizes="(max-width: 600px) 172px, (max-width: 880px) 197px, 246px" width="480" height="587" alt="Grabación de un videoclip: una artista posa en una cama mientras la graban" decoding="async"><span class="detras__pie">Grabando un videoclip</span></li>
+        <li class="detras__item"><img loading="lazy" src="assets/creacion/detras/preparando-plano-480.webp" srcset="assets/creacion/detras/preparando-plano-480.webp 480w, assets/creacion/detras/preparando-plano-900.webp 900w" sizes="(max-width: 600px) 374px, (max-width: 880px) 427px, 534px" width="480" height="270" alt="Macuto monta la cámara en el estabilizador sobre el césped" decoding="async"><video class="evento__video" data-src="assets/creacion/detras/preparando-plano.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video><span class="detras__pie">Preparando el plano</span></li>
+        <li class="detras__item"><img loading="lazy" src="assets/creacion/detras/equipo-rodaje-480.webp" srcset="assets/creacion/detras/equipo-rodaje-480.webp 480w, assets/creacion/detras/equipo-rodaje-900.webp 900w" sizes="(max-width: 600px) 263px, (max-width: 880px) 300px, 375px" width="480" height="384" alt="El equipo de rodaje con sus cámaras en un estudio con luces de color" decoding="async"><span class="detras__pie">Equipo de rodaje</span></li>
+        <li class="detras__item"><img loading="lazy" src="assets/creacion/detras/rodaje-plato-focos-480.webp" srcset="assets/creacion/detras/rodaje-plato-focos-480.webp 480w" sizes="(max-width: 600px) 119px, (max-width: 880px) 136px, 169px" width="480" height="853" alt="Sesión de fotos en plató: Macuto fotografía a un artista entre focos y difusores" decoding="async"><video class="evento__video" data-src="assets/creacion/detras/rodaje-plato-focos.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video><span class="detras__pie">Sesión de fotos</span></li>
+        <li class="detras__item"><img loading="lazy" src="assets/creacion/detras/backstage-rodaje-480.webp" srcset="assets/creacion/detras/backstage-rodaje-480.webp 480w" sizes="(max-width: 600px) 119px, (max-width: 880px) 136px, 169px" width="480" height="853" alt="Backstage de un rodaje: una artista espera su toma junto al monitor" decoding="async"><video class="evento__video" data-src="assets/creacion/detras/backstage-rodaje.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video><span class="detras__pie">Backstage de rodaje</span></li>
+        <li class="detras__item"><img loading="lazy" src="assets/creacion/detras/videoclip-carretera-480.webp" srcset="assets/creacion/detras/videoclip-carretera-480.webp 480w, assets/creacion/detras/videoclip-carretera-900.webp 900w" sizes="(max-width: 600px) 119px, (max-width: 880px) 136px, 169px" width="480" height="853" alt="Rodaje de un videoclip en una carretera al sol: el artista baila con su grupo" decoding="async"><video class="evento__video" data-src="assets/creacion/detras/videoclip-carretera.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video><span class="detras__pie">Rodaje de videoclip</span></li>
+        <li class="detras__item"><img loading="lazy" src="assets/creacion/detras/rodaje-estabilizador-480.webp" srcset="assets/creacion/detras/rodaje-estabilizador-480.webp 480w" sizes="(max-width: 600px) 119px, (max-width: 880px) 136px, 169px" width="480" height="853" alt="Macuto graba con un estabilizador en un aparcamiento al atardecer" decoding="async"><video class="evento__video" data-src="assets/creacion/detras/rodaje-estabilizador.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video><span class="detras__pie">Rodaje con estabilizador</span></li>
+        <li class="detras__item"><img loading="lazy" src="assets/creacion/detras/sesion-fotos-exterior-480.webp" srcset="assets/creacion/detras/sesion-fotos-exterior-480.webp 480w, assets/creacion/detras/sesion-fotos-exterior-900.webp 900w" sizes="(max-width: 600px) 141px, (max-width: 880px) 161px, 201px" width="480" height="718" alt="Sesión de fotos en exterior: una artista con vestido de flores y el fotógrafo con su cámara" decoding="async"><span class="detras__pie">Sesión de fotos</span></li>
+        <li class="detras__item"><img loading="lazy" src="assets/creacion/detras/rodaje-videoclip-piscina-480.webp" srcset="assets/creacion/detras/rodaje-videoclip-piscina-480.webp 480w" sizes="(max-width: 600px) 119px, (max-width: 880px) 136px, 169px" width="480" height="853" alt="Rodaje de un videoclip en una piscina con globos, cámara en mano" decoding="async"><video class="evento__video" data-src="assets/creacion/detras/rodaje-videoclip-piscina.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video><span class="detras__pie">Rodaje de videoclip</span></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /DETRÁS DE CÁMARA -->
 </div></section>
 
 <!-- NOVEDADES DEL EQUIPO -->
@@ -459,17 +733,17 @@
     <article class="nov reveal" data-inicio="2026-09-19" data-fin="2026-09-19">
       <span class="nov-fecha">19 septiembre 2026 · Madrid</span>
       <h3>Mastermind presencial</h3>
-      <p>Seremos <b>más de 40 personas</b> en <b>PKO Studios</b>, uno de los estudios más grandes y reconocidos de Madrid, en una jornada solo para artistas del DAP.</p>
+      <p>Nos juntamos en <b>PKO Studios</b>, uno de los estudios más grandes y reconocidos de Madrid, en una jornada solo para artistas del DAP: sala de control, cabina y productores.</p>
     </article>
     <article class="nov reveal d1" data-inicio="2026-09-22" data-fin="2026-09-28">
       <span class="nov-fecha">22–28 septiembre 2026</span>
       <h3>Una semana de trabajo en Dinamarca</h3>
-      <p><b>Angelo Gutiérrez (Macuto)</b>, fundador de Macuto Music, estará siete días en Dinamarca. Europa también cuenta: trabajamos en Latam, Europa y USA.</p>
+      <p><b>Angelo Gutiérrez (Macuto)</b>, fundador de Macuto Music, estuvo siete días en Dinamarca. Europa también cuenta: trabajamos en Latam, Europa y USA.</p>
     </article>
     <article class="nov reveal d2" data-inicio="2026-10-03" data-fin="2026-10-03">
       <span class="nov-fecha">3 octubre 2026</span>
       <h3>VIP en NODE Madrid</h3>
-      <p><b>Macuto asiste con pase VIP a NODE</b>, el encuentro de Madrid donde coinciden productores, ingenieros, sellos y marcas de la industria musical. Vamos a por lo que no sale en el cartel: conversaciones que abran puertas a los artistas del DAP.</p>
+      <p><b>Macuto estuvo con pase VIP en NODE</b>, el encuentro de Madrid donde coinciden productores, ingenieros, sellos y marcas de la industria musical. Fuimos a por lo que no sale en el cartel: conversaciones que abran puertas a los artistas del DAP.</p>
     </article>
     <article class="nov reveal" data-inicio="2026-10-19" data-fin="2026-10-22">
       <span class="nov-fecha">19–22 octubre 2026</span>
@@ -495,26 +769,54 @@
        «forbes-2026-equipo»: Jorge (traje azul) y Ester (de blanco), confirmado por Macuto el 11-oct-2026.
        11-oct (tarde), Macuto: «quita esa [la acreditación de 2025] y pon a Neyver conmigo, donde somos grupo, fotos con otros invitados y fundadores… pon y luego descarto».
        Solo se nombra a quien Macuto ha nombrado (Neyver en la foto de grupo y en «forbes-2026-invitados», confirmado el 11-oct: «ella es»; Jorge y Ester); al resto de invitados no se les identifica. -->
+  <!-- Mastermind (11-oct-2026, Macuto: «quiero poner el video de mastermind 1 y mastermind 2 de barcelona y madrid»; de Barcelona, «solo
+       Barcelona · 1.ª edición», sin fecha ni sitio). El aftermovie de Madrid NO va aquí: Macuto pidió a la sesión «Diseño Web OK» verlo en grande
+       en la sección #vision (acordado entre sesiones el 11-oct para no repetirlo); aquí, su portada enlaza a #vision. Si #vision desaparece, quitar el enlace.
+       Barcelona: de momento la foto de grupo que Macuto pasó a la sesión «Diseño Web OK» (recortada a 16:9, sin metadatos); el vídeo no ha llegado.
+       Cuando llegue, sustituye al <img> con el mismo marcado que el .video-h de #creacion (estilos: movimiento.css §14 · JS: movimiento.js §10).
+       11-oct (noche), Macuto: «no pongas ediciones y solo usa fotos»: fuera «1.ª/2.ª edición» y el fotograma del aftermovie con su enlace a #vision;
+       Madrid lleva una foto propia del rodaje (DSC00415, RAW revelado, sin metadatos; en la pantalla del portátil solo se ve Spotify). -->
   <div class="evento reveal" id="mastermind">
     <div class="evento__cab">
-      <h3>Mastermind de Madrid</h3>
-      <p>19 de septiembre de 2026 · PKO Studios. Una jornada solo para artistas del DAP: sesiones en la sala de control, grabación en cabina y trabajo con productores.</p>
+      <h3>Mastermind DAP</h3>
+      <p>Jornadas privadas y presenciales solo para artistas del DAP.</p>
     </div>
-    <div class="evento__fotos evento__fotos--3 carril-movil">
+    <!-- VER MÁS · sesión «Diseño Web OK» (12-oct-2026), Macuto: «en mastermind deja 6 fotos clave como las que están y luego añade el ver más…
+         para que puedas meter de barcelona, videos etc». Las 6 de Madrid se ven siempre (12-oct: los 3 vídeos cortados del aftermovie se quitaron por orden de Macuto; van vídeos de Fotos); desde la 7.ª, las de Barcelona (25-abr-2026, app Fotos, sin metadatos; Macuto: sin rótulo de lugar),
+         3 de ellas vídeo mudo en bucle (.evento__video). Plegado: home.css §25; despliegue: el script [data-despliega] de la home. -->
+    <div class="evento__fotos evento__fotos--3 carril-movil plegada" id="mastermind-fotos">
+      <figure class="evento__foto--alta"><img src="assets/eventos/mastermind-madrid-sala-antes-despues-640.webp" srcset="assets/eventos/mastermind-madrid-sala-antes-despues-640.webp 640w, assets/eventos/mastermind-madrid-sala-antes-despues-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="1138" alt="La sala de control de PKO Studios, vacía al principio y llena de artistas del DAP en pocos segundos (vídeo acelerado)" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/eventos/mastermind-madrid-sala-antes-despues.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></figure>
       <figure><img src="assets/eventos/mastermind-macuto-mesa-640.webp" srcset="assets/eventos/mastermind-macuto-mesa-640.webp 640w, assets/eventos/mastermind-macuto-mesa-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="427" alt="Macuto explica a los artistas del DAP en la mesa de mezclas de PKO Studios durante la Mastermind de Madrid" loading="lazy" decoding="async"></figure>
       <figure><img src="assets/eventos/mastermind-sala-640.webp" srcset="assets/eventos/mastermind-sala-640.webp 640w, assets/eventos/mastermind-sala-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="427" alt="Sala llena de artistas del DAP sentados escuchando en PKO Studios" loading="lazy" decoding="async"></figure>
+      <figure class="evento__foto--alta"><img src="assets/eventos/mastermind-madrid-artista-cabina-640.webp" srcset="assets/eventos/mastermind-madrid-artista-cabina-640.webp 640w, assets/eventos/mastermind-madrid-artista-cabina-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="1138" alt="Un artista del DAP canta en la cabina de grabación de fondo amarillo" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/eventos/mastermind-madrid-artista-cabina.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></figure>
       <figure><img src="assets/eventos/mastermind-cabina-640.webp" srcset="assets/eventos/mastermind-cabina-640.webp 640w, assets/eventos/mastermind-cabina-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="427" alt="Dos artistas en la cabina de grabación de PKO Studios, con auriculares y micrófono" loading="lazy" decoding="async"></figure>
       <figure><img src="assets/eventos/mastermind-mesa-productor-640.webp" srcset="assets/eventos/mastermind-mesa-productor-640.webp 640w, assets/eventos/mastermind-mesa-productor-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="427" alt="Una artista y un productor trabajan en la mesa de mezclas de PKO Studios" loading="lazy" decoding="async"></figure>
+      <figure class="evento__foto--alta"><img src="assets/eventos/mastermind-madrid-artista-voces-640.webp" srcset="assets/eventos/mastermind-madrid-artista-voces-640.webp 640w, assets/eventos/mastermind-madrid-artista-voces-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="1138" alt="Un artista del DAP graba voces con cascos en la sala de PKO Studios" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/eventos/mastermind-madrid-artista-voces.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></figure>
       <figure><img src="assets/eventos/mastermind-artistas-640.webp" srcset="assets/eventos/mastermind-artistas-640.webp 640w, assets/eventos/mastermind-artistas-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="427" alt="Dos artistas del DAP repasan una letra en el móvil durante la Mastermind" loading="lazy" decoding="async"></figure>
       <figure><img src="assets/eventos/mastermind-pko-studios-640.webp" srcset="assets/eventos/mastermind-pko-studios-640.webp 640w, assets/eventos/mastermind-pko-studios-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="427" alt="Logotipo de PKO Studios en la pared del estudio" loading="lazy" decoding="async"></figure>
+      <figure class="evento__foto--alta"><img src="assets/eventos/mastermind-madrid-artista-micro-640.webp" srcset="assets/eventos/mastermind-madrid-artista-micro-640.webp 640w, assets/eventos/mastermind-madrid-artista-micro-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="1138" alt="Una artista del DAP canta ante el micrófono en la Mastermind de Madrid" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/eventos/mastermind-madrid-artista-micro.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></figure>
+      <figure><img src="assets/eventos/mastermind-madrid-sala-control-640.webp" srcset="assets/eventos/mastermind-madrid-sala-control-640.webp 640w, assets/eventos/mastermind-madrid-sala-control-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="360" alt="Artistas del DAP en la sala de control de PKO Studios" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/eventos/mastermind-madrid-sala-control.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></figure>
+      <figure><img src="assets/eventos/mastermind-madrid-escucha-640.webp" srcset="assets/eventos/mastermind-madrid-escucha-640.webp 640w, assets/eventos/mastermind-madrid-escucha-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="360" alt="Una artista graba en la cabina amarilla mientras otros artistas escuchan" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/eventos/mastermind-madrid-escucha.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></figure>
+      <figure class="evento__foto--alta"><img src="assets/eventos/mastermind-madrid-artista-sesion-640.webp" srcset="assets/eventos/mastermind-madrid-artista-sesion-640.webp 640w, assets/eventos/mastermind-madrid-artista-sesion-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="1138" alt="Un artista del DAP graba en la cabina amarilla mientras el equipo escucha" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/eventos/mastermind-madrid-artista-sesion.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></figure>
+      <figure><img src="assets/eventos/mastermind-madrid-productor-640.webp" srcset="assets/eventos/mastermind-madrid-productor-640.webp 640w, assets/eventos/mastermind-madrid-productor-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="360" alt="Un productor trabaja en la mesa de mezclas rodeado de artistas del DAP" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/eventos/mastermind-madrid-productor.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></figure>
+      <figure class="evento__foto--alta"><img src="assets/eventos/mastermind-bcn-actuacion-640.webp" srcset="assets/eventos/mastermind-bcn-actuacion-640.webp 640w, assets/eventos/mastermind-bcn-actuacion-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="1138" alt="Un artista del DAP canta su tema en la sala de control durante la Mastermind DAP" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/eventos/mastermind-bcn-actuacion.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></figure>
+      <figure><img src="assets/eventos/mastermind-bcn-grupo-640.webp" srcset="assets/eventos/mastermind-bcn-grupo-640.webp 640w, assets/eventos/mastermind-bcn-grupo-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="853" alt="Foto de grupo de los artistas del DAP y el equipo en el estudio, en la Mastermind DAP" loading="lazy" decoding="async"></figure>
+      <figure class="evento__foto--alta"><img src="assets/eventos/mastermind-bcn-sesion-640.webp" srcset="assets/eventos/mastermind-bcn-sesion-640.webp 640w, assets/eventos/mastermind-bcn-sesion-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="1138" alt="Artistas del DAP sentados escuchan una sesión en la sala de control, en la Mastermind DAP" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/eventos/mastermind-bcn-sesion.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></figure>
+      <figure><img src="assets/eventos/mastermind-bcn-mesa-640.webp" srcset="assets/eventos/mastermind-bcn-mesa-640.webp 640w, assets/eventos/mastermind-bcn-mesa-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="853" alt="Un productor trabaja en la mesa de mezclas bajo luces moradas, en la Mastermind DAP" loading="lazy" decoding="async"></figure>
+      <figure><img src="assets/eventos/mastermind-bcn-cabina-640.webp" srcset="assets/eventos/mastermind-bcn-cabina-640.webp 640w, assets/eventos/mastermind-bcn-cabina-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="853" alt="Un artista con cascos repasa su letra en la cabina de grabación, en la Mastermind DAP" loading="lazy" decoding="async"></figure>
+      <figure><img src="assets/eventos/mastermind-bcn-sala-640.webp" srcset="assets/eventos/mastermind-bcn-sala-640.webp 640w, assets/eventos/mastermind-bcn-sala-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="360" alt="La sala de control llena de artistas del DAP durante una sesión de la Mastermind DAP" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/eventos/mastermind-bcn-sala.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></figure>
+      <figure><img src="assets/eventos/mastermind-bcn-micro-640.webp" srcset="assets/eventos/mastermind-bcn-micro-640.webp 640w, assets/eventos/mastermind-bcn-micro-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="853" alt="Un artista graba voces ante el micrófono en la Mastermind DAP" loading="lazy" decoding="async"></figure>
+      <figure><img src="assets/eventos/mastermind-bcn-estudio-640.webp" srcset="assets/eventos/mastermind-bcn-estudio-640.webp 640w, assets/eventos/mastermind-bcn-estudio-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="853" alt="El estudio con luces moradas y artistas alrededor de la mesa de mezclas" loading="lazy" decoding="async"></figure>
+      <figure><img src="assets/eventos/mastermind-bcn-charla-640.webp" srcset="assets/eventos/mastermind-bcn-charla-640.webp 640w, assets/eventos/mastermind-bcn-charla-1200.webp 1200w" sizes="(max-width: 600px) 80vw, (max-width: 880px) 45vw, 380px" width="640" height="480" alt="Artistas del DAP sentados en la sala de control durante una charla de la Mastermind DAP" loading="lazy" decoding="async"></figure>
     </div>
+    <button class="ver-mas" type="button" data-despliega data-desde="9" aria-controls="mastermind-fotos" aria-expanded="false">Ver más de la Mastermind</button>
   </div>
   <!-- NODE (3-oct-2026), orden de Macuto del 11-oct: «en la parte de dónde está el equipo pon fotos de node que subí a stories, las encuentras en galería».
        Fotos propias de la app Fotos del 3-oct-2026 (stories y cámara), sin EXIF. Se descartaron las que enseñan pantallas de portátil con chats o correo. -->
   <div class="evento reveal" id="node">
     <div class="evento__cab">
       <h3>NODE 2026</h3>
-      <p>3 de octubre de 2026 · Madrid. Productores e ingenieros de sonido abren sesiones reales de mezcla y mastering. Macuto estuvo con pase VIP.</p>
+      <p>El único evento en España orientado a la producción, mezcla y mastering.</p>
     </div>
     <div class="evento__fotos evento__fotos--4 carril-movil">
       <figure><img src="assets/eventos/node-2026-photocall-640.webp" srcset="assets/eventos/node-2026-photocall-640.webp 640w, assets/eventos/node-2026-photocall-1200.webp 1200w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="1138" alt="Macuto en el photocall de NODE 2026, ante el panel con las marcas del evento" loading="lazy" decoding="async"><figcaption>Photocall de NODE</figcaption></figure>
@@ -529,7 +831,7 @@
       <p>Madrid, ediciones de 2024, 2025 y 2026. Macuto y el equipo.</p>
     </div>
     <div class="evento__fotos evento__fotos--4 carril-movil">
-      <figure><img src="assets/eventos/forbes-2026-grupo-camara-640.webp" srcset="assets/eventos/forbes-2026-grupo-camara-640.webp 640w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="960" alt="Macuto con Neyver, Jorge, Ester y otra invitada en el photocall del Festival Forbes 30 Under 30 de 2026" loading="lazy" decoding="async"><figcaption>2026 · en grupo, con Neyver y el equipo</figcaption></figure>
+      <figure><img src="assets/eventos/forbes-2026-grupo-camara-640.webp" srcset="assets/eventos/forbes-2026-grupo-camara-640.webp 640w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="960" alt="Macuto con Neyver, Lili, Jorge y Ester en el photocall del Festival Forbes 30 Under 30 de 2026" loading="lazy" decoding="async"><figcaption>2026 · en grupo, con Neyver, Lili y el equipo</figcaption></figure>
       <figure><img src="assets/eventos/forbes-2026-equipo-640.webp" srcset="assets/eventos/forbes-2026-equipo-640.webp 640w, assets/eventos/forbes-2026-equipo-1200.webp 1200w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="853" alt="Jorge y Ester, del equipo de Macuto Music, entran al Festival Forbes 30 Under 30 de 2026" loading="lazy" decoding="async"><figcaption>2026 · Jorge y Ester, del equipo</figcaption></figure>
       <figure><img src="assets/eventos/forbes-2026-invitados-640.webp" srcset="assets/eventos/forbes-2026-invitados-640.webp 640w, assets/eventos/forbes-2026-invitados-1200.webp 1200w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="853" alt="Macuto con traje crema junto a Neyver en el photocall del Festival Forbes 30 Under 30 de 2026" loading="lazy" decoding="async"><figcaption>2026 · con Neyver</figcaption></figure>
       <figure><img src="assets/eventos/forbes-2025-invitados-640.webp" srcset="assets/eventos/forbes-2025-invitados-640.webp 640w, assets/eventos/forbes-2025-invitados-1200.webp 1200w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="800" alt="Macuto con traje azul junto a Neyver en la alfombra roja del Festival Forbes 30 Under 30 de 2025" loading="lazy" decoding="async"><figcaption>2025 · alfombra roja, con Neyver</figcaption></figure>
@@ -581,7 +883,7 @@
     /* Vídeos mudos de «Con artistas y la industria» (11-oct-2026, Macuto: «reproduce los videos sin sonido»).
        La foto se queda debajo como póster y respaldo. El vídeo se pide al entrar en pantalla, va siempre mudo y en bucle,
        se para fuera de pantalla o con la pestaña oculta y aparece encima al empezar a reproducirse. Con «reducir movimiento», solo la foto. */
-    (()=>{
+    const mudos=()=>{
       const vs=[...document.querySelectorAll('.evento__video')];
       if(!vs.length || matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
       const vis=new Set();
@@ -590,10 +892,36 @@
         if(e.isIntersecting){ vis.add(v); if(!document.hidden) juega(v); } else { vis.delete(v); v.pause(); } }),{rootMargin:'150px'});
       vs.forEach(v=>{ v.addEventListener('playing',()=>v.classList.add('va'),{once:true}); io.observe(v); });
       document.addEventListener('visibilitychange',()=>{ if(document.hidden) vs.forEach(v=>v.pause()); else vis.forEach(juega); });
-    })();
+    };
+    if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',mudos,{once:true}); else mudos();
     </script>
   </div>
 </div></section>
+
+<!-- TESTIMONIOS (12-oct-2026, Macuto: «busca testimonios para ponerlo en una sección de testimonios con reseñas como la foto negra»).
+     Capturas reales de WhatsApp e Instagram, recortadas: sin nombres, fotos de perfil ni números. Se mueven solas con movimiento.js (§11); sin JS o con «reducir movimiento», se deslizan con el dedo. -->
+<section class="sec testimonios" id="testimonios" aria-labelledby="testimonios-titulo"><div class="wrap">
+  <div class="sec-head">
+    <div class="reveal"><span class="eyebrow">Testimonios</span><h2 id="testimonios-titulo">Lo que nos escriben</h2></div>
+    <p class="reveal d1">Mensajes reales de artistas que nos llegan por WhatsApp e Instagram.</p>
+  </div></div>
+  <div class="testimonios__filas">
+    <ul class="testimonios__fila" aria-label="Mensajes sobre resultados">
+      <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-viral-31k-640.webp" width="640" height="413" alt="Mensajes de WhatsApp de un artista: «bro en 5 minutos ya tienw casi mil visitas mas», seis cohetes, «de hecho ya tiene casi 10k», «q duro», «20k ya tio», «31.5K»" decoding="async"><span>WhatsApp · de mil visitas a 31.500 en una noche</span></li>
+      <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-nos-fuimos-viral-640.webp" width="640" height="604" alt="Conversación de WhatsApp: el artista pregunta «A partir de 10k era viral?», le contestamos «Efectivamente» y por la mañana escribe «Buenos días!! Nos fuimos viraaaaal!!!!»" decoding="async"><span>WhatsApp · su primer viral</span></li>
+      <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-56-mil-youtube-640.webp" width="640" height="345" alt="Mensaje de Instagram de una artista: «esta siendo increible macuto tengo 56 mil visitas en youtube», «mil graciaas por tus palabraas», «sii nos vemos esta semanitaa»" decoding="async"><span>Instagram · 56.000 visitas en YouTube</span></li>
+      <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-gracias-a-ti-640.webp" width="640" height="608" alt="Conversación de WhatsApp: le escribimos «Buenos días», «Enhorabuena x ese primer súper viral» (el nombre está tapado), «Me alegro mucho x ti» y «Y que justo pase antes de tu primer lanzamiento»; la artista responde «Buenos días!», «Muchísimas gracias» y «Es gracias a ti»" decoding="async"><span>WhatsApp · tras su primer viral</span></li>
+      <li class="testimonio testimonio--ancho"><img loading="lazy" src="assets/testimonios/comentario-posicionamiento-640.webp" width="640" height="110" alt="Comentario en Instagram de una artista: «Gracias Macuuuuu, el posicionamiento lo aprendí gracias a ti!»" decoding="async"><span>Instagram · comentario público</span></li>
+    </ul>
+    <ul class="testimonios__fila testimonios__fila--inversa" aria-label="Mensajes sobre las clases y el programa">
+      <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-masterclass-640.webp" width="640" height="299" alt="Mensaje de WhatsApp: «Macuto, mil gracias por esa masterclass, muchas gracias enserio, porque hay gente que hasta cobra por hacer eso, porque es tiempo y el tiempo es oro, no me arrepiento de empezar en la música, porque estoy conociendo gente muy pura, cómo [nombre tapado], cómo [nombre tapado] y como tú, Macuto»" decoding="async"><span>WhatsApp · después de una masterclass</span></li>
+      <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-programas-640.webp" width="640" height="297" alt="Mensaje de Instagram: «Brother, tus programas son de alta calidad, y mucha utilidad en el crecimiento de una artista, este tema es muy interesante y, los artistas deben estar muy agradecidos de tu gran aporte. Un abrazo»" decoding="async"><span>Instagram · sobre los programas</span></li>
+      <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-maestro-640.webp" width="640" height="330" alt="Mensajes de WhatsApp: «Con un maestro tan apasionado por lo que hace da gusto ser alumno», «Gracias por tu tiempo», «Abrazo bro que esté bien»" decoding="async"><span>WhatsApp · después de una clase</span></li>
+      <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-clases-640.webp" width="640" height="430" alt="Mensaje de Instagram: «Estuvo muy interesante bro, enhorabuena por hacer estas clases tan utiles e interesantes para los artistas»; le contestamos «Para que valoren el trabajo de creadores como tu»" decoding="async"><span>Instagram · sobre las clases</span></li>
+      <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-curso-640.webp" width="640" height="488" alt="Mensajes de Instagram: «Bien bro», «Gracias a Dios», «Recordándome del curso», «Estuvo genial me ah servido», «Bastante»" decoding="async"><span>Instagram · recordando el curso</span></li>
+    </ul>
+  </div>
+</section>
 
 <!-- ENVÍA TU CANCIÓN -->
 <section class="sec" id="envia" style="padding-bottom:0"><div class="wrap">
@@ -615,12 +943,12 @@
     <h2>Todo lo que necesitas saber</h2>
   </div>
   <div class="faq-lista">
-    <details class="faq-item reveal" name="faq" open><summary>¿Cómo empiezo a trabajar con vosotros?</summary><div class="faq-resp"><p>Por aplicación. Rellenas un <a href="solicitud.html">formulario rápido</a>, hablas con una persona del equipo que conoce tu proyecto y, si encajamos, diseñamos tu estrategia. Trabajamos con un número limitado de artistas para cuidar cada campaña.</p></div></details>
-    <details class="faq-item reveal" name="faq"><summary>¿Cuánto cuesta?</summary><div class="faq-resp"><p>Cada proyecto es único: trabajamos campañas <b>desde 300 € hasta 28.000 €</b>, según el alcance y el objetivo. En la conversación inicial definimos juntos la estrategia que mejor encaja contigo — sin compromiso y con total transparencia.</p></div></details>
-    <details class="faq-item reveal" name="faq"><summary>¿Compráis streams o reproducciones?</summary><div class="faq-resp"><p>Nunca. Vender streams va contra las políticas de Spotify y puede dañar tu perfil. Trabajamos solo crecimiento <b>real y orgánico</b>: conectamos tu música con curadores y audiencias reales.</p></div></details>
-    <details class="faq-item reveal" name="faq"><summary>¿Es seguro para mi cuenta de Spotify?</summary><div class="faq-resp"><p>Sí. Todo lo que hacemos respeta las reglas de las plataformas. Tu perfil no corre ningún riesgo.</p></div></details>
-    <details class="faq-item reveal" name="faq"><summary>¿Qué géneros trabajáis?</summary><div class="faq-resp"><p>Los que dominan el Top 50 de los países hispanohablantes: <b>reggaetón, trap, pop latino, dembow, bachata, rap</b>, música urbana y latina en general.</p></div></details>
-    <details class="faq-item reveal" name="faq"><summary>¿Trabajáis con artistas fuera de España?</summary><div class="faq-resp"><p>Sí. Tenemos presencia y acceso en Latinoamérica, Europa y Estados Unidos para ayudarte a crecer internacionalmente.</p></div></details>
+    <details class="faq-item reveal" open><summary>¿Cómo empiezo a trabajar con vosotros?</summary><div class="faq-resp"><p>Por solicitud. Rellenas un <a href="solicitud.html">formulario rápido</a>, hablas con una persona del equipo que conoce tu proyecto y, si encajamos, diseñamos tu estrategia. Trabajamos con un número limitado de artistas para cuidar cada campaña.</p></div></details>
+    <details class="faq-item reveal"><summary>¿Cuánto cuesta?</summary><div class="faq-resp"><p>Depende de lo que necesites, y te lo decimos en la llamada, antes de pedirte ningún pago. El DAP tiene una cuota fija; las campañas de promoción de una canción van aparte y <b>se presupuestan por canción</b>, según el objetivo. Hablar con nosotros no te compromete a nada.</p></div></details>
+    <details class="faq-item reveal"><summary>¿Compráis streams o reproducciones?</summary><div class="faq-resp"><p>Nunca. Vender streams va contra las políticas de Spotify y puede dañar tu perfil. Trabajamos solo crecimiento <b>real y orgánico</b>: conectamos tu música con curadores y audiencias reales.</p></div></details>
+    <details class="faq-item reveal"><summary>¿Es seguro para mi cuenta de Spotify?</summary><div class="faq-resp"><p>Lo que pone en riesgo un perfil son las reproducciones artificiales o compradas, y no trabajamos con ellas. Lo que decida una plataforma no depende de nadie de fuera, así que nadie honesto puede prometerte riesgo cero.</p></div></details>
+    <details class="faq-item reveal"><summary>¿Qué géneros trabajáis?</summary><div class="faq-resp"><p>Los que dominan el Top 50 de los países hispanohablantes: <b>reggaetón, trap, pop latino, dembow, bachata, rap</b>, música urbana y latina en general.</p></div></details>
+    <details class="faq-item reveal"><summary>¿Trabajáis con artistas fuera de España?</summary><div class="faq-resp"><p>Sí. Tenemos presencia y acceso en Latinoamérica, Europa y Estados Unidos para ayudarte a crecer internacionalmente.</p></div></details>
   </div>
 </div></section>
 
@@ -662,15 +990,33 @@
   <p class="reveal d2" style="margin-top:26px"><a class="link-arrow" href="radar/">Ver todo el Radar <span aria-hidden="true">→</span></a></p>
 </div></section>
 
-<!-- CTA FINAL -->
+<!-- CTA FINAL · 12-oct-2026, Macuto: «aquí mézclalo con un iPhone que muestre nuestro perfil de Instagram y que los números vayan de 0 a lo que están».
+     Cifras, bio y foto leídas SIN SESIÓN el 12-oct-2026 (Apify: 09_Automatizaciones/macuto_web/ig_macutomusic_sin_sesion.py --solo perfil):
+     21 publicaciones · 8.156 seguidores · 1.109 seguidos, cuenta verificada. Para actualizarlas: correr el script y cambiar las tres <b> de
+     .ig-movil__cifras y el aria-label. Destacadas y rejilla: fotogramas propios de assets/ig/. Estilos: movimiento.css §19 · cifras: movimiento.js §4. -->
 <section class="sec final"><div class="wrap">
-  <div class="box reveal">
-    <h2>¿Listo para llevar tu música más lejos?</h2>
-    <p>Solicita tu plaza y habla hoy con el equipo. Sin compromiso, 100% transparente.</p>
-    <p class="scarcity center reveal"><span class="s-dot" aria-hidden="true"></span><span>Quedan <b class="mm-plazas">10</b> plazas este mes</span></p>
-    <div class="cta-row">
-      <a href="solicitud.html" class="btn btn-purple">Solicita acceso</a>
+  <div class="box box--ig reveal">
+    <div class="final__txt">
+      <h2>¿Listo para llevar tu música más lejos?</h2>
+      <p>Solicita tu plaza y habla con el equipo. Sin compromiso, 100% transparente.</p>
+      <p class="scarcity center reveal"><span class="s-dot" aria-hidden="true"></span><span>Solo <b class="mm-plazas">10</b> plazas nuevas este mes</span></p>
+      <div class="cta-row">
+        <a href="solicitud.html" class="btn btn-purple">Solicita acceso</a>
+      </div>
     </div>
+    <a class="ig-movil" href="https://www.instagram.com/macutomusic/" target="_blank" rel="noopener" aria-label="Perfil de Instagram de @macutomusic, cuenta verificada: 21 publicaciones, 8.156 seguidores y 1.109 seguidos. Se abre en Instagram.">
+      <span class="ig-movil__pantalla" aria-hidden="true">
+        <span class="ig-movil__estado"><span>9:41</span><span class="ig-movil__isla"></span><span class="ig-movil__bateria"></span></span>
+        <span class="ig-movil__usuario">macutomusic<svg viewBox="0 0 24 24" class="ig-movil__verificado"><circle cx="12" cy="12" r="11" fill="#0095f6"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="ig-movil__perfil"><img class="ig-movil__avatar" src="assets/ig/avatar-160.webp" width="160" height="160" alt="" loading="lazy" decoding="async">
+          <span class="ig-movil__cifras"><span><b>21</b>publicaciones</span><span><b>8.156</b>seguidores</span><span><b>1.109</b>seguidos</span></span></span>
+        <span class="ig-movil__bio"><b>Macuto | Marketing Musical</b><span class="ig-movil__cat">Sello discográfico</span>Marketing para Artista Independiente y Disquera 🤝<br>Crecimiento Orgánico en Latam, España &amp; USA 🚀<br>Revisa nuestro trabajo en Stories Destacadas👇<span class="ig-movil__enlace">macutomusic.com</span></span>
+        <span class="ig-movil__botones"><span class="ig-movil__seguir">Seguir</span><span>Mensaje</span></span>
+        <span class="ig-movil__destacadas"><span class="ig-movil__dest"><img src="assets/ig/destacada-stats-120.webp" width="120" height="120" alt="" loading="lazy" decoding="async"><span>Stats</span></span><span class="ig-movil__dest"><img src="assets/ig/destacada-macuto-120.webp" width="120" height="120" alt="" loading="lazy" decoding="async"><span>Macuto</span></span><span class="ig-movil__dest"><img src="assets/ig/destacada-reviews-120.webp" width="120" height="120" alt="" loading="lazy" decoding="async"><span>Reviews</span></span><span class="ig-movil__dest"><img src="assets/ig/destacada-resultados-120.webp" width="120" height="120" alt="" loading="lazy" decoding="async"><span>Stats</span></span><span class="ig-movil__dest"><img src="assets/ig/destacada-about-120.webp" width="120" height="120" alt="" loading="lazy" decoding="async"><span>About Us</span></span></span>
+        <span class="ig-movil__pestanas"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3zM9 3v18M15 3v18M3 9h18M3 15h18" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span>
+        <span class="ig-movil__rejilla"><img src="assets/ig/post-1-180.webp" width="180" height="240" alt="" loading="lazy" decoding="async"><img src="assets/ig/post-2-180.webp" width="180" height="240" alt="" loading="lazy" decoding="async"><img src="assets/ig/post-3-180.webp" width="180" height="240" alt="" loading="lazy" decoding="async"><img src="assets/ig/post-4-180.webp" width="180" height="240" alt="" loading="lazy" decoding="async"><img src="assets/ig/post-5-180.webp" width="180" height="240" alt="" loading="lazy" decoding="async"><img src="assets/ig/post-6-180.webp" width="180" height="240" alt="" loading="lazy" decoding="async"><img src="assets/ig/post-7-180.webp" width="180" height="240" alt="" loading="lazy" decoding="async"><img src="assets/ig/post-8-180.webp" width="180" height="240" alt="" loading="lazy" decoding="async"><img src="assets/ig/post-9-180.webp" width="180" height="240" alt="" loading="lazy" decoding="async"></span>
+      </span>
+    </a>
   </div>
 </div></section>
 
@@ -679,37 +1025,22 @@
 <!-- PREVIEW de galería (hover / tap) -->
 <div class="gpreview" id="gpreview" aria-hidden="true"><img src="" alt="Vista ampliada del resultado"></div>
 
-<footer class="site"><div class="wrap">
-  <div class="foot-grid">
-    <div>
-      <a class="logo" href="/"><img class="mm" src="assets/logo-108.webp" width="38" height="38" alt="Logo de Macuto Music" loading="lazy"> Macuto Music</a>
-      <p class="tag">Independiente, transparente, simple. Promoción musical 100% orgánica para artistas independientes.</p>
-      <!-- Redes: TikTok y YouTube comprobados en vivo el 10-oct-2026; Instagram @macutomusic según el cerebro (no se abrió Instagram: orden 28-ago). -->
-      <ul class="foot-redes" aria-label="Macuto Music en redes">
-        <li><a href="https://www.tiktok.com/@macutomusic" target="_blank" rel="noopener" aria-label="Macuto Music en TikTok (se abre en otra pestaña)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg></a></li>
-        <li><a href="https://www.youtube.com/@MacutoMusic" target="_blank" rel="noopener" aria-label="Macuto Music en YouTube (se abre en otra pestaña)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.75 19 12 19 12 19s6.25 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></svg></a></li>
-        <li><a href="https://www.instagram.com/macutomusic/" target="_blank" rel="noopener" aria-label="Macuto Music en Instagram (se abre en otra pestaña)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/></svg></a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Contacto</h4>
-      <ul>
-        <li><a href="mailto:macuto@macutomusic.com">macuto@macutomusic.com</a></li>
-        <li>España — operamos en Latam, Europa y USA</li>
-      </ul>
-    </div>
-    <div>
-      <h4>Navegación</h4>
-      <ul>
-        <li><a href="#servicios">Qué hacemos</a></li>
-        <li><a href="#como">Cómo trabajamos</a></li>
-        <li><a href="#novedades">Novedades</a></li>
-        <li><a href="radar/">RADAR</a></li>
-        <li><a href="solicitud.html">Solicita acceso</a></li>
-        <li><a href="envia-tu-cancion.html">Envía tu canción</a></li>
-        <li><a href="portal/">Portal del artista</a></li>
-      </ul>
-    </div>
+<!-- PIE · 11-oct-2026 (Macuto: «busca simpleza y no todo tan apelotonado, que se vean elementos web que permitan ver que es notable»).
+     El mismo en la portada y en el RADAR (plantilla FOOTER de ~/.config/dap/radar_build.py); formularios, contrato, portal, legales y 404
+     llevan solo la línea .foot-legal. Estilos: styles.css («footer»). Cifras de redes comprobadas en vivo el 10-oct-2026; Instagram sin cifra
+     (son unos miles: no se mezcla con TikTok). .pie__cierre solo en los artículos: en la portada y en /radar/ el CTA final ya está justo encima. -->
+<footer class="site pie"><div class="wrap">
+  <a class="pie__firma" href="#main" aria-label="Macuto Music, volver arriba"><span aria-hidden="true"><span style="--i:0">M</span><span style="--i:1">a</span><span style="--i:2">c</span><span style="--i:3">u</span><span style="--i:4">t</span><span style="--i:5">o</span><span class="pie__hueco" style="--i:6"></span><span style="--i:7">M</span><span style="--i:8">u</span><span style="--i:9">s</span><span style="--i:10">i</span><span style="--i:11">c</span></span></a>
+  <div class="pie__fila">
+    <nav class="pie__nav" aria-label="Pie de página"><ul>
+      <li><a href="#servicios">Qué hacemos</a></li>
+      <li><a href="#artistas">Artistas</a></li>
+      <li><a href="radar/">RADAR</a></li>
+      <li><a href="envia-tu-cancion.html">Envía tu canción</a></li>
+      <li><a href="portal/">Portal DAP</a></li>
+      <li><a href="mailto:macuto@macutomusic.com">macuto@macutomusic.com</a></li>
+    </ul></nav>
+    <a class="pie__arriba" href="#main"><span class="pie__arriba-ico" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 19V5m-6.5 6.5L12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Volver arriba</a>
   </div>
   <div class="foot-legal">
     <span>© 2026 Macuto Music · Titular: Angelo Jordan Gutiérrez Luis · Madrid</span>
@@ -718,21 +1049,6 @@
 </div></footer>
 
 <script>
-  // Escasez dinámica: las plazas bajan con las visitas recurrentes (FOMO real).
-  (function(){
-    var STEPS=[10,8,6,5,4]; // plazas según nº de visita (mín. 4, creíble)
-    var KEY='mm_v', TKEY='mm_vt';
-    try{
-      var ahora=Date.now();
-      var v=parseInt(localStorage.getItem(KEY)||'0',10);
-      var ult=parseInt(localStorage.getItem(TKEY)||'0',10);
-      if(ahora-ult > 30*60*1000){ v++; localStorage.setItem(KEY,String(v)); } // nueva visita si pasaron +30 min
-      localStorage.setItem(TKEY,String(ahora));
-      var plazas=STEPS[Math.min(Math.max(v-1,0),STEPS.length-1)];
-      document.querySelectorAll('.mm-plazas').forEach(function(el){ el.textContent=plazas; });
-    }catch(e){}
-  })();
-
   // Novedades: la etiqueta va a la primera tarjeta cuyo evento no ha terminado («Ahora» si ya empezó).
   // Así nunca queda un «Próximamente» caducado; si todas han pasado, no se marca ninguna.
   (function(){
@@ -770,14 +1086,15 @@
   // preview grande de la galería: hover en escritorio, tap en móvil (sin doble evento)
   const gp=document.getElementById('gpreview'), gpImg=gp.querySelector('img');
   const canHover=window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  let gpOn=null;
+  let gpOn=null, gpT=0;
   const showPrev=src=>{gpImg.src=src;gp.classList.add('show');gp.setAttribute('aria-hidden','false')};
   const hidePrev=()=>{gp.classList.remove('show');gp.setAttribute('aria-hidden','true');gpOn=null};
   document.querySelectorAll('.gallery .shot').forEach(card=>{
     const im=card.querySelector('img'), src=im.dataset.grande||im.currentSrc||im.src;
     if(canHover){
-      card.addEventListener('mouseenter',()=>showPrev(src));
-      card.addEventListener('mouseleave',hidePrev);
+      // 13-oct-2026: se abre tras 350 ms encima (al cruzar la rejilla parpadeaba); abierta, pasa de una a otra sin cerrarse
+      card.addEventListener('mouseenter',()=>{clearTimeout(gpT);gpT=setTimeout(()=>showPrev(src),gp.classList.contains('show')?0:350)});
+      card.addEventListener('mouseleave',()=>{clearTimeout(gpT);gpT=setTimeout(hidePrev,120)});
     }else{
       card.addEventListener('click',e=>{
         e.preventDefault();e.stopPropagation();
@@ -807,7 +1124,7 @@
     if(!c)return;
     b.addEventListener('click',()=>{
       c.classList.remove('plegado','plegada');b.setAttribute('aria-expanded','true');
-      const sig=c.children[b.getAttribute('aria-controls')==='roster'?8:6];
+      const sig=c.children[+b.dataset.desde||(b.getAttribute('aria-controls')==='roster'?8:6)];
       b.hidden=true;
       if(sig){const a=sig.querySelector('a,button');sig.setAttribute('tabindex','-1');sig.focus({preventScroll:true});}
     });

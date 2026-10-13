@@ -1,0 +1,83 @@
+/* paginas.css · Páginas de acción con el estilo de la portada (13-oct-2026, Macuto: «Envía tu canción, RADAR, portal del artista
+   y Solicita acceso deben tener el flujo y estilo del resto de la web»). Lo usan solicitud.html, envia-tu-cancion.html y portal/.
+   Encima de styles.css (tokens, nav, botones, pie) y movimiento.css. Sin fuentes propias: Poppins/Inter y sus reservas de styles.css.
+   Flujo de las tres: héroe con la promesa y qué pasa después a la izquierda, la acción (formulario o acceso) a la derecha y, debajo,
+   las dudas que frenan y el salto a la otra acción. En móvil, el texto corto y la acción enseguida. */
+
+/* ---------- Nav: lo que la portada pone en home.css (§2 tacto, §14 anchos intermedios) ---------- */
+.nav-links a:not(.btn){white-space:nowrap}
+@media (pointer:coarse){.nav-links .btn{min-height:44px}.logo{min-height:44px}}
+@media (min-width:1001px) and (max-width:1120px){.nav-links{gap:16px}.nav-links a:not(.btn){font-size:.9rem}}
+@media (max-width:1000px){.nav-links a:not(.btn){display:none}}
+@media (max-width:359px){.logo .logo-txt{display:none}}
+
+/* ---------- Héroe de página: texto + acción ---------- */
+.pag-hero{padding:72px 0 88px}
+/* Escritorio: texto y pasos a la izquierda, la acción a la derecha. Móvil: texto, acción y luego pasos (la acción no se va abajo). */
+.pag-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);grid-template-areas:"txt accion" "pasos accion";grid-template-rows:auto 1fr;column-gap:56px;align-items:start}  /* 1fr: lo que mide de más el formulario va bajo los pasos, no entre el texto y los pasos */
+.pag-txt{grid-area:txt;padding-top:10px}
+.pag-accion{grid-area:accion}
+.pag-pasos-wrap{grid-area:pasos}
+.pag-hero h1{font-size:clamp(2.3rem,4.6vw,3.4rem);font-weight:700;margin:14px 0 0;line-height:1.05;text-wrap:balance}
+.pag-hero h1 .hl{color:var(--purple)}
+.pag-hero p.lead{font-size:clamp(1.02rem,1.8vw,1.16rem);margin:20px 0 0;max-width:32rem}
+.pag-chips{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0;padding:0}
+.pag-chips li{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:99px;background:var(--purple-wash);color:var(--ink);font-size:.86rem;font-weight:500}
+.pag-chips li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--purple)}
+
+/* Qué pasa después: pasos numerados, como «Cómo trabajamos» de la portada */
+.pag-pasos-t{margin:38px 0 14px;font:600 .78rem/1.2 'Poppins','Poppins Reserva',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--purple)}
+.pag-pasos{list-style:none;margin:0;padding:0;counter-reset:paso;display:grid;gap:4px}
+.pag-pasos li{position:relative;padding:12px 0 12px 54px;counter-increment:paso}
+.pag-pasos li::before{content:counter(paso);position:absolute;left:0;top:10px;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  background:var(--surface);border:1.5px solid var(--line-strong);color:var(--purple);font:700 .95rem/1 'Poppins','Poppins Reserva',sans-serif}
+.pag-pasos li:not(:last-child)::after{content:"";position:absolute;left:18.5px;top:52px;bottom:-6px;width:1.5px;background:var(--line-strong)}
+.pag-pasos b{display:block;color:var(--ink);font:600 1rem/1.3 'Poppins','Poppins Reserva',sans-serif}
+.pag-pasos span{display:block;color:var(--text);font-size:.93rem;margin-top:3px}
+
+/* La acción: tarjeta blanca con el formulario (Tally) o el acceso */
+.pag-accion{scroll-margin-top:96px}
+.form-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-md);padding:clamp(18px,2.6vw,30px)}
+.form-card__t{margin:0 0 4px;font:700 1.15rem/1.3 'Poppins','Poppins Reserva',sans-serif;color:var(--ink)}
+.form-card__s{margin:0 0 14px;color:var(--muted);font-size:.9rem}
+.form-card .form-embed{min-height:520px}
+.pag-accion .form-fallback{margin:16px 4px 0}
+
+/* ---------- Debajo: dudas y salto a la otra acción ---------- */
+.pag-mas{padding:72px 0 96px}
+.pag-mas__grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.9fr);gap:40px;align-items:start}
+.pag-mas h2{font-size:clamp(1.6rem,3vw,2.1rem);font-weight:700;margin:12px 0 20px}
+.pag-dudas details{border-bottom:1px solid var(--line)}
+.pag-dudas details:first-of-type{border-top:1px solid var(--line)}
+.pag-dudas summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:16px 2px;
+  font:600 1.02rem/1.35 'Poppins','Poppins Reserva',sans-serif;color:var(--ink)}
+.pag-dudas summary::-webkit-details-marker{display:none}
+.pag-dudas summary::after{content:"+";flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--purple-wash);color:var(--purple);font-weight:600;transition:transform .3s var(--ease)}
+.pag-dudas details[open] summary::after{transform:rotate(45deg)}
+.pag-dudas details p{margin:0 0 18px;color:var(--text);max-width:44rem}
+.pag-salto{display:block;background:var(--ink);color:#fff;border-radius:var(--r-lg);padding:28px;box-shadow:var(--shadow-md);text-decoration:none;transition:transform .3s var(--ease)}
+.pag-salto:hover{transform:translateY(-3px)}
+.pag-salto small{display:block;color:#c9b8f5;font:600 .78rem/1.2 'Poppins','Poppins Reserva',sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.pag-salto b{display:block;margin:10px 0 8px;font:700 1.35rem/1.25 'Poppins','Poppins Reserva',sans-serif}
+.pag-salto span{display:block;color:rgba(255,255,255,.78);font-size:.95rem}
+.pag-salto i{display:inline-flex;margin-top:18px;font-style:normal;font-weight:600;color:#fff;border-bottom:2px solid #9d74ff;padding-bottom:2px}
+
+/* ---------- Portal DAP ---------- */
+.pag-portal-lista{list-style:none;margin:30px 0 0;padding:0;display:grid;gap:10px}
+.pag-portal-lista li{display:flex;gap:12px;align-items:flex-start;color:var(--text);font-size:.96rem}
+.pag-portal-lista li::before{content:"";flex:none;width:22px;height:22px;margin-top:1px;border-radius:7px;background:var(--purple-wash) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%235E17EB' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/14px no-repeat}
+.pag-portal-lista b{color:var(--ink);font-weight:600}
+
+/* ---------- Móvil ---------- */
+@media (max-width:900px){
+  .pag-grid{grid-template-columns:1fr;grid-template-areas:"txt" "accion" "pasos";row-gap:30px}
+  .pag-mas__grid{grid-template-columns:1fr;gap:34px}
+  .pag-hero{padding:40px 0 64px}
+  .pag-pasos-t{margin-top:30px}
+  .pag-mas{padding:56px 0 72px}
+}
+@media (max-width:600px){
+  .form-card{border-radius:var(--r-md);padding:16px 12px}
+  .form-card .form-embed{min-height:480px}
+}
+@media (prefers-reduced-motion:reduce){.pag-salto,.pag-dudas summary::after{transition:none}}

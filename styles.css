@@ -47,71 +47,89 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Space Grotesk';
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('fonts/spacegrotesk-latin-ext.woff2') format('woff2');
+  src: url('fonts/poppins-400-latin-ext.woff2') format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
-  font-family: 'Space Grotesk';
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('fonts/spacegrotesk-latin.woff2') format('woff2');
+  src: url('fonts/poppins-400-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Space Grotesk';
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('fonts/spacegrotesk-latin-ext.woff2') format('woff2');
+  src: url('fonts/poppins-500-latin-ext.woff2') format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
-  font-family: 'Space Grotesk';
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('fonts/spacegrotesk-latin.woff2') format('woff2');
+  src: url('fonts/poppins-500-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Space Grotesk';
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('fonts/spacegrotesk-latin-ext.woff2') format('woff2');
+  src: url('fonts/poppins-600-latin-ext.woff2') format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
-  font-family: 'Space Grotesk';
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('fonts/spacegrotesk-latin.woff2') format('woff2');
+  src: url('fonts/poppins-600-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Space Grotesk';
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('fonts/spacegrotesk-latin-ext.woff2') format('woff2');
+  src: url('fonts/poppins-700-latin-ext.woff2') format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
-  font-family: 'Space Grotesk';
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('fonts/spacegrotesk-latin.woff2') format('woff2');
+  src: url('fonts/poppins-700-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}/* ============================================================
+}
+/* Firma del pie (13-oct-2026, Macuto: «que se haga ancho cuando estamos con el ratón encima como en la tipografía de Escenario, solo esa parte»):
+   Anybody, variable, recortada a las letras de «Macuto Music», con peso 700-900 y anchura fija 112 (2 KB). Solo la usa .pie__firma.
+   La anchura 112 la eligió Macuto sobre una comparativa 112/100/90/80 («tiene que quedar así»). Para otra anchura, se vuelve a recortar
+   del woff2 completo con fontTools (varLib.instancer: wdth fija, wght 700-900; subset al texto «Macuto Music»). */
+@font-face{font-family:'Anybody Firma';font-style:normal;font-weight:700 900;font-display:swap;src:url('fonts/anybody-firma.woff2') format('woff2');unicode-range:U+20,U+4D,U+61,U+63,U+69,U+6F,U+73-75}
+/* Fuentes de reserva métricas (13-oct-2026, auditoría de velocidad; recalibradas el mismo día al pasar a Poppins): mientras llegan las
+   woff2 se pinta con Arial ajustada al ancho medio y a las métricas verticales de cada fuente (fontTools sobre los propios woff2:
+   Poppins = 1,125 × Arial en 400-500 y 1,063 × Arial Bold en 600-700; hhea 1050/-350/100 de 1000). Sin ellas, lo que solo decía
+   la fuente de titulares salía en Times y la portada saltaba al llegar la fuente (CLS 0,10-0,19 en escritorio).
+   «Poppins Reserva» no pisa a «Poppins Reserva Titular», la del h1, que va en línea en index.html. */
+@font-face{font-family:'Inter Reserva';src:local('Arial'),local('ArialMT'),local('Helvetica'),local('Roboto');font-weight:100 500;size-adjust:106.8%;ascent-override:90.7%;descent-override:22.6%;line-gap-override:0%}
+@font-face{font-family:'Inter Reserva';src:local('Arial Bold'),local('Arial-BoldMT'),local('Helvetica Bold'),local('Roboto Bold');font-weight:600 900;size-adjust:101.3%;ascent-override:95.6%;descent-override:23.8%;line-gap-override:0%}
+@font-face{font-family:'Poppins Reserva';src:local('Arial'),local('ArialMT'),local('Helvetica'),local('Roboto');font-weight:100 500;size-adjust:112.5%;ascent-override:93.33%;descent-override:31.11%;line-gap-override:8.89%}
+@font-face{font-family:'Poppins Reserva';src:local('Arial Bold'),local('Arial-BoldMT'),local('Helvetica Bold'),local('Roboto Bold');font-weight:600 900;size-adjust:106.3%;ascent-override:98.78%;descent-override:32.93%;line-gap-override:9.41%}
+/* Versales con interletraje (.eyebrow): en mayúsculas Poppins es mucho más estrecha que Arial Bold y la reserva general partía
+   el eyebrow del héroe en 2 líneas en el móvil (CLS 0,023 al llegar la fuente). 94 % medido sobre los 6 primeros eyebrows (error máx. 1,7 %). */
+@font-face{font-family:'Poppins Reserva Versal';src:local('Arial Bold'),local('Arial-BoldMT'),local('Helvetica Bold'),local('Roboto Bold');font-weight:600 900;size-adjust:94%;ascent-override:111.7%;descent-override:37.23%;line-gap-override:10.64%}
+/* ============================================================
    Macuto Music — sistema de diseño
-   Space Grotesk (display) · Inter (texto) · morado #5E17EB
+   Poppins (display, desde el 13-oct-2026; antes Space Grotesk) · Inter (texto) · morado #5E17EB
    ============================================================ */
 :root{
   --purple:#5E17EB;
@@ -120,7 +138,7 @@
   --purple-wash-2:#e6ddfb;
   --ink:#17102e;
   --text:#4e4868;
-  --muted:#6f6a86;
+  --muted:#6b6682;
   --bg:#fdfcff;
   --surface:#ffffff;
   --line:rgba(23,16,46,.09);
@@ -133,16 +151,18 @@
   --ease:cubic-bezier(.22,.9,.24,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:88px}
+html{scroll-behavior:smooth;scroll-padding-top:75px}  /* = alto de nav.site (65 px en ≤600): el ancla deja la sección justo bajo la barra */
+@media(max-width:600px){html{scroll-padding-top:65px}}
 body{
-  font-family:'Inter',system-ui,sans-serif;
+  font-family:'Inter','Inter Reserva',system-ui,sans-serif;
   background:var(--bg);color:var(--text);
   line-height:1.65;font-size:1rem;
   overflow-x:hidden;
 }
-h1,h2,h3,h4,.display{font-family:'Space Grotesk',sans-serif;color:var(--ink);line-height:1.08;letter-spacing:-.025em}
+h1,h2,h3,h4,.display{font-family:'Poppins','Poppins Reserva',sans-serif;color:var(--ink);line-height:1.08;letter-spacing:-.025em}
+h1,h2,h3{letter-spacing:-.02em}  /* Poppins es más ancha: algo menos apretada */
 h1{text-wrap:balance}
-h2,h3{text-wrap:balance}
+h2,h3,.eyebrow{text-wrap:balance}
 p{text-wrap:pretty;max-width:65ch}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
@@ -169,7 +189,7 @@ body::after{
 /* ---------- botones ---------- */
 .btn{
   display:inline-flex;align-items:center;gap:10px;
-  font-family:'Space Grotesk';font-weight:600;font-size:1rem;
+  font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;font-size:1rem;
   padding:15px 30px;border-radius:14px;border:none;cursor:pointer;
   transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s var(--ease),border-color .25s var(--ease);
   white-space:nowrap;
@@ -184,7 +204,7 @@ body::after{
 
 .eyebrow{
   display:inline-flex;align-items:center;gap:8px;
-  font-family:'Space Grotesk';font-weight:600;font-size:.8rem;
+  font-family:'Poppins','Poppins Reserva Versal',sans-serif;font-weight:600;font-size:.8rem;
   letter-spacing:.12em;text-transform:uppercase;color:var(--purple);
 }
 .eyebrow::before{content:"";width:22px;height:2px;background:var(--purple);border-radius:2px}
@@ -198,7 +218,7 @@ nav.site{
   border-bottom:1px solid var(--line);
 }
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:74px}
-.logo{font-family:'Space Grotesk';font-weight:700;font-size:1.32rem;letter-spacing:-.02em;display:flex;align-items:center;gap:11px;color:var(--ink)}
+.logo{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:1.32rem;letter-spacing:-.02em;display:flex;align-items:center;gap:11px;color:var(--ink)}
 .logo .mm{width:38px;height:38px;border-radius:10px;object-fit:cover;object-position:center 30%;box-shadow:0 6px 16px rgba(94,23,235,.35)}
 .nav-links{display:flex;gap:28px;align-items:center}
 .nav-links a:not(.btn){color:var(--text);font-size:.95rem;font-weight:500;transition:color .2s;position:relative;padding:4px 0}
@@ -230,13 +250,13 @@ nav.site{
     radial-gradient(40% 46% at 6% 96%,rgba(94,23,235,.07),transparent 70%);
 }
 .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:56px;align-items:center}
-.hero h1{font-size:clamp(2.6rem,5.6vw,4.3rem);font-weight:700;margin-top:clamp(14px,1.6vw,22px)}
+.hero h1{font-size:clamp(2.5rem,5.2vw,4rem);font-weight:700;margin-top:clamp(14px,1.6vw,22px)}
 .hero h1 .hl{color:var(--purple)}
 .hero p.lead{font-size:clamp(1.05rem,2vw,1.24rem);margin:24px 0 34px;max-width:34rem}
 .hero p.lead b{color:var(--ink);font-weight:600}
 .cta-row{display:flex;gap:14px;flex-wrap:wrap}
 .trust-line{margin-top:30px;color:var(--muted);font-size:.92rem;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.trust-line b{color:var(--ink);font-weight:600;font-family:'Space Grotesk'}
+.trust-line b{color:var(--ink);font-weight:600;font-family:'Poppins','Poppins Reserva',sans-serif}
 .dot{width:4px;height:4px;border-radius:50%;background:var(--purple)}
 @media(max-width:940px){
   .hero{padding:56px 0 68px}
@@ -256,7 +276,7 @@ nav.site{
 .player .art::before{content:"";position:absolute;width:150%;height:150%;top:-60%;left:-30%;background:radial-gradient(circle,rgba(255,255,255,.22),transparent 60%)}
 .player .art::after{content:"♪";position:absolute;inset:0;display:grid;place-items:center;font-size:3.4rem;color:rgba(255,255,255,.55)}
 .player .meta{margin:15px 2px 11px}
-.player .meta b{display:block;font-family:'Space Grotesk';font-weight:600;font-size:1.02rem;color:var(--ink)}
+.player .meta b{display:block;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;font-size:1.02rem;color:var(--ink)}
 .player .meta span{color:var(--muted);font-size:.84rem}
 .player .bar{height:5px;border-radius:5px;background:var(--purple-wash);overflow:hidden}
 .player .bar i{display:block;height:100%;width:58%;background:var(--purple);border-radius:5px}
@@ -271,7 +291,7 @@ nav.site{
 .chip .t1{background:var(--purple)}
 .chip .t2{background:var(--ink)}
 .chip .t3{background:var(--purple-wash-2);color:var(--purple)}
-.chip b{display:block;font-size:.82rem;font-family:'Space Grotesk';font-weight:600;color:var(--ink)}
+.chip b{display:block;font-size:.82rem;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;color:var(--ink)}
 .chip span{color:var(--muted);font-size:.73rem}
 .chip.c1{top:10px;right:-8px}
 .chip.c2{bottom:36px;left:-22px;animation-delay:-2.6s}
@@ -279,7 +299,7 @@ nav.site{
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 .badge-floating{
   position:absolute;top:-2px;left:-12px;background:var(--ink);color:#fff;
-  font-family:'Space Grotesk';font-weight:600;font-size:.78rem;padding:9px 16px;border-radius:50px;
+  font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;font-size:.78rem;padding:9px 16px;border-radius:50px;
   box-shadow:var(--shadow-md);animation:floaty 6s ease-in-out infinite;
 }
 @media(max-width:940px){.mock{width:min(320px,100%);height:420px;margin:24px auto 0}}
@@ -296,7 +316,7 @@ nav.site{
 
 /* ---------- marquee ---------- */
 .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface);padding:17px 0;overflow:hidden;white-space:nowrap}
-.marquee .track{display:inline-flex;gap:44px;animation:scroll 34s linear infinite;font-family:'Space Grotesk';font-weight:500;color:var(--ink);font-size:1rem}
+.marquee .track{display:inline-flex;gap:44px;animation:scroll 34s linear infinite;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:500;color:var(--ink);font-size:1rem}
 .marquee .track span{display:inline-flex;align-items:center;gap:44px}
 .marquee .track span::after{content:"◆";color:var(--purple);font-size:.4rem}
 @keyframes scroll{to{transform:translateX(-50%)}}
@@ -313,7 +333,7 @@ nav.site{
 
 /* nosotros: split editorial */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
-.about-grid .statement{font-family:'Space Grotesk';font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;color:var(--ink);line-height:1.25;letter-spacing:-.02em}
+.about-grid .statement{font-family:'Poppins','Poppins Reserva',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;color:var(--ink);line-height:1.25;letter-spacing:-.02em}
 .about-grid .statement .hl{color:var(--purple)}
 .about-list{display:flex;flex-direction:column;gap:6px}
 .about-item{display:flex;gap:18px;padding:20px 0;border-bottom:1px solid var(--line)}
@@ -345,7 +365,7 @@ nav.site{
 .tstep{padding:0 22px;position:relative;text-align:center}
 .tstep .n{
   width:46px;height:46px;border-radius:50%;background:var(--surface);border:2px solid var(--purple);
-  color:var(--purple);font-family:'Space Grotesk';font-weight:700;font-size:1.05rem;
+  color:var(--purple);font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:1.05rem;
   display:grid;place-items:center;margin:0 auto 20px;position:relative;z-index:1;
   font-variant-numeric:tabular-nums;
 }
@@ -364,8 +384,9 @@ nav.site{
 .artist{border-radius:var(--r-lg);overflow:hidden;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-sm);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
 .artist:hover{transform:translateY(-5px);box-shadow:var(--shadow-md)}
 .artist .ph{height:250px;background-size:cover;background-position:center 16%}
+.artist .ph img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 16%}
 .artist .bd{padding:18px 20px}
-.artist .bd b{font-family:'Space Grotesk';font-weight:600;color:var(--ink);font-size:1.1rem}
+.artist .bd b{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;color:var(--ink);font-size:1.1rem}
 .artist .bd .country{display:block;color:var(--muted);font-size:.86rem;margin-top:2px}
 .artist .bd .li{display:inline-block;margin-top:10px;font-size:.8rem;font-weight:600;color:var(--purple);background:var(--purple-wash);padding:4px 12px;border-radius:6px;font-variant-numeric:tabular-nums}
 @media(max-width:820px){.artists{grid-template-columns:1fr}.artist .ph{height:220px}}
@@ -382,20 +403,24 @@ nav.site{
 
 /* franja de números */
 .stats-band{padding:70px 0 64px;border-bottom:1px solid var(--line);background:var(--bg)}
-.stats-eyebrow{text-align:center;margin-bottom:38px}
+.stats-eyebrow{text-align:center;margin-bottom:38px;max-width:none}
 .stats-eyebrow .eyebrow::after{content:"";width:22px;height:2px;background:var(--purple);border-radius:2px}
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
-.stat b{display:block;font-family:'Space Grotesk';font-weight:700;font-size:clamp(2.2rem,4.8vw,3.4rem);color:var(--purple);letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.stat b{display:block;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:clamp(2.2rem,4.8vw,3.4rem);color:var(--purple);letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums}
 .stat span{display:block;margin-top:10px;color:var(--text);font-size:.94rem;max-width:none}
 @media(max-width:760px){.stats-grid{grid-template-columns:repeat(2,1fr);gap:32px 16px}}
 
 /* roster de artistas */
 .roster{display:grid;grid-template-columns:repeat(auto-fill,minmax(138px,1fr));gap:14px;margin-top:26px}
+/* 13-oct-2026: desde 601 px, fila flexible con la última centrada (antes, en 1000 px quedaban 3 huecos y en 760 una ficha sola).
+   7 por fila desde 901 px (21 = 3 × 7) y 6 por debajo. En el móvil siguen las 2 columnas de la rejilla. */
+@media(min-width:601px){.roster{display:flex;flex-wrap:wrap;justify-content:center;--por:6}.roster > *{flex:0 0 calc((100% - (var(--por) - 1) * 14px) / var(--por));min-width:0}}
+@media(min-width:901px){.roster{--por:7}}
 .rcard{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;text-align:center;transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease)}
 .rcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-sm);border-color:var(--line-strong)}
 .rcard img{width:100%;aspect-ratio:1;object-fit:cover}
 .rcard figcaption{padding:10px 8px 12px}
-.rcard b{display:block;font-family:'Space Grotesk';font-weight:600;font-size:.87rem;color:var(--ink);line-height:1.25}
+.rcard b{display:block;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;font-size:.87rem;color:var(--ink);line-height:1.25}
 .rcard span{font-size:.74rem;color:var(--purple);font-weight:600;font-variant-numeric:tabular-nums}
 .roster-note{color:var(--muted);font-size:.85rem;margin-top:14px;text-align:center;max-width:none}
 
@@ -407,7 +432,7 @@ nav.site{
 .shot.tall{grid-row:span 2}
 .shot.tall img{height:calc(100% - 74px);object-fit:cover;object-position:center top}
 .shot figcaption{padding:15px 18px}
-.shot figcaption b{font-family:'Space Grotesk';font-weight:600;color:var(--ink);display:block;font-size:.96rem;line-height:1.3}
+.shot figcaption b{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;color:var(--ink);display:block;font-size:.96rem;line-height:1.3}
 .shot figcaption span{color:var(--muted);font-size:.84rem;display:block;margin-top:3px}
 .shot{cursor:zoom-in}
 
@@ -450,7 +475,7 @@ nav.site{
 .organic p b{color:#fff}
 .organic .no-list{display:flex;flex-direction:column;gap:14px;position:relative}
 .organic .no-item{display:flex;gap:13px;align-items:flex-start;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:15px 18px;font-size:.95rem;color:#f2edfe}
-.organic .no-item b{color:#fff;font-family:'Space Grotesk';font-weight:600}
+.organic .no-item b{color:#fff;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600}
 @media(max-width:820px){.organic .box{grid-template-columns:1fr;padding:44px 28px}}
 
 /* caja envía tu canción */
@@ -467,7 +492,7 @@ nav.site{
 .form-fallback a{color:var(--purple);font-weight:500}
 /* aviso cuando un formulario está fuera de servicio (que nadie se quede sin salida) */
 .aviso-form{background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--r-lg);padding:38px 34px;text-align:center;box-shadow:var(--shadow-sm);margin:8px 0 10px}
-.aviso-form h2{font-family:'Space Grotesk';font-weight:700;font-size:clamp(1.25rem,2.6vw,1.6rem);color:var(--ink);margin-bottom:10px;letter-spacing:-.01em}
+.aviso-form h2{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:clamp(1.25rem,2.6vw,1.6rem);color:var(--ink);margin-bottom:10px;letter-spacing:-.01em}
 .aviso-form p{max-width:44ch;margin:0 auto 22px;color:var(--text);font-size:1rem}
 .aviso-form .cta-row{justify-content:center}
 @media(max-width:600px){.aviso-form{padding:30px 22px}}
@@ -496,19 +521,82 @@ nav.site{
 /* RADAR: la rejilla ya cierra con su propio padding; sin esto quedaban 172px de vacío hasta el CTA */
 .rzone + .final{padding-top:0}
 
-/* ---------- footer ---------- */
-footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(--surface)}
-.foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:44px;margin-bottom:40px}
-.foot-grid .logo{margin-bottom:12px}
-.foot-grid .tag{font-size:.94rem;max-width:30ch}
-.foot-grid h4{font-family:'Space Grotesk';font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:14px}
-.foot-grid ul{list-style:none;display:flex;flex-direction:column;gap:9px}
-.foot-grid ul a,.foot-grid ul li{font-size:.92rem;color:var(--text)}
-.foot-grid ul a:hover{color:var(--purple)}
-.foot-legal{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:.86rem}
-.foot-legal a{color:var(--muted);display:inline-block;padding:4px 0}
-.foot-legal a:hover{color:var(--purple)}
-@media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:30px}}
+/* ---------- footer · 11-oct-2026: firma grande y aire, el mismo pie en todo el sitio ----------
+   Pie completo (portada y RADAR: footer.site.pie): .pie__cierre (solo artículos) · .pie__firma (la marca a toda anchura,
+   enlace) · .pie__fila (una fila de enlaces; las redes con cifras se quitaron el 13-oct, orden de Macuto) · .foot-legal (titular y legales en una línea).
+   Pie compacto (formularios, contrato, portal, legales, 404): solo .foot-legal, sobre el mismo fondo.
+   La firma va letra a letra: se ilumina bajo el ratón SOLO con CSS (:hover, + y :has) y sube un poco al entrar en pantalla
+   donde hay animaciones ligadas al scroll (una sola pieza: doce letras animadas costaban CPU al hacer scroll); nunca se esconde.
+   Marcado: index.html y la plantilla FOOTER de ~/.config/dap/radar_build.py (cámbialos juntos). */
+footer.site{--pie-tinta:#17102e;--pie-txt:#cdc6e3;--pie-tenue:#a39cbd;--pie-linea:rgba(255,255,255,.13);--pie-acento:#b197fc;
+  background:var(--pie-tinta);color:var(--pie-txt);padding:26px 0 28px}
+footer.site :focus-visible{outline-color:#fff}
+.foot-legal{display:flex;justify-content:space-between;align-items:center;gap:6px 24px;flex-wrap:wrap;color:var(--pie-tenue);font-size:.85rem;line-height:1.5}
+.foot-legal a{color:var(--pie-txt);display:inline-block;padding:4px 0;transition:color .2s}
+.foot-legal a:hover{color:#fff}
+/* 13-oct-2026 (Macuto: «que esa sección esté en el centro y en una mejor proporción»): firma, enlaces y «Volver arriba» centrados;
+   el mismo hueco encima de la firma que debajo del botón (--pie-aire), y la firma al ~84 % del ancho útil en vez del 100 %. */
+footer.site.pie{--pie-aire:clamp(48px,6vw,80px);padding:var(--pie-aire) 0 30px;overflow:hidden}
+.pie .foot-legal{border-top:1px solid var(--pie-linea);padding-top:22px}
+.pie__cierre{display:flex;align-items:center;justify-content:space-between;gap:20px 32px;flex-wrap:wrap;padding-bottom:clamp(40px,6vw,64px);border-bottom:1px solid var(--pie-linea)}
+.pie__cierre p{font:700 clamp(1.6rem,3.6vw,2.5rem)/1.1 'Poppins','Poppins Reserva',sans-serif;letter-spacing:-.02em;color:#fff;max-width:none}
+.pie__firma{display:block;width:fit-content;margin:0 auto clamp(26px,3.2vw,40px);color:#fff;font-family:'Anybody Firma','Poppins','Poppins Reserva',sans-serif;font-weight:700;
+  font-size:min(calc((100vw - 56px) / 9.6),calc(1144px / 9.6));line-height:.9;letter-spacing:-.04em;white-space:nowrap}
+.pie__cierre + .pie__firma{margin-top:var(--pie-aire)}
+.pie__firma > span{display:flex}
+.pie__firma > span > span{display:inline-block;font-variation-settings:'wght' 700;transition:font-variation-settings .5s var(--ease),color .5s var(--ease)}
+.pie__firma .pie__hueco{width:.24em}
+.pie__firma:focus-visible{outline-offset:8px}
+@media (hover:hover) and (pointer:fine){
+  .pie__firma > span > span:hover{color:var(--pie-acento)}
+  .pie__firma > span > span:hover + span,.pie__firma > span > span:has(+ span:hover){color:#ddd2fe}
+}
+/* al pasar el ratón, la letra engorda y se ensancha y las dos vecinas de cada lado la siguen (como en la prueba «Escenario»); con «reducir movimiento», solo el color */
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .pie__firma > span > span:hover{font-variation-settings:'wght' 900}
+  .pie__firma > span > span:hover + span,.pie__firma > span > span:has(+ span:hover){font-variation-settings:'wght' 840}
+  .pie__firma > span > span:hover + span + span,.pie__firma > span > span:has(+ span + span:hover){font-variation-settings:'wght' 780}
+}
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .pie__firma > span{animation:pie-sube linear both;animation-timeline:view();animation-range:entry 0% entry 80%}
+  }
+}
+@keyframes pie-sube{from{transform:translateY(.3em)}}
+.pie__fila{display:flex;flex-direction:column;align-items:center;gap:clamp(18px,2.4vw,26px);padding-bottom:var(--pie-aire)}
+.pie__nav ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:0 28px}
+.pie__nav a{position:relative;display:inline-flex;align-items:center;min-height:44px;font-size:.95rem;color:var(--pie-txt);transition:color .2s}
+.pie__nav a::after{content:"";position:absolute;left:0;right:0;bottom:10px;height:1.5px;border-radius:2px;background:currentColor;transform:scaleX(0);transform-origin:0 50%;transition:transform .4s var(--ease)}
+.pie__nav a:hover{color:#fff}
+.pie__nav a:hover::after{transform:scaleX(1)}
+/* «Volver arriba» (13-oct-2026, Macuto: «debe haber un botón que lance hacia la primera sección»): lleva a #main; en la portada,
+   movimiento.js hace el viaje corto (salta cerca y sube suave la última pantalla) y pasa el foco al inicio. Sin JS, el ancla de siempre. */
+.pie__arriba{display:inline-flex;align-items:center;gap:11px;min-height:48px;padding:7px 20px 7px 7px;border:1px solid var(--pie-linea);border-radius:99px;
+  font-size:.9rem;font-weight:500;color:var(--pie-txt);transition:border-color .3s var(--ease),background-color .3s var(--ease),color .3s var(--ease)}
+.pie__arriba-ico{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--purple);color:#fff;flex-shrink:0;transition:transform .45s var(--ease)}
+.pie__arriba-ico svg{width:17px;height:17px}
+.pie__arriba:hover{border-color:rgba(177,151,252,.55);background:rgba(177,151,252,.08);color:#fff}
+/* el movimiento del botón (saltito, flecha en bucle y despegue) vive en movimiento.css §21 */
+#main:focus{outline:none}  /* recibe el foco (tabindex=-1) al volver arriba; el anillo enmarcaría toda la página */
+/* Con el aviso de cookies abierto (analytics.js lo pone al final de <body> y lo quita al elegir), el final del pie se aparta
+   lo que ocupa el aviso (145 px en escritorio, 118-136 en el móvil) para que no tape «Volver arriba» ni los enlaces legales. */
+body:has(> #mm-cookies) footer.site{padding-bottom:170px}
+@media(max-width:600px){body:has(> #mm-cookies) footer.site{padding-bottom:160px}}
+@media(max-width:760px){
+  .pie__nav ul{gap:0 22px}
+  .foot-legal{flex-direction:column;align-items:flex-start}
+  .pie .foot-legal{align-items:center;text-align:center}
+}
+
+/* ---------- paso entre páginas (11-oct-2026): fundido corto al ir de una página del sitio a otra; la cabecera se queda ---------- */
+@media (prefers-reduced-motion:no-preference){
+  @view-transition{navigation:auto}
+  nav.site{view-transition-name:mm-cabecera}
+  ::view-transition-old(root){animation:.16s var(--ease) both vt-sale}
+  ::view-transition-new(root){animation:.34s var(--ease) both vt-entra}
+}
+@keyframes vt-sale{to{opacity:0}}
+@keyframes vt-entra{from{opacity:0;transform:translateY(8px)}}
 
 /* ---------- páginas legales ---------- */
 .legal{padding:40px 0 96px;max-width:780px;margin:0 auto}
@@ -523,7 +611,7 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
 .legal a{color:var(--purple);font-weight:500}
 .legal table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:.93rem}
 .legal th,.legal td{text-align:left;padding:10px 12px;border:1px solid var(--line);vertical-align:top}
-.legal th{background:var(--purple-wash);font-family:'Space Grotesk';font-weight:600;color:var(--ink)}
+.legal th{background:var(--purple-wash);font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;color:var(--ink)}
 .legal hr{border:0;border-top:1px solid var(--line);margin:34px 0}
 .tabla-legal{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0 22px}
 .tabla-legal table{margin:0;min-width:520px}
@@ -532,7 +620,7 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
 
 /* 404 */
 .page-404{min-height:60dvh;display:grid;place-items:center;text-align:center;padding:80px 24px}
-.page-404 .big{font-family:'Space Grotesk';font-weight:700;font-size:clamp(5rem,16vw,9rem);color:var(--purple-wash-2);line-height:1;font-variant-numeric:tabular-nums}
+.page-404 .big{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:clamp(5rem,16vw,9rem);color:var(--purple-wash-2);line-height:1;font-variant-numeric:tabular-nums}
 .page-404 h1{font-size:1.7rem;margin:10px 0 8px}
 .page-404 p{margin:0 auto 28px;color:var(--text)}
 
@@ -547,7 +635,7 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
 .scarcity.center{margin:30px auto 0}
 /* chip + botón van juntos: un poco menos de aire entre ellos que entre el texto y el chip */
 .scarcity.center + .cta-row{margin-top:22px}
-.scarcity b{font-family:'Space Grotesk';font-weight:700;color:var(--purple)}
+.scarcity b{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;color:var(--purple)}
 .s-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;position:relative;flex-shrink:0}
 .s-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:#22c55e;animation:sdot 1.8s ease-out infinite}
 @keyframes sdot{0%{transform:scale(1);opacity:.7}70%,100%{transform:scale(2.8);opacity:0}}
@@ -561,13 +649,13 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
 .ig-h:hover .ig-ring{transform:scale(1.06) rotate(-4deg)}
 .ig-cover{width:100%;height:100%;border-radius:50%;display:grid;place-items:center;color:#fff;border:3px solid var(--surface);overflow:hidden;position:relative;text-align:center}
 .ig-cover svg{width:34px;height:34px}
-.ig-cover b{font-family:'Space Grotesk';font-weight:700;font-size:.68rem;letter-spacing:.04em;line-height:1;padding:0 4px}
+.ig-cover b{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.04em;line-height:1;padding:0 4px}
 .ig-cover.ig-dark{background:radial-gradient(120% 120% at 30% 20%,#2b2b33,#0c0c0f)}
 .ig-cover.ig-purple{background:linear-gradient(155deg,#6d28ea,#4a10c4)}
 .ig-cover.ig-live{background:linear-gradient(150deg,#3a1d8a,#160f2e);flex-direction:column;gap:5px;display:flex;align-items:center;justify-content:center}
 .ig-cover.ig-live b{font-size:.56rem}
-.live-badge{font-family:'Space Grotesk';font-weight:700;font-size:.48rem;letter-spacing:.06em;color:#fff;background:#e11d48;padding:2px 7px;border-radius:99px;display:inline-block}
-.ig-name{font-size:.9rem;font-weight:600;font-family:'Space Grotesk';color:var(--ink)}
+.live-badge{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:.48rem;letter-spacing:.06em;color:#fff;background:#e11d48;padding:2px 7px;border-radius:99px;display:inline-block}
+.ig-name{font-size:.9rem;font-weight:600;font-family:'Poppins','Poppins Reserva',sans-serif;color:var(--ink)}
 @media(max-width:600px){.ig-highlights{gap:16px}.ig-h{width:82px}.ig-ring{width:74px;height:74px}.ig-cover svg{width:28px;height:28px}}
 
 
@@ -579,10 +667,10 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
   border:1px solid var(--line);box-shadow:var(--shadow-md);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
 .ig-reel-facade::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 30% 15%,rgba(255,255,255,.18),transparent 55%)}
 .ig-reel-facade:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
-.ig-reel-badge{position:absolute;top:16px;left:16px;display:inline-flex;align-items:center;gap:6px;font-family:'Space Grotesk';font-weight:600;font-size:.78rem;letter-spacing:.03em;background:rgba(0,0,0,.28);padding:6px 12px;border-radius:99px;backdrop-filter:blur(4px)}
+.ig-reel-badge{position:absolute;top:16px;left:16px;display:inline-flex;align-items:center;gap:6px;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.03em;background:rgba(0,0,0,.28);padding:6px 12px;border-radius:99px;backdrop-filter:blur(4px)}
 .ig-reel-play{position:relative;width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.16);border:2px solid rgba(255,255,255,.65);display:grid;place-items:center;padding-left:4px;transition:transform .3s var(--ease)}
 .ig-reel-facade:hover .ig-reel-play{transform:scale(1.08)}
-.ig-reel-cap{position:relative;font-family:'Space Grotesk';font-weight:700;font-size:1.15rem;letter-spacing:-.01em}
+.ig-reel-cap{position:relative;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:1.15rem;letter-spacing:-.01em}
 .ig-reel-sub{position:relative;font-size:.86rem;color:rgba(255,255,255,.82)}
 .instagram-media{margin:0 auto!important}
 
@@ -594,14 +682,14 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
 .rmast::before{content:"";position:absolute;width:1000px;height:1000px;border-radius:50%;right:-320px;top:-420px;background:radial-gradient(circle,rgba(94,23,235,.42),transparent 62%)}
 .rmast::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 79px,rgba(255,255,255,.025) 79px 80px),repeating-linear-gradient(90deg,transparent 0 79px,rgba(255,255,255,.025) 79px 80px)}
 .rmast .wrap{position:relative;z-index:2}
-.rmast-eyebrow{font-family:'Space Grotesk';font-weight:500;font-size:.85rem;letter-spacing:.22em;text-transform:uppercase;color:#b9aee0}
-.rmast-logo{font-family:'Space Grotesk';font-weight:700;font-size:clamp(3.4rem,10vw,6.8rem);letter-spacing:-.04em;line-height:1;margin:10px 0 16px;display:flex;align-items:baseline;gap:14px}
+.rmast-eyebrow{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:500;font-size:.85rem;letter-spacing:.22em;text-transform:uppercase;color:#b9aee0}
+.rmast-logo{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:clamp(3.4rem,10vw,6.8rem);letter-spacing:-.04em;line-height:1;margin:10px 0 16px;display:flex;align-items:baseline;gap:14px}
 .blip{width:.55em;height:.55em;border-radius:50%;background:var(--purple);position:relative;flex-shrink:0;transform:translateY(-.06em)}
 .blip::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--purple);animation:blip 2.2s var(--ease) infinite}
 @keyframes blip{0%{transform:scale(1);opacity:.8}70%,100%{transform:scale(2.6);opacity:0}}
 .rmast-tag{color:#cdc3ea;font-size:clamp(1rem,1.9vw,1.15rem);max-width:46rem;line-height:1.6}
 .rchips{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
-.rchip{font-family:'Space Grotesk';font-weight:600;font-size:.84rem;letter-spacing:.04em;padding:11px 20px;border-radius:99px;border:1px solid rgba(255,255,255,.22);background:transparent;color:#cdc3ea;cursor:pointer;transition:all .25s var(--ease)}
+.rchip{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;font-size:.84rem;letter-spacing:.04em;padding:11px 20px;border-radius:99px;border:1px solid rgba(255,255,255,.22);background:transparent;color:#cdc3ea;cursor:pointer;transition:all .25s var(--ease)}
 .rchip:hover{border-color:rgba(255,255,255,.55);color:#fff}
 .rchip.on{background:var(--purple);border-color:var(--purple);color:#fff;box-shadow:0 8px 24px -8px rgba(94,23,235,.7)}
 
@@ -614,7 +702,7 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
 .rfeat-cover{display:block;min-height:320px}
 .rfeat-cover img{width:100%;height:100%;object-fit:cover;display:block}
 .rfeat-in{display:flex;flex-direction:column;gap:14px;padding:38px 40px;justify-content:center}
-.rfeat-in h2{font-family:'Space Grotesk';font-weight:700;font-size:clamp(1.35rem,2.6vw,1.8rem);line-height:1.22;color:var(--ink);letter-spacing:-.01em}
+.rfeat-in h2{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:clamp(1.35rem,2.6vw,1.8rem);line-height:1.22;color:var(--ink);letter-spacing:-.01em}
 .rfeat-in p{font-size:.98rem;line-height:1.6}
 @media(max-width:880px){.rfeat{grid-template-columns:minmax(0,1fr)}.rfeat-cover{min-width:0;min-height:0;aspect-ratio:16/9}.rfeat-in{min-width:0;padding:26px}}
 
@@ -626,9 +714,9 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
 .acover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease)}
 .acard:hover .acover img{transform:scale(1.045)}
 .acard-in{display:flex;flex-direction:column;gap:11px;padding:22px 24px 20px;flex:1}
-.acard h3{font-family:'Space Grotesk';font-weight:600;font-size:1.1rem;line-height:1.32;color:var(--ink)}
+.acard h3{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;font-size:1.1rem;line-height:1.32;color:var(--ink)}
 .acard p{font-size:.92rem;line-height:1.55;flex:1}
-.acat{display:inline-flex;align-self:flex-start;background:var(--purple-wash);color:var(--purple);font-family:'Space Grotesk';font-weight:600;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:99px}
+.acat{display:inline-flex;align-self:flex-start;background:var(--purple-wash);color:var(--purple);font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:99px}
 .acat.cat-plataformas{background:#efe9fd;color:var(--c-plataformas)}
 .acat.cat-industria{background:#e7e8fb;color:var(--c-industria)}
 .acat.cat-playbook{background:#f5ebfd;color:var(--c-playbook)}
@@ -648,22 +736,22 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
 .ahero .acat.cat-industria{background:rgba(67,56,202,.4);color:#c7cafd}
 .ahero .acat.cat-playbook{background:rgba(147,51,234,.32);color:#e2c9fc}
 .ahero .acat.cat-eventos{background:rgba(219,39,119,.3);color:#fbc4dd}
-.ahero h1{font-family:'Space Grotesk';font-size:clamp(1.9rem,4.2vw,3rem);font-weight:700;line-height:1.14;margin:16px 0 18px;letter-spacing:-.02em;color:#fff}
+.ahero h1{font-family:'Poppins','Poppins Reserva',sans-serif;font-size:clamp(1.9rem,4.2vw,3rem);font-weight:700;line-height:1.14;margin:16px 0 18px;letter-spacing:-.02em;color:#fff}
 .standfirst{color:#cdc3ea;font-size:clamp(1rem,1.9vw,1.16rem);line-height:1.65;max-width:44rem}
 .ahero .art-meta{color:#9d92c4;font-size:.88rem;margin-top:22px;border:0;padding:0}
 .acover-band{margin:-64px 0 44px;border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-md);position:relative;z-index:3;aspect-ratio:16/6.2}
 .acover-band img{width:100%;height:100%;object-fit:cover;display:block}
 .article-body{font-size:1.05rem;line-height:1.78;color:var(--text)}
 .article-body p{margin:0 0 22px}
-.article-body h2{font-family:'Space Grotesk';font-weight:700;font-size:1.5rem;color:var(--ink);margin:44px 0 16px;letter-spacing:-.01em;padding-top:18px;border-top:2px solid var(--purple-wash)}
-.article-body h3{font-family:'Space Grotesk';font-weight:600;font-size:1.16rem;color:var(--ink);margin:30px 0 12px}
+.article-body h2{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:1.5rem;color:var(--ink);margin:44px 0 16px;letter-spacing:-.01em;padding-top:18px;border-top:2px solid var(--purple-wash)}
+.article-body h3{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;font-size:1.16rem;color:var(--ink);margin:30px 0 12px}
 .article-body ul,.article-body ol{margin:0 0 22px;padding-left:24px}
 .article-body li{margin:9px 0}
 .article-body strong{color:var(--ink);font-weight:600}
 .article-body a{color:var(--purple);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(94,23,235,.35)}
 .article-body a:hover{text-decoration-color:var(--purple)}
 .src-box{background:var(--purple-wash);border-radius:var(--r-md);padding:26px 28px;margin:44px 0}
-.src-box h2{font-family:'Space Grotesk';font-weight:700;font-size:1.05rem;color:var(--ink);margin-bottom:12px}
+.src-box h2{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:1.05rem;color:var(--ink);margin-bottom:12px}
 .src-box ul{list-style:none;padding:0}
 .src-box li{margin:7px 0;font-size:.93rem}
 .src-box a{color:var(--purple);font-weight:500}
@@ -671,12 +759,12 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
 .art-cta{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:44px 40px;text-align:center;box-shadow:var(--shadow-sm);margin:24px auto 54px;max-width:820px;position:relative;overflow:hidden}
 .art-cta::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 90% at 50% 0,rgba(94,23,235,.07),transparent 70%);pointer-events:none}
 .art-cta>*{position:relative}
-.art-cta h2{font-family:'Space Grotesk';font-weight:700;font-size:clamp(1.4rem,3vw,1.9rem);color:var(--ink);margin-bottom:12px;letter-spacing:-.01em}
+.art-cta h2{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:clamp(1.4rem,3vw,1.9rem);color:var(--ink);margin-bottom:12px;letter-spacing:-.01em}
 .art-cta>p:not(.scarcity){max-width:42ch;margin:0 auto;color:var(--text);font-size:1.04rem}
 .art-cta .cta-row{justify-content:center;margin-top:36px}
 @media(max-width:600px){.art-cta{padding:34px 24px}}
 .mas-radar{padding:10px 0 60px}
-.mas-title{font-family:'Space Grotesk';font-weight:700;font-size:1.4rem;color:var(--ink);margin-bottom:20px}
+.mas-title{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:1.4rem;color:var(--ink);margin-bottom:20px}
 @media(max-width:600px){.ahero{padding:44px 0 80px}.acover-band{margin-top:-56px;aspect-ratio:16/9}.src-box{padding:20px}.rmast{padding:56px 0 34px}}
 @media (prefers-reduced-motion:reduce){.blip::after{animation:none}}
 
@@ -688,7 +776,7 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
 .rescate{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;max-width:620px;margin:26px auto 22px;text-align:left}
 .rescate a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:16px 18px;transition:border-color .25s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease)}
 .rescate a:hover{border-color:var(--line-strong);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
-.rescate b{display:block;font-family:'Space Grotesk';font-weight:600;color:var(--ink);font-size:1rem;margin-bottom:3px}
+.rescate b{display:block;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;color:var(--ink);font-size:1rem;margin-bottom:3px}
 .rescate span{display:block;color:var(--text);font-size:.88rem;line-height:1.4}
 .rescate-nota{font-size:.9rem;color:var(--text)}
 .rescate-nota a{color:var(--purple);font-weight:500}
@@ -698,7 +786,7 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
 .novedades{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:20px}
 .nov{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px 26px 24px;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease)}
 .nov:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--line-strong)}
-.nov-fecha{display:inline-block;background:var(--purple-wash);color:var(--purple);font-family:'Space Grotesk';font-weight:600;font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;padding:5px 12px;border-radius:99px;margin-bottom:12px}
+.nov-fecha{display:inline-block;background:var(--purple-wash);color:var(--purple);font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;padding:5px 12px;border-radius:99px;margin-bottom:12px}
 .nov h3{font-size:1.14rem;font-weight:600;margin-bottom:8px;line-height:1.3}
 .nov p{font-size:.95rem;color:var(--text)}
 .nov p b{color:var(--ink)}
@@ -706,4 +794,4 @@ footer.site{border-top:1px solid var(--line);padding:56px 0 40px;background:var(
 .nov a:hover{text-decoration-color:var(--purple)}
 /* la novedad más cercana: la marca el script de la home a partir de data-inicio/data-fin */
 .nov-next{border-color:var(--line-strong);background:linear-gradient(160deg,var(--purple-wash) 0%,var(--surface) 60%)}
-.soon{display:inline-block;vertical-align:middle;background:var(--ink);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:99px;margin-left:8px;position:relative;top:-2px}
+.soon{display:inline-block;vertical-align:middle;background:var(--ink);color:#fff;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:99px;margin-left:8px;position:relative;top:-2px}
