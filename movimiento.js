@@ -133,6 +133,7 @@
 
   const bucles = $$('video.bucle');
   if (!reducir && bucles.length) {
+    let pide = () => {};
     bucles.forEach(v => {
       v.removeAttribute('controls');
       const s = v.parentElement.querySelector('.movil__sonido');
@@ -142,15 +143,44 @@
           v.muted = !v.muted;
           s.setAttribute('aria-pressed', String(!v.muted)); s.textContent = v.muted ? 'Activar sonido' : 'Silenciar';
           if (!v.muted) { soloEste(v); v.play().catch(() => {}); }
+          pide();
         });
       }
     });
+    /* Presupuesto de bucles (14-oct-2026): «Diseño Web OK» midió la página EN REPOSO a 30 fps con 8 vídeos sonando a la vez (con 0-1,
+       47 fps). Ahora solo suenan los bucles que se ven al 60 % y, de esos, como mucho 2 en escritorio y 1 en el móvil, los más cercanos al
+       centro de la pantalla. El que tiene el sonido puesto lo ha elegido la persona: no cuenta y no se pausa mientras se vea. Con
+       «Ahorro de datos», ninguno arranca solo. Los .evento__video (#industria, Mastermind, «Detrás de cámara») llevan su propio gestor
+       con el mismo criterio, en el script de #industria de index.html. */
     if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver(es => es.forEach(e => {
-        const v = e.target;
-        if (e.isIntersecting) { v.preload = 'auto'; v.play().catch(() => {}); } else v.pause();
-      }), { threshold: .3 });
+      const tope = matchMedia('(max-width: 760px)').matches ? 1 : 2;
+      const ahorro = !!(navigator.connection && navigator.connection.saveData);
+      const vistos = new Map();  // bucle → cuánto se ve (0-1)
+      let raf = 0;
+      const reparte = () => {
+        raf = 0;
+        const cx = innerWidth / 2, cy = innerHeight / 2;
+        const elegidos = [...vistos].filter(([v, r]) => r >= .6 && v.muted)
+          .map(([v]) => { const q = v.getBoundingClientRect(); return [v, Math.hypot(q.left + q.width / 2 - cx, q.top + q.height / 2 - cy)]; })
+          .sort((a, b) => a[1] - b[1]).slice(0, ahorro ? 0 : tope).map(([v]) => v);
+        bucles.forEach(v => {
+          if (!v.muted && vistos.has(v)) return;  // con sonido: manda la persona
+          if (elegidos.includes(v)) { if (v.paused) { v.preload = 'auto'; v.play().catch(() => {}); } }
+          else if (!v.paused) v.pause();
+        });
+      };
+      pide = () => { if (!raf) raf = requestAnimationFrame(reparte); };
+      const io = new IntersectionObserver(es => {
+        es.forEach(e => e.isIntersecting
+          ? vistos.set(e.target, Math.max(e.intersectionRatio, e.intersectionRect.height / innerHeight))  // los más altos que la pantalla
+          : vistos.delete(e.target));
+        pide();
+      }, { threshold: [0, .3, .6, .8, 1] });
       bucles.forEach(v => io.observe(v));
+      const alMover = () => { if (vistos.size) pide(); };  // al bajar o al deslizar un carril cambia cuál queda más centrado
+      addEventListener('scroll', alMover, { passive: true });
+      addEventListener('resize', pide);
+      $$('.carril-movil').forEach(c => c.addEventListener('scroll', alMover, { passive: true }));
     }
   }
 

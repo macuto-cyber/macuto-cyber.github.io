@@ -35,7 +35,7 @@ a,button,summary{-webkit-tap-highlight-color:transparent}
 }
 
 /* ---------- 3 · Cabecera móvil: el botón es la acción («Solicita acceso»), no un ancla ---------- */
-@media (max-width:359px){.logo .logo-txt{display:none}}
+/* (14-oct-2026: el corte del texto del logo vive ahora en styles.css, ≤349 px, junto al nav compacto de ≤389; así lo tiene también el RADAR) */
 
 /* ---------- 4 · Héroe: un botón y una captura real ---------- */
 .hero .cta-row{align-items:center;gap:12px 24px}
@@ -86,7 +86,13 @@ a,button,summary{-webkit-tap-highlight-color:transparent}
   .js .roster.plegado > :nth-child(n+9){display:none}
   .js .roster.plegado + .ver-mas{display:flex}
 }
-@media (min-width:881px){
+/* 14-oct-2026: en tablet vertical (601-880 px) no se plegaba nada y salían los 21 artistas y las 36 capturas (la página pasaba de
+   ~21.800 a 33.600 px). Ahora el roster enseña 2 filas de 6 y la galería, 3 filas de 2, con su «Ver más». */
+@media (min-width:601px) and (max-width:880px){
+  .js .roster.plegado > :nth-child(n+13){display:none}
+  .js .roster.plegado + .ver-mas{display:flex}
+}
+@media (min-width:601px){
   .js .gallery.plegada .shot:nth-child(n+7){display:none}
   .js .gallery.plegada + .ver-mas{display:flex}
 }
@@ -105,7 +111,13 @@ a,button,summary{-webkit-tap-highlight-color:transparent}
 .nov-pasada h3{color:var(--ink)}
 .nov-pasada p{font-size:.92rem;color:var(--text)}
 .nov-pasada .nov-fecha{background:transparent;border:1px solid rgba(94,23,235,.28);color:#7c4ee8}  /* 12-oct, Macuto: «un morado de marca más suave» (5,1:1 sobre blanco); las próximas siguen con #5E17EB y fondo */
-.hecho{display:inline-flex;align-items:center;gap:5px;margin-left:8px;padding:5px 10px;border-radius:99px;background:var(--ink);color:#fff;
+/* 14-oct-2026: la fecha y su etiqueta («Hecho», «Ahora», «Próximo») van en una fila propia (.nov-cab, la crea el script de la portada):
+   antes «Hecho» bajaba de línea solo en «Mastermind presencial» y «Próximo» iba metido en el título. */
+/* la etiqueta arriba y la fecha debajo, siempre: en fila, una fecha larga («19 septiembre 2026 · Madrid») la mandaba a otra línea solo en esa tarjeta */
+.nov-cab{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:12px}
+.nov-cab .nov-fecha{margin:0}
+.nov-cab .hecho,.nov-cab .soon{order:-1;margin:0}
+.hecho{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:99px;background:var(--ink);color:#fff;
   font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;line-height:1;vertical-align:middle}
 .hecho::before{content:"✓"}
 
@@ -258,9 +270,9 @@ a,button,summary{-webkit-tap-highlight-color:transparent}
 @media (max-width:760px),(orientation:portrait),(prefers-reduced-motion:reduce){  /* en vertical (tablet) el 16:9 a pantalla completa se recortaba al 42 % */
   .js .vision__pista{height:auto}
   .vision__fijo{position:relative;height:auto;overflow:visible;padding:72px 0 64px;display:flex;flex-direction:column;gap:26px}
-  .vision__txt{position:static;transform:none;opacity:1;visibility:visible;width:auto;max-width:680px;margin:0 auto;padding:0 20px}
-  .vision__marco{position:relative;inset:auto;transform:none;border-radius:18px;aspect-ratio:16/9;width:calc(100% - 32px);max-width:1100px;margin:0 auto}
-  .vision__botones{position:static;justify-content:center;flex-wrap:wrap;padding:0 16px;transform:none}
+  .vision__txt{position:static;transform:none;opacity:1;visibility:visible;width:auto;max-width:680px;margin:0 auto;padding:0 28px}
+  .vision__marco{position:relative;inset:auto;transform:none;border-radius:18px;aspect-ratio:16/9;width:calc(100% - 56px);max-width:1100px;margin:0 auto}
+  .vision__botones{position:static;justify-content:center;flex-wrap:wrap;padding:0 28px;transform:none}
   .vision__pista-txt{display:none}
 }
 
@@ -287,6 +299,8 @@ a,button,summary{-webkit-tap-highlight-color:transparent}
    se ven enteras. Sin JS o con «reducir movimiento», cada fila se desliza con el dedo. Vídeos: .evento__video (§23). */
 .detras{margin-top:56px}
 .detras__titulo{font:700 clamp(1.15rem,2vw,1.4rem)/1.2 'Poppins','Poppins Reserva',sans-serif;margin:0 0 16px}
+.detras__sub{color:var(--purple)}
+@media (max-width:600px){.detras__sep{display:none}.detras__sub{display:block}}  /* sin «·» colgando al final de línea */
 .detras__filas{display:grid;gap:14px;overflow:hidden;--alto:300px;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
 .detras .detras__fila{padding:2px 0;gap:14px;align-items:stretch}

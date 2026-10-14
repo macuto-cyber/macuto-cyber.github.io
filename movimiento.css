@@ -38,8 +38,9 @@ nav.site.mv-bajado{background:rgba(253,252,255,.94);box-shadow:0 12px 32px -22px
      13-oct-2026 (hhea 1050/-350 de 1000): mientras llega la woff2 el titular ya ocupa su sitio. Sin reserva las letras bajaban
      dentro de su línea al cambiar de fuente (CLS 0,041 en móvil lento, medido con Space Grotesk). El size-adjust sale de
      probar 98-112 % en 17 anchos (360-1.920 px) con el titular «Lleva tu música más lejos, con un experto a tu lado»: parte
-     igual que Poppins entre 105,5 % y 110,25 %; se deja 107,5 %, en medio. ascent y descent = 1050 y 350 ÷ 1,075 (97,67 % y
-     32,56 %), para que la línea base no se mueva. Si cambia el titular, se vuelve a probar con
+     igual que Poppins entre 103,75 % y 106,75 % (14-oct, con el titular a 2,2rem en ≤380 px; el 13-oct, antes de ese cambio,
+     valía 105,5-110,25); se deja 105,25 %, en medio. ascent y descent = 1050 y 350 ÷ 1,0525 (99,76 % y 33,25 %), para que la línea
+     base no se mueva. Si cambia el titular, se vuelve a probar con
      09_Automatizaciones/macuto_web/calibrar_reserva_titular.py. El resto de la página tiene sus reservas («Poppins Reserva», «Inter Reserva») arriba en styles.css. */
 /* luz que sigue al puntero (la pone movimiento.js en el héroe, la banda «100% orgánicos» y el CTA final) */
 .mv-foco{position:absolute;left:0;top:0;width:620px;height:620px;margin:-310px 0 0 -310px;border-radius:50%;pointer-events:none;
@@ -342,6 +343,11 @@ a.video-h__marco{display:block;color:#fff}
   .box--ig .cta-row{justify-content:center}
   .ig-movil{width:290px;height:440px;margin-top:8px}
 }
+/* 14-oct-2026: por debajo de 420 px el móvil de 290 px no cabía en la caja (a 360 se salía 11 px y recortaba el «100%», la píldora y
+   el lado derecho; a 390 iba descentrado). Se reduce entero con zoom (mantiene sus proporciones y su caja) y la caja da más sitio. */
+@media (max-width:420px){.final .box.box--ig{padding:0 16px}.ig-movil{zoom:.9}}
+@media (max-width:360px){.ig-movil{zoom:.82}}
+@media (max-width:340px){.ig-movil{zoom:.74}}
 
 /* ---------- 20 · Ajustes de la auditoría visual (13-oct-2026) ---------- */
 /* el eyebrow del héroe cabe en una línea en el móvil (a 390 px le faltaban 2 px y la raya solo salía en la primera) */
@@ -364,7 +370,7 @@ a.video-h__marco{display:block;color:#fff}
 @keyframes pie-salto{
   0%,26%,100%{transform:none}
   4%{transform:translateY(1px) scale(1.1,.88)}
-  11%{transform:translateY(-11px) scale(.93,1.08)}
+  11%{transform:translateY(-8px) scale(.93,1.08)}
   18%{transform:translateY(0) scale(1.08,.9)}
   22%{transform:translateY(-2px) scale(.98,1.02)}
 }

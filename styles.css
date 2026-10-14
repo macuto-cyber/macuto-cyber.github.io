@@ -240,6 +240,10 @@ nav.site{
   .nav-cta-movil{display:inline-flex}
   .nav-links .btn{padding:12px 18px;font-size:.85rem}
 }
+/* 14-oct-2026: a 360 px (el ancho de Android más común) «Macuto Music» tocaba «Solicita acceso» (0 px de aire). Por debajo de 390,
+   logo y botón algo más compactos (28 px de aire a 360); por debajo de 350, solo el «mm» (antes vivía en home.css y el RADAR no lo tenía). */
+@media(max-width:389px){.logo{font-size:1.02rem;gap:7px}.logo .mm{width:30px;height:30px}.nav-links .btn{padding:11px 14px;font-size:.8rem}}
+@media(max-width:349px){.logo .logo-txt{display:none}}
 
 /* ---------- hero ---------- */
 .hero{position:relative;padding:88px 0 96px;overflow:hidden}
@@ -253,6 +257,9 @@ nav.site{
 .hero h1{font-size:clamp(2.5rem,5.2vw,4rem);font-weight:700;margin-top:clamp(14px,1.6vw,22px)}
 .hero h1 .hl{color:var(--purple)}
 .hero p.lead{font-size:clamp(1.05rem,2vw,1.24rem);margin:24px 0 34px;max-width:34rem}
+/* 14-oct-2026: en móviles de 360-380 px el titular iba en 5 líneas y «Solicita acceso» quedaba bajo el aviso de cookies (360×740).
+   Algo más pequeño ahí: 3 líneas y el botón a la vista (la reserva del titular se recalibró en los 17 anchos con este tamaño). */
+@media(max-width:380px){.hero{padding-top:22px}.hero h1{font-size:2.2rem}.hero p.lead{font-size:1rem}}
 .hero p.lead b{color:var(--ink);font-weight:600}
 .cta-row{display:flex;gap:14px;flex-wrap:wrap}
 .trust-line{margin-top:30px;color:var(--muted);font-size:.92rem;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
@@ -389,7 +396,9 @@ nav.site{
 .artist .bd b{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;color:var(--ink);font-size:1.1rem}
 .artist .bd .country{display:block;color:var(--muted);font-size:.86rem;margin-top:2px}
 .artist .bd .li{display:inline-block;margin-top:10px;font-size:.8rem;font-weight:600;color:var(--purple);background:var(--purple-wash);padding:4px 12px;border-radius:6px;font-variant-numeric:tabular-nums}
-@media(max-width:820px){.artists{grid-template-columns:1fr}.artist .ph{height:220px}}
+@media(max-width:600px){.artists{grid-template-columns:1fr}.artist .ph{height:220px}}
+/* 14-oct-2026: en tablet vertical (601-820 px) las tres fichas grandes iban apiladas a todo el ancho; ahora en fila, más bajas */
+@media(min-width:601px) and (max-width:820px){.artists{gap:14px}.artist .ph{height:200px}.artist .bd{padding:14px 16px}}
 
 .result{
   display:grid;grid-template-columns:180px 1fr;gap:32px;align-items:center;
@@ -405,6 +414,7 @@ nav.site{
 .stats-band{padding:70px 0 64px;border-bottom:1px solid var(--line);background:var(--bg)}
 .stats-eyebrow{text-align:center;margin-bottom:38px;max-width:none}
 .stats-eyebrow .eyebrow::after{content:"";width:22px;height:2px;background:var(--purple);border-radius:2px}
+@media(max-width:420px){.stats-eyebrow .eyebrow{font-size:.7rem;letter-spacing:.08em;gap:6px}.stats-eyebrow .eyebrow::before,.stats-eyebrow .eyebrow::after{width:14px}}  /* en una línea, con las dos rayas a sus lados */
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
 .stat b{display:block;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:clamp(2.2rem,4.8vw,3.4rem);color:var(--purple);letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums}
 .stat span{display:block;margin-top:10px;color:var(--text);font-size:.94rem;max-width:none}
@@ -423,6 +433,7 @@ nav.site{
 .rcard b{display:block;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;font-size:.87rem;color:var(--ink);line-height:1.25}
 .rcard span{font-size:.74rem;color:var(--purple);font-weight:600;font-variant-numeric:tabular-nums}
 .roster-note{color:var(--muted);font-size:.85rem;margin-top:14px;text-align:center;max-width:none}
+@media(max-width:600px){.roster > :last-child:nth-child(odd){grid-column:1/-1;justify-self:center;width:calc(50% - 7px)}}  /* «Ver los 21»: la 21.ª, centrada y no sola a la izquierda */
 
 /* galería de resultados reales */
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -586,6 +597,9 @@ body:has(> #mm-cookies) footer.site{padding-bottom:170px}
   .pie__nav ul{gap:0 22px}
   .foot-legal{flex-direction:column;align-items:flex-start}
   .pie .foot-legal{align-items:center;text-align:center}
+  /* los dos enlaces legales, uno debajo del otro y sin el «·» (que quedaba colgando al final de la línea a 360 px) */
+  .pie .foot-legal > span:last-child{display:flex;flex-direction:column;align-items:center;font-size:0}
+  .pie .foot-legal > span:last-child a{font-size:.85rem}
 }
 
 /* ---------- paso entre páginas (11-oct-2026): fundido corto al ir de una página del sitio a otra; la cabecera se queda ---------- */
@@ -689,6 +703,7 @@ body:has(> #mm-cookies) footer.site{padding-bottom:170px}
 @keyframes blip{0%{transform:scale(1);opacity:.8}70%,100%{transform:scale(2.6);opacity:0}}
 .rmast-tag{color:#cdc3ea;font-size:clamp(1rem,1.9vw,1.15rem);max-width:46rem;line-height:1.6}
 .rchips{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
+@media(max-width:600px){.rchips{flex-wrap:nowrap;overflow-x:auto;margin-inline:-28px;padding:4px 28px 8px;scrollbar-width:none}.rchips::-webkit-scrollbar{display:none}.rchip{flex:none}}  /* en el móvil, una fila que se desliza (antes 3 filas con «Eventos» sola) */
 .rchip{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;font-size:.84rem;letter-spacing:.04em;padding:11px 20px;border-radius:99px;border:1px solid rgba(255,255,255,.22);background:transparent;color:#cdc3ea;cursor:pointer;transition:all .25s var(--ease)}
 .rchip:hover{border-color:rgba(255,255,255,.55);color:#fff}
 .rchip.on{background:var(--purple);border-color:var(--purple);color:#fff;box-shadow:0 8px 24px -8px rgba(94,23,235,.7)}

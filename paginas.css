@@ -9,15 +9,16 @@
 @media (pointer:coarse){.nav-links .btn{min-height:44px}.logo{min-height:44px}}
 @media (min-width:1001px) and (max-width:1120px){.nav-links{gap:16px}.nav-links a:not(.btn){font-size:.9rem}}
 @media (max-width:1000px){.nav-links a:not(.btn){display:none}}
-@media (max-width:359px){.logo .logo-txt{display:none}}
 
 /* ---------- Héroe de página: texto + acción ---------- */
-.pag-hero{padding:72px 0 88px}
+.pag-hero{padding:72px 0 88px;overflow:clip}  /* .hero lleva overflow:hidden, que rompe el sticky de los pasos; clip recorta igual sin crear contenedor de scroll */
 /* Escritorio: texto y pasos a la izquierda, la acción a la derecha. Móvil: texto, acción y luego pasos (la acción no se va abajo). */
 .pag-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);grid-template-areas:"txt accion" "pasos accion";grid-template-rows:auto 1fr;column-gap:56px;align-items:start}  /* 1fr: lo que mide de más el formulario va bajo los pasos, no entre el texto y los pasos */
 .pag-txt{grid-area:txt;padding-top:10px}
 .pag-accion{grid-area:accion}
 .pag-pasos-wrap{grid-area:pasos}
+/* 14-oct-2026: el formulario de Tally mide 1.200-2.000 px; los pasos se quedan a la vista mientras se rellena (sin franja vacía a la izquierda) */
+@media (min-width:901px){.pag-pasos-wrap{position:sticky;top:100px;align-self:start}}
 .pag-hero h1{font-size:clamp(2.3rem,4.6vw,3.4rem);font-weight:700;margin:14px 0 0;line-height:1.05;text-wrap:balance}
 .pag-hero h1 .hl{color:var(--purple)}
 .pag-hero p.lead{font-size:clamp(1.02rem,1.8vw,1.16rem);margin:20px 0 0;max-width:32rem}
@@ -67,6 +68,9 @@
 .pag-portal-lista li{display:flex;gap:12px;align-items:flex-start;color:var(--text);font-size:.96rem}
 .pag-portal-lista li::before{content:"";flex:none;width:22px;height:22px;margin-top:1px;border-radius:7px;background:var(--purple-wash) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%235E17EB' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/14px no-repeat}
 .pag-portal-lista b{color:var(--ink);font-weight:600}
+/* el campo va en mayúsculas para el documento, pero la pista no: en mayúsculas no cabía en el móvil */
+.pt-card input::placeholder{text-transform:none;letter-spacing:0}
+.pt-card .btn{justify-content:center;text-align:center}
 
 /* ---------- Móvil ---------- */
 @media (max-width:900px){
