@@ -29,9 +29,9 @@
 @media (prefers-reduced-motion:no-preference){.hero h1.mv-titulo{animation:none}.mv-titulo .mv-p>span{animation:mv-sube .95s cubic-bezier(.16,1,.3,1) backwards;animation-delay:calc(var(--i,0)*55ms + 60ms)}}
 @keyframes mv-sube{from{transform:translateY(105%);clip-path:inset(-.4em -.2em 105% -.2em)}to{clip-path:inset(-.4em -.2em -.4em -.2em)}}
 </style>
-<link rel="stylesheet" href="movimiento.css?v=0a10514d" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="movimiento.css?v=0a10514d"></noscript>
-<script defer src="movimiento.js?v=843c8ead"></script>
+<link rel="stylesheet" href="movimiento.css?v=b88bbf82" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="movimiento.css?v=b88bbf82"></noscript>
+<script defer src="movimiento.js?v=cde189d0"></script>
 <script type="speculationrules">{"prefetch":[{"source":"document","where":{"href_matches":["/solicitud.html","/envia-tu-cancion.html","/radar/*"]},"eagerness":"moderate"}]}</script>
 <link rel="preload" as="image" href="assets/feed/20-hey-mami-linda-10k-escuchando.webp" media="(min-width: 601px)" fetchpriority="high">
 <script>document.documentElement.classList.add('js')</script>
@@ -300,7 +300,7 @@
   (()=>{ // Visión: el aftermovie crece con el scroll (--p de 0 a 1) y «Ver en grande» lo abre a pantalla completa con sonido
     const s=document.getElementById('vision'); if(!s) return;
     const pista=s.querySelector('.vision__pista'), v=s.querySelector('.vision__video'), son=s.querySelector('.vision__sonido'), gr=s.querySelector('.vision__grande');
-    const anima=matchMedia('(min-width: 761px) and (orientation: landscape) and (prefers-reduced-motion: no-preference)'), auto=matchMedia('(min-width: 761px)');
+    const anima=matchMedia('(min-width: 761px) and (orientation: landscape) and (prefers-reduced-motion: no-preference)'), quieto=matchMedia('(prefers-reduced-motion: reduce)');
     let raf=0, dentro=false;
     const pinta=()=>{ raf=0;
       if(!anima.matches){ s.style.setProperty('--p','1'); s.classList.remove('vision--llena'); return; }
@@ -321,7 +321,8 @@
     const juega=()=>{ carga(); const q=v.play(); if(q) q.catch(()=>{}); };
     const rotula=()=>{ son.setAttribute('aria-pressed', v.muted?'false':'true'); son.querySelector('span').textContent = v.muted ? 'Activar sonido' : 'Silenciar'; };
     if('IntersectionObserver' in window) new IntersectionObserver(es=>es.forEach(e=>{ dentro=e.isIntersecting;
-      if(dentro && (auto.matches || v.getAttribute('src'))) juega(); else if(!dentro) v.pause(); }),{rootMargin:'200px 0px'}).observe(s);
+      if(dentro && (!quieto.matches || v.getAttribute('src'))) juega(); else if(!dentro) v.pause(); }),{rootMargin:'200px 0px'}).observe(s);
+    // 14-oct, Macuto: solo también en móvil («que se reproduzca todo»); con «reducir movimiento» (accesibilidad) espera a que pulsen sonido o «Ver en grande»
     document.addEventListener('visibilitychange',()=>{ if(document.hidden) v.pause(); else if(dentro && v.getAttribute('src')) juega(); });
     son.addEventListener('click',()=>{ v.muted=!v.muted; if(!v.muted) v.currentTime=0; juega(); rotula(); });
     gr.addEventListener('click',()=>{ v.muted=false; v.controls=true; juega(); rotula();
@@ -637,7 +638,7 @@
         <figcaption><b>NEEUS × EL CLOUT · Dresscode Session 1</b><span>Proyecto en conjunto a El Clout desde The Gottit Sauce</span></figcaption>
       </figure>
       <figure class="creacion__vertical reveal d1">
-        <div class="movil"><video class="bucle" controls muted loop playsinline preload="none" width="540" height="960" data-poster="assets/creacion/neeus-canvas-poster.webp" aria-label="Spotify Canvas de Neeus">
+        <div class="movil"><video class="bucle" muted loop playsinline preload="none" width="540" height="960" data-poster="assets/creacion/neeus-canvas-poster.webp" aria-label="Spotify Canvas de Neeus">
           <source src="assets/creacion/neeus-canvas-540.mp4" type="video/mp4"></video></div>
         <figcaption><b>Spotify Canvas</b><span>El bucle que acompaña en Spotify</span></figcaption>
       </figure>
@@ -650,7 +651,7 @@
         <figcaption><b>EL DRAY × JOAO DEL MONTE · En el estudio</b><span>Pieza grabada en estudio con Macuto Music · se escucha con sonido</span></figcaption>
       </figure>
       <figure class="creacion__vertical reveal d2">
-        <div class="movil"><video class="bucle" controls muted loop playsinline preload="none" width="540" height="960" data-poster="assets/creacion/mhylo-ula-ula-poster.webp" aria-label="Mhylo, «ULA ULA»: rodaje en plató">
+        <div class="movil"><video class="bucle" muted loop playsinline preload="none" width="540" height="960" data-poster="assets/creacion/mhylo-ula-ula-poster.webp" aria-label="Mhylo, «ULA ULA»: rodaje en plató">
           <source src="assets/creacion/mhylo-ula-ula-540.mp4" type="video/mp4"></video>
           <button class="movil__sonido" type="button" aria-pressed="false" hidden>Activar sonido</button></div>
         <figcaption><b>Rodaje en plató</b><span>Pieza vertical para redes</span></figcaption>
@@ -680,8 +681,10 @@
   <!-- /DETRÁS DE CÁMARA · ESTUDIO DE GRABACIÓN -->
   <!-- VIDEOCLIPS Y PIEZAS DE ESTUDIO (12-oct-2026). Macuto: «Videoclips y piezas de estudio y Videoclips hechos por Macuto Music deben estar
        unidos… es más llamativo verlo como Videoclips y piezas de estudio en loops pequeños». Un solo bloque de bucles mudos de 5 s
-       (assets/creacion/clips/ y assets/creacion/youtube/). Los .clip--yt son videoclips de la lista de YouTube de Macuto (sin icono ▶ desde el 12-oct, por orden de Macuto):
-       al pulsar, el vídeo entero se ve aquí en un <dialog> con youtube-nocookie (movimiento.js §10); sin JS, abren YouTube.
+       (assets/creacion/clips/ y assets/creacion/youtube/; los de youtube/ son fragmentos de videoclips de la lista de YouTube de Macuto).
+       14-oct-2026, Macuto: «los vídeos que pueda darles click y mandar a YouTube, que no se pueda, solo quiero que se vea el preview»:
+       ya no son enlaces ni abren nada; todos son el bucle mudo y nada más. Sin controles ni botón de play en ningún caso (Macuto, 14-oct:
+       «en videoclip no debe salir un botón de pulsar, solo quiero ver el preview y listo»): con «reducir movimiento» o sin JS, el póster.
        «A Puro Dolor» (Línea 6) estaba en los dos bloques: queda una ficha, con su bucle y enlazada al vídeo entero.
        Sin cifras (Macuto, 12-oct). Las anchas ocupan 2×2: el orden está hecho para que cada fila de 4 se llene (10 visibles = 4 filas;
        las 10 de «Ver todos» = 4 filas). En móvil, carrusel. Estilos: movimiento.css §15. -->
@@ -691,26 +694,26 @@
       <p class="clips__nota reveal d1">Videoclips oficiales, piezas de estudio, visualizers realizados.</p>
     </div>
     <ul class="clips__lista carril-movil plegada" id="clips-lista" aria-label="Videoclips y piezas de estudio de Macuto Music">
-      <li class="clip clip--ancho"><video class="bucle" controls muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/clips/mhylo-horny.webp" aria-label="Fragmento de un videoclip: fondo rojo con una luna"><source src="assets/creacion/clips/mhylo-horny.mp4" type="video/mp4"></video></li>
-      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=AXYFuY1FtuM" data-youtube-dialogo="AXYFuY1FtuM" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (3:43)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/AXYFuY1FtuM.webp" aria-hidden="true"><source src="assets/creacion/youtube/AXYFuY1FtuM.mp4" type="video/mp4"></video></a></li>
-      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=ER2hRkaDjyQ" data-youtube-dialogo="ER2hRkaDjyQ" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (2:57)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/ER2hRkaDjyQ.webp" aria-hidden="true"><source src="assets/creacion/youtube/ER2hRkaDjyQ.mp4" type="video/mp4"></video></a></li>
-      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=PVA7NS-lfWU" data-youtube-dialogo="PVA7NS-lfWU" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (2:58)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/PVA7NS-lfWU.webp" aria-hidden="true"><source src="assets/creacion/youtube/PVA7NS-lfWU.mp4" type="video/mp4"></video></a></li>
-      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=43IUQfz_jKk" data-youtube-dialogo="43IUQfz_jKk" data-titulo="Visualizer hecho por Macuto Music" aria-label="Ver el visualizer (1:59)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/43IUQfz_jKk.webp" aria-hidden="true"><source src="assets/creacion/youtube/43IUQfz_jKk.mp4" type="video/mp4"></video></a></li>
-      <li class="clip"><video class="bucle" controls muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/clips/mhylo-blackmirror.webp" aria-label="Fragmento de un videoclip: fondo amarillo con un corazón"><source src="assets/creacion/clips/mhylo-blackmirror.mp4" type="video/mp4"></video></li>
-      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=IHOt0iU1qsA" data-youtube-dialogo="IHOt0iU1qsA" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (3:18)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/IHOt0iU1qsA.webp" aria-hidden="true"><source src="assets/creacion/youtube/IHOt0iU1qsA.mp4" type="video/mp4"></video></a></li>
-      <li class="clip clip--yt clip--ancho"><a class="clip__enlace" href="https://www.youtube.com/watch?v=Wwzz0KR8Uc0" data-youtube-dialogo="Wwzz0KR8Uc0" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (3:16)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/clips/linea6-a-puro-dolor.webp" aria-hidden="true"><source src="assets/creacion/clips/linea6-a-puro-dolor.mp4" type="video/mp4"></video></a></li>
-      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=GBPWWrqdVos" data-youtube-dialogo="GBPWWrqdVos" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (3:11)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/GBPWWrqdVos.webp" aria-hidden="true"><source src="assets/creacion/youtube/GBPWWrqdVos.mp4" type="video/mp4"></video></a></li>
-      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=DASYp7ZFjcw" data-youtube-dialogo="DASYp7ZFjcw" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (3:44)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/DASYp7ZFjcw.webp" aria-hidden="true"><source src="assets/creacion/youtube/DASYp7ZFjcw.mp4" type="video/mp4"></video></a></li>
-      <li class="clip clip--yt clip--ancho"><a class="clip__enlace" href="https://www.youtube.com/watch?v=IJroRNJFujs" data-youtube-dialogo="IJroRNJFujs" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (2:53)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/IJroRNJFujs.webp" aria-hidden="true"><source src="assets/creacion/youtube/IJroRNJFujs.mp4" type="video/mp4"></video></a></li>
-      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=NgsJS2X0cdk" data-youtube-dialogo="NgsJS2X0cdk" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (3:12)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/NgsJS2X0cdk.webp" aria-hidden="true"><source src="assets/creacion/youtube/NgsJS2X0cdk.mp4" type="video/mp4"></video></a></li>
-      <li class="clip"><video class="bucle" controls muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/clips/mhylo-cell-phone.webp" aria-label="Fragmento de un videoclip: fondo gris"><source src="assets/creacion/clips/mhylo-cell-phone.mp4" type="video/mp4"></video></li>
-      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=-o1edIkJCuw" data-youtube-dialogo="-o1edIkJCuw" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (2:12)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/-o1edIkJCuw.webp" aria-hidden="true"><source src="assets/creacion/youtube/-o1edIkJCuw.mp4" type="video/mp4"></video></a></li>
-      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=G8YUXPE5Rsg" data-youtube-dialogo="G8YUXPE5Rsg" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (3:02)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/G8YUXPE5Rsg.webp" aria-hidden="true"><source src="assets/creacion/youtube/G8YUXPE5Rsg.mp4" type="video/mp4"></video></a></li>
-      <li class="clip"><video class="bucle" controls muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/clips/mhylo-promesa.webp" aria-label="Fragmento de un videoclip: fondo negro"><source src="assets/creacion/clips/mhylo-promesa.mp4" type="video/mp4"></video></li>
-      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=pjaFkCta3fQ" data-youtube-dialogo="pjaFkCta3fQ" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (2:53)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/pjaFkCta3fQ.webp" aria-hidden="true"><source src="assets/creacion/youtube/pjaFkCta3fQ.mp4" type="video/mp4"></video></a></li>
-      <li class="clip clip--yt clip--ancho"><a class="clip__enlace" href="https://www.youtube.com/watch?v=NzggQXs59U0" data-youtube-dialogo="NzggQXs59U0" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (3:39)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/NzggQXs59U0.webp" aria-hidden="true"><source src="assets/creacion/youtube/NzggQXs59U0.mp4" type="video/mp4"></video></a></li>
-      <li class="clip"><video class="bucle" controls muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/clips/mhylo-que-pegriloso.webp" aria-label="Fragmento de un videoclip: fondo azul con focos"><source src="assets/creacion/clips/mhylo-que-pegriloso.mp4" type="video/mp4"></video></li>
-      <li class="clip clip--yt"><a class="clip__enlace" href="https://www.youtube.com/watch?v=5oTiqZjdmmE" data-youtube-dialogo="5oTiqZjdmmE" data-titulo="Videoclip hecho por Macuto Music" aria-label="Ver el videoclip (2:11)"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/5oTiqZjdmmE.webp" aria-hidden="true"><source src="assets/creacion/youtube/5oTiqZjdmmE.mp4" type="video/mp4"></video></a></li>
+      <li class="clip clip--ancho"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/clips/mhylo-horny.webp" aria-label="Fragmento de un videoclip: fondo rojo con una luna"><source src="assets/creacion/clips/mhylo-horny.mp4" type="video/mp4"></video></li>
+      <li class="clip"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/AXYFuY1FtuM.webp" aria-label="Fragmento de un videoclip hecho por Macuto Music"><source src="assets/creacion/youtube/AXYFuY1FtuM.mp4" type="video/mp4"></video></li>
+      <li class="clip"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/ER2hRkaDjyQ.webp" aria-label="Fragmento de un videoclip hecho por Macuto Music"><source src="assets/creacion/youtube/ER2hRkaDjyQ.mp4" type="video/mp4"></video></li>
+      <li class="clip"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/PVA7NS-lfWU.webp" aria-label="Fragmento de un videoclip hecho por Macuto Music"><source src="assets/creacion/youtube/PVA7NS-lfWU.mp4" type="video/mp4"></video></li>
+      <li class="clip"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/43IUQfz_jKk.webp" aria-label="Fragmento de un visualizer hecho por Macuto Music"><source src="assets/creacion/youtube/43IUQfz_jKk.mp4" type="video/mp4"></video></li>
+      <li class="clip"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/clips/mhylo-blackmirror.webp" aria-label="Fragmento de un videoclip: fondo amarillo con un corazón"><source src="assets/creacion/clips/mhylo-blackmirror.mp4" type="video/mp4"></video></li>
+      <li class="clip"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/IHOt0iU1qsA.webp" aria-label="Fragmento de un videoclip hecho por Macuto Music"><source src="assets/creacion/youtube/IHOt0iU1qsA.mp4" type="video/mp4"></video></li>
+      <li class="clip clip--ancho"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/clips/linea6-a-puro-dolor.webp" aria-label="Fragmento de un videoclip hecho por Macuto Music"><source src="assets/creacion/clips/linea6-a-puro-dolor.mp4" type="video/mp4"></video></li>
+      <li class="clip"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/GBPWWrqdVos.webp" aria-label="Fragmento de un videoclip hecho por Macuto Music"><source src="assets/creacion/youtube/GBPWWrqdVos.mp4" type="video/mp4"></video></li>
+      <li class="clip"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/DASYp7ZFjcw.webp" aria-label="Fragmento de un videoclip hecho por Macuto Music"><source src="assets/creacion/youtube/DASYp7ZFjcw.mp4" type="video/mp4"></video></li>
+      <li class="clip clip--ancho"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/IJroRNJFujs.webp" aria-label="Fragmento de un videoclip hecho por Macuto Music"><source src="assets/creacion/youtube/IJroRNJFujs.mp4" type="video/mp4"></video></li>
+      <li class="clip"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/NgsJS2X0cdk.webp" aria-label="Fragmento de un videoclip hecho por Macuto Music"><source src="assets/creacion/youtube/NgsJS2X0cdk.mp4" type="video/mp4"></video></li>
+      <li class="clip"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/clips/mhylo-cell-phone.webp" aria-label="Fragmento de un videoclip: fondo gris"><source src="assets/creacion/clips/mhylo-cell-phone.mp4" type="video/mp4"></video></li>
+      <li class="clip"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/-o1edIkJCuw.webp" aria-label="Fragmento de un videoclip hecho por Macuto Music"><source src="assets/creacion/youtube/-o1edIkJCuw.mp4" type="video/mp4"></video></li>
+      <li class="clip"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/G8YUXPE5Rsg.webp" aria-label="Fragmento de un videoclip hecho por Macuto Music"><source src="assets/creacion/youtube/G8YUXPE5Rsg.mp4" type="video/mp4"></video></li>
+      <li class="clip"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/clips/mhylo-promesa.webp" aria-label="Fragmento de un videoclip: fondo negro"><source src="assets/creacion/clips/mhylo-promesa.mp4" type="video/mp4"></video></li>
+      <li class="clip"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/pjaFkCta3fQ.webp" aria-label="Fragmento de un videoclip hecho por Macuto Music"><source src="assets/creacion/youtube/pjaFkCta3fQ.mp4" type="video/mp4"></video></li>
+      <li class="clip clip--ancho"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/NzggQXs59U0.webp" aria-label="Fragmento de un videoclip hecho por Macuto Music"><source src="assets/creacion/youtube/NzggQXs59U0.mp4" type="video/mp4"></video></li>
+      <li class="clip"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/clips/mhylo-que-pegriloso.webp" aria-label="Fragmento de un videoclip: fondo azul con focos"><source src="assets/creacion/clips/mhylo-que-pegriloso.mp4" type="video/mp4"></video></li>
+      <li class="clip"><video class="bucle" muted loop playsinline preload="none" width="640" height="360" data-poster="assets/creacion/youtube/5oTiqZjdmmE.webp" aria-label="Fragmento de un videoclip hecho por Macuto Music"><source src="assets/creacion/youtube/5oTiqZjdmmE.mp4" type="video/mp4"></video></li>
     </ul>
     <button class="ver-mas" type="button" data-despliega data-desde="10" aria-controls="clips-lista" aria-expanded="false">Ver todos los videoclips</button>
   </div>
@@ -855,7 +858,7 @@
       <figure><img src="assets/eventos/forbes-2025-invitados-640.webp" srcset="assets/eventos/forbes-2025-invitados-640.webp 640w, assets/eventos/forbes-2025-invitados-1200.webp 1200w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="800" alt="Macuto con traje azul junto a Neyver en la alfombra roja del Festival Forbes 30 Under 30 de 2025" loading="lazy" decoding="async"><figcaption>2025 · alfombra roja, con Neyver</figcaption></figure>
       <figure><img src="assets/eventos/forbes-2025-munich-640.webp" srcset="assets/eventos/forbes-2025-munich-640.webp 640w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="853" alt="Macuto y Neyver junto al dueño de la marca Munich Sports y otro invitado en el Festival Forbes 30 Under 30 de 2025" loading="lazy" decoding="async"><figcaption>2025 · con el dueño de la marca Munich Sports</figcaption></figure>
       <figure><img src="assets/eventos/forbes-2025-alfombra-640.webp" srcset="assets/eventos/forbes-2025-alfombra-640.webp 640w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="958" alt="Macuto en la alfombra roja del Festival Forbes 30 Under 30 de 2025" loading="lazy" decoding="async"><figcaption>2025 · alfombra roja</figcaption></figure>
-      <figure><img src="assets/eventos/forbes-2024-alfombra-640.webp" srcset="assets/eventos/forbes-2024-alfombra-640.webp 640w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="702" alt="Macuto posa con traje azul y corbata granate en la alfombra roja del Forbes 30 Under 30 de 2024" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/eventos/forbes-2024-alfombra.mp4" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video><figcaption>2024 · photocall</figcaption></figure>
+      <figure><img src="assets/eventos/forbes-2024-alfombra-640.webp" srcset="assets/eventos/forbes-2024-alfombra-640.webp 640w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="702" alt="Macuto posa con traje azul y corbata granate en la alfombra roja del Forbes 30 Under 30 de 2024" loading="lazy" decoding="async"><figcaption>2024 · photocall</figcaption></figure>
       <figure><img src="assets/eventos/forbes-2024-acreditacion-640.webp" srcset="assets/eventos/forbes-2024-acreditacion-640.webp 640w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="853" alt="Acreditación del Forbes 30 Under 30 de 2024 a nombre de Angelo Jordan Gutiérrez Luis, de Macuto Music" loading="lazy" decoding="async"><figcaption>2024 · acreditación de Macuto Music</figcaption></figure>
     </div>
   </div>
@@ -900,30 +903,22 @@
     <script>
     /* Vídeos mudos de «Con artistas y la industria», la Mastermind y «Detrás de cámara» (11-oct-2026, Macuto: «reproduce los videos sin sonido»).
        La foto se queda debajo como póster y respaldo; el vídeo, siempre mudo y en bucle, aparece encima al empezar a reproducirse.
-       14-oct-2026 (revisión de tirones): con 9-11 vídeos a la vez la página bajaba de 60 a 30 fps. Ahora solo se reproducen los que se ven
-       casi enteros (60 %) y, de esos, como mucho 3 (2 en móvil): los más cercanos al centro de la pantalla. El resto se queda en su foto.
-       Recoge también las copias que movimiento.js añade más tarde a las filas. Sin vídeo con «reducir movimiento» o con ahorro de datos. */
+       14-oct-2026, Macuto: «en ordenador y movil que se reproduzca todo y gaste luz y datos del usuario que venga a verlo». Sin tope y sin
+       mirar el ahorro de datos: se reproduce todo lo que asoma a la pantalla (con 100 px de margen, para que ya vaya al aparecer) y se pausa
+       al salir. Recoge también las copias que movimiento.js añade más tarde a las filas. Sin vídeo solo con «reducir movimiento» (accesibilidad). */
     const mudos=()=>{
       if(matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
-      if(navigator.connection && navigator.connection.saveData) return;
-      const MAX=matchMedia('(max-width: 600px)').matches ? 2 : 3;
-      const vis=new Set();
       const juega=v=>{ if(!v.getAttribute('src')) v.src=v.dataset.src; v.muted=true; const p=v.play(); if(p) p.catch(()=>{}); };
-      let raf=0, espera=0;
-      const reparte=()=>{ raf=0; if(document.hidden) return;
-        const cx=innerWidth/2, cy=innerHeight/2;
-        [...vis].map(v=>{ const r=v.getBoundingClientRect(); return [v, Math.hypot(r.left+r.width/2-cx, r.top+r.height/2-cy)]; })
-          .sort((a,b)=>a[1]-b[1]).forEach(([v],i)=>{ if(i<MAX) juega(v); else v.pause(); });
-      };
-      const pide=()=>{ if(!raf) raf=requestAnimationFrame(reparte); };
-      const io=new IntersectionObserver(es=>{ es.forEach(e=>{ const v=e.target;
-        if(e.intersectionRatio>=.6) vis.add(v); else { vis.delete(v); v.pause(); } }); pide(); },{threshold:[0,.6]});
-      const alta=v=>{ if(v.dataset.mudo) return; v.dataset.mudo='1'; v.addEventListener('playing',()=>v.classList.add('va'),{once:true}); io.observe(v); };
+      const vis=new Set();
+      const io=new IntersectionObserver(es=>es.forEach(e=>{ const v=e.target;
+        if(e.isIntersecting){ vis.add(v); if(!document.hidden) juega(v); } else { vis.delete(v); v.pause(); } }),{rootMargin:'100px 0px'});
+      // registro en un WeakSet y no en un data-*: las copias que movimiento.js clona de las filas heredaban la marca y se quedaban en foto (15-oct)
+      const vistos=new WeakSet();
+      const alta=v=>{ if(vistos.has(v)) return; vistos.add(v); v.addEventListener('playing',()=>v.classList.add('va'),{once:true}); io.observe(v); };
       document.querySelectorAll('.evento__video').forEach(alta);
       new MutationObserver(ms=>ms.forEach(m=>m.addedNodes.forEach(n=>{ if(n.nodeType===1) n.querySelectorAll('.evento__video').forEach(alta); })))
         .observe(document.getElementById('main')||document.body,{childList:true,subtree:true});
-      addEventListener('scroll',()=>{ clearTimeout(espera); espera=setTimeout(pide,150); },{passive:true});
-      document.addEventListener('visibilitychange',()=>{ if(document.hidden) vis.forEach(v=>v.pause()); else pide(); });
+      document.addEventListener('visibilitychange',()=>{ if(document.hidden) vis.forEach(v=>v.pause()); else vis.forEach(juega); });
     };
     if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',mudos,{once:true}); else mudos();
     </script>

@@ -9,7 +9,7 @@
  *            7) foco que sigue al ratón en las celdas de «Qué hacemos» e inclinación de las fichas de artistas;
  *            8) botones imán (el CTA principal se deja atraer unos píxeles);
  *            9) roster en cascada y entrada escalonada de lo que despliega «Ver más»;
- *           10) vídeos: Mastermind con portada y botón, sesión de YouTube con fachada y verticales en bucle (11-oct, tarde).
+ *           10) vídeos: sesión de YouTube con fachada, pieza de estudio con su botón y bucles mudos sin botones (11-oct; bucles, 14-oct).
  *           11) testimonios en filas que avanzan solas (12-oct; los videoclips de YouTube pasaron a los bucles de «Hecho en casa»);
  *           12) «Quién está detrás» en formato Stories de Instagram (12-oct).
  * REGLAS     · Con «reducir movimiento» solo quedan 1 (es estado, no adorno), 10 (los vídeos, sin bucles automáticos)
@@ -54,10 +54,12 @@
     const f = y => nav.classList.toggle('mv-bajado', y > 12);
     tareas.add(f); f(scrollY);
   }
-  /* ---- 10 · vídeos (corre también con «reducir movimiento»: ahí los bucles no arrancan solos y conservan sus controles) ----
-         · Mastermind: el botón propio sustituye a los controles hasta que se pulsa; luego, controles nativos y sonido.
-         · Sesión de YouTube: fachada; youtube-nocookie solo al pulsar (antes no se pide nada a YouTube).
-         · Verticales: bucle mudo mientras están en pantalla; Mhylo con botón de sonido. Solo suena un vídeo a la vez. ---- */
+  /* ---- 10 · vídeos (corre también con «reducir movimiento»: ahí los bucles no arrancan y se queda el póster, sin controles: Macuto no quiere botones) ----
+         · Pieza de Joao del Monte: el botón propio sustituye a los controles hasta que se pulsa; luego, controles nativos y sonido.
+         · Sesión de YouTube (Neeus): fachada; youtube-nocookie solo al pulsar (antes no se pide nada a YouTube). Estas dos se quedan
+           como estaban (Macuto, 15-oct: «el vídeo de Neus y el Dry tienen que quedarse como estaban»).
+         · Bucles (videoclips y verticales): mudos mientras están en pantalla, sin controles ni botón de play, y los videoclips no abren
+           YouTube (Macuto, 14-oct). Mhylo conserva su botón de sonido. Solo suena un vídeo a la vez. ---- */
   const soloEste = v => $$('video').forEach(o => {
     if (o === v || o.muted) return;
     if (o.classList.contains('bucle')) { o.muted = true; const s = o.parentElement.querySelector('.movil__sonido'); if (s) { s.setAttribute('aria-pressed', 'false'); s.textContent = 'Activar sonido'; } }
@@ -87,31 +89,8 @@
       m.classList.add('en-marcha'); m.append(f); a.remove(); f.focus();
     });
   });
-  // Videoclips de YouTube (12-oct-2026): al pulsar uno, el vídeo entero se reproduce AQUÍ, en un <dialog>, sin ir a YouTube.
-  // Delegado en el documento para que funcione también en las copias de la fila que se mueve (§11).
-  let repro = null;
-  document.addEventListener('click', e => {
-    const a = e.target.closest('a[data-youtube-dialogo]');
-    if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button) return; // abrir en otra pestaña sigue funcionando
-    e.preventDefault();
-    if (!repro) {
-      repro = document.createElement('dialog');
-      repro.className = 'reproductor';
-      repro.innerHTML = '<div class="reproductor__marco"></div><button type="button" class="reproductor__cerrar" aria-label="Cerrar el vídeo">×</button>';
-      document.body.append(repro);
-      repro.querySelector('.reproductor__cerrar').addEventListener('click', () => repro.close());
-      repro.addEventListener('click', ev => { if (ev.target === repro) repro.close(); });
-      repro.addEventListener('close', () => { repro.querySelector('.reproductor__marco').textContent = ''; });
-    }
-    soloEste(null);
-    const f = document.createElement('iframe'), titulo = a.dataset.titulo || 'Vídeo de YouTube';
-    f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(a.dataset.youtubeDialogo) + '?autoplay=1&rel=0&playsinline=1';
-    f.title = titulo; f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true;
-    repro.querySelector('.reproductor__marco').replaceChildren(f);
-    repro.setAttribute('aria-label', titulo);
-    repro.showModal();
-    repro.querySelector('.reproductor__cerrar').focus(); // el foco fuera del iframe: Esc cierra (dentro de YouTube no llega)
-  });
+  // (14-oct-2026) Aquí vivía el <dialog> que reproducía los videoclips de YouTube al pulsar una ficha de «Videoclips y piezas de
+  // estudio». Macuto: «que no se pueda, solo quiero que se vea el preview»: las fichas ya no son enlaces y el reproductor se quitó.
   // Pósters diferidos (13-oct-2026, auditoría de velocidad): el atributo poster nunca es lazy y los 23 vídeos de #creacion bajaban
   // ~250 KB al cargar, a 11.000 px. Van en data-poster y se ponen cuando su lista está a 1,2 pantallas (margen en px: en % fallaba
   // en emulación móvil). Se rellena la lista entera porque en móvil es un carril horizontal y lo que queda a la derecha no
@@ -133,9 +112,7 @@
 
   const bucles = $$('video.bucle');
   if (!reducir && bucles.length) {
-    let pide = () => {};
     bucles.forEach(v => {
-      v.removeAttribute('controls');
       const s = v.parentElement.querySelector('.movil__sonido');
       if (s) {
         s.hidden = false;
@@ -143,45 +120,22 @@
           v.muted = !v.muted;
           s.setAttribute('aria-pressed', String(!v.muted)); s.textContent = v.muted ? 'Activar sonido' : 'Silenciar';
           if (!v.muted) { soloEste(v); v.play().catch(() => {}); }
-          pide();
         });
       }
     });
-    /* Presupuesto de bucles (14-oct-2026): «Diseño Web OK» midió la página EN REPOSO a 30 fps con 8 vídeos sonando a la vez (con 0-1,
-       47 fps). Ahora solo suenan los bucles que se ven al 60 % y, de esos, como mucho 2 en escritorio y 1 en el móvil, los más cercanos al
-       centro de la pantalla. El que tiene el sonido puesto lo ha elegido la persona: no cuenta y no se pausa mientras se vea. Con
-       «Ahorro de datos», ninguno arranca solo. Los .evento__video (#industria, Mastermind, «Detrás de cámara») llevan su propio gestor
-       con el mismo criterio, en el script de #industria de index.html. */
+    /* Bucles (14-oct-2026, Macuto: «en ordenador y móvil que se reproduzca todo y gaste luz y datos del usuario que venga a verlo»):
+       arranca todo bucle que asome en pantalla, en cualquier dispositivo y también con «Ahorro de datos», y solo se pausa al salir de
+       ella (con la pestaña oculta ya lo para el navegador). Esa misma mañana hubo un tope de 1-2 a la vez, los más centrados: se quitó
+       por orden suya (no daba fluidez: la bajada a 30 fps es de Chrome en el Mac con 2 o más vídeos). Los .evento__video (#industria,
+       Mastermind, «Detrás de cámara») llevan su propio gestor con el mismo criterio, en el script de #industria de index.html. */
     if ('IntersectionObserver' in window) {
-      const tope = matchMedia('(max-width: 760px)').matches ? 1 : 2;
-      const ahorro = !!(navigator.connection && navigator.connection.saveData);
-      const vistos = new Map();  // bucle → cuánto se ve (0-1)
-      let raf = 0;
-      const reparte = () => {
-        raf = 0;
-        const cx = innerWidth / 2, cy = innerHeight / 2;
-        const elegidos = [...vistos].filter(([v, r]) => r >= .6 && v.muted)
-          .map(([v]) => { const q = v.getBoundingClientRect(); return [v, Math.hypot(q.left + q.width / 2 - cx, q.top + q.height / 2 - cy)]; })
-          .sort((a, b) => a[1] - b[1]).slice(0, ahorro ? 0 : tope).map(([v]) => v);
-        bucles.forEach(v => {
-          if (!v.muted && vistos.has(v)) return;  // con sonido: manda la persona
-          if (elegidos.includes(v)) { if (v.paused) { v.preload = 'auto'; v.play().catch(() => {}); } }
-          else if (!v.paused) v.pause();
-        });
-      };
-      pide = () => { if (!raf) raf = requestAnimationFrame(reparte); };
-      const io = new IntersectionObserver(es => {
-        es.forEach(e => e.isIntersecting
-          ? vistos.set(e.target, Math.max(e.intersectionRatio, e.intersectionRect.height / innerHeight))  // los más altos que la pantalla
-          : vistos.delete(e.target));
-        pide();
-      }, { threshold: [0, .3, .6, .8, 1] });
+      const io = new IntersectionObserver(es => es.forEach(e => {
+        const v = e.target;
+        if (e.isIntersecting) { if (v.paused) { v.preload = 'auto'; v.play().catch(() => {}); } }
+        else if (!v.paused) v.pause();
+      }), { rootMargin: '100px 0px' });  // arranca un poco antes de entrar, como el gestor de #industria
       bucles.forEach(v => io.observe(v));
-      const alMover = () => { if (vistos.size) pide(); };  // al bajar o al deslizar un carril cambia cuál queda más centrado
-      addEventListener('scroll', alMover, { passive: true });
-      addEventListener('resize', pide);
-      $$('.carril-movil').forEach(c => c.addEventListener('scroll', alMover, { passive: true }));
-    }
+    } else bucles.forEach(v => { v.preload = 'auto'; v.play().catch(() => {}); });
   }
 
   /* ---- 12 · «Quién está detrás» en formato Stories de Instagram (12-oct-2026, Macuto) ----

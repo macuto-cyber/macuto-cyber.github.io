@@ -180,24 +180,23 @@ a.video-h__marco{display:block;color:#fff}
 /* ---------- 15 · «Hecho en casa»: videoclips y piezas de estudio en bucles pequeños (12-oct-2026) ----------
    Un solo bloque (Macuto unió aquí «Videoclips hechos por Macuto Music»): 25 fragmentos mudos de 5 s (640×360, ~120-230 KB),
    con la clase .bucle: movimiento.js §10 los reproduce solo mientras se ven; sin JS o con «reducir movimiento», póster.
-   Los .clip--yt son enlaces con ▶: el vídeo entero se abre en el <dialog> de §17. En escritorio se ven 10 (12 celdas) y
+   Solo vista previa: ninguna ficha es enlace ni abre nada (14-oct, Macuto). En escritorio se ven 10 (12 celdas) y
    el resto con «Ver todos»; en el móvil, carril que se desliza con el dedo (.carril-movil de home.css), sin plegar. */
 .clips{margin-top:56px}
 .clips__titulo{font-size:clamp(1.15rem,1.6vw,1.4rem);margin:0 0 18px}
 .clips__cab{display:flex;justify-content:space-between;align-items:flex-end;gap:6px 24px;flex-wrap:wrap;margin-bottom:18px}
 .clips__cab .clips__titulo{margin:0}
 .clips__nota{margin:0;color:var(--muted);font-size:.92rem;max-width:52ch}
-.clip__enlace{position:relative;display:block;color:#fff;isolation:isolate}
-.clip__enlace img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;transition:transform .8s var(--ease-expo)}
-.clip__enlace:focus-visible{outline:3px solid var(--purple);outline-offset:-3px;border-radius:var(--r-md)}
-@media (hover:hover) and (pointer:fine){.clip__enlace:hover img{transform:scale(1.04)}}
 @media (min-width:601px){.js .clips__lista.plegada > :nth-child(n+11){display:none}.js .clips__lista.plegada + .ver-mas{display:flex}}
 @media (prefers-reduced-motion:no-preference){.clips__lista:not(.plegada) > .clip:nth-child(n+11){animation:mv-asoma .7s var(--ease-expo) backwards;animation-delay:calc((var(--j,0)) * 40ms)}}
 .clips__lista{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-flow:dense;gap:14px}
 .clip{position:relative;margin:0;border-radius:var(--r-md);overflow:hidden;background:#0b0a14;isolation:isolate}
 .clip--ancho{grid-column:span 2;grid-row:span 2}
-.clip.clip--ancho video,.clip.clip--ancho img,.clip.clip--ancho .clip__enlace{height:100%;aspect-ratio:auto}
+.clip.clip--ancho video,.clip.clip--ancho img{height:100%;aspect-ratio:auto}
 .clip video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;transition:transform .8s var(--ease-expo)}
+/* 14-oct-2026 (Macuto: «no debe salir un botón de pulsar»): Safari en iOS con «Ahorro de energía» no deja arrancar solo un vídeo y le pinta
+   encima su botón ▶ aunque no lleve controls. Se oculta: ahí se ve el póster quieto. */
+video.bucle::-webkit-media-controls-start-playback-button,.evento__video::-webkit-media-controls-start-playback-button{display:none!important;-webkit-appearance:none}
 .clip__pie{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:26px 14px 11px;color:#fff;font-size:.82rem;line-height:1.3;
   background:linear-gradient(to top,rgba(11,10,20,.82),rgba(11,10,20,0));pointer-events:none}
 .clip__pie b{font:600 .9rem/1.2 'Poppins','Poppins Reserva',sans-serif;margin-right:4px}
@@ -227,20 +226,7 @@ a.video-h__marco{display:block;color:#fff}
 .testimonios__fila.mv-js{overflow:visible;width:max-content;padding-inline:0;scroll-snap-type:none;will-change:transform}  /* sin relleno: las copias cubren los dos lados y no queda franja vacía al reiniciar la vuelta */
 @media (max-width:600px){.testimonio{width:min(80vw,300px)}.testimonios__filas{gap:16px}}
 
-/* ---------- 17 · Videoclips de YouTube: reproductor (12-oct-2026, Macuto: «embébelos sin que se reproduzca en YouTube»).
-   Las fichas .clip--yt de §15 son enlaces al vídeo, sin icono ▶ (Macuto, 12-oct): con JS se abren aquí mismo en un <dialog>
-   con youtube-nocookie (antes no se pide nada a YouTube); sin JS, abren YouTube. */
-
-/* Reproductor: capa superior nativa (<dialog>), Esc y el botón cierran; al cerrar se quita el iframe y el vídeo se para */
-.reproductor{width:min(1100px,94vw);max-width:none;padding:0;border:0;border-radius:18px;background:#000;overflow:visible;color:#fff}
-.reproductor::backdrop{background:rgba(11,10,20,.84)}
-.reproductor__marco{aspect-ratio:16/9;border-radius:18px;overflow:hidden}
-.reproductor__marco iframe{display:block;width:100%;height:100%;border:0}
-.reproductor__cerrar{position:absolute;top:-52px;right:0;width:44px;height:44px;border:0;border-radius:50%;background:#fff;color:var(--ink);
-  font:500 26px/1 system-ui,sans-serif;cursor:pointer}
-.reproductor__cerrar:focus-visible{outline:3px solid var(--pie-acento,#b197fc);outline-offset:3px}
-@media (prefers-reduced-motion:no-preference){.reproductor[open]{animation:repro-entra .4s var(--ease-expo)}}
-@keyframes repro-entra{from{opacity:0;transform:scale(.96)}}
+/* ---------- 17 · (14-oct-2026) Aquí vivía el reproductor <dialog> de los videoclips de YouTube: se quitó con los enlaces de §15. */
 
 /* ---------- 18 · «Quién está detrás» en formato Stories de Instagram (12-oct-2026, Macuto) ----------
    Fotos y vídeos mudos de Angelo a 9:16, uno sobre otro (el vídeo no lleva el zoom lento de las fotos); movimiento.js §12 añade las barras, la cabecera, la pausa y las zonas de toque
