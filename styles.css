@@ -810,3 +810,5 @@ body:has(> #mm-cookies) footer.site{padding-bottom:170px}
 /* la novedad más cercana: la marca el script de la home a partir de data-inicio/data-fin */
 .nov-next{border-color:var(--line-strong);background:linear-gradient(160deg,var(--purple-wash) 0%,var(--surface) 60%)}
 .soon{display:inline-block;vertical-align:middle;background:var(--ink);color:#fff;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:99px;margin-left:8px;position:relative;top:-2px}
+/* 15-oct-2026: un elemento con el atributo hidden se oculta SIEMPRE. Sin esto, una clase con display (p. ej. .pag-grid{display:grid}) le gana al hidden del navegador: el formulario del Portal DAP seguía encima del plan tras entrar, y el botón de pausa de las historias de la portada (.historias__pausa{display:grid}) seguía a la vista con «reducir movimiento». */
+[hidden]{display:none!important}
