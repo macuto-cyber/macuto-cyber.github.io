@@ -14,6 +14,8 @@
 .caso-hero__fotos figure{margin:0;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-md);background:var(--purple-wash)}
 .caso-hero__fotos figure:nth-child(2){margin-top:56px}
 .caso-hero__fotos img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover}
+.caso-hero__fotos figure{position:relative}
+.caso-hero__fotos video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}  /* encima de su foto, que hace de póster */
 .caso-hero__acciones{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
 
 /* ---------- Cifras ---------- */
@@ -83,7 +85,7 @@
   .caso-dap{grid-template-columns:1fr}
   .caso-cierre__acciones .btn{flex:1 1 100%;justify-content:center}
 }
-@media (prefers-reduced-motion:reduce){.dia__fotos video{display:none}}
+@media (prefers-reduced-motion:reduce){.dia__fotos video,.caso-hero__fotos video{display:none}}
 
 /* Texto solo para lectores de pantalla (títulos de sección que se ven por el diseño) */
 .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -93,4 +95,3 @@
 .js .reveal:not(.in){opacity:0;transform:translateY(24px)}
 @media (prefers-reduced-motion:reduce){.js .reveal:not(.in){opacity:1;transform:none}}
 .dia__fotos--una{grid-template-columns:minmax(0,260px)}
-.dia__fotos--dos{grid-template-columns:repeat(2,minmax(0,260px))}
