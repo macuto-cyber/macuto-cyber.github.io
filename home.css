@@ -322,3 +322,8 @@ a,button,summary{-webkit-tap-highlight-color:transparent}
 #mastermind-fotos > .evento__foto--alta img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-position:50% 40%}  /* el alto lo marcan las dos filas de fotos 3:2 */
 @media (max-width:600px){#mastermind-fotos > .evento__foto--alta{flex-basis:calc(min(80%,320px) / 2)}}  /* mismo alto que las 3:2 del carril y en vertical: sin cabezas cortadas */
 @media (min-width:601px){.js .evento__fotos.plegada > :nth-child(n+10){display:none}.js .evento__fotos.plegada + .ver-mas{display:flex}}  /* en el carril del móvil se ve todo deslizando */
+
+/* §26 · Macuto en Miami (29 y 31-oct-2026): enlace a la semana completa (/miami/) bajo las fotos de #miami. */
+.evento__enlace{display:flex;width:max-content;max-width:100%;margin:22px auto 0;align-items:center;gap:8px;min-height:44px;padding:10px 22px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:600 .95rem 'Poppins','Poppins Reserva',sans-serif;text-decoration:none;transition:border-color .2s,color .2s,transform .3s var(--ease)}
+.evento__enlace::after{content:"→";color:var(--purple)}
+.evento__enlace:hover{border-color:var(--line-strong);color:var(--purple);transform:translateY(-2px)}
