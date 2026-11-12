@@ -1,7 +1,10 @@
 /* macutomusic.com/contrato — asistente de datos y firma del contrato Sistema DAP (v2, 16-sep-2026).
    El token (256 bits) viaja en el FRAGMENTO de la URL (#…): nunca llega a GitHub Pages ni a ningún proxy.
    Los datos, el PDF y las firmas los sirve la API del M5 (firmar.macutomusic.com/api/sobre/<token>).
-   Solo se acepta otra API cuando la página se abre en localhost (pruebas). ES5 a propósito (móviles viejos). */
+   Solo se acepta otra API cuando la página se abre en localhost (pruebas). ES5 a propósito (móviles viejos).
+   FLUJO CORTO (12-nov-2026, orden de Macuto): en los sobres con flujo='corto' se entra con un CÓDIGO de 6 cifras (a su
+   correo o por WhatsApp; «No tengo el código» lo reenvía), los datos se rellenan en UNA página que se guarda sola en el
+   servidor, y se lee y firma en UNA página con la lista de lo que falta junto al botón. Los sobres anteriores siguen igual. */
 (function () {
   'use strict';
   var app = document.getElementById('app');
@@ -131,6 +134,25 @@
     inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); go(); } });
   }
   function vistaCodigo(st) {
+    var CORTO = st.flujo === 'corto';
+    if (CORTO) {
+      app.innerHTML = '<h1>Tu contrato está listo</h1>' + card('<h2>Escribe tu código</h2><p>Para proteger tus datos, tu contrato se abre con un <b>código de 6 cifras</b>' +
+        (st.codigo_a ? ' que te mandamos a tu correo (<b>' + esc(st.codigo_a) + '</b>).' : ' que te da tu contacto del equipo por WhatsApp.') + '</p>' +
+        '<div class="ct-field" id="f-pin"><label for="pin">Código</label><input id="pin" class="ct-codigo" inputmode="numeric" autocomplete="one-time-code" maxlength="7" placeholder="······"><div class="ct-err"></div></div>' +
+        '<div class="ct-errbox" id="errbox"></div><button type="button" class="ct-btn" id="pin-go">Entrar</button>' +
+        '<p class="ct-small" style="margin-top:12px"><button type="button" class="ct-link" id="reenviar">No tengo el código' + (st.codigo_a ? ': mándamelo otra vez' : '') + '</button></p>' +
+        '<p class="ct-small" id="reenv-msg" role="status"></p>' +
+        '<p class="ct-small ct-mut">Lo que escribas se guarda solo: si cierras la página o pasas al ordenador, vuelves a entrar con el código y sigues donde lo dejaste.</p>') + foot();
+      var rb = $('#reenviar');
+      rb.addEventListener('click', function () {
+        rb.disabled = true; $('#reenv-msg').textContent = 'Un momento…';
+        api('/pin/reenviar', { method: 'POST', body: {} }).then(function (r) {
+          $('#reenv-msg').textContent = (r.j && r.j.mensaje) || 'No se pudo. Escribe a tu contacto del equipo.';
+          $('#reenv-msg').style.color = (r.ok && r.j && r.j.ok) ? '#1f7a4d' : '';
+          setTimeout(function () { rb.disabled = false; }, 30000);
+        }).catch(function () { rb.disabled = false; $('#reenv-msg').textContent = 'Problema de conexión. Inténtalo de nuevo.'; });
+      });
+    } else
     app.innerHTML = '<h1>' + esc(st.titulo || 'Contrato Sistema DAP') + '</h1>' + card('<h2>Código de acceso</h2><p>Para proteger tus datos, este enlace solo se abre con el <b>código de seis cifras</b> que te ha dado el equipo por llamada o por correo (no viene en el mensaje del enlace).</p>' +
       '<div class="ct-field" id="f-pin"><label for="pin">Código de acceso</label><input id="pin" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]*" placeholder="······"><div class="ct-err"></div></div>' +
       '<div class="ct-errbox" id="errbox"></div><button type="button" class="ct-btn" id="pin-go">Entrar</button>' +
@@ -139,7 +161,7 @@
     var inp = $('#pin'); inp.focus();
     function go() {
       var v = (inp.value || '').replace(/\D/g, '');
-      if (v.length !== 6) { $('#errbox').textContent = 'El código tiene seis cifras.'; $('#errbox').style.display = 'block'; return; }
+      if (v.length !== 6) { $('#errbox').textContent = 'El código tiene 6 cifras. Cópialo tal cual del correo o del WhatsApp.'; $('#errbox').style.display = 'block'; return; }
       var b = $('#pin-go'); b.disabled = true;
       api('/pin', { method: 'POST', body: { pin: v } }).then(function (r) {
         b.disabled = false;
@@ -267,6 +289,7 @@
       msg('✅ Ya firmaste', 'Tu firma quedó registrada el ' + st.firmado_ts + '. Estamos sellando el contrato con todas las firmas; en unos segundos podrás descargar tu copia.', 'Esta página se actualiza sola.');
       pollTimer = setTimeout(load, 10000); return;
     }
+    var faltan = (st.faltan_firmas || []).map(function (x) { return esc(x.nombre) + ' (' + esc((x.rol || '').toLowerCase()) + ')'; });
     var cuerpo = 'Tu firma quedó registrada el ' + st.firmado_ts + '. ' + (st.todo_firmado ? 'El contrato ya está firmado por todas las partes: puedes descargar tu copia con el certificado de firmas (este enlace la sirve durante treinta días; después, pídela al equipo).' : 'Cuando firmen todas las partes recibirás tu copia con el certificado de firmas.');
     var extra = st.pagado ? '<p class="ct-okbox">✓ Pago recibido.' + (st.activado ? ' Tu contrato está <b>activado</b>: el equipo te escribirá para el onboarding.' : ' El contrato se activa en cuanto quede sellado.') + '</p>' : '';
     if (st.pago2) extra += '<p class="ct-small">' + (st.pago2.pagado ? '✓ Segundo pago de ' + esc(st.pago2.importe) + ' € recibido.' : 'Segundo pago: <b>' + esc(st.pago2.importe) + ' €</b> el ' + esc(st.pago2.vence) + ', con la misma tarjeta (te avisamos antes).') + '</p>';
@@ -274,6 +297,7 @@
     var SP = st.siguientes;
     if (SP) extra = extra.replace('el equipo te escribirá para el onboarding.', 'abajo tienes tus siguientes pasos.');
     if (SP && !st.pagado && st.todo_firmado) extra = '<p class="ct-okbox">Siguiente paso: <b>rellena tu ficha de alta y paga para activar tu contrato</b>. Te lo explicamos abajo.</p>' + extra;
+    if (faltan.length) extra = '<p class="ct-okbox" style="background:#fff6e0;border-color:#f0d58a">Falta la firma de <b>' + faltan.join(', ') + '</b>: ya tiene su propio enlace. Hasta que firme, el contrato no está cerrado.</p>' + extra;
     msg(st.pagado ? '✅ Firmado y pagado' : '✅ Ya firmaste', cuerpo, '', extra + (st.todo_firmado ? '<p><button type="button" class="ct-btn" id="dl">Descargar el contrato firmado (PDF)</button></p>' : ''));
     var dl = $('#dl'); if (dl) dl.addEventListener('click', function (e) { abrirPdf(e); });
     if (SP) pintarSiguientes(SP);
@@ -440,7 +464,106 @@
     function reqD(k) { var d = D[k] || {}; var ok = !!(d.calle && d.cp && d.ciudad); mark(k, ok ? '' : 'Completa calle y número, código postal y ciudad.'); return ok; }
     function mark(k, m) { var f = document.getElementById('f-' + k); if (!f) return; f.classList.toggle('bad', !!m); var e = f.querySelector('.ct-err'); if (e) e.textContent = m || ''; }
     function showErr(m) { var b = $('#errbox'); if (!b) return; b.textContent = m; b.style.display = m ? 'block' : 'none'; if (m) window.scrollTo(0, 0); }
+    var CORTO = st.flujo === 'corto';
+    // FLUJO CORTO (12-nov): los mismos pasos (mismas preguntas, mismas reglas) pintados como tarjetas en UNA página, con
+    // guardado en el servidor y los errores junto al botón. «Comprueba tus datos» sobra: el botón final es la confirmación.
+    var TCORTO = { quien: '¿A nombre de quién va el contrato?', tu: 'Tú', doc: 'Tu documento', dom: 'Tu domicilio', art: 'El artista', fac: 'La factura' };
+    var tGuardar = null, guardando = false;
+    function guardarBorrador() {
+      if (tGuardar) clearTimeout(tGuardar);
+      var g0 = $('#guardado'); if (g0) g0.textContent = 'Guardando…';
+      tGuardar = setTimeout(function () {
+        if (guardando) { guardarBorrador(); return; }
+        guardando = true; collect();
+        api('/datos', { method: 'POST', body: { datos: D, confirmar: false } }).then(function (r) {
+          guardando = false; var g = $('#guardado'); if (!g) return;
+          if (r.ok && r.j && r.j.ok) g.textContent = '✓ Guardado' + (r.j.ts ? ' a las ' + r.j.ts : '');
+          else if (r.status === 401) load(); else g.textContent = '';
+        }).catch(function () { guardando = false; var g = $('#guardado'); if (g) g.textContent = 'Sin conexión: lo guardamos en cuanto vuelva.'; });
+      }, 900);
+    }
+    function paintCorto() {
+      build();
+      var y = window.scrollY || 0, h = '', i, s2;
+      h += '<div class="ct-steps"><i class="on"></i><i></i></div><p class="ct-small ct-mut">Paso 1 de 2</p><h1>Tus datos</h1>' +
+        '<p class="ct-mut">Escríbelos como aparecen en tu documento: así saldrán en el contrato. Se guardan solos.</p><p class="ct-guardado" id="guardado">' + (st.borrador_ts ? '✓ Guardado a las ' + esc(st.borrador_ts) : '') + '</p>';
+      for (i = 0; i < STEPS.length; i++) {
+        s2 = STEPS[i];
+        if (s2.id === 'intro' || s2.id === 'rev') continue;
+        h += '<section class="ct-sec" data-paso="' + i + '">' + card('<h2>' + esc(TCORTO[s2.id] || s2.t) + '</h2>' + s2.r()) + '</section>';
+      }
+      if (M()) {
+        h += card('<h2>El pago</h2>' + (st.forma_pago ? '<p>' + (st.forma_pago === 'unico' ? 'Pago único, por adelantado' : 'Dos pagos iguales, sin recargo: el primero al contratar y el segundo un mes después') +
+          ', tal como lo acordaste con el equipo. El importe exacto, con el IVA que te corresponda, saldrá en el contrato.</p>' : '<p>La forma de pago que acordaste con el equipo saldrá en el contrato.</p>'));
+        h += '<p class="ct-small"><a href="' + blancoUrl() + '" target="_blank" rel="noopener" style="' + LINK + '">Leer el contrato antes (PDF en blanco)</a> <span class="ct-mut">· no empieza ningún plazo</span></p>';
+        h += '<div class="ct-errbox" id="errbox"></div><button type="button" class="ct-btn" id="next">Preparar mi contrato</button>' +
+          '<p class="ct-small ct-mut" style="margin-top:8px">Revisa que todo esté bien: así aparecerás en el contrato. Al pulsar, Macuto Music lo firma y tienes 48 horas para firmarlo tú.</p>';
+      }
+      h += RGPD + foot();
+      app.innerHTML = h;
+      try { window.scrollTo(0, y); } catch (e) { }
+      wire(true);
+      var nx = $('#next'); if (nx) nx.addEventListener('click', enviarCorto);
+    }
+    function enviarCorto() {
+      collect();
+      var malos = [], primero = null, i, s2;
+      for (i = 0; i < STEPS.length; i++) {
+        s2 = STEPS[i];
+        if (s2.id === 'intro' || s2.id === 'rev') continue;
+        if (!s2.v()) { malos.push(TCORTO[s2.id] || s2.t); if (!primero) primero = document.querySelector('[data-paso="' + i + '"] .ct-field.bad') || document.querySelector('[data-paso="' + i + '"]'); }
+      }
+      var eb = $('#errbox');
+      if (malos.length) { errJunto(malos, primero); return; }
+      var btn = $('#next'); btn.disabled = true; btn.textContent = 'Preparando…'; eb.style.display = 'none';
+      api('/datos', { method: 'POST', body: { datos: D, confirmar: true } }).then(function (r) {
+        if (r.ok && r.j && r.j.ok) { try { sessionStorage.removeItem(KEY); } catch (e) { } load(); return; }
+        btn.disabled = false; btn.textContent = 'Preparar mi contrato';
+        if (r.status === 401) { load(); return; }
+        if (r.j && r.j.errores) {
+          var ks = Object.keys(r.j.errores), secs = [], prim = null, k;
+          for (k = 0; k < ks.length; k++) {
+            mark(ks[k], r.j.errores[ks[k]]);
+            var fe = document.getElementById('f-' + ks[k]), sec = fe && fe.closest ? fe.closest('.ct-sec') : null;
+            var tt = sec ? (sec.querySelector('h2') || {}).textContent : '';
+            if (tt && secs.indexOf(tt) < 0) secs.push(tt);
+            if (!prim && fe) prim = fe;
+          }
+          errJunto(secs.length ? secs : ['tus datos'], prim, r.j.mensaje);
+        } else { eb.textContent = (r.j && r.j.mensaje) || 'No se pudo guardar. Inténtalo de nuevo.'; eb.style.display = 'block'; }
+      }).catch(function () { btn.disabled = false; btn.textContent = 'Preparar mi contrato'; eb.textContent = 'Problema de conexión. Inténtalo de nuevo; no se ha perdido nada.'; eb.style.display = 'block'; });
+    }
+    function errJunto(secciones, primero, texto) {   // el error, JUNTO al botón (no arriba), diciendo dónde y con «Ir ahí»
+      var eb = $('#errbox');
+      eb.innerHTML = esc(texto || 'Falta o hay que revisar algo') + ' en: <b>' + secciones.map(esc).join(', ') + '</b>. <button type="button" class="ct-link" id="ir-err">Ir ahí ↑</button>';
+      eb.style.display = 'block';
+      var ir = $('#ir-err'); if (ir) ir.addEventListener('click', function () { if (primero && primero.scrollIntoView) { primero.scrollIntoView({ block: 'center' }); var x = primero.querySelector ? primero.querySelector('input,select,textarea,button') : null; if (x && x.focus) x.focus(); } });
+    }
+    function wire(corto) {
+      var i, list = app.querySelectorAll('.ct-opt');
+      for (i = 0; i < list.length; i++) (function (b) { b.addEventListener('click', function () { collect(); var k = b.getAttribute('data-k'); D[k] = b.getAttribute('data-v'); if (k === 'modelo') migrar(); save(); if (corto) guardarBorrador(); paint(); }); })(list[i]);
+      list = app.querySelectorAll('input,select,textarea');
+      for (i = 0; i < list.length; i++) (function (el) {
+        el.addEventListener('change', function () {
+          var antes = D.pais; collect();
+          if (el.id === 'pais' && D.pais !== antes) { delete D.territorio; delete D.alta_autonomo; delete D.usa_servicio_espana; delete D.establecimiento_peninsula; delete D.nif_iva; delete D.vies; delete D.pais_otro; save(); }
+          if (el.id === 'artista_pais' && D.artista_pais !== 'OT') { delete D.artista_pais_otro; save(); }
+          if (corto) { var fl = el.closest ? el.closest('.ct-field') : null; if (fl) fl.classList.remove('bad'); guardarBorrador(); }
+          if (el.id === 'pais' || el.id === 'territorio' || el.id === 'artista_pais') paint();
+        });
+        if (corto && el.type !== 'file') el.addEventListener('input', guardarBorrador);
+      })(list[i]);
+      var df = $('#doc-file'); if (df) df.addEventListener('change', function () { subirDoc(df.files && df.files[0]); });
+      var vb = $('#vies-btn');
+      if (vb) vb.addEventListener('click', function () {
+        collect(); if (!D.nif_iva) { mark('nif_iva', 'Escribe el NIF-IVA.'); return; }
+        vb.disabled = true; $('#vies-res').textContent = 'Comprobando…';
+        api('/vies', { method: 'POST', body: { nif_iva: D.nif_iva } }).then(function (r) { vb.disabled = false; var j = r.j || {}; D.vies = j; save(); $('#vies-res').textContent = j.estado === 'valido' ? '✅ Válido en VIES' + (j.nombre ? ': ' + j.nombre : '') : (j.estado === 'invalido' ? '❌ No consta como válido en VIES. Revisa el número; si es correcto, sigue y el equipo lo comprobará.' : '⚠️ VIES no responde ahora mismo. Puedes seguir: el equipo lo comprobará.'); })
+          .catch(function () { vb.disabled = false; $('#vies-res').textContent = '⚠️ No se pudo comprobar ahora. Puedes seguir.'; });
+      });
+    }
     function paint() {
+      if (CORTO) return paintCorto();
       build();
       var s2 = STEPS[cur];
       app.innerHTML = '<div class="ct-steps">' + STEPS.map(function (x, i) { return '<i class="' + (i <= cur ? 'on' : '') + '"></i>'; }).join('') + '</div><p class="ct-small ct-mut">Paso ' + (cur + 1) + ' de ' + STEPS.length + '</p><h1>' + esc(s2.t) + '</h1><div class="ct-errbox" id="errbox"></div>' + card(s2.r()) +
@@ -492,10 +615,25 @@
 
   // ─────────────────────────────────────────────── FIRMA
   function arriba() { try { window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } catch (e) { window.scrollTo(0, 0); } }   // sin animación: la web tiene scroll suave
+  function enTuHora(iso) {   // el plazo también en SU hora si no vive en la de Madrid (regla del 26-oct: «se le dice en SU hora»)
+    try {
+      var d = new Date(iso); if (!iso || isNaN(d.getTime())) return '';
+      var o = { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' };
+      var suya = d.toLocaleString('es-ES', o), mad = d.toLocaleString('es-ES', Object.assign({ timeZone: 'Europe/Madrid' }, o));
+      return suya === mad ? '' : '; en tu hora, el <b>' + esc(suya) + '</b>';
+    } catch (e) { return ''; }
+  }
+  function normNom(s) {   // = dap_firma._norm_nombre: minúsculas, sin tildes, solo letras y cifras
+    s = String(s || '').toLowerCase();
+    try { s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); } catch (e) { }
+    return s.replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(Boolean).join(' ');
+  }
   function vistaFirma(st) {
     // POR ETAPAS (17-sep): 1 datos · 2 contrato · 3 autorizaciones (si las hay) · 4 firma · 5 pago (si paga en línea)
+    // FLUJO CORTO (12-nov): sin la etapa «Revisa tus datos» (los acaba de escribir) y todo en una página.
+    var CORTO = st.flujo === 'corto';
     var E = [];
-    E.push({ id: 'datos', t: 'Revisa tus datos', sigue: 'Mis datos están bien', html:
+    if (!CORTO) E.push({ id: 'datos', t: 'Revisa tus datos', sigue: 'Mis datos están bien', html:
       (st.oferta_firmada ? '<p class="ct-okbox">✓ Macuto Music ya ha firmado tu oferta. Tienes 48 horas para firmarla' + ((st.expira_completa || st.expira) ? ' (hasta el ' + esc(st.expira_completa || st.expira) + ')' : '') + '. Tu contrato se activa cuando recibamos el pago.</p>' : '') +
       '<p class="ct-mut">Así apareces en el contrato. Si algo no está bien, avísanos antes de firmar.</p>' +
       '<dl class="ct-res">' + (st.resumen || []).map(function (kv) { return '<dt>' + esc(kv[0]) + '</dt><dd>' + esc(kv[1]) + '</dd>'; }).join('') + '</dl>' +
@@ -516,16 +654,26 @@
     for (var b0 = 0; b0 < total; b0++) bars += '<i data-b="' + b0 + '"></i>';
     var html = '<div class="ct-steps">' + bars + '</div><p class="ct-small ct-mut" id="paso-txt"></p><h1 id="etapa-t"></h1>' +
       '<p class="ct-small ct-mut">' + esc(st.titulo) + ' · ' + esc(st.nombre) + ' <span class="ct-tag">' + esc(st.rol) + '</span></p>';
-    for (var e0 = 0; e0 < E.length; e0++) {
+    if (CORTO) {
+      var TF = { contrato: 'Tu contrato', aut: 'Autorizaciones voluntarias', firma: 'Tu firma' };
+      html = '<div class="ct-steps"><i class="on"></i><i class="on"></i></div><p class="ct-small ct-mut">Paso 2 de 2</p><h1>Lee y firma</h1>' +
+        (st.oferta_firmada ? '<p class="ct-okbox">✓ Macuto Music ya firmó tu contrato. Tienes hasta el <b>' + esc(st.expira_completa || st.expira) + '</b> (hora de Madrid)' + enTuHora(st.expira_iso) + ' para firmarlo. Se activa cuando recibamos el pago.</p>' : '');
+      for (var c0 = 0; c0 < E.length; c0++) html += '<section class="ct-etapa" data-i="' + c0 + '">' + card('<h2>' + esc(TF[E[c0].id] || E[c0].t) + '</h2>' + E[c0].html) + '</section>';
+      if (st.puede_reportar) html += '<p class="ct-small"><button type="button" class="ct-link" id="err-open">Hay un error en mis datos</button></p><div id="err-form" style="display:none">' + card('<label for="err-txt">¿Qué dato está mal y cuál es el correcto?</label><textarea id="err-txt" rows="3" maxlength="300"></textarea><button type="button" class="ct-btn sec" id="err-send">Avisar al equipo</button>') + '</div>';
+      app.innerHTML = html + foot();
+    }
+    for (var e0 = 0; e0 < E.length && !CORTO; e0++) {
       html += '<section class="ct-etapa" data-i="' + e0 + '"' + (e0 ? ' hidden' : '') + '>' + card(E[e0].html) + '<div class="ct-nav">' +
         (e0 ? '<button type="button" class="ct-btn sec" data-atras="1">Atrás</button>' : '') +
         (E[e0].sigue ? '<button type="button" class="ct-btn" data-sigue="' + E[e0].id + '">' + esc(E[e0].sigue) + '</button>' : '') + '</div>' +
         (E[e0].id === 'contrato' ? '<p class="ct-small ct-mut ct-center" id="why-contrato"></p>' : '') + '</section>';
     }
-    app.innerHTML = html + foot();
+    if (!CORTO) app.innerHTML = html + foot();
+    else { var wy = $('#why'); if (wy) wy.outerHTML = '<ul class="ct-lista" id="lista"></ul>'; }
     var cur = 0;
     function mostrar(i) {
       cur = i;
+      if (CORTO) { arriba(); fit(); chk(); return; }
       var secs = document.querySelectorAll('.ct-etapa'), k;
       for (k = 0; k < secs.length; k++) secs[k].hidden = (+secs[k].getAttribute('data-i') !== i);
       var bs = document.querySelectorAll('.ct-steps i');
@@ -547,10 +695,10 @@
     function ext(p) { bx0 = Math.min(bx0, p[0]); by0 = Math.min(by0, p[1]); bx1 = Math.max(bx1, p[0]); by1 = Math.max(by1, p[1]); }
     function down(e) { drawing = true; dirty = true; var p = pos(e); ext(p); cx.beginPath(); cx.moveTo(p[0], p[1]); e.preventDefault(); }
     function move(e) { if (!drawing) return; var p = pos(e); ext(p); cx.lineTo(p[0], p[1]); cx.stroke(); e.preventDefault(); }
-    function up() { drawing = false; }
+    function up() { if (drawing && CORTO) setTimeout(chk, 0); drawing = false; }
     cv.addEventListener('mousedown', down); cv.addEventListener('mousemove', move); window.addEventListener('mouseup', up);
     cv.addEventListener('touchstart', down, { passive: false }); cv.addEventListener('touchmove', move, { passive: false }); cv.addEventListener('touchend', up);
-    function clr() { cx.clearRect(0, 0, cv.width, cv.height); dirty = false; bx0 = by0 = 1e9; bx1 = by1 = -1e9; }
+    function clr() { cx.clearRect(0, 0, cv.width, cv.height); dirty = false; bx0 = by0 = 1e9; bx1 = by1 = -1e9; if (CORTO) chk(); }
     function recorte() { var pad = 10, x0 = Math.max(0, bx0 - pad), y0 = Math.max(0, by0 - pad), x1 = Math.min(cv.width, bx1 + pad), y1 = Math.min(cv.height, by1 + pad); var w = Math.max(12, x1 - x0), hh = Math.max(12, y1 - y0); var oc = document.createElement('canvas'); oc.width = w; oc.height = hh; oc.getContext('2d').drawImage(cv, x0, y0, w, hh, 0, 0, w, hh); return oc.toDataURL('image/png'); }
     $('#clr').addEventListener('click', clr);
     // visor: páginas bajo demanda; «visto hasta el final» = la última página, ya cargada, ha estado al menos a la mitad en pantalla
@@ -582,11 +730,24 @@
       var bc = document.querySelector('[data-sigue="contrato"]'); if (bc) bc.disabled = !visto;
       var wc = $('#why-contrato'); if (wc) wc.textContent = visto ? '' : 'Baja hasta la última página (o abre el PDF) para seguir.';
       var ba = document.querySelector('[data-sigue="aut"]'); if (ba) ba.disabled = !consOk;
+      if (CORTO) {   // la lista de lo que falta, junto al botón (12-nov): se ve qué falta ANTES de pulsar, no después
+        var nomOk = normNom(($('#nombre') || {}).value) === normNom(st.nombre);
+        var items = [[visto, 'Leer el contrato hasta el final (o abrirlo en PDF)']];
+        if (gs.length) items.push([consOk, 'Contestar las autorizaciones (sí o no)']);
+        if (req.length) items.push([declOk, req.length > 1 ? 'Marcar las casillas' : 'Marcar la casilla']);
+        items.push([nomOk, 'Escribir tu nombre como está en el contrato: ' + (st.nombre || '')]);
+        items.push([dirty, 'Dibujar tu firma']);
+        var todo = true; for (i = 0; i < items.length; i++) if (!items[i][0]) todo = false;
+        $('#go').disabled = !todo;
+        $('#lista').innerHTML = todo ? '<li class="ok">Todo listo: ya puedes firmar.</li>' : items.map(function (x) { return '<li' + (x[0] ? ' class="ok"' : '') + '>' + esc(x[1]) + '</li>'; }).join('');
+        return;
+      }
       var ok = visto && consOk && declOk;
       $('#go').disabled = !ok;
       $('#why').textContent = ok ? '' : (!visto ? 'Lee el contrato hasta el final para poder firmar.' : (!consOk ? 'Contesta las autorizaciones.' : 'Marca las casillas para poder firmar.'));
     }
     var inputs = document.querySelectorAll('.ct-chk input,.cons input'); for (var k2 = 0; k2 < inputs.length; k2++) inputs[k2].addEventListener('change', chk);
+    if (CORTO) $('#nombre').addEventListener('input', chk);
     mostrar(0);
     var errb = $('#err-open'); if (errb) errb.addEventListener('click', function () { $('#err-form').style.display = 'block'; errb.style.display = 'none'; });
     var errs = $('#err-send'); if (errs) errs.addEventListener('click', function () { var t = $('#err-txt').value.trim(); if (!t) return; errs.disabled = true; api('/error', { method: 'POST', body: { texto: t.slice(0, 300) } }).then(function (r) { if (r.ok && r.j && r.j.ok) { $('#err-form').innerHTML = '<p><b>Recibido.</b> El equipo revisará el dato y te avisará con el contrato corregido.</p>'; setTimeout(load, 2500); } else { errs.disabled = false; $('#err-form').insertAdjacentHTML('beforeend', '<p class="ct-err" style="display:block">No se pudo enviar el aviso. Escribe al equipo por WhatsApp.</p>'); } }).catch(function () { errs.disabled = false; }); });
