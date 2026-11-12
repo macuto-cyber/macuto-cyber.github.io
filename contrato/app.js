@@ -41,7 +41,12 @@
     var o = { method: opts.method || 'GET', headers: {} , credentials: 'omit', mode: 'cors', cache: 'no-store' };
     if (ses()) o.headers['X-Sobre-Sesion'] = ses();
     if (opts.body !== undefined) { o.headers['Content-Type'] = 'application/json'; o.body = JSON.stringify(opts.body); }
-    return fetch(API + (path || ''), o).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, status: r.status, j: j }; }); });
+    // tolerante (solo load): una respuesta que no es JSON (la página de error de ngrok, un 502 del túnel) da j = null en
+    // vez de reventar, para distinguir «nuestro servidor no responde» de «enlace no válido» (29-oct, rehecho el 12-nov)
+    return fetch(API + (path || ''), o).then(function (r) {
+      return r.json().then(function (j) { return { ok: r.ok, status: r.status, j: j }; },
+        function (e) { if (opts.tolerante) return { ok: r.ok, status: r.status, j: null }; throw e; });
+    });
   }
   // PDF y páginas: con la sesión en CABECERA (en la URL quedaba en el historial del navegador y en el túnel)
   function blobDe(path) {
@@ -67,25 +72,29 @@
   // ─────────────────────────────────────────────── carga y enrutado por «vista»
   var pollTimer = null;
   var reintentos = 0;
-  function reintentar(texto) {
+  var CAIDO = 'Nuestro servidor no responde ahora mismo';
+  var CAIDO_TXT = 'Tu enlace sigue siendo válido: vuelve a intentarlo en unos minutos.';
+  function reintentar(texto, antes) {
     if (pollTimer) clearTimeout(pollTimer);
     reintentos++;
     var espera = Math.min(15000 * reintentos, 60000);
-    msg(texto, 'Volvemos a intentarlo en ' + Math.round(espera / 1000) + ' segundos. No se ha perdido nada.', '', '<p><button type="button" class="ct-btn sec" id="retry">Reintentar ahora</button></p>');
+    msg(texto, (antes ? antes + ' ' : '') + 'Volvemos a intentarlo en ' + Math.round(espera / 1000) + ' segundos. No se ha perdido nada.', '', '<p><button type="button" class="ct-btn sec" id="retry">Reintentar ahora</button></p>');
     var b = $('#retry'); if (b) b.addEventListener('click', function () { if (pollTimer) clearTimeout(pollTimer); load(); });
     pollTimer = setTimeout(load, espera);
   }
   function load() {
-    api('').then(function (r) {
+    api('', { tolerante: true }).then(function (r) {
       if (!r.ok || !r.j) {
         if (r.status === 401 && r.j && r.j.vista) { try { sessionStorage.removeItem(SKEY); } catch (e) { } return render(r.j); }
         if (r.status === 410 || (r.j && (r.j.vista === 'caducado' || r.j.vista === 'anulado'))) return render({ vista: r.j && r.j.vista || 'caducado' });
-        if (r.status === 404) return msg('Enlace no válido', 'Este enlace no corresponde a ningún contrato. Pide al equipo que te lo reenvíe.');
+        // «Enlace no válido» solo si lo dice NUESTRO servidor (404 con su JSON); un 404 o 5xx sin JSON es el túnel caído
+        if (r.status === 404 && r.j && r.j.vista === 'invalido') return msg('Enlace no válido', 'Este enlace no corresponde a ningún contrato. Pide al equipo que te lo reenvíe.');
+        if (!r.j) return reintentar(CAIDO, CAIDO_TXT);
         return reintentar('No se pudo cargar tu contrato');
       }
       reintentos = 0;
       render(r.j);
-    }).catch(function () { reintentar('Sin conexión con el servidor'); });
+    }).catch(function () { reintentar(CAIDO, CAIDO_TXT); });
   }
   function render(st) {
     S = st;
