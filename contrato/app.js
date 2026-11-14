@@ -1,6 +1,6 @@
 /* macutomusic.com/contrato — asistente de datos y firma del contrato Sistema DAP (v2, 16-sep-2026).
    El token (256 bits) viaja en el FRAGMENTO de la URL (#…): nunca llega a GitHub Pages ni a ningún proxy.
-   Los datos, el PDF y las firmas los sirve la API del M5 (firmar.macutomusic.com/api/sobre/<token>).
+   Los datos, el PDF y las firmas los sirve el BUZÓN de Google (Cloud Run, firma-buzon-531000514066.europe-southwest1.run.app/api/sobre/<token>), que habla con el M5 por el puente (14-nov-2026; antes, firmar.macutomusic.com).
    Solo se acepta otra API cuando la página se abre en localhost (pruebas). ES5 a propósito (móviles viejos).
    FLUJO CORTO (12-nov-2026, orden de Macuto): en los sobres con flujo='corto' se entra con un CÓDIGO de 6 cifras (a su
    correo o por WhatsApp; «No tengo el código» lo reenvía), los datos se rellenan en UNA página que se guarda sola en el
@@ -23,7 +23,7 @@
   var apiParam = /[?&]api=([^&]+)/.exec(location.search);
   var apiLocal = apiParam ? decodeURIComponent(apiParam[1]) : sget('dap-api');
   if (LOCAL && apiParam) sset('dap-api', apiLocal);
-  var API_BASE = (LOCAL && apiLocal) ? apiLocal.replace(/\/$/, '') : 'https://firmar.macutomusic.com';
+  var API_BASE = (LOCAL && apiLocal) ? apiLocal.replace(/\/$/, '') : 'https://firma-buzon-531000514066.europe-southwest1.run.app';
   var API = API_BASE + '/api/sobre/' + TOKEN;
   var S = null;   // último estado recibido de la API
   // sesión de acceso (documento o código antiguo): solo en sessionStorage (se borra al cerrar la pestaña); nunca en localStorage
@@ -89,7 +89,7 @@
         if (r.status === 410 || (r.j && (r.j.vista === 'caducado' || r.j.vista === 'anulado'))) return render({ vista: r.j && r.j.vista || 'caducado' });
         // «Enlace no válido» solo si lo dice NUESTRO servidor (404 con su JSON); un 404 o 5xx sin JSON es el túnel caído
         if (r.status === 404 && r.j && r.j.vista === 'invalido') return msg('Enlace no válido', 'Este enlace no corresponde a ningún contrato. Pide al equipo que te lo reenvíe.');
-        if (!r.j) return reintentar(CAIDO, CAIDO_TXT);
+        if (!r.j || r.j.vista === 'sin_servidor') return reintentar(CAIDO, CAIDO_TXT);
         return reintentar('No se pudo cargar tu contrato');
       }
       reintentos = 0;
@@ -100,6 +100,9 @@
     S = st;
     if (pollTimer) { clearTimeout(pollTimer); pollTimer = null; }
     switch (st.vista) {
+      // buzón (opción B, 12-nov): con nuestro servidor dormido, lo que el cliente hizo queda guardado y se lo decimos
+      case 'aviso': msg(st.titulo || 'Recibido', st.texto || '', st.sub || ''); pollTimer = setTimeout(load, Math.max(10, +st.recargar || 30) * 1000); return;
+      case 'sin_servidor': return reintentar(CAIDO, CAIDO_TXT);
       case 'anulado': return msg('Este enlace ya no es válido', 'El contrato se ha sustituido por otra versión. Pide el enlace nuevo al equipo.');
       case 'caducado': return msg('Este enlace ha caducado', 'La oferta tenía una validez de 48 horas. Si sigues interesado, escribe al equipo y te preparamos un enlace nuevo.');
       case 'pin': return vistaPin(st);
