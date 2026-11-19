@@ -12,7 +12,6 @@
  *           10) vídeos: sesión de YouTube con fachada, pieza de estudio con su botón y bucles mudos sin botones (11-oct; bucles, 14-oct).
  *           11) testimonios en filas que avanzan solas (12-oct; los videoclips de YouTube pasaron a los bucles de «Hecho en casa»);
  *           12) «Quién está detrás» en formato Stories de Instagram (12-oct).
- *           13) el «mm» de la cabecera se dibuja de un trazo en la primera página de cada visita (19-nov).
  * REGLAS     · Con «reducir movimiento» solo quedan 1 (es estado, no adorno), 10 (los vídeos, sin bucles automáticos)
  *              y 12 (las historias, que no avanzan solas: se pasan a mano).
  *              Lo del puntero, solo con ratón (hover:hover).
@@ -29,20 +28,6 @@
   const raton = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const raiz = document.documentElement;
   const $ = (s, c) => (c || document).querySelector(s), $$ = (s, c) => [...(c || document).querySelectorAll(s)];
-
-  /* ---- 13) el logo de la cabecera se dibuja solo (19-nov-2026, «Ponla en la cabecera») ----
-   * En la PRIMERA página de cada visita, el «mm» de la cabecera (assets/logo-108.webp) pasa a ser
-   * assets/logo-dibujandose.svg: el mismo logo, con el mismo recorte, que se dibuja de un trazo (2,3 s) y se queda
-   * quieto. En las páginas siguientes de la misma visita (sessionStorage «mm-dibujado») queda la imagen de siempre.
-   * No se anima con «reducir movimiento» ni si la página se abre en una pestaña de fondo (nadie lo vería).
-   * Va aquí arriba, antes que el resto, para cambiar la imagen cuanto antes y no depender de los otros bloques.
-   * El SVG sale de Marca/logo_mm_2026-11/animacion_logo.py (animacion/web/logo-dibujandose.svg). */
-  (() => {
-    const mm = $('.logo .mm');
-    if (!mm || reducir || document.visibilityState !== 'visible' || !/logo-108\.webp/.test(mm.getAttribute('src') || '')) return;
-    try { if (sessionStorage.getItem('mm-dibujado')) return; sessionStorage.setItem('mm-dibujado', '1'); } catch (e) { return; }
-    mm.src = mm.getAttribute('src').replace(/logo-108\.webp.*$/, 'logo-dibujandose.svg?v=20261119');
-  })();
 
   /* ---- bucle de scroll compartido ---- */
   const tareas = new Set();
