@@ -185,7 +185,7 @@
     $('#pin-go').addEventListener('click', go);
     inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') go(); });
   }
-  // ─── «Tus siguientes pasos» (17-sep; 18-sep sin hoja de ruta): ficha de alta, pago, onboarding (y empezar ya) y equipo ───
+  // ─── «Tus siguientes pasos» (17-sep; 18-sep sin hoja de ruta; 19-nov el pago va primero): pago, ficha de alta, onboarding (y empezar ya) y equipo ───
   function enlaceContacto(c) {
     var t = String(c || ''), dig = t.replace(/[^\d+]/g, '');
     if (/@/.test(t)) { var m = t.match(/[\w.+-]+@[\w.-]+/); return m ? '<a href="mailto:' + esc(m[0]) + '">' + esc(t) + '</a>' : esc(t); }
@@ -194,10 +194,7 @@
   }
   function pintarSiguientes(SP) {
     var h = '<h2>Tus siguientes pasos</h2>';
-    h += '<div class="ct-paso"><b>1 · Completa tu ficha de alta</b>' + (SP.alta_recibida
-      ? '<p class="ct-okbox">✓ Recibida. ¡Gracias!</p>'
-      : '<p class="ct-small ct-mut">Unos cinco minutos. Con ella preparamos tu diagnóstico antes del onboarding.</p><a class="ct-btn" href="' + esc(SP.tally_url) + '" target="_blank" rel="noopener">Abrir mi ficha de alta</a>') + '</div>';
-    // 2 · el pago activa el contrato (cl. 6.1). No se cobra aquí: tarjeta con el enlace del equipo o transferencia con la referencia
+    // 1 · el pago activa el contrato (cl. 6.1). No se cobra aquí: tarjeta con el enlace del equipo o transferencia con la referencia
     var PG = SP.pago || {}, pag;
     if (PG.pagado) {
       pag = '<p class="ct-okbox">✓ Pago recibido' + (PG.fecha ? ' el ' + esc(PG.fecha) : '') + (PG.via ? ' por ' + esc(PG.via) : '') + '. Tu contrato está <b>activado</b>.</p>';
@@ -213,7 +210,14 @@
         'pon en el concepto <b class="ct-ref">' + esc(PG.concepto || PG.referencia) + '</b>. Con esa referencia la reconocemos sola.</li></ul>' +
         '<p class="ct-small ct-mut">Cuando llegue tu pago lo verás aquí, normalmente en unas horas (las transferencias pueden tardar uno o dos días hábiles).</p>';
     }
-    h += '<div class="ct-paso"><b>2 · ' + (PG.pagado ? 'Pago' : 'Paga para activar tu contrato') + '</b>' + pag + '</div>';
+    h += '<div class="ct-paso"><b>1 · ' + (PG.pagado ? 'Pago' : 'Paga para activar tu contrato') + '</b>' + pag + '</div>';
+    // 2 · ficha de alta (onboarding): su enlace solo llega cuando consta el pago (orden de Macuto, 19-nov-2026). El servidor ya no
+    //   lo manda antes; el botón exige además PG.pagado para que una página vieja en caché tampoco lo enseñe.
+    h += '<div class="ct-paso"><b>2 · ' + ((PG.pagado || SP.activado) && SP.tally_url ? 'Completa tu ficha de alta' : 'Tu ficha de alta') + '</b>' + (SP.alta_recibida
+      ? '<p class="ct-okbox">✓ Recibida. ¡Gracias!</p>'
+      : ((PG.pagado || SP.activado) && SP.tally_url
+        ? '<p class="ct-small ct-mut">Unos cinco minutos. Con ella preparamos tu diagnóstico antes del onboarding.</p><a class="ct-btn" href="' + esc(SP.tally_url) + '" target="_blank" rel="noopener">Abrir mi ficha de alta</a>'
+        : '<p class="ct-small ct-mut">En cuanto conste tu pago te enviamos el enlace de tu ficha de alta y lo tendrás también aquí. Son unos cinco minutos.</p>')) + '</div>';
     var ses;
     if (SP.onboarding_hecho) ses = '<p class="ct-okbox">✓ Onboarding hecho el ' + esc(SP.onboarding_hecho) + '. Tu contrato dura hasta el <b>' + esc(SP.fin_contrato) + '</b>.</p>';
     else if (!PG.pagado) ses = '<p class="ct-small">En cuanto recibamos tu pago, tu label manager te escribe para elegir juntos el día de tu onboarding: una videollamada de unos ' + SP.minutos + ' minutos para arrancar tu plan.</p>';
@@ -308,7 +312,7 @@
     if (st.copia_email) extra += '<p class="ct-small ct-mut">Te enviamos también la copia firmada a tu correo.</p>';
     var SP = st.siguientes;
     if (SP) extra = extra.replace('el equipo te escribirá para el onboarding.', 'abajo tienes tus siguientes pasos.');
-    if (SP && !st.pagado && st.todo_firmado) extra = '<p class="ct-okbox">Siguiente paso: <b>rellena tu ficha de alta y paga para activar tu contrato</b>. Te lo explicamos abajo.</p>' + extra;
+    if (SP && !st.pagado && st.todo_firmado) extra = '<p class="ct-okbox">Siguiente paso: <b>paga para activar tu contrato</b>. Te lo explicamos abajo.</p>' + extra;
     if (faltan.length) extra = '<p class="ct-okbox" style="background:#fff6e0;border-color:#f0d58a">Falta la firma de <b>' + faltan.join(', ') + '</b>: ya tiene su propio enlace. Hasta que firme, el contrato no está cerrado.</p>' + extra;
     msg(st.pagado ? '✅ Firmado y pagado' : '✅ Ya firmaste', cuerpo, '', extra + (st.todo_firmado ? '<p><button type="button" class="ct-btn" id="dl">Descargar el contrato firmado (PDF)</button></p>' : ''));
     var dl = $('#dl'); if (dl) dl.addEventListener('click', function (e) { abrirPdf(e); });
