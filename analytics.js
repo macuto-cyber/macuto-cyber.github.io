@@ -8,6 +8,8 @@
   if (!IDS.metaPixel && !IDS.ga4) return;
 
   var KEY = 'mm_consent';
+  // Formularios de Tally cuyo envío NO es un lead de venta (RWoaRQ = candidaturas de empleo).
+  var FORMS_NO_LEAD = ['RWoaRQ'];
 
   function cargarMeta() {
     if (!IDS.metaPixel) return;
@@ -70,7 +72,11 @@
       try { d = JSON.parse(e.data); } catch (err) { return; }
       if (!d || !d.event) return;
       var form = (d.payload && d.payload.formId) || '';
-      if (d.event === 'Tally.FormSubmitted') {
+      // Una candidatura de empleo NO es un lead: sin «Lead» en
+      // Meta ni generate_lead en GA4, o ensucia la optimización de los anuncios.
+      if (d.event === 'Tally.FormSubmitted' && FORMS_NO_LEAD.indexOf(form) > -1) {
+        ev('candidatura_enviada', { form_id: form, pagina: location.pathname });
+      } else if (d.event === 'Tally.FormSubmitted') {
         ev('generate_lead', { form_id: form, pagina: location.pathname }, 'Lead', true);
       } else if (d.event === 'Tally.FormLoaded') {
         ev('form_loaded', { form_id: form, pagina: location.pathname });
