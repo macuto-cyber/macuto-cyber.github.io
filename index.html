@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg?v=20261120">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=20261120">
 <link rel="stylesheet" href="styles.css?v=50fc90b1">
-<link rel="stylesheet" href="home.css?v=c9b34553">
+<link rel="stylesheet" href="home.css?v=1f342d8b">
 <!-- Movimiento (11-oct-2026): lo crítico del titular va aquí en línea; el resto (movimiento.css) se carga sin bloquear el pintado
      y movimiento.js con defer. La fuente de reserva está calibrada a Poppins 700 (detalle en movimiento.css §2). -->
 <style>
@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="movimiento.css?v=b88bbf82" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="movimiento.css?v=b88bbf82"></noscript>
 <script defer src="movimiento.js?v=cde189d0"></script>
-<script type="speculationrules">{"prefetch":[{"source":"document","where":{"href_matches":["/solicitud.html","/envia-tu-cancion.html","/radar/*"]},"eagerness":"moderate"}]}</script>
+<script type="speculationrules">{"prefetch":[{"source":"document","where":{"href_matches":["/solicitud.html","/radar/*"]},"eagerness":"moderate"}]}</script>
 <link rel="preload" as="image" href="assets/feed/20-hey-mami-linda-10k-escuchando.webp" media="(min-width: 601px)" fetchpriority="high">
 <script>document.documentElement.classList.add('js')</script>
 <script defer src="/analytics.js"></script>
@@ -156,7 +156,6 @@
     <p class="scarcity entra e2"><span class="s-dot" aria-hidden="true"></span><span>Solo <b class="mm-plazas">10</b> plazas nuevas este mes</span></p>
     <div class="cta-row entra e3">
       <a href="solicitud.html" class="btn btn-purple">Solicita acceso</a>
-      <a href="envia-tu-cancion.html" class="enlace-sec">o envía una canción gratis</a>
     </div>
   </div>
   <!-- Feed vertical del héroe (11-oct-2026, orden de Macuto: «que se mueva en vertical como scrolleando en redes y muestre más fotos en vertical
@@ -242,36 +241,8 @@
     </div>
   </div>
 
-  <!-- Fundador (10-oct-2026). Foto propia de Macuto (Descargas/FOTOS EVENTOS MACUTO/IMG_6248.JPG), recortada a 2:3.
-       Texto solo con hechos ya públicos: descripción de su canal de YouTube («artista, productor… de Música Urbana… reside en Madrid…
-       siendo artista independiente en España», 10-oct) y los eventos de #novedades. Cifras comprobadas en vivo el 10-oct-2026. -->
-  <div class="fundador" id="fundador">
-    <!-- Stories (12-oct-2026, Macuto: «esta sección que sea estilo Stories de Instagram con otras fotos de Angelo» y «en instagram de
-         macutomusic hay historias destacadas que podemos usar»). Fuentes: retrato de Descargas/FOTOS EVENTOS MACUTO (IMG_6248);
-         Forbes 2024 de #novedades (13-oct, Macuto: fuera NODE, Mastermind, el selfi de Farruko y la del Metropolitano); el resto, de @macutomusic bajado SIN SESIÓN por Apify
-         (09_Automatizaciones/macuto_web/ig_macutomusic_sin_sesion.py): destacada «Macuto» y publicaciones de Forbes 2025/2026,
-         Warner Music 2025; destacada «Macuto»: cartel de «Despega tu carrera» (abril 2026; la de Warner Chappell 2023 pasó a #industria). Recortes a 9:16; vídeos mudos, 540×960.
-         Estilos: movimiento.css §18 · comportamiento: movimiento.js §12. Sin JS se ve solo la primera. -->
-    <figure class="fundador__foto historias reveal" role="region" aria-roledescription="carrusel" aria-label="Historias de Angelo Gutiérrez, «Macuto»">
-      <ul class="historias__lista">
-        <li class="historia" role="group" aria-roledescription="historia" aria-label="1 de 7" data-lugar="Madrid"><img src="assets/fundador/historia-retrato-marmol-540.webp" srcset="assets/fundador/historia-retrato-marmol-540.webp 540w, assets/fundador/historia-retrato-marmol-1080.webp 1080w" sizes="(max-width: 820px) min(340px, calc(100vw - 56px)), 400px" width="540" height="960" alt="Angelo Gutiérrez, «Macuto», fundador de Macuto Music, con chaqueta de cuero ante una pared de mármol" loading="lazy" decoding="async"></li>
-        <li class="historia historia--video" role="group" aria-roledescription="historia" aria-label="2 de 7" data-lugar="Estudio" data-dur="7"><video muted playsinline preload="none" width="540" height="960" data-poster="assets/fundador/historia-more-than-a-manager.webp" aria-label="Historia de Instagram: Macuto recostado en la silla de su estudio, con el texto «More than a Manager.. Executive Producer · Music Producer · Video Director · Label · Creative Director · Playlists Curator · Growth Partner»" disablepictureinpicture disableremoteplayback><source src="assets/fundador/historia-more-than-a-manager.mp4" type="video/mp4"></video></li>
-        <li class="historia" role="group" aria-roledescription="historia" aria-label="3 de 7" data-lugar="Forbes 30 Under 30 · 2026"><img data-src="assets/fundador/historia-forbes-2026-540.webp" data-srcset="assets/fundador/historia-forbes-2026-540.webp 540w, assets/fundador/historia-forbes-2026-1080.webp 1080w" sizes="(max-width: 820px) min(340px, calc(100vw - 56px)), 400px" width="540" height="960" alt="Macuto con traje claro en el photocall del Forbes 30 Under 30 de 2026" loading="lazy" decoding="async"></li>
-        <li class="historia" role="group" aria-roledescription="historia" aria-label="4 de 7" data-lugar="Warner Music España · 2025"><img data-src="assets/fundador/historia-warner-music-2025-540.webp" data-srcset="assets/fundador/historia-warner-music-2025-540.webp 540w, assets/fundador/historia-warner-music-2025-1080.webp 1080w" sizes="(max-width: 820px) min(340px, calc(100vw - 56px)), 400px" width="540" height="960" alt="Macuto en Warner Music España, ante una pared de discos enmarcados" loading="lazy" decoding="async"></li>
-        <li class="historia" role="group" aria-roledescription="historia" aria-label="5 de 7" data-lugar="Forbes 30 Under 30 · 2025"><img data-src="assets/fundador/historia-forbes-2025-540.webp" data-srcset="assets/fundador/historia-forbes-2025-540.webp 540w, assets/fundador/historia-forbes-2025-1080.webp 1080w" sizes="(max-width: 820px) min(340px, calc(100vw - 56px)), 400px" width="540" height="960" alt="Macuto con traje azul claro en la alfombra roja del Festival Forbes 30 Under 30 de 2025" loading="lazy" decoding="async"></li>
-        <li class="historia" role="group" aria-roledescription="historia" aria-label="6 de 7" data-lugar="Despega tu carrera · Madrid, 2026"><img data-src="assets/fundador/historia-despega-tu-carrera-540.webp" data-srcset="assets/fundador/historia-despega-tu-carrera-540.webp 540w, assets/fundador/historia-despega-tu-carrera-1080.webp 1080w" sizes="(max-width: 820px) min(340px, calc(100vw - 56px)), 400px" width="540" height="960" alt="Historia de Instagram: cartel de «Despega tu carrera», el evento formativo y de networking para DJs y cantantes del 20 y 21 de abril en Madrid, con Macuto Music como invitado especial" loading="lazy" decoding="async"></li>
-        <li class="historia" role="group" aria-roledescription="historia" aria-label="7 de 7" data-lugar="Forbes 30 Under 30 · 2024"><img data-src="assets/fundador/historia-forbes-2024-540.webp" data-srcset="assets/fundador/historia-forbes-2024-540.webp 540w, assets/fundador/historia-forbes-2024-1080.webp 1080w" sizes="(max-width: 820px) min(340px, calc(100vw - 56px)), 400px" width="540" height="960" alt="Macuto con traje oscuro en el photocall del Forbes 30 Under 30 de 2024" loading="lazy" decoding="async"></li>
-      </ul>
-    </figure>
-    <div class="fundador__txt reveal d1">
-      <span class="eyebrow">Quién está detrás</span>
-      <h3 class="fundador__nombre">Angelo Gutiérrez, «Macuto»</h3>
-      <p class="fundador__cargo">Fundador de Macuto Music</p>
-      <p>Creador del <b>DAP</b>, el Digital Artist Program: la primera estructura profesional en la carrera de un artista independiente y el puente hacia sellos, plataformas y el resto de la Industria Musical.</p>
-      <p>Va más allá de un viral de tres meses: busca convertir tu música en un negocio que dure, con Spotify, redes y vídeo por niveles. Tus canciones y tus masters siguen siendo tuyos.</p>
-      <p class="fundador__lema">De abajo a pro.</p>
-    </div>
-  </div>
+  <!-- (20-nov-2026) Macuto: «quiero quitar la sección de la web» (la de «Quién está detrás»: retrato, Stories de Angelo y su texto).
+       Quitada entera; sus estilos (home.css .fundador, movimiento.css §18) y movimiento.js §12 se quedan sin uso y no fallan sin el bloque. -->
 </div></section>
 
 <!-- VISION · 11-oct-2026, Macuto: «el vídeo de la mastermind debe verse en grande en una sección con texto que ponga nuestra visión y al hacerlo más grande
@@ -746,37 +717,49 @@
 
 <!-- EVENTOS · 5-nov-2026, Macuto: fuera el título «Dónde está el equipo» y sus tarjetas, y la foto de las palmeras; «déjalo que esté, las fotos y videos que había antes». -->
 <section class="sec soft" id="novedades"><div class="wrap">
-  <!-- Macuto en México (5-nov-2026, Macuto: «añade tambien fotos del viaje de mexico y los camps»). Va el primero porque es lo más reciente.
-       Material propio: app Fotos de Macuto (31-oct Chapultepec; 1-nov Open Camp CDMX). Sin EXIF. El viaje completo: /mexico/. -->
+  <!-- Open Camp CDMX (20-nov-2026, Macuto: «lo de macuto en mexico que se vea más el video del campamento y lo enfocado a música y estudio de grabación
+       más que a personal»). Fuera Chapultepec y la terraza; el resumen del camp («Camp Mex.mp4» del escritorio, 25 s, 1280×720, con sonido) en grande
+       con el componente .video-h de #creacion (movimiento.js §10: botón propio y, al pulsar, controles nativos) y debajo cuatro clips del estudio. -->
   <div class="evento reveal" id="mexico" style="margin-top:0">
     <div class="evento__cab">
-      <h3>Macuto en México</h3>
-      <p>La primera edición del Open Camp CDMX, de grabación y composición, en Estudios Noviembre, y la Ciudad de México, del 23 de octubre al 3 de noviembre de 2026.</p>
+      <h3>Open Camp CDMX</h3>
+      <p>La primera edición de nuestro camp de grabación y composición en México: un día en Estudios Noviembre, en la Condesa, con artistas y productores. Domingo 1 de noviembre de 2026.</p>
     </div>
+    <figure class="video-h evento__estreno">
+      <div class="video-h__marco">
+        <img src="assets/mexico/mexico-open-camp-resumen-1280.webp" width="1280" height="720" alt="Un productor trabaja en la mesa de mezclas de Estudios Noviembre durante el Open Camp CDMX" loading="lazy" decoding="async">
+        <video controls playsinline preload="none" width="1280" height="720" aria-label="Resumen en vídeo del Open Camp CDMX en Estudios Noviembre, con sonido"><source src="assets/mexico/mexico-open-camp-resumen-720.mp4" type="video/mp4"></video>
+        <button class="video-h__play" type="button" hidden><span class="video-h__ico" aria-hidden="true"></span><span>Ver el camp · 0:25</span></button>
+      </div>
+      <figcaption><b>Open Camp CDMX · el resumen</b><span>Grabación y composición en Estudios Noviembre · se escucha con sonido</span></figcaption>
+    </figure>
     <div class="evento__fotos evento__fotos--4 carril-movil">
-      <figure><img src="assets/mexico/mexico-macuto-chapultepec-640.webp" srcset="assets/mexico/mexico-macuto-chapultepec-640.webp 640w, assets/mexico/mexico-macuto-chapultepec-1200.webp 1200w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="853" alt="Macuto en la escalera del Castillo de Chapultepec, bajo un gran cuadro histórico" loading="lazy" decoding="async"><figcaption>Castillo de Chapultepec</figcaption></figure>
-      <figure><img src="assets/mexico/mexico-open-camp-macuto-640.webp" srcset="assets/mexico/mexico-open-camp-macuto-640.webp 640w, assets/mexico/mexico-open-camp-macuto-1200.webp 1200w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="853" alt="Macuto, con chaqueta roja, junto a dos artistas en Estudios Noviembre durante el Open Camp CDMX" loading="lazy" decoding="async"><figcaption>Open Camp CDMX</figcaption></figure>
-      <figure><img src="assets/mexico/mexico-story-cabina-640.webp" srcset="assets/mexico/mexico-story-cabina-640.webp 640w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="853" alt="Un artista con gorra y auriculares graba en la cabina del estudio" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/mexico/mexico-story-cabina.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption>En la cabina</figcaption></figure>
-      <figure><img src="assets/mexico/mexico-macuto-terraza-640.webp" srcset="assets/mexico/mexico-macuto-terraza-640.webp 640w, assets/mexico/mexico-macuto-terraza-1200.webp 1200w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="853" alt="Macuto de pie en la terraza acristalada del Castillo de Chapultepec, sobre un suelo de ajedrez" loading="lazy" decoding="async"><figcaption>La terraza del castillo</figcaption></figure>
+      <figure><img src="assets/mexico/mexico-story-cabina-450.webp" width="450" height="800" alt="Un artista con gorra y auriculares graba en la cabina del estudio" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/mexico/mexico-story-cabina.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption>En la cabina</figcaption></figure>
+      <figure><img src="assets/mexico/mexico-story-canta-450.webp" width="450" height="800" alt="Un artista vestido de rosa canta de pie junto a la mesa de mezclas" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/mexico/mexico-story-canta.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption>Grabando</figcaption></figure>
+      <figure><img src="assets/mexico/mexico-story-sesion-450.webp" width="450" height="800" alt="Dos artistas en la sala de control del estudio durante la sesión" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/mexico/mexico-story-sesion.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption>La sesión</figcaption></figure>
+      <figure><img src="assets/mexico/mexico-story-productores-450.webp" width="450" height="800" alt="Varias personas alrededor de la mesa de mezclas del estudio" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/mexico/mexico-story-productores.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption>Productores en el control</figcaption></figure>
     </div>
-    <a class="evento__enlace" href="/mexico/">Ver el viaje</a>
+    <a class="evento__enlace" href="/mexico/">Ver el camp</a>
   </div>
 
-  <!-- Macuto en Miami (29 y 31-oct-2026). Va el primero de los bloques de fotos porque es lo más reciente. Material propio: app Fotos de Macuto (19-22 oct) y su Sony (vídeos del 20 y del 22-oct). Sin EXIF.
-       La semana completa: /miami/ (caso.css). Estilos de este bloque: home.css §26. -->
+  <!-- Macuto en Miami (29 y 31-oct-2026; rehecho el 20-nov-2026, Macuto: «en miami igual, más la gala, vídeos de la gala de los billboard, estudios de
+       grabación, creación de contenido etc.»). Fuera la playa, el Faena, el photocall y el selfi; todo vídeo en bucle (.evento__video).
+       Gala: vídeos propios del iPhone de Macuto del 22-oct por la noche (app Fotos, IMG_6020-6041), cortados a 5 s, 450×800, mudos y sin nombrar
+       a nadie del escenario. La semana completa: /miami/ (caso.css). Estilos de este bloque: home.css §26. -->
   <div class="evento reveal" id="miami">
     <div class="evento__cab">
       <h3>Macuto en Miami</h3>
-      <p>La Billboard Latin Music Week, los platós de Univision con una artista del DAP, estudios de la ciudad y la gala de los premios, del 19 al 22 de octubre de 2026.</p>
+      <p>La gala de los Billboard Latin Music Awards, la Billboard Latin Music Week, sesiones en estudios de grabación de la ciudad y contenido con una artista del DAP, del 19 al 22 de octubre de 2026.</p>
     </div>
     <div class="evento__fotos evento__fotos--4 carril-movil">
-      <figure><img src="assets/miami/miami-macuto-amanecer-640.webp" srcset="assets/miami/miami-macuto-amanecer-640.webp 640w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="853" alt="Macuto camina hacia la cámara por la playa de Miami Beach al amanecer" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/miami/miami-macuto-amanecer.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption>Amanecer en Miami Beach</figcaption></figure>
-      <figure><img src="assets/miami/miami-macuto-gala-640.webp" srcset="assets/miami/miami-macuto-gala-640.webp 640w, assets/miami/miami-macuto-gala-1200.webp 1200w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="853" alt="Macuto, con traje granate, junto a María Luna en la noche de los Billboard Latin Music Awards" loading="lazy" decoding="async"><figcaption>Gala de los Billboard</figcaption></figure>
-      <figure><img src="assets/miami/miami-macuto-photocall-640.webp" srcset="assets/miami/miami-macuto-photocall-640.webp 640w, assets/miami/miami-macuto-photocall-1200.webp 1200w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="853" alt="Macuto con un asistente de la semana ante el muro rosa de Billboard Latin Music Week" loading="lazy" decoding="async"><figcaption>Billboard Latin Music Week</figcaption></figure>
-      <figure><img src="assets/miami/miami-despierta-baile-640.webp" srcset="assets/miami/miami-despierta-baile-640.webp 640w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="853" alt="María Luna y sus bailarinas actúan en el plató de Despierta América" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/miami/miami-despierta-baile.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption>En Despierta América</figcaption></figure>
-      <figure><img src="assets/miami/miami-macuto-maria-640.webp" srcset="assets/miami/miami-macuto-maria-640.webp 640w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="853" alt="Macuto y María Luna se hacen un selfi en los estudios de Univision" loading="lazy" decoding="async"><figcaption>En Univision, con una artista del DAP</figcaption></figure>
-      <figure><img src="assets/miami/miami-macuto-faena-640.webp" srcset="assets/miami/miami-macuto-faena-640.webp 640w, assets/miami/miami-macuto-faena-1200.webp 1200w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="853" alt="Macuto, vestido de blanco y con gafas de sol, con otro asistente acreditado entre flores" loading="lazy" decoding="async"><figcaption>Entre paneles</figcaption></figure>
-      <figure><img src="assets/miami/miami-audiovision-640.webp" srcset="assets/miami/miami-audiovision-640.webp 640w, assets/miami/miami-audiovision-1200.webp 1200w" sizes="(max-width: 600px) 62vw, (max-width: 880px) 45vw, 285px" width="640" height="853" alt="Rótulo de audioVision Studios en la recepción del estudio, con discos y diplomas enmarcados" loading="lazy" decoding="async"><figcaption>Estudios de la ciudad</figcaption></figure>
+      <figure><img src="assets/miami/miami-story-gala-450.webp" width="450" height="800" alt="Macuto, con traje granate, y María Luna en la noche de los premios" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/miami/miami-story-gala.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption>Macuto, en la gala</figcaption></figure>
+      <figure><img src="assets/miami/miami-gala-premio-450.webp" width="450" height="800" alt="Dos presentadores entregan un premio en el escenario de la gala de los Billboard Latin Music Awards" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/miami/miami-gala-premio.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption>Gala de los Billboard</figcaption></figure>
+      <figure><img src="assets/miami/miami-gala-fuego-450.webp" width="450" height="800" alt="Actuación con llamas en el escenario de la gala de los Billboard Latin Music Awards" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/miami/miami-gala-fuego.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption>Actuaciones en directo</figcaption></figure>
+      <figure><img src="assets/miami/miami-gala-ganadores-450.webp" width="450" height="800" alt="Un grupo vestido de blanco recoge un premio en el escenario rojo de la gala" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/miami/miami-gala-ganadores.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption>La noche de los premios</figcaption></figure>
+      <figure><img src="assets/miami/miami-story-audiovision-450.webp" width="450" height="800" alt="María Luna en los estudios audioVision" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/miami/miami-story-audiovision.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption>audioVision Studios</figcaption></figure>
+      <figure><img src="assets/miami/miami-story-beatz-450.webp" width="450" height="800" alt="Sesión en el estudio con Beatz Academy, entre luces moradas" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/miami/miami-story-beatz.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption>Sesión con Beatz Academy</figcaption></figure>
+      <figure><img src="assets/miami/miami-story-sesion-450.webp" width="450" height="800" alt="María Luna habla de su música en una sala del estudio" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/miami/miami-story-sesion.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption>Creando contenido</figcaption></figure>
+      <figure><img src="assets/miami/miami-despierta-baile-640.webp" width="640" height="853" alt="María Luna y sus bailarinas actúan en el plató de Despierta América" loading="lazy" decoding="async"><video class="evento__video" data-src="assets/miami/miami-despierta-baile.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption>En Despierta América</figcaption></figure>
     </div>
     <a class="evento__enlace" href="/miami/">Ver la semana</a>
   </div>
@@ -925,7 +908,9 @@
 </div></section>
 
 <!-- TESTIMONIOS (12-oct-2026, Macuto: «busca testimonios para ponerlo en una sección de testimonios con reseñas como la foto negra»).
-     Capturas reales de WhatsApp e Instagram, recortadas: sin nombres, fotos de perfil ni números. Se mueven solas con movimiento.js (§11); sin JS o con «reducir movimiento», se deslizan con el dedo. -->
+     Capturas reales de WhatsApp e Instagram, recortadas: sin nombres, fotos de perfil ni números.
+     20-nov-2026 (Macuto: «si hay más testimonios en mi WhatsApp sácalos y ponlos en la web»): 11 más, «chat-*» de testimonios_wa.json. De esos no hay
+     captura: se dibujan con el TEXTO LITERAL del mensaje (store de conversaciones) y su hora en Madrid, con 09_Automatizaciones/macuto_web/testimonios_wa.py. Se mueven solas con movimiento.js (§11); sin JS o con «reducir movimiento», se deslizan con el dedo. -->
 <section class="sec testimonios" id="testimonios" aria-labelledby="testimonios-titulo"><div class="wrap">
   <div class="sec-head">
     <div class="reveal"><span class="eyebrow">Testimonios</span><h2 id="testimonios-titulo">Lo que nos escriben</h2></div>
@@ -938,6 +923,12 @@
       <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-56-mil-youtube-640.webp" width="640" height="345" alt="Mensaje de Instagram de una artista: «esta siendo increible macuto tengo 56 mil visitas en youtube», «mil graciaas por tus palabraas», «sii nos vemos esta semanitaa»" decoding="async"><span>Instagram · 56.000 visitas en YouTube</span></li>
       <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-gracias-a-ti-640.webp" width="640" height="608" alt="Conversación de WhatsApp: le escribimos «Buenos días», «Enhorabuena x ese primer súper viral» (el nombre está tapado), «Me alegro mucho x ti» y «Y que justo pase antes de tu primer lanzamiento»; la artista responde «Buenos días!», «Muchísimas gracias» y «Es gracias a ti»" decoding="async"><span>WhatsApp · tras su primer viral</span></li>
       <li class="testimonio testimonio--ancho"><img loading="lazy" src="assets/testimonios/comentario-posicionamiento-640.webp" width="640" height="110" alt="Comentario en Instagram de una artista: «Gracias Macuuuuu, el posicionamiento lo aprendí gracias a ti!»" decoding="async"><span>Instagram · comentario público</span></li>
+      <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-managers-640.webp" width="640" height="192" alt="Mensaje de WhatsApp: «Gracias chicos 🥹 yo estoy muy contento de tenerlos a ustedes como managers me han ayudado en todo, son una bendicion en mi vida 🫂🫂🫂»" decoding="async"><span>WhatsApp · artista del DAP, sobre su equipo</span></li>
+      <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-casi-4h-640.webp" width="640" height="124" alt="Mensaje de WhatsApp: «Buenas Jorge la reunión ha sido Top, casi 4h jajaja gracias por la oportunidad!🤙🏽»" decoding="async"><span>WhatsApp · después de una sesión con Macuto</span></li>
+      <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-50k-spotify-640.webp" width="640" height="304" alt="Mensajes de WhatsApp: le escribimos «Hola [nombre tapado]!», le escribimos «que tal todo con el lanzamiento ?», «Eyy! Muy bien», «Brutal la verdad en spoti va casi por las 50k»" decoding="async"><span>WhatsApp · tras su lanzamiento</span></li>
+      <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-feliz-con-ester-640.webp" width="640" height="158" alt="Mensaje de WhatsApp: «Hola Jorge cómo estás todo bien ! súper bien con Ester nos reunimos hoy ! Estoy feliz con su ayuda ! 🥹🙏»" decoding="async"><span>WhatsApp · después de su sesión con Ester</span></li>
+      <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-experiencia-640.webp" width="640" height="276" alt="Mensajes de WhatsApp: «maestro, muy buena la reunion se nota la experiencia en la industria», «ya entendi un poco mas como funcionan», «y como funciona todo»" decoding="async"><span>WhatsApp · después de una sesión con Macuto</span></li>
+      <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-el-trabajo-que-haces-640.webp" width="640" height="184" alt="Mensajes de WhatsApp: «Nada tranquilo tio mil gracias a ti por el trabajo que haces», «En 15 le damos 🔥💪🏼»" decoding="async"><span>WhatsApp · artista del DAP</span></li>
     </ul>
     <ul class="testimonios__fila testimonios__fila--inversa" aria-label="Mensajes sobre las clases y el programa">
       <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-masterclass-640.webp" width="640" height="299" alt="Mensaje de WhatsApp: «Macuto, mil gracias por esa masterclass, muchas gracias enserio, porque hay gente que hasta cobra por hacer eso, porque es tiempo y el tiempo es oro, no me arrepiento de empezar en la música, porque estoy conociendo gente muy pura, cómo [nombre tapado], cómo [nombre tapado] y como tú, Macuto»" decoding="async"><span>WhatsApp · después de una masterclass</span></li>
@@ -945,21 +936,16 @@
       <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-maestro-640.webp" width="640" height="330" alt="Mensajes de WhatsApp: «Con un maestro tan apasionado por lo que hace da gusto ser alumno», «Gracias por tu tiempo», «Abrazo bro que esté bien»" decoding="async"><span>WhatsApp · después de una clase</span></li>
       <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-clases-640.webp" width="640" height="430" alt="Mensaje de Instagram: «Estuvo muy interesante bro, enhorabuena por hacer estas clases tan utiles e interesantes para los artistas»; le contestamos «Para que valoren el trabajo de creadores como tu»" decoding="async"><span>Instagram · sobre las clases</span></li>
       <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-curso-640.webp" width="640" height="488" alt="Mensajes de Instagram: «Bien bro», «Gracias a Dios», «Recordándome del curso», «Estuvo genial me ah servido», «Bastante»" decoding="async"><span>Instagram · recordando el curso</span></li>
+      <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-sin-peliculas-640.webp" width="640" height="388" alt="Mensajes de WhatsApp: le escribimos «Buenas!! que tal la llamada? 🚀», «Fue muy bien, Macuto nos aportó detalles de la que normalmente no se da en redes, y realmente con lo que más me quedé es que nos explicó la vida del artista sin “películas”, como es realmente ganarse la vida dentro de la industria, sea lo que sea la decisión muy agradecido con la oportunidad 🫶🏻»" decoding="async"><span>WhatsApp · después de una sesión con Macuto</span></li>
+      <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-enfoque-640.webp" width="640" height="252" alt="Mensajes de WhatsApp: le escribimos «Buenas bro! que tal la llamada?», «Buenos días Jorge!! En verdad muy interesante y Angelo fue muy claro en todo. Brutal vuestro enfoque y vuestro trabajo 💪🏻🙌🏻»" decoding="async"><span>WhatsApp · después de una sesión con Macuto</span></li>
+      <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-apuntes-640.webp" width="640" height="226" alt="Mensaje de WhatsApp: «Hola bro un saludo, increíble la clase que nos dió macuto, aquí tengo los apuntes de la clase y también pues agradecerles por la oportunidad que Macuto nos brinda a los artistas emergentes»" decoding="async"><span>WhatsApp · después de una clase</span></li>
+      <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-perspectiva-640.webp" width="640" height="378" alt="Mensajes de WhatsApp: «Hola Jorge», «Quería contarte que ya terminó la reunión y la verdad me quedé muy a gusto Pude aclarar todas mis dudas entender mejor las cosas y me fui con una perspectiva mucho más clara de todo», «Nada simplemente quería compartirte eso»" decoding="async"><span>WhatsApp · después de una sesión con Macuto</span></li>
+      <li class="testimonio"><img loading="lazy" src="assets/testimonios/chat-claridad-640.webp" width="640" height="430" alt="Mensaje de WhatsApp: «Hola buenas tardes, la verdad que todo muy bien, salí súper contento de todo lo que explicó macuto y pude darme cuenta lo poquito que realmente sabía que, claramente era un conocimiento nulo, pero salí con algo más de claridad con respecto al manejo de la música, muy entretenido y enriquecedor la llamada, muchísimas gracias por tomarme en cuenta para dicha preselección eternamente agradecido por todo»" decoding="async"><span>WhatsApp · después de una sesión con Macuto</span></li>
     </ul>
   </div>
 </section>
 
-<!-- ENVÍA TU CANCIÓN -->
-<section class="sec" id="envia" style="padding-bottom:0"><div class="wrap">
-  <div class="submit-box reveal">
-    <div>
-      <span class="eyebrow">Gratis · Sin compromiso</span>
-      <h2>¿Solo quieres que escuchemos tu música?</h2>
-      <p>Envíanos una canción y la valoramos para nuestras playlists y campañas. Si encaja con lo que trabajamos, te contactamos.</p>
-    </div>
-    <a href="envia-tu-cancion.html" class="btn btn-purple">Envía tu canción</a>
-  </div>
-</div></section>
+<!-- (20-nov-2026) Macuto: «vamos a quitar el formulario de canción y solo dejaremos solicita acceso». Fuera la caja #envia; /envia-tu-cancion.html redirige a /solicitud.html. -->
 
 <!-- FAQ · acordeón nativo (como la landing de Neyver): mismo texto; «¿Cómo empiezo?» y «¿Cuánto cuesta?» suben arriba.
      Si cambias una respuesta, cámbiala también en el JSON-LD FAQPage del <head>. -->
@@ -1062,7 +1048,6 @@
       <li><a href="#servicios">Qué hacemos</a></li>
       <li><a href="#artistas">Artistas</a></li>
       <li><a href="radar/">RADAR</a></li>
-      <li><a href="envia-tu-cancion.html">Envía tu canción</a></li>
       <li><a href="portal/">Portal DAP</a></li>
       <li><a href="mailto:macuto@macutomusic.com">macuto@macutomusic.com</a></li>
     </ul></nav>
