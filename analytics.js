@@ -54,6 +54,7 @@
       var href = a.getAttribute('href') || '';
       var cta = null;
       if (href.indexOf('solicitud') > -1) cta = 'solicita_acceso';
+      else if (href.indexOf('ig.me/m/macutomusic') > -1) cta = 'dm_instagram';  // 23-nov-2026: el botón público lleva al DM
       else if (href.indexOf('envia-tu-cancion') > -1) cta = 'envia_tu_cancion';
       else if (href.indexOf('radar') > -1) cta = 'radar';
       else if (href.indexOf('sube-tu-musica') > -1) cta = 'sube_tu_musica';
