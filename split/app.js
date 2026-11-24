@@ -71,6 +71,16 @@
   }
   function render(st) {
     if (pollTimer) { clearTimeout(pollTimer); pollTimer = null; }
+    var r = pintar(st);
+    if (st.enlaces && st.enlaces.length) {      // el promotor lleva los enlaces de los demás en todas sus pantallas
+      var d = document.createElement('div'); d.innerHTML = enlacesHtml(st);
+      var pie = app.querySelector('.ct-foot');
+      if (d.firstChild) { if (pie) app.insertBefore(d.firstChild, pie); else app.appendChild(d.firstChild); }
+      enlacesEnganchar(st);
+    }
+    return r;
+  }
+  function pintar(st) {
     switch (st.vista) {
       case 'pin': return vistaPin(st);
       case 'pin_bloqueado': return msg('Acceso bloqueado', 'Se han agotado los intentos. Escribe a Macuto: revisará tu enlace y te lo volverá a abrir.');
@@ -78,6 +88,8 @@
       case 'caducado': return msg('Este enlace ha caducado', 'El plazo para firmar ha terminado. Si todavía hay que firmarla, pide un enlace nuevo a Macuto.');
       case 'copia_caducada': return msg('Este enlace ya no sirve la copia', 'Han pasado más de treinta días desde que se firmó. Pide tu copia a Macuto.');
       case 'error': return msg('Un momento', 'El equipo está revisando el documento. Macuto te avisará cuando esté listo; lo abrirás en este mismo enlace.');
+      case 'obra': return vistaObra(st);
+      case 'espera_obra': return msg('Falta preparar el acuerdo', 'Quien lo ha empezado todavía no ha puesto los datos de la canción. En cuanto los ponga, en este mismo enlace podrás rellenar los tuyos.', 'Esta página se actualiza sola.');
       case 'datos': return vistaDatos(st);
       case 'reparto': return vistaDatos(st);
       case 'espera_datos': return vistaEsperaDatos(st);
@@ -90,7 +102,8 @@
   }
   function listaPartes(st) {
     return '<ul class="ct-equipo">' + (st.partes || []).map(function (p) {
-      return '<li>' + (p.firmado ? '✅ ' : '⏳ ') + '<b>' + esc(p.nombre) + '</b>' + (p.yo ? ' <span class="ct-tag">tú</span>' : '') + '<br><span class="ct-mut ct-small">' + esc(p.rol) + (p.firmado ? ' · ha firmado' : ' · pendiente') + '</span></li>';
+      var cuando = (p.firmado && p.ts) ? ' · ' + esc(hora(p.ts)) : '';
+      return '<li>' + (p.firmado ? '✅ ' : '⏳ ') + '<b>' + esc(p.nombre) + '</b>' + (p.yo ? ' <span class="ct-tag">tú</span>' : '') + '<br><span class="ct-mut ct-small">' + esc(p.rol) + (p.firmado ? ' · ha firmado' + cuando : ' · pendiente') + '</span></li>';
     }).join('') + '</ul>';
   }
 
@@ -118,19 +131,27 @@
 
   function vistaYaFirmaste(st) {
     var faltan = (st.partes || []).filter(function (p) { return !p.firmado; }).length;
-    app.innerHTML = '<h1>¡Firmado!</h1>' + card('<p class="ct-okbox">✓ Tu firma quedó registrada' + (st.firmado_el ? ' el ' + esc(st.firmado_el) : '') + '.</p>' +
+    app.innerHTML = '<h1>¡Firmado!</h1>' + card('<p class="ct-okbox">✓ Tu firma quedó registrada' + (st.firmado_ts ? ' el ' + esc(hora(st.firmado_ts)) : (st.firmado_el ? ' el ' + esc(st.firmado_el) : '')) + '.</p>' +
       '<p>' + (faltan ? (faltan > 1 ? 'Faltan ' + faltan + ' firmas' : 'Falta 1 firma') + '. Cuando firmen todos, desde este mismo enlace podrás descargar la copia firmada.' : 'Ya habéis firmado todos. Estamos sellando la copia: <b>tarda menos de un minuto</b> y esta página se actualiza sola.') + '</p>' +
-      '<h2 style="margin-top:14px">«' + esc(st.titulo) + '»</h2>' + listaPartes(st) +
-      '<p class="ct-small"><a href="#" id="pdf">Ver la split sheet (PDF)</a></p>') + foot();
+      '<h2 style="margin-top:14px">' + esc(st.titulo) + '</h2>' + listaPartes(st) +
+      '<p class="ct-small"><a href="#" id="pdf">Ver la split sheet (PDF)</a></p>' + copiaHtml(st)) + foot();
     arriba();
     $('#pdf').addEventListener('click', function (e) { abrirPdf(e, '/pdf', 'Split_sheet.pdf'); });
     pollTimer = setTimeout(load, faltan ? 60000 : 4000);      // sellando: el PDF sale en segundos
   }
 
+  // El acuerdo no se da por ACTIVO hasta que cada parte tiene su copia por correo (orden de Macuto, 15-oct-2026).
+  function copiaHtml(st) {
+    var c = st.copia_email;
+    if (!c) return '';
+    if (c.estado === 'ENVIADO') return '<p class="ct-small">📧 Te hemos mandado esta copia a <b>' + esc(c.a) + '</b>. Si no la ves, mira en spam.</p>';
+    return '<p class="ct-small ct-mut">📧 Tu copia va de camino a <b>' + esc(c.a) + '</b>. Si no te llega, pídesela a Macuto: el acuerdo ya está firmado igualmente.</p>';
+  }
   function vistaHecho(st) {
-    app.innerHTML = '<h1>Split sheet firmada</h1>' + card('<p class="ct-okbox">✓ «' + esc(st.titulo) + '» está firmada por todas las partes.</p>' + listaPartes(st) +
+    app.innerHTML = '<h1>Split sheet firmada</h1>' + card('<p class="ct-okbox">✓ ' + esc(st.titulo) + ' está firmada por todas las partes.</p>' + listaPartes(st) +
       '<button type="button" class="ct-btn" id="dl">Descargar la copia firmada (PDF)</button>' +
-      '<p class="ct-small ct-mut">Lleva al final la hoja de firmas con la fecha, la hora y la huella del documento. Puedes descargarla desde este enlace hasta el ' + esc(st.copia_hasta) + '. Guárdala.</p>') + foot();
+      '<p class="ct-small ct-mut">Lleva al final la hoja de firmas con la fecha, la hora y la huella del documento. Puedes descargarla desde este enlace hasta el ' + esc(st.copia_hasta) + '. Guárdala.</p>' +
+      copiaHtml(st)) + foot();
     arriba();
     $('#dl').addEventListener('click', function (e) { abrirPdf(e, '/firmado', 'Split_sheet_firmada.pdf'); });
   }
@@ -144,9 +165,120 @@
       return [f.parte + (f.yo ? ' (tú)' : '') + (f.puesto ? '' : ' ⏳'), f.aportacion || '—', f.composicion, f.master];
     });
     var h = tabla(['Parte', 'Qué hizo', 'Composición', 'Máster'], filas, 'rep');
+    // 24-nov-2026: con propuesta (la del promotor o una de negociación) nadie declara su % en el formulario.
+    if (rp.tapado && rp.por_propuesta) return '<p class="ct-small ct-mut">El reparto se cierra con una propuesta completa: quien la hace la ve entera y los demás, al guardar sus datos, la aceptan o proponen otra. Nadie firma hasta que todos aceptéis la misma.</p>';
     if (rp.tapado) return h + '<p class="ct-small ct-mut">Cada parte pone su porcentaje por su cuenta: hasta que estéis todos no se ven los de los demás.</p>';
     h += '<p class="ct-small"><b>Suman:</b> composición ' + esc(rp.suma_composicion) + ' · máster ' + esc(rp.suma_master) + '</p>';
     return h;
+  }
+  // Las partes firman desde países distintos: toda hora se enseña en la del navegador Y en UTC, rotuladas.
+  function hora(ts) {
+    if (!ts) return '';
+    var d = new Date(String(ts).replace(' ', 'T'));
+    if (isNaN(d.getTime())) return String(ts);
+    var loc;
+    try { loc = d.toLocaleString(undefined, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }); } catch (e) { loc = d.toString().slice(0, 21); }
+    var u = ('0' + d.getUTCHours()).slice(-2) + ':' + ('0' + d.getUTCMinutes()).slice(-2);
+    return loc + ' (tu hora) · ' + u + ' UTC';
+  }
+  // Apartado de NEGOCIACIÓN (15-oct-2026): una parte propone el reparto completo y las demás aceptan o contraproponen.
+  // Nadie firma hasta que todas han aceptado LA MISMA propuesta.
+  function negociacionHtml(ng, partes, caso) {
+    if (!ng) return '';
+    var pr = ng.propuesta, abierto = (caso === 'proponer' && !pr);
+    var h = abierto ? '' : '<h2 style="margin-top:0">Negociar el reparto</h2>';
+    if (pr) {
+      h += '<p class="ct-small ct-mut" style="margin:0 0 6px">Propuesta nº ' + esc(pr.ronda) + ' · la hizo <b>' + esc(pr.mia ? 'tú' : pr.por) + '</b>' + (pr.cuando ? ' · ' + esc(hora(pr.cuando)) : '') + '</p>';
+      h += tabla(['Parte', 'Composición', 'Máster'], (pr.filas || []).map(function (f) {
+        return [f.parte + (f.yo ? ' (tú)' : ''), f.composicion, f.master];
+      }), 'rep');
+      h += '<p class="ct-small"><b>Suman:</b> composición ' + esc(pr.suma_composicion) + ' · máster ' + esc(pr.suma_master) + '</p>';
+      if (pr.nota) h += '<p class="ct-small">Lo explica así: «' + esc(pr.nota) + '»</p>';
+      h += '<p class="ct-small ct-mut">' + (ng.aceptada_por || []).length + ' de ' + (partes || []).length + ' la han aceptado' +
+        ((ng.falta || []).length ? ' · falta: ' + esc((ng.falta || []).join(', ')) : '') + '</p>';
+      if (!ng.yo_acepte) h += '<button type="button" class="ct-btn" id="neg-ok">Acepto este reparto</button>';
+      else h += '<p class="ct-okbox" style="display:block">✓ Ya has aceptado esta propuesta. Falta que la acepten: ' + esc((ng.falta || []).join(', ') || 'nadie') + '.</p>';
+      h += '<button type="button" class="ct-btn sec" id="neg-otra">' + (ng.yo_acepte ? 'Cambiar de idea y proponer otro' : 'Proponer otro reparto') + '</button>';
+    } else if (!abierto) {
+      h += '<p>Podéis cuadrarlo de dos maneras: cada uno cambia su porcentaje abajo, o alguien propone aquí el reparto completo y los demás lo aceptan.</p>';
+      h += '<button type="button" class="ct-btn sec" id="neg-otra">Proponer un reparto para todos</button>';
+    }
+    if (ng.tope) h += '<p class="ct-errbox" style="display:block">Habéis llegado al tope de propuestas de este acuerdo. Hablad con Macuto.</p>';
+    var base = (pr && pr.filas) || (ng.partida && ng.partida.filas) || [];
+    h += '<form id="fp" style="' + (abierto ? '' : 'display:none;') + 'margin-top:10px">' +
+      '<p class="ct-small"><b>Tu propuesta</b> — pon lo que crees que le toca a cada uno. Cada columna tiene que sumar 100 %.</p>' +
+      '<table class="ct-tabla ct-prop"><tr><th>Parte</th><th>Composición</th><th>Máster</th></tr>' +
+      base.map(function (f, k) {
+        var c = String(f.composicion || '').replace(/[^0-9,.]/g, ''), m = String(f.master || '').replace(/[^0-9,.]/g, '');
+        return '<tr><td>' + esc(f.parte) + (f.yo ? ' (tú)' : '') + '</td>' +
+          '<td><div class="ct-pct"><input type="text" inputmode="decimal" maxlength="6" data-capa="composicion" data-k="' + k + '" value="' + esc(c) + '"><span>%</span></div></td>' +
+          '<td><div class="ct-pct"><input type="text" inputmode="decimal" maxlength="6" data-capa="master" data-k="' + k + '" value="' + esc(m) + '"><span>%</span></div></td></tr>';
+      }).join('') + '</table>' +
+      '<p class="ct-small" id="fp-suma"></p>' +
+      '<label for="fp-nota">Por qué lo propones así <span class="ct-mut ct-small">(opcional, lo verán las otras partes y queda en el acuerdo)</span></label>' +
+      '<input type="text" id="fp-nota" maxlength="280" autocomplete="off">' +
+      '<div class="ct-errbox" id="fp-err"></div><button type="submit" class="ct-btn" id="fp-go">Enviar la propuesta</button></form>';
+    if ((ng.historial || []).length) {
+      h += '<details class="ct-det"><summary>Ver el historial de propuestas (' + (ng.historial || []).length + ')</summary>' +
+        (ng.historial || []).map(function (x) {
+          return '<p class="ct-small" style="margin:8px 0 2px"><b>nº ' + esc(x.ronda) + '</b> · ' + esc(x.por) + ' · ' + esc(hora(x.cuando)) + (x.nota ? ' · «' + esc(x.nota) + '»' : '') + '</p>' +
+            tabla(['Parte', 'Composición', 'Máster'], (x.filas || []).map(function (f) { return [f.parte, f.composicion, f.master]; }), 'rep');
+        }).join('') + '</details>';
+    }
+    return h;
+  }
+  function negociacionEnganchar(st) {
+    var ng = st.negociacion;
+    if (!ng) return;
+    var fp = $('#fp'), ok = $('#neg-ok'), otra = $('#neg-otra');
+    if (fp && fp.style.display !== 'none') setTimeout(function () { try { sumaProp(); } catch (e) { } }, 0);
+    if (otra && fp) otra.addEventListener('click', function () { fp.style.display = ''; otra.style.display = 'none'; sumaProp(); $('#fp').scrollIntoView({ block: 'center' }); });
+    if (ok) ok.addEventListener('click', function () {
+      ok.disabled = true; ok.textContent = 'Aceptando…';
+      api('/aceptar', { method: 'POST', body: { hash: (ng.propuesta || {}).hash } }).then(function (r) {
+        if (r.ok && r.j && r.j.ok) { load(); return; }
+        ok.disabled = false; ok.textContent = 'Acepto este reparto';
+        var eb = $('#errbox') || $('#fp-err'); if (eb) { eb.textContent = (r.j && r.j.error) || 'No se pudo aceptar.'; eb.style.display = 'block'; }
+        if (r.status === 409) setTimeout(load, 1200);
+      }).catch(function () { ok.disabled = false; ok.textContent = 'Acepto este reparto'; });
+    });
+    function filasProp() {
+      var ins = fp ? fp.querySelectorAll('input[data-capa]') : [], filas = [], i;
+      for (i = 0; i < ins.length; i++) {
+        var k = parseInt(ins[i].getAttribute('data-k'), 10);
+        filas[k] = filas[k] || {};
+        filas[k][ins[i].getAttribute('data-capa')] = ins[i].value.trim();
+      }
+      return filas;
+    }
+    function sumaProp() {
+      var f = filasProp(), sc = 0, sm = 0, i;
+      for (i = 0; i < f.length; i++) {
+        sc += parseFloat(String(f[i].composicion || '0').replace(',', '.')) || 0;
+        sm += parseFloat(String(f[i].master || '0').replace(',', '.')) || 0;
+      }
+      sc = Math.round(sc * 100) / 100; sm = Math.round(sm * 100) / 100;
+      var el = $('#fp-suma');
+      if (el) {
+        el.innerHTML = '<b>Suman:</b> composición ' + sc + ' % · máster ' + sm + ' %' +
+          ((sc === 100 && sm === 100) ? ' ✅' : ' — las dos tienen que dar 100 %');
+        el.className = 'ct-small' + ((sc === 100 && sm === 100) ? ' ct-ok' : ' ct-bad');
+      }
+    }
+    if (fp) {
+      fp.addEventListener('input', sumaProp);
+      fp.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        var eb = $('#fp-err'), b = $('#fp-go');
+        eb.style.display = 'none'; b.disabled = true; b.textContent = 'Enviando…';
+        api('/propuesta', { method: 'POST', body: { filas: filasProp(), nota: ($('#fp-nota') || {}).value || '' } }).then(function (r) {
+          b.disabled = false; b.textContent = 'Enviar la propuesta';
+          if (r.ok && r.j && r.j.ok) { load(); return; }
+          eb.textContent = (r.j && r.j.error) || ((r.j && r.j.errores) || []).join(' ') || 'No se pudo enviar la propuesta.';
+          eb.style.display = 'block';
+        }).catch(function () { b.disabled = false; b.textContent = 'Enviar la propuesta'; eb.textContent = 'Problema de conexión.'; eb.style.display = 'block'; });
+      });
+    }
   }
   function resumenHtml(r) {
     if (!r) return '';
@@ -161,31 +293,141 @@
     return h + '<p class="ct-small">' + esc(r.distribucion) + '</p>' + (r.samples ? '<p class="ct-small">Material de terceros: ' + esc(r.samples) + '</p>' : '');
   }
 
-  // DATOS (acuerdos): cada parte pone SUS datos y, en una split sheet, SU reparto. Nadie ve los datos personales de otro.
-  // st.parcial = el reparto no cuadró y solo se reabren los campos del reparto.
-  function vistaDatos(st) {
-    var campos = st.campos || [], pre = st.prefill || {}, parcial = !!st.parcial;
-    var rp = st.reparto || (st.resumen && st.resumen.reparto) || null;
-    var pasos = parcial ? '' : '<div class="ct-steps"><i class="on"></i><i></i><i></i></div><p class="ct-small ct-mut">Paso 1 de 3 · tus datos</p>';
-    var cab, intro;
-    if (parcial) {
-      var falta = [];
-      if (rp && rp.sobra_composicion) falta.push('la composición suma ' + esc(rp.suma_composicion));
-      if (rp && rp.sobra_master) falta.push('el máster suma ' + esc(rp.suma_master));
-      cab = '<h1>El reparto no cuadra</h1>';
-      intro = card('<p class="ct-errbox" style="display:block">Cada capa tiene que sumar 100 % y ' + (falta.join(' y ') || 'no suma') + '.</p>' +
-        '<p>Esto es lo que ha pedido cada uno. Habladlo entre vosotros y ajustad lo que haga falta: puedes cambiar el tuyo aquí abajo. ' +
-        'Nadie firma nada hasta que cuadre.</p>' + repartoHtml(rp));
-    } else {
-      cab = '<h1>Tus datos para el acuerdo</h1>';
-      intro = card(resumenHtml(st.resumen) +
-        '<p class="ct-small ct-mut" style="margin-top:8px">Tu papel: <b>' + esc(st.rol) + '</b>. Si algo de la canción no es lo que habíais hablado, no sigas y escribe a Macuto.</p>');
+  // ENLACES para el promotor: los crea el sistema y se los pasa ÉL a cada persona. Nosotros no escribimos a nadie.
+  function enlacesHtml(st) {
+    var e = st.enlaces || [];
+    if (!e.length) return '';
+    return card('<h2 style="margin-top:0">Pásales su enlace</h2>' +
+      '<p class="ct-small">Cada persona entra con su propio documento. Mándaselo tú por WhatsApp o como quieras: nosotros no le escribimos a nadie.</p>' +
+      e.map(function (x, k) {
+        var estado = x.firmado ? '✅ ya ha firmado' : (x.datos ? '📝 ha puesto sus datos' : (x.entro ? '🔑 ha entrado' : '⏳ todavía no ha entrado'));
+        return '<div class="ct-enl"><p class="ct-small" style="margin:0 0 4px"><b>' + esc(x.alias) + '</b> <span class="ct-mut">· ' + esc(x.rol) + ' · ' + estado + '</span></p>' +
+          '<input type="text" readonly value="' + esc(x.url) + '" id="enl-' + k + '">' +
+          '<button type="button" class="ct-btn sec" data-copiar="' + k + '">Copiar el mensaje para ' + esc(x.alias) + '</button></div>';
+      }).join(''));
+  }
+  function enlacesEnganchar(st) {
+    var e = st.enlaces || [], bs = document.querySelectorAll('[data-copiar]'), i;
+    function copiar(txt, btn, nombre) {
+      function fin(ok) { btn.textContent = ok ? '✓ Copiado' : 'Cópialo del recuadro de arriba'; setTimeout(function () { btn.textContent = 'Copiar el mensaje para ' + nombre; }, 2500); }
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(txt).then(function () { fin(true); }, function () { fin(false); }); return; }
+      } catch (err) { }
+      fin(false);
     }
-    var hayPct = false;
-    for (var q = 0; q < campos.length; q++) if (campos[q].tipo === 'pct') hayPct = true;
-    var avisoPct = (hayPct && !parcial) ? '<div class="ct-okbox" style="display:block">Los porcentajes los ponéis vosotros, no nosotros. Escribe el que crees que te corresponde: ' +
-      'los demás ponen el suyo sin ver el tuyo. Cuando estéis todos, si no suma 100 % te lo enseñamos y lo ajustáis.</div>' : '';
-    var html = pasos + cab + intro + '<form id="fd" novalidate>' + card(avisoPct + campos.map(function (c) {
+    for (i = 0; i < bs.length; i++) {
+      (function (b) {
+        b.addEventListener('click', function () {
+          var k = parseInt(b.getAttribute('data-copiar'), 10), x = e[k];
+          if (x) copiar(x.texto || x.url, b, x.alias);
+        });
+      })(bs[i]);
+    }
+  }
+
+  // OBRA: el promotor (nuestro artista) pone los datos de la canción y dice con quién la ha hecho (15-oct-2026).
+  function vistaObra(st) {
+    var campos = st.campos_obra || [], pre = st.prefill_obra || {}, roles = st.roles || [], maxp = (st.max_partes || 8) - 1;
+    function filaInv(k, v) {
+      v = v || {};
+      return '<div class="ct-inv" data-inv="' + k + '">' +
+        '<div class="ct-field" data-k="inv' + k + '.alias"><label>Nombre o nombre artístico</label>' +
+        '<input type="text" maxlength="60" data-c="alias" value="' + esc(v.alias || '') + '"><p class="ct-err"></p></div>' +
+        '<div class="ct-field" data-k="inv' + k + '.rol"><label>¿Qué hizo en la canción?</label><select data-c="rol">' +
+        '<option value="">Elige…</option>' + roles.map(function (r) { return '<option' + (r === v.rol ? ' selected' : '') + '>' + esc(r) + '</option>'; }).join('') +
+        '</select><p class="ct-err"></p></div>' +
+        '<div class="ct-field" data-k="inv' + k + '.email"><label>Su correo <span class="ct-mut ct-small">(opcional)</span></label>' +
+        '<input type="email" maxlength="120" data-c="email" value="' + esc(v.email || '') + '"><p class="ct-err"></p></div>' +
+        (k > 0 ? '<button type="button" class="ct-quitar" data-quitar="' + k + '">Quitar esta persona</button>' : '') + '</div>';
+    }
+    app.innerHTML = '<div class="ct-steps"><i class="on"></i><i></i><i></i></div><p class="ct-small ct-mut">Paso 1 de 3 · la canción</p>' +
+      '<h1>Prepara el acuerdo</h1>' +
+      card('<p>Pon los datos de la canción y di con quién la has hecho. Cuando guardes, te damos <b>el enlace de cada persona</b> para que se lo pases tú.</p>' +
+        '<p class="ct-small ct-mut">Después pondrás tus datos y cada uno los suyos. Nadie firma hasta que estéis todos y el reparto cuadre.</p>') +
+      '<form id="fo" novalidate>' + card(campos.map(function (c) { return campoHtml(c, pre, false); }).join('')) +
+      card('<h2 style="margin-top:0">Con quién la has hecho</h2>' +
+        '<p class="ct-small ct-mut">Tú ya estás dentro: añade a las demás personas. Si no sabes su correo, déjalo en blanco.</p>' +
+        '<div id="invs">' + filaInv(0, (st.invitados || [])[0]) + '</div>' +
+        '<button type="button" class="ct-btn sec" id="mas-inv">Añadir otra persona</button>' +
+        '<p class="ct-err" id="err-inv"></p>') +
+      card('<div class="ct-errbox" id="errbox"></div><button type="submit" class="ct-btn" id="ogo">Guardar y crear los enlaces</button>') +
+      '</form>' + foot();
+    arriba();
+    var f = $('#fo'), n = 1;
+    function partes() {        // el selector de «quién la sube» se rellena con lo que se vaya escribiendo
+      var sel = f.querySelector('[data-partes]'), i, filas = f.querySelectorAll('.ct-inv'), v = sel ? sel.value : '1';
+      if (!sel) return;
+      var ops = '<option value="1">Yo</option>';
+      for (i = 0; i < filas.length; i++) {
+        var al = filas[i].querySelector('[data-c="alias"]').value.trim();
+        if (al) ops += '<option value="' + (i + 2) + '">' + esc(al) + '</option>';
+      }
+      sel.innerHTML = ops; sel.value = v;
+    }
+    function condiciones() {
+      var fs = f.querySelectorAll('.ct-field[data-silleno]'), i;
+      for (i = 0; i < fs.length; i++) {
+        var k = fs[i].getAttribute('data-silleno'), el = f.querySelector('[name="' + k + '"]');
+        fs[i].style.display = (el && el.value.trim()) ? '' : 'none';
+      }
+    }
+    function quitar() {
+      var bs = f.querySelectorAll('[data-quitar]'), i;
+      for (i = 0; i < bs.length; i++) {
+        (function (b) {
+          b.addEventListener('click', function () {
+            var fila = b.parentNode;
+            fila.parentNode.removeChild(fila); partes();
+            $('#mas-inv').style.display = '';
+          });
+        })(bs[i]);
+      }
+    }
+    $('#mas-inv').addEventListener('click', function () {
+      if (f.querySelectorAll('.ct-inv').length >= maxp) { $('#mas-inv').style.display = 'none'; return; }
+      var div = document.createElement('div'); div.innerHTML = filaInv(n++, null);
+      $('#invs').appendChild(div.firstChild); quitar(); partes();
+      if (f.querySelectorAll('.ct-inv').length >= maxp) $('#mas-inv').style.display = 'none';
+    });
+    f.addEventListener('input', function () { partes(); condiciones(); });
+    f.addEventListener('change', function () { partes(); condiciones(); });
+    condiciones(); partes();
+    f.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var eb = $('#errbox'); eb.style.display = 'none';
+      var fs = f.querySelectorAll('.ct-field'), i;
+      for (i = 0; i < fs.length; i++) { fs[i].className = 'ct-field'; fs[i].querySelector('.ct-err').textContent = ''; }
+      if ($('#err-inv')) $('#err-inv').textContent = '';
+      var datos = {}, j;
+      for (j = 0; j < campos.length; j++) {
+        var el = f.querySelector('[name="' + campos[j].clave + '"]');
+        if (el && el.parentNode.style.display !== 'none') datos[campos[j].clave] = el.value.trim();
+      }
+      var invs = [], filas = f.querySelectorAll('.ct-inv');
+      for (i = 0; i < filas.length; i++) {
+        invs.push({ alias: filas[i].querySelector('[data-c="alias"]').value.trim(),
+                    rol: filas[i].querySelector('[data-c="rol"]').value.trim(),
+                    email: filas[i].querySelector('[data-c="email"]').value.trim() });
+      }
+      var b = $('#ogo'); b.disabled = true; b.textContent = 'Guardando…';
+      api('/obra', { method: 'POST', body: { datos: datos, invitados: invs } }).then(function (r) {
+        b.disabled = false; b.textContent = 'Guardar y crear los enlaces';
+        if (r.ok && r.j && r.j.ok) { load(); return; }
+        if (r.status === 401) { load(); return; }
+        var errs = (r.j && r.j.errores) || {}, k2, primero = null;
+        for (k2 in errs) {
+          if (k2 === 'invitados') { if ($('#err-inv')) $('#err-inv').textContent = errs[k2]; continue; }
+          var fld = f.querySelector('.ct-field[data-k="' + k2 + '"]');
+          if (fld) { fld.className = 'ct-field bad'; fld.querySelector('.ct-err').textContent = errs[k2]; if (!primero) primero = fld; }
+        }
+        eb.textContent = (r.j && r.j.error) || 'No se pudieron guardar los datos.'; eb.style.display = 'block';
+        if (primero) primero.scrollIntoView({ block: 'center' });
+      }).catch(function () { b.disabled = false; b.textContent = 'Guardar y crear los enlaces'; eb.textContent = 'Problema de conexión. Inténtalo de nuevo.'; eb.style.display = 'block'; });
+    });
+  }
+
+  // Pinta un campo del formulario (lo usan los datos de cada parte y los datos de la canción del promotor).
+  function campoHtml(c, pre, docFijo) {
       var v = pre[c.clave] == null ? '' : String(pre[c.clave]), id = 'c-' + c.clave, entrada;
       if (c.tipo === 'opciones') {
         var ops = '<option value="">Elige…</option>';
@@ -198,10 +440,14 @@
           ops += c.opciones.map(function (o) { return '<option' + (o === v ? ' selected' : '') + '>' + esc(o) + '</option>'; }).join('');
         }
         entrada = '<select id="' + id + '" name="' + c.clave + '">' + ops + '</select>';
+      } else if (c.tipo === 'fecha') {
+        entrada = '<input id="' + id + '" name="' + c.clave + '" type="date" value="' + esc(v) + '">';
+      } else if (c.tipo === 'parte') {
+        entrada = '<select id="' + id + '" name="' + c.clave + '" data-partes="1"><option value="1">Yo</option></select>';
       } else if (c.tipo === 'pct') {
         entrada = '<div class="ct-pct"><input id="' + id + '" name="' + c.clave + '" type="text" inputmode="decimal" autocomplete="off" maxlength="6" value="' + esc(v) + '"><span>%</span></div>';
       } else {
-        var ro = (c.tipo === 'doc' && st.doc_fijo) ? ' readonly' : '';
+        var ro = (c.tipo === 'doc' && docFijo) ? ' readonly' : '';
         var tipo = c.tipo === 'email' ? 'email' : (c.tipo === 'tel' ? 'tel' : 'text');
         var ac = { nombre_legal: 'name', email: 'email', telefono: 'tel', domicilio: 'street-address' }[c.clave] || 'off';
         entrada = '<input id="' + id + '" name="' + c.clave + '" type="' + tipo + '" autocomplete="' + ac + '" maxlength="' + (c.max || 120) + '" value="' + esc(v) + '"' + ro + '>';
@@ -214,12 +460,52 @@
         (c.ayuda ? '<p class="ct-hint">' + esc(c.ayuda) + '</p>' : '') +
         (c.detalle ? '<details class="ct-det"><summary>' + esc(c.detalle[0]) + '</summary><p>' + esc(c.detalle[1]) + '</p></details>' : '') +
         '<p class="ct-err"></p></div>';
+  }
+
+  // DATOS (acuerdos): cada parte pone SUS datos y, en una split sheet, SU reparto. Nadie ve los datos personales de otro.
+  // st.parcial = el reparto no cuadró y solo se reabren los campos del reparto.
+  function vistaDatos(st) {
+    var campos = st.campos || [], pre = st.prefill || {}, parcial = !!st.parcial;
+    var rp = st.reparto || (st.resumen && st.resumen.reparto) || null;
+    var pasos = parcial ? '' : '<div class="ct-steps"><i class="on"></i><i></i><i></i></div><p class="ct-small ct-mut">Paso 1 de 3 · tus datos</p>';
+    var cab, intro;
+    if (parcial) {
+      var caso = st.reparto_caso || 'cuadrar', faltan = st.faltan_datos || [];
+      var pend = faltan.length ? '<p class="ct-small ct-mut">Todavía falta por rellenar sus datos: ' + esc(faltan.join(', ')) + '. Podéis ir cerrando el reparto igualmente.</p>' : '';
+      if (caso === 'proponer') {
+        cab = '<h1>Propón el reparto</h1>';
+        intro = card('<p>Dijiste que el reparto lo proponías tú. Pon lo que crees que le toca a cada uno de la composición y del máster: ' +
+          'lo verán enteras las demás partes y podrán aceptarlo o proponer otra cosa.</p>' + pend);
+      } else if (caso === 'responder') {
+        cab = '<h1>Hay una propuesta de reparto</h1>';
+        intro = card('<p>Léela entera antes de responder. Puedes aceptarla o proponer otra: nadie firma nada hasta que todas aceptéis la misma.</p>' + pend);
+      } else {
+        var falta = [];
+        if (rp && rp.sobra_composicion) falta.push('la composición suma ' + esc(rp.suma_composicion));
+        if (rp && rp.sobra_master) falta.push('el máster suma ' + esc(rp.suma_master));
+        cab = '<h1>Hay que cuadrar el reparto</h1>';
+        intro = card('<p class="ct-errbox" style="display:block">Cada capa tiene que sumar 100 % y ' + (falta.join(' y ') || 'no suma') + '.</p>' +
+          '<p>Esto es lo que ha pedido cada uno. Nadie firma nada hasta que cuadre.</p>' + repartoHtml(rp));
+      }
+      intro += (st.negociacion ? card(negociacionHtml(st.negociacion, st.partes, caso)) : '');
+    } else {
+      cab = '<h1>Tus datos para el acuerdo</h1>';
+      intro = card(resumenHtml(st.resumen) +
+        '<p class="ct-small ct-mut" style="margin-top:8px">Tu papel: <b>' + esc(st.rol) + '</b>. Si algo de la canción no es lo que habíais hablado, no sigas y escribe a Macuto.</p>');
+    }
+    var hayPct = false;
+    for (var q = 0; q < campos.length; q++) if (campos[q].tipo === 'pct') hayPct = true;
+    var avisoPct = (hayPct && !parcial) ? '<div class="ct-okbox" style="display:block">Los porcentajes los ponéis vosotros, no nosotros. Escribe el que crees que te corresponde: ' +
+      'los demás ponen el suyo sin ver el tuyo. Cuando estéis todos, si no suma 100 % te lo enseñamos y lo ajustáis.</div>' : '';
+    var html = pasos + cab + intro + (!campos.length ? '' : '<form id="fd" novalidate>' + card(avisoPct + campos.map(function (c) {
+      return campoHtml(c, pre, st.doc_fijo);
     }).join('') +
     '<div class="ct-okbox" id="aviso-ent" style="display:none">Sin alta en una entidad de gestión no cobrarás tu parte de la composición a través de ella. Puedes firmar igual y darte de alta después: el acuerdo lo recoge.</div>' +
     '<label class="ct-chk"><input type="checkbox" id="conf"> <span id="conf-t">' + (parcial ? 'Confirmo que este es el porcentaje que pido.' : 'Confirmo que mis datos son correctos y que se usarán para preparar el acuerdo.') + '</span></label>' +
-    '<div class="ct-errbox" id="errbox"></div><button type="submit" class="ct-btn" id="dgo">' + (parcial ? 'Guardar mi porcentaje' : 'Guardar mis datos') + '</button>' + (parcial ? '' : RGPD)) + '</form>' + foot();
+    '<div class="ct-errbox" id="errbox"></div><button type="submit" class="ct-btn" id="dgo">' + (parcial ? 'Guardar mi porcentaje' : 'Guardar mis datos') + '</button>' + (parcial ? '' : RGPD)) + '</form>') + foot();
     app.innerHTML = html; arriba();
     var f = $('#fd');
+    if (!f) { if (parcial) negociacionEnganchar(st); return; }
     var etiqueta = parcial ? 'Guardar mi porcentaje' : 'Guardar mis datos';
     function val(k) { var el = f.querySelector('[name="' + k + '"]'); return el ? el.value.trim() : ''; }
     function condiciones() {
@@ -235,6 +521,7 @@
       if (ae) ae.style.display = (val('entidad_autor').indexOf('No estoy') === 0) ? 'block' : 'none';
     }
     f.addEventListener('change', condiciones); f.addEventListener('input', condiciones); condiciones();
+    if (parcial) negociacionEnganchar(st);
     f.addEventListener('submit', function (ev) {
       ev.preventDefault();
       var eb = $('#errbox'); eb.style.display = 'none';

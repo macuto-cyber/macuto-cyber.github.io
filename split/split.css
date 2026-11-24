@@ -13,3 +13,17 @@
 .ct-det p{margin:6px 0 0;line-height:1.5}
 .ct-app optgroup{font-style:normal;font-weight:700}
 .ct-tabla.rep td:nth-child(3),.ct-tabla.rep th:nth-child(3){text-align:right;white-space:nowrap}
+/* propuestas de reparto (negociación, 15-oct-2026): la tabla con los dos % tiene que caber en un móvil */
+.ct-prop td{vertical-align:middle}
+.ct-prop .ct-pct{gap:4px;justify-content:flex-end}
+.ct-prop .ct-pct input{max-width:76px;text-align:right}
+.ct-prop td:first-child{font-size:.88rem;word-break:break-word}
+.ct-ok{color:#157f3b;font-weight:600}
+.ct-bad{color:#b3261e;font-weight:600}
+@media (max-width:420px){.ct-prop .ct-pct input{max-width:64px}.ct-prop td:first-child{max-width:42%}}
+/* promotor (15-oct-2026): invitar a las demás partes y repartir sus enlaces */
+.ct-inv{border:1px solid var(--line);border-radius:10px;padding:10px 12px 4px;margin:0 0 10px}
+.ct-quitar{background:none;border:0;color:var(--muted);text-decoration:underline;font-size:.85rem;padding:0 0 8px;cursor:pointer}
+.ct-enl{border-top:1px solid var(--line);padding:10px 0 4px}
+.ct-enl input[readonly]{font-size:.8rem;margin:0 0 6px}
+.ct-enl .ct-btn{margin:0 0 4px}
