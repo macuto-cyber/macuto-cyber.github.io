@@ -219,7 +219,7 @@ nav.site{
 }
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:74px}
 .logo{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:1.32rem;letter-spacing:-.02em;display:flex;align-items:center;gap:11px;color:var(--ink)}
-.logo .mm{width:38px;height:38px;border-radius:10px;object-fit:cover;object-position:center 30%;box-shadow:0 6px 16px rgba(94,23,235,.35)}
+.logo .mm{width:38px;height:38px;border-radius:50%;padding:3.5px;box-sizing:border-box;background:#5E17EB;object-fit:contain;box-shadow:0 6px 16px rgba(94,23,235,.35)} /* 24-nov-2026, Macuto: «en la web mejor que sea un círculo»; el «mm» entero dentro, con ~9 % de aire */
 .nav-links{display:flex;gap:28px;align-items:center}
 .nav-links a:not(.btn){color:var(--text);font-size:.95rem;font-weight:500;transition:color .2s;position:relative;padding:4px 0}
 .nav-links a:not(.btn):hover{color:var(--purple)}
@@ -233,7 +233,7 @@ nav.site{
 @media(max-width:600px){
   .nav-in{height:64px}
   .logo{font-size:1.12rem;gap:9px}
-  .logo .mm{width:32px;height:32px}
+  .logo .mm{width:32px;height:32px;padding:3px}
   .nav-links{gap:0}
   .nav-links a.btn-ghost{display:none}
   .nav-links .nav-cta-desktop{display:none}
@@ -242,7 +242,7 @@ nav.site{
 }
 /* 14-oct-2026: a 360 px (el ancho de Android más común) «Macuto Music» tocaba «Solicita acceso» (0 px de aire). Por debajo de 390,
    logo y botón algo más compactos (28 px de aire a 360); por debajo de 350, solo el «mm» (antes vivía en home.css y el RADAR no lo tenía). */
-@media(max-width:389px){.logo{font-size:1.02rem;gap:7px}.logo .mm{width:30px;height:30px}.nav-links .btn{padding:11px 14px;font-size:.8rem}}
+@media(max-width:389px){.logo{font-size:1.02rem;gap:7px}.logo .mm{width:30px;height:30px;padding:3px}.nav-links .btn{padding:11px 14px;font-size:.8rem}}
 @media(max-width:349px){.logo .logo-txt{display:none}}
 
 /* ---------- hero ---------- */
