@@ -7,3 +7,16 @@
 .art-ancha img{width:100%;height:auto;display:block;border-radius:var(--r-md)}
 .art-media figcaption{color:var(--muted);font-size:.86rem;line-height:1.55;margin-top:12px}
 @media(max-width:600px){.art-galeria{grid-template-columns:repeat(2,minmax(0,1fr))}.art-galeria>:nth-child(3):last-child{grid-column:span 2;aspect-ratio:4/3}}
+/* Post de Instagram incrustado (24-nov-2026, Corina Smith). Fachada: nada de Instagram/Meta se carga hasta que el
+   lector pulsa «Ver la publicación aquí» (cookies de terceros). Patrón: <figure class="art-media art-ig" data-ig=URL>. */
+.art-ig-tarjeta{max-width:540px;margin:0 auto;padding:22px 24px;border:1px solid var(--line);border-radius:var(--r-md);background:#fff}
+.art-ig-tarjeta p{margin:0}
+.art-ig-cuenta{font-size:.9rem;color:var(--muted)}
+.art-ig-cuenta strong{color:var(--ink)}
+.art-ig-texto{font-size:1.2rem;line-height:1.45;color:var(--ink);margin:10px 0 18px!important}
+.art-ig-botones{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+.art-ig-cargar{font:inherit;font-weight:600;font-size:.95rem;background:#5E17EB;color:#fff;border:0;border-radius:999px;padding:10px 20px;cursor:pointer}
+.art-ig-cargar:hover{filter:brightness(1.1)}
+.art-ig .instagram-media{margin:0 auto!important;width:100%!important;max-width:540px!important;min-width:300px!important}
+.art-ig iframe.instagram-media{display:block}
+.art-ig figcaption{max-width:540px;margin-left:auto;margin-right:auto}
