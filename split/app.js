@@ -23,7 +23,7 @@
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function $(sel) { return document.querySelector(sel); }
   function card(inner) { return '<div class="ct-card">' + inner + '</div>'; }
-  function foot() { return '<p class="ct-foot">¿Dudas sobre cómo funciona? Escribe al equipo de Macuto Music por WhatsApp al <a href="https://wa.me/34630060006" target="_blank" rel="noopener">+34 630 06 00 06</a> o a <a href="mailto:macuto@macutomusic.com">macuto@macutomusic.com</a>.<br>Macuto Music</p>'; }
+  function foot() { return '<p class="ct-foot">¿Dudas sobre cómo funciona? Escribe al equipo de Macuto Music por WhatsApp al <a href="https://wa.me/34630060006" target="_blank" rel="noopener">+34 630 06 00 06</a> o a <a href="mailto:macuto@macutomusic.com">macuto@macutomusic.com</a>.<br>Macuto Music<br><a href="/aviso-legal.html" target="_blank" rel="noopener">Aviso legal</a> · <a href="/privacidad.html#firma" target="_blank" rel="noopener">Privacidad</a></p>'; }
   function arriba() { try { window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } catch (e) { window.scrollTo(0, 0); } }
   function msg(t, p, sub, extra) { app.innerHTML = '<h1>' + esc(t) + '</h1>' + card('<p>' + esc(p) + '</p>' + (sub ? '<p class="ct-mut">' + esc(sub) + '</p>' : '') + (extra || '')) + foot(); arriba(); }
   function api(path, opts) {
@@ -48,7 +48,7 @@
       setTimeout(function () { URL.revokeObjectURL(u); }, 120000);
     }).catch(function (e) { if (w) { try { w.close(); } catch (e2) { } } if (e && e.status === 401) load(); else alert('No se pudo abrir el PDF. Inténtalo de nuevo.'); });
   }
-  var RGPD = '<p class="ct-small ct-mut"><b>Tus datos.</b> Responsable: Angelo Jordan Gutiérrez Luis (Macuto Music). Finalidad: preparar y firmar el acuerdo y conservar la prueba de la firma. Se registran tu documento (para abrir este enlace), los datos que escribas para el acuerdo, tu firma y los datos técnicos de la firma. Puedes ejercer tus derechos escribiendo a macuto@macutomusic.com.</p>';
+  var RGPD = '<p class="ct-small ct-mut"><b>Tus datos.</b> Responsable: Angelo Jordan Gutiérrez Luis (Macuto Music). Finalidad: preparar y firmar el acuerdo, enviar a cada parte su copia y conservar la prueba de la firma. Se registran tu documento (para abrir este enlace), los datos que escribas para el acuerdo, tu firma y los datos técnicos de la firma; los ven también las demás partes del acuerdo. Base: el servicio de firma que pides al usar este enlace y el interés legítimo de las partes y de Macuto Music en poder probar la firma. Se conservan mientras el acuerdo pueda exigirse y cinco años más. Tus derechos (también reclamar ante la AEPD), destinatarios y transferencias: <a href="/privacidad.html#firma" target="_blank" rel="noopener">macutomusic.com/privacidad.html#firma</a>.</p>';
 
   if (!TOKEN) { msg('Enlace no válido', 'Este enlace no lleva la clave del acuerdo. Pide a quien te lo pasó que te lo reenvíe.'); return; }
 
@@ -511,6 +511,7 @@
       cab = '<h1>Tus datos para el acuerdo</h1>';
       intro = (st.autoservicio && !st.promotor ? card('<p class="ct-small"><b>Esto lo ha preparado ' + esc(st.autoservicio.preparo) + '</b> con la herramienta de Macuto Music. ' +
           'Macuto Music no es parte de este acuerdo: facilita la plantilla y la herramienta de firma, no ha revisado lo que pone, no asesora a ninguna de las partes y no responde de lo que pactéis. ' +
+          'Sí responde, conforme a la ley, de que la herramienta funcione como se describe y de que el documento reproduzca la plantilla publicada con los datos que escribáis. ' +
           'Revisa las condiciones: si algo no es lo que hablasteis, no pongas tus datos y díselo antes.</p>' +
           (st.leido_no_parte ? '' : '<label style="display:flex;gap:10px;align-items:flex-start;padding:6px 0"><input type="checkbox" id="noparte" style="width:22px;height:22px;margin-top:2px;flex:none"> <span>Lo he leído.</span></label>')) : '') +
         card(resumenHtml(st.resumen) +

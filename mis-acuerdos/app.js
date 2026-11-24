@@ -24,10 +24,10 @@
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function $(sel) { return document.querySelector(sel); }
   function card(inner) { return '<div class="ct-card">' + inner + '</div>'; }
-  function foot() { return '<p class="ct-foot">¿Dudas sobre cómo funciona? Escribe al equipo de Macuto Music por WhatsApp al <a href="https://wa.me/34630060006" target="_blank" rel="noopener">+34 630 06 00 06</a>.<br>Macuto Music</p>'; }
+  function foot() { return '<p class="ct-foot">¿Dudas sobre cómo funciona? Escribe al equipo de Macuto Music por WhatsApp al <a href="https://wa.me/34630060006" target="_blank" rel="noopener">+34 630 06 00 06</a>.<br>Macuto Music<br><a href="/aviso-legal.html" target="_blank" rel="noopener">Aviso legal</a> · <a href="/privacidad.html#firma" target="_blank" rel="noopener">Privacidad</a></p>'; }
   function arriba() { try { window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } catch (e) { window.scrollTo(0, 0); } }
   function msg(t, p, extra) { app.innerHTML = '<h1>' + esc(t) + '</h1>' + card('<p>' + esc(p) + '</p>' + (extra || '')) + foot(); arriba(); }
-  function rgpd(t) { return t ? '<p class="ct-small ct-mut" style="margin-top:12px">' + esc(t) + '</p>' : ''; }
+  function rgpd(t) { return t ? '<p class="ct-small ct-mut" style="margin-top:12px">' + esc(t) + ' <a href="/privacidad.html#firma" target="_blank" rel="noopener">Leer la política de privacidad</a>.</p>' : ''; }
   // Un error se VE: el CSS solo enseña .ct-err dentro de un .ct-field.bad (juez del móvil: antes no se veía ninguno).
   function error(id, texto) {
     var el = $('#' + id), campo = el && el.parentNode;
@@ -63,7 +63,7 @@
       var j = r.j || {};
       switch (j.vista) {
         case 'invalido': return msg('Enlace no válido', 'Este enlace no corresponde a ningún acceso. Si te lo mandó el equipo hace tiempo, pide uno nuevo.');
-        case 'sin_contrato': return msg('Acceso no disponible', 'Este acceso es para quien tiene su contrato del DAP firmado. Escribe al equipo si crees que es un error.');
+        case 'sin_contrato': return msg('Acceso no disponible', 'Este acceso ya no está activo. Escribe al equipo si crees que es un error.');
         case 'bloqueado': return msg('Acceso bloqueado', 'Se han agotado los intentos con el documento. Escribe al equipo: revisará tu acceso y te lo volverá a abrir.');
         case 'entrar': sdel(SKEY); return vistaEntrar(j);
         case 'panel': return vistaPanel(j);
@@ -74,7 +74,7 @@
 
   function vistaEntrar(j) {
     app.innerHTML = '<h1>Mis acuerdos</h1>' + card('<h2>Entra con tu documento</h2>' +
-      '<p>Para proteger tus datos, este acceso solo se abre con el documento de identidad de tu contrato del DAP: tu DNI, NIE o pasaporte.</p>' +
+      '<p>Para proteger tus datos, este acceso solo se abre con tu documento de identidad: el DNI, NIE o pasaporte que nos diste para este acceso.</p>' +
       '<form id="fp" novalidate><div class="ct-field"><label for="doc">DNI, NIE o pasaporte</label>' +
       '<input id="doc" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="20" required aria-describedby="err-doc">' +
       '<p class="ct-err" id="err-doc" role="alert"></p></div><button type="submit" class="ct-btn" id="go">Entrar</button></form>' +
