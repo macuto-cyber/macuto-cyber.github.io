@@ -83,6 +83,37 @@
         ev('form_loaded', { form_id: form, pagina: location.pathname });
       }
     });
+
+    // 3) Secciones de la PORTADA a las que llega cada visita (24-nov-2026, encargo de Macuto:
+    //    «mira en qué sección se paran en el móvil»; GA4 solo marcaba el 90 % de scroll).
+    //    Un `seccion_vista` por sección y página vista, cuando su borde de arriba pasa la mitad
+    //    de la pantalla (vale también para secciones más altas que la pantalla). Solo GA4, no Meta.
+    //    Para leerlo en GA4 hay que registrar `seccion` como dimensión personalizada (ámbito Evento).
+    secciones();
+  }
+
+  function secciones() {
+    var p = location.pathname;
+    if (p !== '/' && p !== '/index.html') return;
+    if (!('IntersectionObserver' in window)) return;
+    var nombres = { 'stats-band': 'cifras', 'final': 'cierre', 'hero': 'arriba' };
+    var els = document.querySelectorAll('header.hero, section');
+    var obs = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        obs.unobserve(en.target);
+        ev('seccion_vista', { seccion: en.target._mmSec, seccion_n: en.target._mmN });
+      });
+    }, { rootMargin: '0px 0px -50% 0px', threshold: 0 });
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i], nom = el.id;
+      if (!nom) {
+        for (var c in nombres) { if (el.classList.contains(c)) { nom = nombres[c]; break; } }
+      }
+      el._mmSec = nom || ('seccion_' + (i + 1));
+      el._mmN = i + 1;
+      obs.observe(el);
+    }
   }
 
   function activar() { cargarMeta(); cargarGA(); eventos(); }
