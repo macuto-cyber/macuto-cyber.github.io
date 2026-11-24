@@ -288,7 +288,17 @@
       .then(function () { b.disabled = false; });
   });
 
-  $('#btn-salir').addEventListener('click', function () { guarda(SK, null); $('#plan').innerHTML = ''; mostrar('entrar'); });
+  // «Salir» cierra la sesión también en el servidor: el token deja de valer aunque alguien lo hubiera copiado (24-nov-2026).
+  // El aviso no espera respuesta ni frena la salida; si no llega, la sesión caduca sola a las 2 horas, como antes.
+  $('#btn-salir').addEventListener('click', function () {
+    var t = lee(SK);
+    guarda(SK, null); $('#plan').innerHTML = ''; mostrar('entrar');
+    if (!t) return;
+    try {
+      fetch(API + '/api/portal/salir', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + t },
+        body: '{}', credentials: 'omit', cache: 'no-store', keepalive: true }).catch(function () {});
+    } catch (e) {}
+  });
 
   if (lee(SK)) cargar(); else mostrar('entrar');
 })();
