@@ -3,5 +3,6 @@ Allow: /
 Disallow: /contrato/
 Disallow: /split/
 Disallow: /firmas/
+Disallow: /mis-acuerdos/
 
 Sitemap: https://macutomusic.com/sitemap.xml

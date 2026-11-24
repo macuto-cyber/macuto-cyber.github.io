@@ -23,7 +23,7 @@
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function $(sel) { return document.querySelector(sel); }
   function card(inner) { return '<div class="ct-card">' + inner + '</div>'; }
-  function foot() { return '<p class="ct-foot">¿Dudas? Escribe a Macuto por WhatsApp al <a href="https://wa.me/34630060006" target="_blank" rel="noopener">+34 630 06 00 06</a> o a <a href="mailto:macuto@macutomusic.com">macuto@macutomusic.com</a>.<br>Macuto Music</p>'; }
+  function foot() { return '<p class="ct-foot">¿Dudas sobre cómo funciona? Escribe al equipo de Macuto Music por WhatsApp al <a href="https://wa.me/34630060006" target="_blank" rel="noopener">+34 630 06 00 06</a> o a <a href="mailto:macuto@macutomusic.com">macuto@macutomusic.com</a>.<br>Macuto Music</p>'; }
   function arriba() { try { window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } catch (e) { window.scrollTo(0, 0); } }
   function msg(t, p, sub, extra) { app.innerHTML = '<h1>' + esc(t) + '</h1>' + card('<p>' + esc(p) + '</p>' + (sub ? '<p class="ct-mut">' + esc(sub) + '</p>' : '') + (extra || '')) + foot(); arriba(); }
   function api(path, opts) {
@@ -50,7 +50,7 @@
   }
   var RGPD = '<p class="ct-small ct-mut"><b>Tus datos.</b> Responsable: Angelo Jordan Gutiérrez Luis (Macuto Music). Finalidad: preparar y firmar el acuerdo y conservar la prueba de la firma. Se registran tu documento (para abrir este enlace), los datos que escribas para el acuerdo, tu firma y los datos técnicos de la firma. Puedes ejercer tus derechos escribiendo a macuto@macutomusic.com.</p>';
 
-  if (!TOKEN) { msg('Enlace no válido', 'Este enlace no lleva la clave de la split sheet. Pide a Macuto que te lo reenvíe.'); return; }
+  if (!TOKEN) { msg('Enlace no válido', 'Este enlace no lleva la clave del acuerdo. Pide a quien te lo pasó que te lo reenvíe.'); return; }
 
   var pollTimer = null, reintentos = 0;
   function reintentar(texto) {
@@ -63,8 +63,8 @@
   }
   function load() {
     api('').then(function (r) {
-      if (r.status === 404) return msg('Enlace no válido', 'Este enlace no corresponde a ninguna split sheet. Pide a Macuto que te lo reenvíe.');
-      if (!r.ok || !r.j) return reintentar('No se pudo cargar la split sheet');
+      if (r.status === 404) return msg('Enlace no válido', 'Este enlace no corresponde a ningún acuerdo. Pide a quien te lo pasó que te lo reenvíe.');
+      if (!r.ok || !r.j) return reintentar('No se pudo cargar el acuerdo');
       reintentos = 0;
       render(r.j);
     }).catch(function () { reintentar('Sin conexión con el servidor'); });
@@ -84,7 +84,7 @@
     switch (st.vista) {
       case 'pin': return vistaPin(st);
       case 'pin_bloqueado': return msg('Acceso bloqueado', 'Se han agotado los intentos. Escribe a Macuto: revisará tu enlace y te lo volverá a abrir.');
-      case 'anulado': return msg('Este enlace ya no es válido', 'La split sheet se ha sustituido por otra versión. Pide el enlace nuevo a Macuto.');
+      case 'anulado': return msg('Este enlace ya no es válido', 'El acuerdo se ha sustituido por otra versión. Pide el enlace nuevo a quien te lo pasó.');
       case 'caducado': return msg('Este enlace ha caducado', 'El plazo para firmar ha terminado. Si todavía hay que firmarla, pide un enlace nuevo a Macuto.');
       case 'copia_caducada': return msg('Este enlace ya no sirve la copia', 'Han pasado más de treinta días desde que se firmó. Pide tu copia a Macuto.');
       case 'error': return msg('Un momento', 'El equipo está revisando el documento. Macuto te avisará cuando esté listo; lo abrirás en este mismo enlace.');
@@ -108,9 +108,10 @@
   }
 
   function vistaPin(st) {
-    app.innerHTML = '<h1>Tu split sheet</h1>' + card('<h2>Entra con tu documento</h2><p>Para proteger los datos de todos, este enlace solo se abre con tu documento de identidad. Escribe tu DNI, NIE o pasaporte.</p>' +
-      (st.primera ? '<p class="ct-small ct-mut">Es tu primera entrada: el documento que escribas quedará como la llave de este enlace.</p>' : '') +
+    app.innerHTML = '<h1>Tu acuerdo</h1>' + card('<h2>Entra con tu documento</h2><p>Para proteger los datos de todos, este enlace solo se abre con tu documento de identidad. Escribe tu DNI, NIE o pasaporte.</p>' +
+      (st.primera ? '<p class="ct-small ct-mut">Es tu primera entrada: el documento que escribas quedará como la llave de este enlace. Escríbelo bien: si te equivocas, pide a quien te mandó el enlace que avise al equipo.</p>' : '') +
       '<form id="acc" novalidate><div class="ct-field"><label for="doc">DNI, NIE o pasaporte</label><input id="doc" name="doc" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" maxlength="30" inputmode="text"></div>' +
+      (st.primera ? '<div class="ct-field"><label for="doc2">Repítelo</label><input id="doc2" name="doc2" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" maxlength="30" inputmode="text"></div>' : '') +
       '<div class="ct-errbox" id="errbox"></div><button type="submit" class="ct-btn" id="pin-go">Entrar</button></form>' +
       '<p class="ct-small ct-mut">El número con su letra; da igual si pones puntos, guiones o minúsculas. La sesión dura dos horas y se cierra al cerrar la pestaña.</p>') + foot();
     arriba();
@@ -118,6 +119,7 @@
     function go() {
       var v = (inp.value || '').replace(/[\s.\-\/]/g, '');
       if (v.length < 5) { $('#errbox').textContent = 'Escribe el número completo de tu documento.'; $('#errbox').style.display = 'block'; return; }
+      if ($('#doc2') && ($('#doc2').value || '').replace(/[\s.\-\/]/g, '').toUpperCase() !== v.toUpperCase()) { $('#errbox').textContent = 'Los dos no coinciden. Revisa tu documento.'; $('#errbox').style.display = 'block'; return; }
       var b = $('#pin-go'); if (b.disabled) return; b.disabled = true;
       api('/pin', { method: 'POST', body: { doc: v } }).then(function (r) {
         b.disabled = false;
@@ -134,7 +136,7 @@
     app.innerHTML = '<h1>¡Firmado!</h1>' + card('<p class="ct-okbox">✓ Tu firma quedó registrada' + (st.firmado_ts ? ' el ' + esc(hora(st.firmado_ts)) : (st.firmado_el ? ' el ' + esc(st.firmado_el) : '')) + '.</p>' +
       '<p>' + (faltan ? (faltan > 1 ? 'Faltan ' + faltan + ' firmas' : 'Falta 1 firma') + '. Cuando firmen todos, desde este mismo enlace podrás descargar la copia firmada.' : 'Ya habéis firmado todos. Estamos sellando la copia: <b>tarda menos de un minuto</b> y esta página se actualiza sola.') + '</p>' +
       '<h2 style="margin-top:14px">' + esc(st.titulo) + '</h2>' + listaPartes(st) +
-      '<p class="ct-small"><a href="#" id="pdf">Ver la split sheet (PDF)</a></p>' + copiaHtml(st)) + foot();
+      '<p class="ct-small"><a href="#" id="pdf">Ver ' + doc(st) + ' (PDF)</a></p>' + copiaHtml(st)) + foot();
     arriba();
     $('#pdf').addEventListener('click', function (e) { abrirPdf(e, '/pdf', 'Split_sheet.pdf'); });
     pollTimer = setTimeout(load, faltan ? 60000 : 4000);      // sellando: el PDF sale en segundos
@@ -145,10 +147,10 @@
     var c = st.copia_email;
     if (!c) return '';
     if (c.estado === 'ENVIADO') return '<p class="ct-small">📧 Te hemos mandado esta copia a <b>' + esc(c.a) + '</b>. Si no la ves, mira en spam.</p>';
-    return '<p class="ct-small ct-mut">📧 Tu copia va de camino a <b>' + esc(c.a) + '</b>. Si no te llega, pídesela a Macuto: el acuerdo ya está firmado igualmente.</p>';
+    return '<p class="ct-small ct-mut">📧 Tu copia va de camino a <b>' + esc(c.a) + '</b>. Si no te llega, descárgala desde este mismo enlace (vale treinta días desde la firma): el acuerdo ya está firmado igualmente.</p>';
   }
   function vistaHecho(st) {
-    app.innerHTML = '<h1>Split sheet firmada</h1>' + card('<p class="ct-okbox">✓ ' + esc(st.titulo) + ' está firmada por todas las partes.</p>' + listaPartes(st) +
+    app.innerHTML = '<h1>' + (st.acuerdo ? 'Acuerdo firmado' : 'Split sheet firmada') + '</h1>' + card('<p class="ct-okbox">✓ ' + esc(st.titulo) + (st.acuerdo ? ' está firmado' : ' está firmada') + ' por todas las partes.</p>' + listaPartes(st) +
       '<button type="button" class="ct-btn" id="dl">Descargar la copia firmada (PDF)</button>' +
       '<p class="ct-small ct-mut">Lleva al final la hoja de firmas con la fecha, la hora y la huella del documento. Puedes descargarla desde este enlace hasta el ' + esc(st.copia_hasta) + '. Guárdala.</p>' +
       copiaHtml(st)) + foot();
@@ -284,25 +286,29 @@
     if (!r) return '';
     var h = '<p class="ct-small ct-mut" style="margin-bottom:4px">' + esc(r.tipo) + '</p><h2>«' + esc(r.titulo) + '»' + (r.version ? ' <span class="ct-mut ct-small">(' + esc(r.version) + ')</span>' : '') + '</h2>' +
       (r.artista ? '<p class="ct-small ct-mut" style="margin:-6px 0 8px">Se publica como ' + esc(r.artista) + '</p>' : '');
+    if ((r.condiciones || []).length) {   // 24-nov: licencias, cesiones y encargos enseñan sus condiciones antes de los datos
+      h += '<p class="ct-small" style="margin:10px 0 2px"><b>Condiciones</b></p><dl class="ct-cond" style="margin:0">' +
+        r.condiciones.map(function (c) { return '<dt class="ct-small ct-mut" style="margin-top:6px">' + esc(c.etiqueta) + '</dt><dd class="ct-small" style="margin:0"><b>' + esc(c.valor) + '</b></dd>'; }).join('') + '</dl>';
+    }
     if ((r.composicion || []).length) {
-      h += '<p class="ct-small" style="margin:10px 0 2px"><b>Composición</b> (letra y música)</p>' + tabla(['Parte', 'Papel', '%'], (r.composicion || []).map(function (x) { return [x.parte, x.rol, x.pct]; })) +
-        '<p class="ct-small" style="margin:10px 0 2px"><b>Máster</b> (la grabación)</p>' + tabla(['Parte', '%'], (r.master || []).map(function (x) { return [x.parte, x.pct]; }));
+      h += '<p class="ct-small" style="margin:10px 0 2px"><b>Composición</b> ' + (r.split === false ? '(del beat y la canción)' : '(letra y música)') + '</p>' + tabla(['Parte', 'Papel', '%'], (r.composicion || []).map(function (x) { return [x.parte, x.rol, x.pct]; }));
+      if ((r.master || []).length) h += '<p class="ct-small" style="margin:10px 0 2px"><b>Máster</b> (la grabación)</p>' + tabla(['Parte', '%'], (r.master || []).map(function (x) { return [x.parte, x.pct]; }));
     } else if (r.reparto) {
       h += '<p class="ct-small" style="margin:10px 0 2px"><b>Reparto</b> — lo ponéis vosotros</p>' + repartoHtml(r.reparto);
     }
-    return h + '<p class="ct-small">' + esc(r.distribucion) + '</p>' + (r.samples ? '<p class="ct-small">Material de terceros: ' + esc(r.samples) + '</p>' : '');
+    return h + (r.distribucion ? '<p class="ct-small">' + esc(r.distribucion) + '</p>' : '') + (r.samples ? '<p class="ct-small">Material de terceros: ' + esc(r.samples) + '</p>' : '');
   }
 
   // ENLACES para el promotor: los crea el sistema y se los pasa ÉL a cada persona. Nosotros no escribimos a nadie.
   function enlacesHtml(st) {
     var e = st.enlaces || [];
     if (!e.length) return '';
-    return card('<h2 style="margin-top:0">Pásales su enlace</h2>' +
-      '<p class="ct-small">Cada persona entra con su propio documento. Mándaselo tú por WhatsApp o como quieras: nosotros no le escribimos a nadie.</p>' +
+    return card('<h2 style="margin-top:0">' + (e.length === 1 ? 'Pásale su enlace' : 'Pásales su enlace') + '</h2>' +
+      '<p class="ct-small">Cada persona entra con su propio documento. Mándaselo tú por WhatsApp o como quieras: nosotros no le mandamos el enlace. Cuando firméis todos, cada uno recibe por correo su copia firmada.</p>' +
       e.map(function (x, k) {
         var estado = x.firmado ? '✅ ya ha firmado' : (x.datos ? '📝 ha puesto sus datos' : (x.entro ? '🔑 ha entrado' : '⏳ todavía no ha entrado'));
         return '<div class="ct-enl"><p class="ct-small" style="margin:0 0 4px"><b>' + esc(x.alias) + '</b> <span class="ct-mut">· ' + esc(x.rol) + ' · ' + estado + '</span></p>' +
-          '<input type="text" readonly value="' + esc(x.url) + '" id="enl-' + k + '">' +
+          '<label class="ct-small ct-mut" for="enl-' + k + '">Su enlace</label><input type="text" readonly value="' + esc(x.url) + '" id="enl-' + k + '">' +
           '<button type="button" class="ct-btn sec" data-copiar="' + k + '">Copiar el mensaje para ' + esc(x.alias) + '</button></div>';
       }).join(''));
   }
@@ -328,29 +334,36 @@
   // OBRA: el promotor (nuestro artista) pone los datos de la canción y dice con quién la ha hecho (15-oct-2026).
   function vistaObra(st) {
     var campos = st.campos_obra || [], pre = st.prefill_obra || {}, roles = st.roles || [], maxp = (st.max_partes || 8) - 1;
+    // 24-nov (juez del móvil): borrador en esta pestaña. Si sale a WhatsApp a preguntar o la sesión caduca, no pierde nada.
+    var BKEY = 'dap-obra-' + TOKEN.slice(0, 8), bor = {}, kk, pre2 = {};
+    try { bor = JSON.parse(sget(BKEY) || '{}') || {}; } catch (e0) { bor = {}; }
+    for (kk in pre) if (pre.hasOwnProperty(kk)) pre2[kk] = pre[kk];
+    for (kk in (bor.datos || {})) if (bor.datos.hasOwnProperty(kk) && !pre2[kk]) pre2[kk] = bor.datos[kk];
+    pre = pre2;
+    var T = st.textos_obra || {}, BT = maxp > 1 ? 'Guardar y crear los enlaces' : 'Guardar y crear su enlace';      // 24-nov-2026: cada tipo de acuerdo trae sus textos (licencia, cesión, encargo…)
     function filaInv(k, v) {
       v = v || {};
       return '<div class="ct-inv" data-inv="' + k + '">' +
         '<div class="ct-field" data-k="inv' + k + '.alias"><label>Nombre o nombre artístico</label>' +
         '<input type="text" maxlength="60" data-c="alias" value="' + esc(v.alias || '') + '"><p class="ct-err"></p></div>' +
-        '<div class="ct-field" data-k="inv' + k + '.rol"><label>¿Qué hizo en la canción?</label><select data-c="rol">' +
-        '<option value="">Elige…</option>' + roles.map(function (r) { return '<option' + (r === v.rol ? ' selected' : '') + '>' + esc(r) + '</option>'; }).join('') +
+        '<div class="ct-field" data-k="inv' + k + '.rol"><label>' + esc(T.rol || '¿Qué hizo en la canción?') + '</label><select data-c="rol">' +
+        (roles.length === 1 ? '' : '<option value="">Elige…</option>') + roles.map(function (r) { return '<option' + (r === v.rol || roles.length === 1 ? ' selected' : '') + '>' + esc(r) + '</option>'; }).join('') +
         '</select><p class="ct-err"></p></div>' +
         '<div class="ct-field" data-k="inv' + k + '.email"><label>Su correo <span class="ct-mut ct-small">(opcional)</span></label>' +
         '<input type="email" maxlength="120" data-c="email" value="' + esc(v.email || '') + '"><p class="ct-err"></p></div>' +
         (k > 0 ? '<button type="button" class="ct-quitar" data-quitar="' + k + '">Quitar esta persona</button>' : '') + '</div>';
     }
-    app.innerHTML = '<div class="ct-steps"><i class="on"></i><i></i><i></i></div><p class="ct-small ct-mut">Paso 1 de 3 · la canción</p>' +
+    app.innerHTML = '<div class="ct-steps"><i class="on"></i><i></i><i></i></div><p class="ct-small ct-mut">Para empezar · ' + esc(T.paso || 'la canción') + '</p>' +
       '<h1>Prepara el acuerdo</h1>' +
-      card('<p>Pon los datos de la canción y di con quién la has hecho. Cuando guardes, te damos <b>el enlace de cada persona</b> para que se lo pases tú.</p>' +
-        '<p class="ct-small ct-mut">Después pondrás tus datos y cada uno los suyos. Nadie firma hasta que estéis todos y el reparto cuadre.</p>') +
+      card('<p>' + esc(T.intro || 'Pon los datos de la canción y di con quién la has hecho.') + ' Cuando guardes, te damos <b>' + (maxp > 1 ? 'el enlace de cada persona' : 'su enlace') + '</b> para que se lo pases tú.</p>' +
+        '<p class="ct-small ct-mut">' + esc(T.despues || 'Después pondrás tus datos y cada uno los suyos. Nadie firma hasta que estéis todos y el reparto cuadre.') + '</p>') +
       '<form id="fo" novalidate>' + card(campos.map(function (c) { return campoHtml(c, pre, false); }).join('')) +
-      card('<h2 style="margin-top:0">Con quién la has hecho</h2>' +
-        '<p class="ct-small ct-mut">Tú ya estás dentro: añade a las demás personas. Si no sabes su correo, déjalo en blanco.</p>' +
-        '<div id="invs">' + filaInv(0, (st.invitados || [])[0]) + '</div>' +
-        '<button type="button" class="ct-btn sec" id="mas-inv">Añadir otra persona</button>' +
+      card('<h2 style="margin-top:0">' + esc(T.con_quien || 'Con quién la has hecho') + '</h2>' +
+        '<p class="ct-small ct-mut">' + (maxp > 1 ? 'Tú ya estás dentro: añade a las demás personas.' : 'Tú ya estás dentro: pon a la otra persona.') + ' Si no sabes su correo, déjalo en blanco.</p>' +
+        '<div id="invs">' + filaInv(0, (st.invitados || [])[0] || (bor.invitados || [])[0]) + '</div>' +
+        (maxp > 1 ? '<button type="button" class="ct-btn sec" id="mas-inv">Añadir otra persona</button>' : '') +
         '<p class="ct-err" id="err-inv"></p>') +
-      card('<div class="ct-errbox" id="errbox"></div><button type="submit" class="ct-btn" id="ogo">Guardar y crear los enlaces</button>') +
+      card('<div class="ct-errbox" id="errbox"></div><button type="submit" class="ct-btn" id="ogo">' + BT + '</button>') +
       '</form>' + foot();
     arriba();
     var f = $('#fo'), n = 1;
@@ -383,13 +396,19 @@
         })(bs[i]);
       }
     }
-    $('#mas-inv').addEventListener('click', function () {
+    if ($('#mas-inv')) $('#mas-inv').addEventListener('click', function () {
       if (f.querySelectorAll('.ct-inv').length >= maxp) { $('#mas-inv').style.display = 'none'; return; }
       var div = document.createElement('div'); div.innerHTML = filaInv(n++, null);
       $('#invs').appendChild(div.firstChild); quitar(); partes();
       if (f.querySelectorAll('.ct-inv').length >= maxp) $('#mas-inv').style.display = 'none';
     });
-    f.addEventListener('input', function () { partes(); condiciones(); });
+    function guardar() {
+      var dd = {}, j2, el2, filas2 = f.querySelectorAll('.ct-inv'), iv = [];
+      for (j2 = 0; j2 < campos.length; j2++) { el2 = f.querySelector('[name="' + campos[j2].clave + '"]'); if (el2 && el2.value) dd[campos[j2].clave] = el2.value; }
+      for (j2 = 0; j2 < filas2.length; j2++) iv.push({ alias: filas2[j2].querySelector('[data-c="alias"]').value, rol: filas2[j2].querySelector('[data-c="rol"]').value, email: filas2[j2].querySelector('[data-c="email"]').value });
+      sset(BKEY, JSON.stringify({ datos: dd, invitados: iv }));
+    }
+    f.addEventListener('input', function () { partes(); condiciones(); guardar(); });
     f.addEventListener('change', function () { partes(); condiciones(); });
     condiciones(); partes();
     f.addEventListener('submit', function (ev) {
@@ -411,8 +430,8 @@
       }
       var b = $('#ogo'); b.disabled = true; b.textContent = 'Guardando…';
       api('/obra', { method: 'POST', body: { datos: datos, invitados: invs } }).then(function (r) {
-        b.disabled = false; b.textContent = 'Guardar y crear los enlaces';
-        if (r.ok && r.j && r.j.ok) { load(); return; }
+        b.disabled = false; b.textContent = BT;
+        if (r.ok && r.j && r.j.ok) { try { sessionStorage.removeItem(BKEY); } catch (e1) { } load(); return; }
         if (r.status === 401) { load(); return; }
         var errs = (r.j && r.j.errores) || {}, k2, primero = null;
         for (k2 in errs) {
@@ -422,7 +441,7 @@
         }
         eb.textContent = (r.j && r.j.error) || 'No se pudieron guardar los datos.'; eb.style.display = 'block';
         if (primero) primero.scrollIntoView({ block: 'center' });
-      }).catch(function () { b.disabled = false; b.textContent = 'Guardar y crear los enlaces'; eb.textContent = 'Problema de conexión. Inténtalo de nuevo.'; eb.style.display = 'block'; });
+      }).catch(function () { b.disabled = false; b.textContent = BT; eb.textContent = 'Problema de conexión. Inténtalo de nuevo.'; eb.style.display = 'block'; });
     });
   }
 
@@ -467,7 +486,7 @@
   function vistaDatos(st) {
     var campos = st.campos || [], pre = st.prefill || {}, parcial = !!st.parcial;
     var rp = st.reparto || (st.resumen && st.resumen.reparto) || null;
-    var pasos = parcial ? '' : '<div class="ct-steps"><i class="on"></i><i></i><i></i></div><p class="ct-small ct-mut">Paso 1 de 3 · tus datos</p>';
+    var pasos = parcial ? '' : '<div class="ct-steps"><i class="on"></i><i></i><i></i></div><p class="ct-small ct-mut">Antes de firmar · tus datos</p>';
     var cab, intro;
     if (parcial) {
       var caso = st.reparto_caso || 'cuadrar', faltan = st.faltan_datos || [];
@@ -490,8 +509,12 @@
       intro += (st.negociacion ? card(negociacionHtml(st.negociacion, st.partes, caso)) : '');
     } else {
       cab = '<h1>Tus datos para el acuerdo</h1>';
-      intro = card(resumenHtml(st.resumen) +
-        '<p class="ct-small ct-mut" style="margin-top:8px">Tu papel: <b>' + esc(st.rol) + '</b>. Si algo de la canción no es lo que habíais hablado, no sigas y escribe a Macuto.</p>');
+      intro = (st.autoservicio && !st.promotor ? card('<p class="ct-small"><b>Esto lo ha preparado ' + esc(st.autoservicio.preparo) + '</b> con la herramienta de Macuto Music. ' +
+          'Macuto Music no es parte de este acuerdo: facilita la plantilla y la herramienta de firma, no ha revisado lo que pone, no asesora a ninguna de las partes y no responde de lo que pactéis. ' +
+          'Revisa las condiciones: si algo no es lo que hablasteis, no pongas tus datos y díselo antes.</p>' +
+          (st.leido_no_parte ? '' : '<label style="display:flex;gap:10px;align-items:flex-start;padding:6px 0"><input type="checkbox" id="noparte" style="width:22px;height:22px;margin-top:2px;flex:none"> <span>Lo he leído.</span></label>')) : '') +
+        card(resumenHtml(st.resumen) +
+        '<p class="ct-small ct-mut" style="margin-top:8px">Tu papel: <b>' + esc(st.rol) + '</b>. Si algo del acuerdo no es lo que habíais hablado, no sigas: arréglalo primero con la otra parte. Si tienes dudas de cómo funciona la herramienta, escribe al equipo.</p>');
     }
     var hayPct = false;
     for (var q = 0; q < campos.length; q++) if (campos[q].tipo === 'pct') hayPct = true;
@@ -527,9 +550,10 @@
       var eb = $('#errbox'); eb.style.display = 'none';
       var fs = f.querySelectorAll('.ct-field'), datos = {}, i;
       for (i = 0; i < fs.length; i++) { fs[i].className = 'ct-field'; if (fs[i].style.display !== 'none') datos[fs[i].getAttribute('data-k')] = val(fs[i].getAttribute('data-k')); }
+      if ($('#noparte') && !$('#noparte').checked) { eb.textContent = 'Marca arriba que has leído que Macuto Music no es parte del acuerdo.'; eb.style.display = 'block'; $('#noparte').focus(); return; }
       if (!$('#conf').checked) { eb.textContent = 'Marca la casilla para confirmar.'; eb.style.display = 'block'; return; }
       var b = $('#dgo'); b.disabled = true; b.textContent = 'Guardando…';
-      api('/datos', { method: 'POST', body: { confirmar: true, datos: datos } }).then(function (r) {
+      api('/datos', { method: 'POST', body: { confirmar: true, datos: datos, leido_no_parte: !!($('#noparte') && $('#noparte').checked) } }).then(function (r) {
         b.disabled = false; b.textContent = etiqueta;
         if (r.ok && r.j && r.j.ok) { load(); return; }
         if (r.status === 401) { load(); return; }
@@ -563,9 +587,10 @@
     E.push({ id: 'quien', t: 'Quién firma', sigue: 'Seguir', html:
       (st.acuerdo ? '<div class="ct-resumen">' + resumenHtml(st.resumen) + '</div>' : '') +
       '<p>Vas a firmar ' + doc(st) + ' <b>«' + esc(st.acuerdo ? (st.resumen || {}).titulo : st.titulo) + '»</b> como <b>' + esc(st.nombre) + '</b> (' + esc(st.rol) + ').</p>' +
-      '<p class="ct-mut ct-small">Firmamos todos los que aparecemos en ella, cada uno desde su enlace:</p>' + listaPartes(st) +
+      '<p class="ct-mut ct-small">Firmamos todos los que aparecemos en el acuerdo, cada uno desde su enlace:</p>' + listaPartes(st) +
       (st.puede_corregir ? '<p class="ct-small ct-mut">¿Algún dato tuyo está mal? Puedes corregirlo mientras no haya firmado nadie; el documento se vuelve a preparar.</p><button type="button" class="ct-btn sec" id="corregir">Corregir mis datos</button>' : '') +
-      '<p class="ct-small ct-mut">¿Algo no cuadra (tu nombre, tu porcentaje)? No firmes y escribe a Macuto antes.</p>' });
+      (st.autoservicio ? '<p class="ct-small ct-mut">¿Algo no cuadra? No firmes: corrige tus datos o arréglalo antes con la otra parte.</p>'
+        : '<p class="ct-small ct-mut">¿Algo no cuadra (tu nombre, tu porcentaje)? No firmes y escribe a Macuto antes.</p>') });
     var pags = ''; for (var p = 1; p <= st.paginas; p++) pags += '<img class="ct-pag" alt="Página ' + p + '" data-p="' + p + '"' + (p === st.paginas ? ' data-last="1"' : '') + '>';
     E.push({ id: 'doc', t: st.acuerdo ? 'Lee el acuerdo' : 'Lee la split sheet', sigue: 'Lo he leído', html:
       '<p class="ct-small ct-mut">Son ' + st.paginas + ' página' + (st.paginas > 1 ? 's' : '') + ': bájalas hasta el final o <a id="pdflink" href="#" role="button">abre el PDF</a>.</p>' + pags });
