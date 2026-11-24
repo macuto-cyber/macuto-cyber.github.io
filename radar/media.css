@@ -1,0 +1,9 @@
+/* RADAR · fotos y vídeos propios dentro de un artículo (crónicas de eventos: NODE 2026).
+   La enlaza radar_build.py solo en los artículos cuyo cuerpo usa .art-media. */
+.art-media{margin:34px 0 38px}
+.art-galeria{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.art-galeria.dos{grid-template-columns:repeat(2,minmax(0,1fr))}
+.art-galeria img,.art-galeria video{width:100%;height:auto;aspect-ratio:9/16;object-fit:cover;display:block;border-radius:var(--r-md);background:var(--rink)}
+.art-ancha img{width:100%;height:auto;display:block;border-radius:var(--r-md)}
+.art-media figcaption{color:var(--muted);font-size:.86rem;line-height:1.55;margin-top:12px}
+@media(max-width:600px){.art-galeria{grid-template-columns:repeat(2,minmax(0,1fr))}.art-galeria>:nth-child(3):last-child{grid-column:span 2;aspect-ratio:4/3}}
