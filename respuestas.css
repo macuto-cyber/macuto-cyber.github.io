@@ -1,0 +1,19 @@
+/* respuestas.css · bloque «En corto» y «Preguntas frecuentes» de los artículos del RADAR (24-nov-2026).
+   Lo enlaza ~/.config/dap/radar_build.py SOLO en los artículos cuyo JSON trae «respuesta» o «faq».
+   Para qué: ChatGPT, Claude y Perplexity citan sobre todo respuestas directas y preguntas con su respuesta.
+   La FAQ copia el estilo de la de la portada (home.css, .faq-item) para que se vean iguales. */
+.en-corto{background:var(--purple-wash);border-left:4px solid var(--purple);border-radius:var(--r-md);padding:20px 24px;margin:0 0 34px}
+.en-corto__tit{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);margin:0 0 8px}
+.en-corto p:last-child{margin:0;font-size:1.02rem;line-height:1.65;color:var(--ink)}
+.faq-art{margin:44px 0 0}
+.faq-art>h2{margin-bottom:16px}
+.faq-art .faq-lista{display:flex;flex-direction:column;gap:12px}
+.faq-art .faq-item{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);transition:border-color .2s,box-shadow .2s}
+.faq-art .faq-item[open]{border-color:var(--line-strong);box-shadow:var(--shadow-sm)}
+.faq-art .faq-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:44px;padding:17px 20px 17px 22px;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;font-size:1.02rem;line-height:1.3;color:var(--ink);border-radius:var(--r-md);-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.faq-art .faq-item summary::-webkit-details-marker{display:none}
+.faq-art .faq-item summary::after{content:"";flex-shrink:0;width:30px;height:30px;border-radius:50%;background:var(--purple-wash) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M7 1.5v11M1.5 7h11' stroke='%235E17EB' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/13px no-repeat;transition:transform .3s var(--ease)}
+.faq-art .faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-art .faq-item summary:hover{color:var(--purple)}
+.faq-art .faq-resp{padding:0 22px 20px}
+.faq-art .faq-resp p{margin:0;font-size:.97rem}
