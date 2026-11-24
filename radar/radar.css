@@ -1,0 +1,204 @@
+/* radar.css · RADAR v3, maqueta editorial (24-nov-2026, Macuto: «que no sean tan IA y sean mucho más pro en diseño,
+   es muy importante para el SEO»). La enlaza ~/.config/dap/radar_build.py en /radar/ y en cada artículo, la ÚLTIMA,
+   así que manda sobre styles.css y respuestas.css SOLO dentro del RADAR (clases rx-*, y .article-body, .en-corto,
+   .faq-art y .src-box bajo main.rx). No se toca styles.css: .rmast, .acard y .ahero los usan la home, la firma y el split.
+   Criterio: papel claro, tinta, filetes y un solo acento morado. Sin degradados, halos, sombras de tarjeta ni
+   apariciones animadas del contenido (penalizan la lectura y el LCP). */
+
+.rx{--rx-tinta:var(--ink);--rx-texto:#3b3552;--rx-gris:#6b6682;--rx-filete:rgba(23,16,46,.13);--rx-acento:var(--purple);
+  --rx-radio:6px;background:var(--bg);font-variant-numeric:lining-nums}
+.rx [hidden]{display:none!important}
+.rx a{text-decoration:none}
+
+/* ---------- piezas comunes ---------- */
+.rx-kicker{margin:0;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;font-size:.72rem;line-height:1.2;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--rx-acento)}
+.rx-meta{margin:0;color:var(--rx-gris);font-size:.8rem;line-height:1.4;font-variant-numeric:tabular-nums}
+.rx-seccion{margin:0;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:.78rem;line-height:1;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--rx-tinta)}
+.rx img{display:block;width:100%;height:auto;background:#ece9f3}
+.rx picture{display:block}
+
+/* ---------- cabecera de la portada ---------- */
+.rx-mast{padding:34px 0 0}
+.rx-mast__linea{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:12px;
+  border-bottom:2px solid var(--rx-tinta);font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--rx-gris)}
+.rx-logo{margin:26px 0 0;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;color:var(--rx-tinta);
+  font-size:clamp(4.2rem,14vw,10rem);line-height:.82;letter-spacing:-.06em;text-wrap:initial}
+.rx-logo__marca{display:inline-block;position:relative;padding-right:.16em}
+.rx-logo__marca::after{content:"";position:absolute;right:0;bottom:.06em;width:.11em;height:.11em;background:var(--rx-acento)}
+.rx-logo__sub{display:block;margin-top:26px;font-size:clamp(1.25rem,2.4vw,1.7rem);line-height:1.2;letter-spacing:-.02em;font-weight:600;max-width:30ch}
+.rx-mast__tag{margin:12px 0 0;max-width:44rem;color:var(--rx-texto);font-size:1.02rem;line-height:1.6}
+.rx-tabs{display:flex;gap:30px;margin-top:30px;border-top:1px solid var(--rx-filete);border-bottom:1px solid var(--rx-filete)}
+.rx-tab{appearance:none;background:none;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;padding:15px 0 13px;
+  cursor:pointer;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;font-size:.92rem;color:var(--rx-gris);
+  white-space:nowrap;transition:color .2s,border-color .2s}
+.rx-tab span{margin-left:4px;font-weight:500;font-size:.78rem;color:#a29dba;font-variant-numeric:tabular-nums}
+.rx-tab:hover{color:var(--rx-tinta)}
+.rx-tab[aria-pressed="true"]{color:var(--rx-tinta);border-bottom-color:var(--rx-acento)}
+.rx-tab:focus-visible{outline:2px solid var(--rx-acento);outline-offset:4px}
+
+/* ---------- destacado + «Lo último» ---------- */
+.rx-portada{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:48px;padding-top:40px;padding-bottom:52px}
+.rx-lead{position:relative}
+.rx-lead__img{overflow:hidden;border-radius:var(--rx-radio)}
+.rx-lead__img img{aspect-ratio:16/9;object-fit:cover;transition:transform .6s var(--ease)}
+.rx-lead:hover .rx-lead__img img{transform:scale(1.02)}
+.rx-lead__txt{padding-top:22px}
+.rx-lead__tit{margin:10px 0 12px;font-weight:700;font-size:clamp(1.75rem,3.3vw,2.7rem);line-height:1.1;letter-spacing:-.03em;text-wrap:balance}
+.rx-lead__tit a,.rx-pieza__tit a,.rx-ultimo a{color:var(--rx-tinta);text-decoration:underline;text-decoration-color:transparent;
+  text-decoration-thickness:2px;text-underline-offset:4px;transition:text-decoration-color .2s}
+.rx-lead__tit a::after{content:"";position:absolute;inset:0}
+.rx-lead:hover .rx-lead__tit a,.rx-pieza:hover .rx-pieza__tit a,.rx-ultimo a:hover{text-decoration-color:var(--rx-acento)}
+.rx-lead__ext{margin:0 0 14px;max-width:62ch;color:var(--rx-texto);font-size:1.06rem;line-height:1.6}
+.rx-ultimo{border-left:1px solid var(--rx-filete);padding-left:32px}
+.rx-ultimo .rx-seccion{padding-bottom:12px;border-bottom:2px solid var(--rx-tinta)}
+.rx-ultimo ol{list-style:none;margin:0;padding:0;counter-reset:rx}
+.rx-ultimo li{counter-increment:rx;display:grid;grid-template-columns:2.1rem minmax(0,1fr);column-gap:6px;row-gap:5px;
+  padding:17px 0;border-bottom:1px solid var(--rx-filete)}
+.rx-ultimo li::before{content:counter(rx);grid-row:1/4;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;
+  font-size:1.45rem;line-height:1;color:#cfc9df;font-variant-numeric:tabular-nums}
+.rx-ultimo li>*{grid-column:2}
+.rx-ultimo a{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;font-size:1rem;line-height:1.3;letter-spacing:-.01em;text-wrap:pretty}
+
+/* ---------- archivo ---------- */
+.rx-archivo{padding-top:12px;padding-bottom:40px}
+.rx-archivo__cab{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:12px;border-bottom:2px solid var(--rx-tinta)}
+.rx-rejilla{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px 32px;margin-top:30px}
+.rx-rejilla[data-f="*"] .rx-en-portada{display:none}
+.rx-pieza{position:relative;display:flex;flex-direction:column;gap:7px;min-width:0}
+.rx-pieza__img{overflow:hidden;border-radius:var(--rx-radio);margin-bottom:9px}
+.rx-pieza__img img{aspect-ratio:3/2;object-fit:cover;transition:transform .6s var(--ease)}
+.rx-pieza:hover .rx-pieza__img img{transform:scale(1.03)}
+.rx-pieza__tit{margin:0;font-weight:600;font-size:1.13rem;line-height:1.3;letter-spacing:-.015em;text-wrap:pretty}
+.rx-pieza__tit a::after{content:"";position:absolute;inset:0}
+.rx-pieza__ext{margin:0;color:var(--rx-texto);font-size:.93rem;line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.rx-lead a:focus-visible,.rx-pieza a:focus-visible,.rx-ultimo a:focus-visible{outline:none}
+.rx-lead:focus-within,.rx-pieza:focus-within{outline:2px solid var(--rx-acento);outline-offset:6px;border-radius:2px}
+.rx-ultimo a:focus-visible{outline:2px solid var(--rx-acento);outline-offset:3px}
+
+/* ---------- llamada final ---------- */
+.rx-cta{padding-top:28px;padding-bottom:84px}
+.rx-cta__in{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 40px;align-items:end;padding:28px 0 0;border-top:2px solid var(--rx-tinta)}
+.rx-cta__in h2{margin:0;font-weight:700;font-size:clamp(1.35rem,2.4vw,1.8rem);line-height:1.15;letter-spacing:-.025em;color:var(--rx-tinta)}
+.rx-cta__in p{margin:0;color:var(--rx-texto);max-width:52ch}
+.rx-cta__in .btn{grid-column:2;grid-row:1/3}
+.rx-cta--art{padding:0;margin-top:56px}
+.rx-cta--art .rx-cta__in{grid-template-columns:minmax(0,1fr)}
+.rx-cta--art .rx-cta__in .btn{grid-column:1;grid-row:auto;justify-self:start;margin-top:14px}
+
+/* ---------- artículo: cabecera ---------- */
+.rx-ahead{padding:34px 0 34px}
+.rx-ahead .wrap>*{max-width:900px}
+.rx-migas{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:.82rem;color:var(--rx-gris)}
+.rx-migas a{color:var(--rx-gris)}
+.rx-migas a:hover{color:var(--rx-tinta)}
+.rx-migas a:last-child{color:var(--rx-acento);font-weight:600;font-family:'Poppins','Poppins Reserva',sans-serif;letter-spacing:.06em;text-transform:uppercase;font-size:.74rem}
+.rx-migas span{color:#c2bdd3}
+.rx-ahead h1{margin:22px 0 18px;font-weight:700;font-size:clamp(2.1rem,4.7vw,3.55rem);line-height:1.07;letter-spacing:-.035em;color:var(--rx-tinta);text-wrap:balance}
+.rx-entradilla{margin:0;max-width:46rem;color:var(--rx-texto);font-size:clamp(1.08rem,1.8vw,1.25rem);line-height:1.55}
+.rx-firma{display:flex;align-items:center;gap:13px;margin-top:28px;padding-top:20px;border-top:1px solid var(--rx-filete)}
+.rx-firma img{width:40px;height:40px;border-radius:50%;background:none}
+.rx-firma p{margin:0;display:flex;flex-direction:column;gap:2px}
+.rx-firma__quien{font-weight:600;font-size:.92rem;color:var(--rx-tinta)}
+.rx-portadilla{margin:0 auto 52px}
+.rx-portadilla img{aspect-ratio:2/1;object-fit:cover;border-radius:var(--rx-radio)}
+.rx-portadilla figcaption{margin-top:9px;font-size:.78rem;line-height:1.45;color:var(--rx-gris)}
+.rx-portadilla figcaption a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+
+/* ---------- artículo: índice + texto ---------- */
+.rx-cuerpo{display:grid;grid-template-columns:220px minmax(0,690px);gap:64px;justify-content:center;align-items:start}
+.rx-texto{grid-column:2;min-width:0}
+.rx-indice{position:sticky;top:96px;font-size:.86rem}
+.rx-indice summary{list-style:none;cursor:pointer;padding-bottom:12px;border-bottom:2px solid var(--rx-tinta);
+  font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--rx-tinta)}
+.rx-indice summary::-webkit-details-marker{display:none}
+.rx-indice ol{list-style:none;margin:10px 0 0;padding:0}
+.rx-indice a{display:block;padding:7px 0 7px 13px;border-left:2px solid var(--rx-filete);color:var(--rx-gris);line-height:1.4;transition:color .2s,border-color .2s}
+.rx-indice a:hover{color:var(--rx-tinta)}
+.rx-indice a[aria-current="true"]{color:var(--rx-tinta);border-left-color:var(--rx-acento);font-weight:600}
+
+.rx .article-body{font-size:1.1rem;line-height:1.75;color:var(--rx-texto)}
+.rx .article-body p{margin:0 0 1.3em}
+.rx .article-body h2{margin:2.4em 0 .7em;padding-top:0;border-top:0;font-weight:700;font-size:clamp(1.45rem,2.6vw,1.75rem);line-height:1.2;letter-spacing:-.025em;color:var(--rx-tinta);text-wrap:balance;scroll-margin-top:92px}
+.rx .article-body h2:first-child{margin-top:0}
+.rx .article-body h3{margin:1.9em 0 .55em;font-weight:600;font-size:1.22rem;line-height:1.3;letter-spacing:-.015em;color:var(--rx-tinta)}
+.rx .article-body ul,.rx .article-body ol{margin:0 0 1.3em;padding-left:1.3em}
+.rx .article-body li{margin:.45em 0;padding-left:.2em}
+.rx .article-body li::marker{color:var(--rx-acento)}
+.rx .article-body strong{color:var(--rx-tinta);font-weight:600}
+.rx .article-body a{color:var(--rx-tinta);text-decoration:underline;text-decoration-color:var(--rx-acento);text-decoration-thickness:1.5px;text-underline-offset:3px}
+.rx .article-body a:hover{color:var(--rx-acento)}
+.rx .article-body blockquote{margin:1.8em 0;padding:2px 0 2px 22px;border-left:3px solid var(--rx-acento);font-family:'Poppins','Poppins Reserva',sans-serif;font-size:1.2rem;line-height:1.45;color:var(--rx-tinta)}
+.rx .article-body table{width:100%;border-collapse:collapse;margin:1.6em 0;font-size:.95rem;font-variant-numeric:tabular-nums}
+.rx .article-body th{text-align:left;font-weight:600;color:var(--rx-tinta);border-bottom:2px solid var(--rx-tinta);padding:8px 10px 8px 0}
+.rx .article-body td{border-bottom:1px solid var(--rx-filete);padding:9px 10px 9px 0;vertical-align:top}
+
+/* «En corto» y FAQ (respuestas.css) en clave editorial: filetes, sin cajas */
+.rx .en-corto{background:none;border:0;border-top:2px solid var(--rx-tinta);border-bottom:1px solid var(--rx-filete);border-radius:0;padding:16px 0 20px;margin:0 0 40px}
+.rx .en-corto__tit{font-size:.74rem;letter-spacing:.12em;color:var(--rx-acento);margin-bottom:8px}
+.rx .en-corto p:last-child{font-size:1.1rem;line-height:1.6;color:var(--rx-tinta)}
+.rx .faq-art{margin-top:56px}
+.rx .faq-art>h2{margin:0 0 6px;font-weight:700;font-size:clamp(1.45rem,2.6vw,1.75rem);letter-spacing:-.025em;scroll-margin-top:92px}
+.rx .faq-art .faq-lista{gap:0;border-top:1px solid var(--rx-filete)}
+.rx .faq-art .faq-item,.rx .faq-art .faq-item[open]{background:none;border:0;border-bottom:1px solid var(--rx-filete);border-radius:0;box-shadow:none}
+.rx .faq-art .faq-item summary{padding:18px 0;font-size:1.03rem}
+.rx .faq-art .faq-item summary::after{width:26px;height:26px;background-color:transparent;border:1px solid var(--rx-filete)}
+.rx .faq-art .faq-resp{padding:0 40px 20px 0}
+.rx .faq-art .faq-resp p{font-size:1rem;line-height:1.65;color:var(--rx-texto)}
+
+/* Fuentes: notas al pie */
+.rx .rx-fuentes{background:none;border-radius:0;padding:22px 0 0;margin:56px 0 0;border-top:2px solid var(--rx-tinta)}
+.rx .rx-fuentes h2{margin:0 0 12px;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;scroll-margin-top:92px}
+.rx .rx-fuentes ol{margin:0;padding-left:1.4em;color:var(--rx-gris);font-size:.9rem}
+.rx .rx-fuentes li{margin:6px 0;padding-left:.2em}
+.rx .rx-fuentes a{color:var(--rx-texto);font-weight:400;text-decoration:underline;text-decoration-color:var(--rx-filete);text-underline-offset:3px}
+.rx .rx-fuentes a:hover{color:var(--rx-tinta);text-decoration-color:var(--rx-acento)}
+.rx .src-note{margin-top:14px;font-size:.8rem;color:var(--rx-gris)}
+
+.rx-mas{margin-top:72px;padding-top:0;padding-bottom:72px}
+.rx-mas .rx-seccion{padding:14px 0 12px;border-top:1px solid var(--rx-filete);border-bottom:2px solid var(--rx-tinta)}
+
+/* ---------- tamaños ---------- */
+@media(max-width:1100px){
+  .rx-cuerpo{grid-template-columns:minmax(0,690px);gap:0}
+  .rx-texto{grid-column:1}
+  .rx-indice{position:static;margin-bottom:32px;border:1px solid var(--rx-filete);border-radius:var(--rx-radio);padding:14px 18px}
+  .rx-indice summary{border:0;padding:0;display:flex;justify-content:space-between;align-items:center}
+  .rx-indice summary::after{content:"+";font-size:1.1rem;font-weight:500;letter-spacing:0}
+  .rx-indice details[open] summary::after{content:"–"}
+}
+@media(max-width:900px){
+  .rx-portada{grid-template-columns:minmax(0,1fr);gap:34px}
+  .rx-ultimo{border-left:0;padding-left:0}
+  .rx-rejilla{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rx-cta__in{grid-template-columns:minmax(0,1fr)}
+  .rx-cta__in .btn{grid-column:1;grid-row:auto;justify-self:start;margin-top:14px}
+}
+@media(max-width:600px){
+  .rx-mast{padding-top:22px}
+  .rx-mast__linea{font-size:.68rem}
+  .rx-mast__linea span:first-child{display:none}
+  .rx-logo{margin-top:20px}
+  .rx-logo__sub{margin-top:18px}
+  .rx-tabs{gap:22px;overflow-x:auto;margin-inline:-28px;padding:0 28px;scrollbar-width:none}
+  .rx-tabs::-webkit-scrollbar{display:none}
+  .rx-portada{padding-top:26px;padding-bottom:36px}
+  .rx-lead__txt{padding-top:16px}
+  /* archivo en el móvil: lista con miniatura a la derecha, como una app de noticias */
+  .rx-rejilla{grid-template-columns:minmax(0,1fr);gap:0;margin-top:4px}
+  .rx-pieza{display:grid;grid-template-columns:minmax(0,1fr) 104px;column-gap:16px;row-gap:6px;padding:18px 0;border-bottom:1px solid var(--rx-filete);align-content:start}
+  .rx-pieza>*{grid-column:1}
+  .rx-pieza__img{grid-column:2;grid-row:1/4;margin:0}
+  .rx-pieza__img img{aspect-ratio:1/1}
+  .rx-pieza__ext{display:none}
+  .rx-pieza__tit{font-size:1.02rem}
+  .rx-ahead{padding:22px 0 26px}
+  .rx-ahead h1{margin-top:16px}
+  .rx-portadilla{margin-bottom:34px;padding:0}
+  .rx-portadilla img{aspect-ratio:16/10;border-radius:0}
+  .rx-portadilla figcaption{padding:0 28px}
+  .rx .article-body{font-size:1.06rem;line-height:1.72}
+  .rx-cta{padding-bottom:60px}
+}
+@media(prefers-reduced-motion:reduce){.rx *{transition:none!important}}
