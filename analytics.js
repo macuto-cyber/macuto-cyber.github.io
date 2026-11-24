@@ -60,6 +60,10 @@
       else if (href.indexOf('sube-tu-musica') > -1) cta = 'sube_tu_musica';
       if (!cta) return;
       ev('cta_click', { cta_id: cta, texto: (a.textContent || '').trim().slice(0, 40) }, 'CTAClick');
+      // 24-nov-2026 (Macuto: «sí, añádelo»): desde el 23-nov el contacto de la web es el DM de Instagram, no un formulario,
+      // así que su clic es la CONVERSIÓN de la web. Evento propio para marcarlo como evento clave en GA4 («contacto_instagram»)
+      // y «Contact» (evento estándar) en Meta, para optimizar anuncios a contactos. La página sale sola en GA4 (pagePath).
+      if (cta === 'dm_instagram') ev('contacto_instagram', {}, 'Contact', true);
     }, true);
 
     // 2) Formularios Tally: cargado y ENVIADO (la conversión de verdad)
