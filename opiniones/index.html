@@ -56,6 +56,11 @@
 <main id="main" class="pagina-seccion">
 <section class="sec testimonios" id="opiniones" aria-labelledby="opiniones-titulo"><div class="wrap">
   <style>.testimonios h1{color:#fff}</style>  <!-- en /opiniones/ el titular es h1 y movimiento.css solo pinta de blanco el h2 -->
+  <!-- 25-nov-2026, Macuto: «déjalo como lo teníamos antes en la página principal a esa velocidad». Aquí las filas ocupan el centro
+       de la pantalla y el ratón casi siempre está encima: con la pausa por ratón de movimiento.js §11 se veían quietas. En esta
+       página no se paran con el ratón (misma velocidad, 32 px/s); el toque en el móvil y el foco con teclado siguen parándolas.
+       Se corta en fase de captura el pointerenter/pointerleave de ratón de cada fila, sin tocar movimiento.js (lo usan 60 páginas). -->
+  <script>(function(){var s=document.getElementById('opiniones');if(!s)return;var f=function(e){if(e.pointerType==='mouse'&&e.target.classList&&e.target.classList.contains('testimonios__fila'))e.stopPropagation();};s.addEventListener('pointerenter',f,true);s.addEventListener('pointerleave',f,true);})();</script>
   <div class="sec-head">
     <div class="reveal"><span class="eyebrow">Opiniones</span><h1 id="opiniones-titulo">Lo que nos escriben los artistas</h1></div>
     <p class="reveal d1">Mensajes reales de artistas que trabajan con nosotros, tal como nos llegan por WhatsApp e Instagram. Sin nombres, fotos ni números.</p>
