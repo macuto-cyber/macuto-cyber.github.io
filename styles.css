@@ -812,3 +812,12 @@ body:has(> #mm-cookies) footer.site{padding-bottom:170px}
 .soon{display:inline-block;vertical-align:middle;background:var(--ink);color:#fff;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:99px;margin-left:8px;position:relative;top:-2px}
 /* 15-oct-2026: un elemento con el atributo hidden se oculta SIEMPRE. Sin esto, una clase con display (p. ej. .pag-grid{display:grid}) le gana al hidden del navegador: el formulario del Portal DAP seguía encima del plan tras entrar, y el botón de pausa de las historias de la portada (.historias__pausa{display:grid}) seguía a la vista con «reducir movimiento». */
 [hidden]{display:none!important}
+
+/* menu-listas · 25-nov-2026 (Macuto: botón propio «LISTAS» junto a RADAR). Medido a 1600 px: logo 174 + 9 piezas
+   (745) + 8 huecos de 28 = 1.143 px, el ancho útil entero de .wrap (1.144): el menú tocaba el logo en TODAS las pantallas.
+   Huecos de 20 y botones de 16 px de lado → 1.043 (sobran ~100 px desde 1200); hasta 1180, huecos de 14 y texto a .9rem;
+   entre 881 y 1100 solo los botones, como ya pasaba por debajo de 880. Lo pone 09_Automatizaciones/listas_top50/menu_listas.py. */
+.nav-links a{white-space:nowrap}
+@media(min-width:881px){.nav-links{gap:20px}.nav-links .btn{padding:10px 16px}}
+@media(min-width:881px) and (max-width:1180px){.nav-links{gap:14px}.nav-links a:not(.btn){font-size:.9rem}}
+@media(min-width:881px) and (max-width:1100px){.nav-links a:not(.btn){display:none}.nav-links a.nav-keep-link{display:inline-flex}}

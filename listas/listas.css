@@ -1,0 +1,109 @@
+/* listas.css · LISTAS (Top 50 por país), hermana del RADAR (25-nov-2026). La copia top50_build.py a /listas/listas.css
+   y va DESPUÉS de styles.css y radar/radar.css: reutiliza su papel, tinta, filetes y el acento morado (clases rx-*),
+   y añade solo lo suyo (lx-*). Sin degradados ni animaciones de entrada. */
+
+.lx-mast .rx-mast__linea a{color:inherit}
+.lx-h1{margin:26px 0 0;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;color:var(--rx-tinta);
+  font-size:clamp(2.6rem,8vw,5.4rem);line-height:.92;letter-spacing:-.045em}
+.lx-h1 span{display:block;margin-top:18px;font-size:clamp(1.05rem,2vw,1.35rem);line-height:1.3;letter-spacing:-.01em;
+  font-weight:500;color:var(--rx-texto);max-width:40ch}
+.lx section,.lx nav.lx-paises{margin-top:46px}
+.lx .rx-seccion{padding-bottom:12px;border-bottom:2px solid var(--rx-tinta);margin-bottom:18px}
+.lx-sub{margin:-6px 0 16px;color:var(--rx-gris);font-size:.88rem}
+
+/* movimiento */
+.lx-mov{display:inline-block;min-width:2.2em;font-size:.76rem;font-weight:600;font-variant-numeric:tabular-nums}
+.lx-mov--sube{color:#0f7a4a}.lx-mov--baja{color:#b4233c}.lx-mov--igual{color:var(--rx-gris)}
+.lx-mov--nuevo{color:#fff;background:var(--rx-acento);padding:2px 7px;border-radius:3px;font-size:.68rem;
+  letter-spacing:.06em;text-transform:uppercase}
+
+/* señales */
+.lx-chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;padding:0;list-style:none}
+.lx-chip{font-size:.78rem;line-height:1.3;padding:5px 10px;border:1px solid var(--rx-filete);border-radius:999px;color:var(--rx-texto);background:#fff}
+.lx-chip--entra,.lx-chip--cohete,.lx-chip--debut{border-color:var(--rx-acento);color:var(--rx-acento);font-weight:600}
+.lx-chip--frontera,.lx-chip--n1fuera{background:var(--purple-wash)}
+.lx-chip--local{border-style:dashed}
+.lx-chips--mini{margin:0;gap:4px}
+.lx-chips--mini .lx-chip{font-size:.7rem;padding:3px 8px}
+
+/* top 5 */
+.lx-cinco{list-style:none;margin:0;padding:0}
+.lx-card{display:grid;grid-template-columns:72px 1fr;gap:20px;padding:24px 0;border-bottom:1px solid var(--rx-filete)}
+.lx-card__pos{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:3.4rem;line-height:.9;
+  letter-spacing:-.05em;color:var(--rx-tinta);font-variant-numeric:tabular-nums}
+.lx-card:first-child .lx-card__pos{color:var(--rx-acento)}
+.lx-card__meta{margin:0;color:var(--rx-gris);font-size:.8rem;font-variant-numeric:tabular-nums}
+.lx-card__tit{margin:6px 0 0;font-family:'Poppins','Poppins Reserva',sans-serif;font-size:1.45rem;line-height:1.15;letter-spacing:-.02em;color:var(--rx-tinta)}
+.lx-card__tit span{display:block;margin-top:4px;font-family:'Inter',sans-serif;font-weight:500;font-size:.98rem;color:var(--rx-texto);letter-spacing:0}
+.lx-lectura{margin-top:16px;padding:14px 16px;border-left:3px solid var(--rx-acento);background:var(--purple-wash)}
+.lx-lectura p{margin:0;color:var(--rx-tinta);font-size:.95rem;line-height:1.6}
+.lx-lectura__tit{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:.7rem!important;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--rx-acento)!important;margin-bottom:6px!important}
+.lx-ev{margin:10px 0 0;padding:0;list-style:none;font-size:.82rem;color:var(--rx-texto)}
+.lx-ev li{margin-top:4px}
+.lx-ev-tipo{font-weight:600;text-transform:uppercase;font-size:.66rem;letter-spacing:.08em;color:var(--rx-gris);margin-right:4px}
+.lx-pendiente{margin:12px 0 0;font-size:.8rem;color:var(--rx-gris)}
+.lx-radar{margin:12px 0 0;font-size:.85rem}
+.lx-radar a,.lx-paises a,.lx-n1 a{color:var(--rx-tinta)}
+.lx-radar a{border-bottom:1px solid var(--rx-acento)}
+
+/* tabla */
+.lx-tabla table{width:100%;border-collapse:collapse;font-size:.88rem}
+.lx-tabla th{text-align:left;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--rx-gris);
+  padding:8px 8px 8px 0;border-bottom:1px solid var(--rx-filete)}
+.lx-tabla td{padding:11px 8px 11px 0;border-bottom:1px solid var(--rx-filete);vertical-align:top;color:var(--rx-tinta)}
+.lx-tabla td span{color:var(--rx-gris);font-size:.8rem}
+.lx-num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.lx-pos{font-weight:700;font-variant-numeric:tabular-nums;width:2.4em}
+
+/* portada */
+.lx-rejilla{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:0;
+  border-top:1px solid var(--rx-filete);border-left:1px solid var(--rx-filete)}
+.lx-rejilla li{border-right:1px solid var(--rx-filete);border-bottom:1px solid var(--rx-filete)}
+.lx-rejilla a{display:flex;flex-direction:column;gap:3px;padding:16px;height:100%}
+.lx-rejilla a:hover{background:var(--purple-wash)}
+.lx-n1__pais{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rx-acento)}
+.lx-rejilla strong{font-family:'Poppins','Poppins Reserva',sans-serif;font-size:1.02rem;line-height:1.2}
+.lx-rejilla span{font-size:.84rem;color:var(--rx-texto)}
+.lx-n1__dias{margin-top:auto;padding-top:6px;font-size:.74rem!important;color:var(--rx-gris)!important}
+.lx-barras{list-style:none;margin:0;padding:0}
+.lx-barras li{position:relative;display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid var(--rx-filete)}
+.lx-barra{position:absolute;left:0;bottom:-1px;height:3px;width:var(--p);background:var(--rx-acento)}
+.lx-barra__n{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:1.5rem;min-width:1.6em;font-variant-numeric:tabular-nums}
+.lx-barra__t{font-size:.92rem;color:var(--rx-texto)}
+.lx-barra__t strong{color:var(--rx-tinta)}
+.lx-lista{list-style:none;margin:0;padding:0;columns:2 320px;column-gap:40px}
+.lx-lista li{break-inside:avoid;display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--rx-filete);font-size:.92rem}
+.lx-lista small{color:var(--rx-gris)}
+.lx-paises ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 20px}
+.lx-paises a{font-size:.92rem}
+.lx-paises a[aria-current]{font-weight:700;border-bottom:2px solid var(--rx-acento)}
+.lx-dap{padding:34px 0;border-top:2px solid var(--rx-tinta)}
+.lx-dap h2{margin:8px 0 10px;font-family:'Poppins','Poppins Reserva',sans-serif;font-size:1.6rem;letter-spacing:-.02em;color:var(--rx-tinta)}
+.lx-dap p{max-width:44rem;color:var(--rx-texto);line-height:1.6}
+.lx-nota p{margin:0;padding:18px 0 40px;font-size:.8rem;line-height:1.6;color:var(--rx-gris);max-width:52rem}
+.lx-pie{padding:24px 0 40px;font-size:.8rem;color:var(--rx-gris)}
+.lx-pie a{color:inherit}
+
+@media (max-width:640px){
+  .lx-card{grid-template-columns:48px 1fr;gap:12px}
+  .lx-card__pos{font-size:2.4rem}
+  .lx-tabla th:nth-child(4),.lx-tabla td:nth-child(4){display:none}
+}
+.lx-lectura--borrador{border-left-color:#c2410c;background:#fff4ec}
+.lx-lectura--borrador .lx-lectura__tit{color:#c2410c!important}
+
+/* cifras de Spotify y YouTube (Macuto, 25-nov-2026: «top 10 con streams de spotify y youtube») */
+.lx-cifras{display:flex;flex-wrap:wrap;gap:6px 16px;margin:6px 0 10px;font-size:.88rem;color:var(--muted,#6b6b7b)}
+.lx-cifras b{color:var(--ink,#16161d);font-weight:700;font-variant-numeric:tabular-nums}
+.lx-cifras-nota{font-size:.85rem;color:var(--muted,#6b6b7b);margin-top:14px;margin-bottom:0;line-height:1.5}
+.lx-tabla th small{display:block;font-weight:400;font-size:.72rem;opacity:.75;white-space:nowrap}
+.lx-tabla .lx-num{font-variant-numeric:tabular-nums;white-space:nowrap}
+@media (max-width:640px){
+  /* con Spotify y YouTube la tabla no cabe en 375 px: cada fila pasa a rejilla y el «por qué» va debajo */
+  .lx-tabla tr{display:grid;grid-template-columns:24px minmax(0,1fr) auto auto;column-gap:10px;align-items:start;
+    border-bottom:1px solid var(--rx-filete)}
+  .lx-tabla th,.lx-tabla td{border-bottom:0}
+  .lx-tabla th:nth-child(2),.lx-tabla td:nth-child(2),.lx-tabla thead th:last-child{display:none}
+  .lx-tabla td:last-child{grid-column:2/-1;padding-top:0}
+}
