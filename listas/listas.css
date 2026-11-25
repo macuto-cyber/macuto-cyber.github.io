@@ -5,7 +5,7 @@
 .lx-mast .rx-mast__linea a{color:inherit}
 .lx-h1{margin:26px 0 0;font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;color:var(--rx-tinta);
   font-size:clamp(2.6rem,8vw,5.4rem);line-height:.92;letter-spacing:-.045em}
-.lx-h1 span{display:block;margin-top:18px;font-size:clamp(1.05rem,2vw,1.35rem);line-height:1.3;letter-spacing:-.01em;
+.lx-h1 > span:last-child{display:block;margin-top:18px;font-size:clamp(1.05rem,2vw,1.35rem);line-height:1.3;letter-spacing:-.01em;
   font-weight:500;color:var(--rx-texto);max-width:40ch}
 .lx section,.lx nav.lx-paises{margin-top:46px}
 .lx .rx-seccion{padding-bottom:12px;border-bottom:2px solid var(--rx-tinta);margin-bottom:18px}
@@ -13,7 +13,7 @@
 
 /* movimiento */
 .lx-mov{display:inline-block;min-width:2.2em;font-size:.76rem;font-weight:600;font-variant-numeric:tabular-nums}
-.lx-mov--sube{color:#0f7a4a}.lx-mov--baja{color:#b4233c}.lx-mov--igual{color:var(--rx-gris)}
+.lx-mov--sube{color:var(--purple,#5E17EB)}.lx-mov--baja{color:#b4233c}.lx-mov--igual{color:var(--rx-gris)}
 .lx-mov--nuevo{color:#fff;background:var(--rx-acento);padding:2px 7px;border-radius:3px;font-size:.68rem;
   letter-spacing:.06em;text-transform:uppercase}
 
@@ -35,7 +35,7 @@
 .lx-card__meta{margin:0;color:var(--rx-gris);font-size:.8rem;font-variant-numeric:tabular-nums}
 .lx-card__tit{margin:6px 0 0;font-family:'Poppins','Poppins Reserva',sans-serif;font-size:1.45rem;line-height:1.15;letter-spacing:-.02em;color:var(--rx-tinta)}
 .lx-card__tit span{display:block;margin-top:4px;font-family:'Inter',sans-serif;font-weight:500;font-size:.98rem;color:var(--rx-texto);letter-spacing:0}
-.lx-lectura{margin-top:16px;padding:14px 16px;border-left:3px solid var(--rx-acento);background:var(--purple-wash)}
+.lx-lectura{max-width:46rem;margin-top:16px;padding:14px 16px;border-left:3px solid var(--rx-acento);background:var(--purple-wash)}
 .lx-lectura p{margin:0;color:var(--rx-tinta);font-size:.95rem;line-height:1.6}
 .lx-lectura__tit{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:700;font-size:.7rem!important;
   letter-spacing:.12em;text-transform:uppercase;color:var(--rx-acento)!important;margin-bottom:6px!important}
@@ -54,6 +54,8 @@
 .lx-tabla td{padding:11px 8px 11px 0;border-bottom:1px solid var(--rx-filete);vertical-align:top;color:var(--rx-tinta)}
 .lx-tabla td span{color:var(--rx-gris);font-size:.8rem}
 .lx-num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.lx-tabla th.lx-num{text-align:right}
+.lx-tabla .lx-num{padding-left:14px}
 .lx-pos{font-weight:700;font-variant-numeric:tabular-nums;width:2.4em}
 
 /* portada */
@@ -78,11 +80,13 @@
 .lx-paises ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 20px}
 .lx-paises a{font-size:.92rem}
 .lx-paises a[aria-current]{font-weight:700;border-bottom:2px solid var(--rx-acento)}
-.lx-dap{padding:34px 0;border-top:2px solid var(--rx-tinta)}
+.lx-dap{padding-bottom:34px;margin-top:56px}
+.lx-dap .rx-kicker{display:block;max-width:none;padding-top:34px;border-top:2px solid var(--rx-tinta)}
 .lx-dap h2{margin:8px 0 10px;font-family:'Poppins','Poppins Reserva',sans-serif;font-size:1.6rem;letter-spacing:-.02em;color:var(--rx-tinta)}
 .lx-dap p{max-width:44rem;color:var(--rx-texto);line-height:1.6}
-.lx-nota p{margin:0;padding:18px 0 40px;font-size:.8rem;line-height:1.6;color:var(--rx-gris);max-width:52rem}
-.lx-pie{padding:24px 0 40px;font-size:.8rem;color:var(--rx-gris)}
+.lx-nota{padding-top:6px;padding-bottom:8px}
+.lx-nota p{margin:0 0 12px;padding:0;font-size:.8rem;line-height:1.6;color:var(--rx-gris);max-width:52rem}
+.lx-pie{padding-top:16px;padding-bottom:40px;font-size:.8rem;color:var(--rx-gris)}
 .lx-pie a{color:inherit}
 
 @media (max-width:640px){
@@ -107,3 +111,9 @@
   .lx-tabla th:nth-child(2),.lx-tabla td:nth-child(2),.lx-tabla thead th:last-child{display:none}
   .lx-tabla td:last-child{grid-column:2/-1;padding-top:0}
 }
+
+/* banderas (Macuto, 25-nov-2026: «al lado de cada país su banderita como emoji») */
+.lx-flag{margin-right:.35em;font-size:1.05em;letter-spacing:0;text-transform:none}
+.lx-h1-flag{display:inline-block;font-size:.7em;letter-spacing:0;vertical-align:.08em}
+.lx-nowrap{white-space:nowrap}
+.lx-n1__pais .lx-flag{margin-right:.5em}
