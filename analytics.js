@@ -141,12 +141,13 @@
       '#mm-cookies p{margin:0;flex:1;min-width:230px}' +
       '#mm-cookies a{color:#c9b8f5;text-decoration:underline}' +
       '#mm-cookies .mmc-b{display:flex;gap:10px}' +
-      '#mm-cookies button{font:inherit;font-weight:600;border-radius:99px;padding:10px 22px;cursor:pointer;border:0}' +
-      '#mm-cookies .mmc-si{background:#5E17EB;color:#fff}' +
+      /* 28-nov-2026: misma escala que los botones de la web (Poppins, .92rem, esquina 12px, sombra suave en el morado). */
+      "#mm-cookies button{font-family:'Poppins','Poppins Reserva',sans-serif;font-weight:600;font-size:.92rem;line-height:1.2;border-radius:12px;padding:11px 22px;cursor:pointer;border:0}" +
+      '#mm-cookies .mmc-si{background:#5E17EB;color:#fff;box-shadow:0 8px 20px -10px rgba(94,23,235,.5)}' +
       '#mm-cookies .mmc-no{background:transparent;color:#cdc3ea;border:1.5px solid rgba(255,255,255,.3)}' +
       /* Móvil (10-oct-2026): compacto y pegado abajo para no tapar el botón principal del héroe. Misma lógica de consentimiento. */
       '@media(max-width:600px){#mm-cookies{left:8px;right:8px;bottom:8px;padding:11px 13px;gap:9px;font-size:.78rem;line-height:1.42;border-radius:14px}' +
-      '#mm-cookies p{flex-basis:100%;min-width:0}#mm-cookies .mmc-b{flex:1}#mm-cookies button{flex:1;padding:8px 12px;min-height:44px}}' +
+      '#mm-cookies p{flex-basis:100%;min-width:0}#mm-cookies .mmc-b{flex:1}#mm-cookies button{flex:1;padding:8px 12px;min-height:44px;font-size:.85rem}}' +
       '</style>' +
       '<p>Usamos cookies para mejorar tu experiencia y analizar el uso del sitio. Solo se activan si aceptas. ' +
       '<a href="/privacidad.html">Más info</a></p>' +
