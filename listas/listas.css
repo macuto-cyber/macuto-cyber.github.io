@@ -85,6 +85,9 @@
 .lx-dap .rx-kicker{display:block;max-width:none;padding-top:34px;border-top:2px solid var(--rx-tinta)}
 .lx-dap h2{margin:8px 0 10px;font-family:'Poppins','Poppins Reserva',sans-serif;font-size:1.6rem;letter-spacing:-.02em;color:var(--rx-tinta)}
 .lx-dap p{max-width:44rem;color:var(--rx-texto);line-height:1.6}
+/* el botón va a la escala del bloque (título 1.6rem, texto de cuerpo), no a la del hero */
+.lx-dap .btn{margin-top:18px;padding:11px 22px;font-size:.92rem;border-radius:12px;box-shadow:0 8px 20px -10px rgba(94,23,235,.5)}
+.lx-dap .btn:hover{box-shadow:0 12px 26px -10px rgba(94,23,235,.55)}
 .lx-nota{padding-top:6px;padding-bottom:8px}
 .lx-nota p{margin:0 0 12px;padding:0;font-size:.8rem;line-height:1.6;color:var(--rx-gris);max-width:52rem}
 .lx-pie{padding-top:16px;padding-bottom:40px;font-size:.8rem;color:var(--rx-gris)}
