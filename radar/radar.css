@@ -86,6 +86,9 @@
 /* el botón va a la escala del bloque (título ~1.6rem, texto de cuerpo), no a la del hero; igual que .lx-dap .btn en LISTAS */
 .rx-cta__in .btn{padding:11px 22px;font-size:.92rem;border-radius:12px;box-shadow:0 8px 20px -10px rgba(94,23,235,.5)}
 .rx-cta__in .btn:hover{box-shadow:0 12px 26px -10px rgba(94,23,235,.55)}
+/* botón del pie de los artículos (.pie__cierre vive en styles.css; solo lo usan las páginas del RADAR): misma escala */
+.pie__cierre .btn{padding:11px 22px;font-size:.92rem;border-radius:12px;box-shadow:0 8px 20px -10px rgba(94,23,235,.5)}
+.pie__cierre .btn:hover{box-shadow:0 12px 26px -10px rgba(94,23,235,.55)}
 .rx-cta--art{padding:0;margin-top:56px}
 .rx-cta--art .rx-cta__in{grid-template-columns:minmax(0,1fr)}
 .rx-cta--art .rx-cta__in .btn{grid-column:1;grid-row:auto;justify-self:start;margin-top:18px}
