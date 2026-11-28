@@ -268,8 +268,10 @@
 <!-- VISION · 11-oct-2026, Macuto: «el vídeo de la mastermind debe verse en grande en una sección con texto que ponga nuestra visión y al hacerlo más grande
      desaparezca el texto y se pueda ver solo el vídeo bruto». En escritorio el vídeo crece con el scroll hasta llenar la pantalla y el texto se desvanece
      (home.css §21; JS al final de este bloque). En móvil y con «reducir movimiento»: texto arriba y vídeo debajo, sin animación.
-     Vídeo: aftermovie «Mastermind Madrid DAP 26» (Descargas), 720p; en móvil no se descarga hasta que se pulsa. -->
-<section class="vision" id="vision" aria-labelledby="vision-t">
+     Vídeo: aftermovie «Mastermind Madrid DAP 26» (Descargas), 720p; en móvil no se descarga hasta que se pulsa.
+     data-nosnippet (28-nov-2026): Google sacaba «Creemos en la música hecha en equipo…» como descripción de la portada en vez de la
+     meta description («La casa de los artistas urbanos…»). Google solo admite data-nosnippet en span, div y section, nunca en <p>. -->
+<section class="vision" id="vision" aria-labelledby="vision-t" data-nosnippet>
   <div class="vision__pista">
     <div class="vision__fijo">
       <div class="vision__txt">
@@ -1135,7 +1137,7 @@
     </ul></nav>
     <a class="pie__arriba" href="#main"><span class="pie__arriba-ico" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 19V5m-6.5 6.5L12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Volver arriba</a>
   </div>
-  <p class="pie__quien" data-nosnippet style="margin:0 0 1rem;max-width:62ch;opacity:.8;font-size:.9em;line-height:1.5">Macuto Music es un equipo de A&amp;R, label managers y dirección creativa con base en Madrid que descubre y hace crecer a artistas de música urbana en España y Latinoamérica. Su sello en México es Semya Records.</p>
+  <p class="pie__quien" style="margin:0 0 1rem;max-width:62ch;opacity:.8;font-size:.9em;line-height:1.5"><span data-nosnippet>Macuto Music es un equipo de A&amp;R, label managers y dirección creativa con base en Madrid que descubre y hace crecer a artistas de música urbana en España y Latinoamérica. Su sello en México es Semya Records.</span></p>
   <div class="foot-legal">
     <span>© 2026 Macuto Music · Titular: Angelo Jordan Gutiérrez Luis · Madrid</span>
     <span><a href="aviso-legal.html">Aviso legal y condiciones</a> · <a href="privacidad.html">Privacidad y cookies</a></span>
