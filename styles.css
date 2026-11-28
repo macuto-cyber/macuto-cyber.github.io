@@ -225,7 +225,10 @@ nav.site{
 .nav-links a:not(.btn):hover{color:var(--purple)}
 .nav-links a:not(.btn)[aria-current="true"]{color:var(--purple);font-weight:600}
 .nav-links a:not(.btn)[aria-current="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--purple);border-radius:2px}
-.nav-links .btn{padding:10px 22px;font-size:.9rem}
+.nav-links .btn{padding:10px 22px;font-size:.92rem;border-radius:12px}
+/* misma esquina, letra y sombra que los botones del contenido (main .btn, 28-nov-2026); el relleno sigue siendo el del menú */
+.nav-links .btn-purple{box-shadow:0 8px 20px -10px rgba(94,23,235,.5)}
+.nav-links .btn-purple:hover{box-shadow:0 12px 26px -10px rgba(94,23,235,.55)}
 @media(max-width:880px){.nav-links a:not(.btn){display:none}}
 @media(max-width:880px){.nav-links a.nav-keep-link{display:inline-flex}}
 /* nav en móvil: botón Artistas compacto, sin solaparse con el logo */
@@ -263,7 +266,7 @@ nav.site{
 .hero p.lead b{color:var(--ink);font-weight:600}
 .cta-row{display:flex;gap:14px;flex-wrap:wrap}
 /* botones del contenido a escala del texto en toda la web (igual que LISTAS y RADAR, 28-nov-2026).
-   El menú (.nav-links .btn) y los botones con regla propia más específica (p. ej. .pt-card .btn) no cambian. */
+   El menú (.nav-links .btn) tiene su propia regla, a la misma escala; los botones con regla propia más específica (p. ej. .pt-card .btn) no cambian. */
 main .btn{padding:11px 22px;font-size:.92rem;border-radius:12px}
 main .btn-purple{box-shadow:0 8px 20px -10px rgba(94,23,235,.5)}
 main .btn-purple:hover{box-shadow:0 12px 26px -10px rgba(94,23,235,.55)}
