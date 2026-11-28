@@ -262,9 +262,11 @@ nav.site{
 @media(max-width:380px){.hero{padding-top:22px}.hero h1{font-size:2.2rem}.hero p.lead{font-size:1rem}}
 .hero p.lead b{color:var(--ink);font-weight:600}
 .cta-row{display:flex;gap:14px;flex-wrap:wrap}
-/* portada: los botones de acción a escala del texto (igual que LISTAS y RADAR, 28-nov-2026) */
-.portada main .btn{padding:11px 22px;font-size:.92rem;border-radius:12px;box-shadow:0 8px 20px -10px rgba(94,23,235,.5)}
-.portada main .btn:hover{box-shadow:0 12px 26px -10px rgba(94,23,235,.55)}
+/* botones del contenido a escala del texto en toda la web (igual que LISTAS y RADAR, 28-nov-2026).
+   El menú (.nav-links .btn) y los botones con regla propia más específica (p. ej. .pt-card .btn) no cambian. */
+main .btn{padding:11px 22px;font-size:.92rem;border-radius:12px}
+main .btn-purple{box-shadow:0 8px 20px -10px rgba(94,23,235,.5)}
+main .btn-purple:hover{box-shadow:0 12px 26px -10px rgba(94,23,235,.55)}
 .trust-line{margin-top:30px;color:var(--muted);font-size:.92rem;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 .trust-line b{color:var(--ink);font-weight:600;font-family:'Poppins','Poppins Reserva',sans-serif}
 .dot{width:4px;height:4px;border-radius:50%;background:var(--purple)}
